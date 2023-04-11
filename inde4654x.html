@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <ul></ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+<script src="./index.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js">
+    
+</script>
+<script>
+    // 암호화할 문자열을 지정합니다.
+    const message = "Hello, world!";
+  
+    // MD5 알고리즘을 사용하여 문자열을 암호화합니다.
+    const encrypted = CryptoJS.MD5(message).toString();
+  
+    // 결과를 출력합니다.
+    console.log(encrypted);
+  </script>
+
+</html>
