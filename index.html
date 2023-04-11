@@ -14,5 +14,19 @@
     <ul></ul>
     <li></li>
 </body>
+<script src="./index.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js">
+    
+</script>
+<script>
+    // 암호화할 문자열을 지정합니다.
+    const message = "Hello, world!";
+  
+    // MD5 알고리즘을 사용하여 문자열을 암호화합니다.
+    const encrypted = CryptoJS.MD5(message).toString();
+  
+    // 결과를 출력합니다.
+    console.log(encrypted);
+  </script>
 
 </html>
