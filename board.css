@@ -3,14 +3,15 @@
     height: 800px;
 
     border-radius: 15px;
-    box-shadow: 5px 5px 5px;
-    background-color: whitesmoke;
+    box-shadow: 10px 10px 5px rgba(100, 100, 100, 0.6), -2px -2px 5px rgba(100, 100, 100, 0.6);
+    /* background-color: whitesmoke; */
 
     margin: auto;
     margin-top: 80px;
 
     box-sizing: border-box;
 
+    position: relative;
 }
 
 .a-center {
@@ -57,10 +58,6 @@
 .a-w2 {width:25%; }
 .a-w3 {width:25%; }
 .a-w4 {width:34%; }
-/* .a-w1 {width:40px; }
-.a-w2 {width:80px; }
-.a-w3 {width:200px; }
-.a-w4 {width:100px; } */
 
 .a-title {
 	height: 50px;
@@ -69,8 +66,7 @@
     border-right:solid 1px gray;
 
 }
-/* .r_line {border-right:solid 1px gray;} */
-/* .b_line {border-bottom:solid 1px gray;} */
+
 .a-list {
 	height: 40px;
 	line-height: 40px;
@@ -100,13 +96,27 @@
     resize: none;
 }
 
-.a-board-box .a-board-user-date {
+.a-board-box .a-board-right {
     display: flex;
     position: absolute;
-    right: 0;
+    right: 10px;
 
+}
+
+.a-board-right * {
+    margin-right: 6px;
 }
 
 .a-board-user-date h4:first-child {
     margin-right: 10px;
+}
+
+.a-board-box .a-content {
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+}
+
+.a-board-right.writer {
+    position: absolute;
+    top: 0px;
 }
