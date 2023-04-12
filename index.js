@@ -10,10 +10,8 @@ let use = JSON.stringify(one);
 localStorage.setItem("user", use);
 let myData = localStorage.getItem("user");
 console.log(myData);
-let usercount = 0;
-let userString = "";
-
-let nowuser = "";
+let userString = ""; //유저 
+let nowuser = ""; //로그인한 현재 유저 
 
 // function newUserBtn(user_id,user_pw,user_nickName,user_allow,coin,token){
 //     // usercount++;
@@ -34,7 +32,6 @@ let nowuser = "";
 // function compareUser(){
 
 // }
-
 function newUserBtn(user_id, user_pw, user_nickName, user_allow, coin, token) {
   let thing = new user(
     user_id,
@@ -184,7 +181,7 @@ function delCookies() {
   alert("쿠키를 삭제하였습니다.");
 }
 
-console.log("d");
+
 
 function getRemainingTime(cookieExpire) {
   let expire = new Date(cookieExpire);
@@ -204,7 +201,7 @@ function getRemainingTime(cookieExpire) {
   }
   return `${days}일 ${hours}시간 ${minutes}분 ${seconds}초`;
 }
-let set1;
+let set1; //setInterval 함수 
 //버튼 누르면 시간추가 쿠키값에 반영
 let expireDate = new Date(); // 쿠키 만료 날짜
 function userLogin(){
@@ -235,5 +232,4 @@ function extensionTime(){
 }
 // 예시
 // expireDate.setTime(expireDate.getTime() + 10 * 60 * 1000); 10분
-
 
