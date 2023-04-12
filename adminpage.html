@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./adminpage.css">
+</head>
+<body class="whole-adminpage">
+    <div class="header">
+        <div class="b-sangpay-logo">
+            <div class="b-logo"></div>
+        </div>
+        <div class="b-session-time">
+            <div class="b-session">남은 시간 : 00분 00초</div>
+            <button class="b-time-extend-btn">시간 연장</button>
+        </div>
+        <div class="b-menu-option">
+            <ul class="b-header-list">
+                <li class="b-header-list-item">my page</li>
+                <li class="b-header-list-item">FAQ</li>
+            </ul>
+        </div>
+    </div>
+    <div class="b-admin-window">
+        <div class="b-tab-menu">
+            <input class="b-member" type="radio" id="tab1" name="tabmenu" checked>
+            <label class="b-member-label" for="tab1">회원</label>
+            <input class="b-not-yet-member" type="radio" id="tab2" name="tabmenu">
+            <label class="b-not-yet-member-label" for="tab2">회원 승인 대기</label>
+
+            <div class="box item1">
+                <div class="b-member-board">
+            
+                </div>
+            </div>
+            <div class="box item2">
+                <div class="b-confirm-waiting-member-board">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+<script>
+    // 암호화할 문자열을 지정합니다.
+    const message = "Hello, world!";
+  
+    // MD5 알고리즘을 사용하여 문자열을 암호화합니다.
+    const encrypted = CryptoJS.MD5(message).toString();
+  
+    // 결과를 출력합니다.
+    function user(user_id,user_pw,user_nickName,user_allow=false,coin,token){
+        this.user_id=user_id;
+        this.user_pw=user_pw;
+        this.user_nickName=user_nickName;
+        this.user_allow=user_allow;
+        this.user_Hash= CryptoJS.MD5(this.user_id).toString();
+        this.coin=coin;
+        this.token=token;
+    }
+    function coin(coin_name,coin_num){
+        this.coin_name=coin_name;
+        this.coin_num=coin_num;
+    }
+    function token(token_name,token_num){
+        this.token_name=token_name;
+        this.token_num=token_num
+    }
+    const defaultCoin=new coin("sangapy",100);
+</script>
+<script src="./index.js"></script>
+<script src="./adminpage.js"></script>
+</html>
