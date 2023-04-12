@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./loginpage.css">
 </head>
 
 <body>
@@ -41,17 +42,22 @@
         this.user_allow=user_allow;
         this.user_Hash= CryptoJS.MD5(this.user_id).toString();
         this.coin=coin;
-        this.token=token;
+        this.token=new Array(10);
     }
-    function coin(coin_name,coin_num){
+
+    function coin(coin_name,coin_num,coin_value){
         this.coin_name=coin_name;
         this.coin_num=coin_num;
+        this.coin_value=coin_value
     }
-    function token(token_name,token_num){
+    function token(token_name,token_num,token_value,minTradingQuan,charge){
         this.token_name=token_name;
         this.token_num=token_num
+        this.token_value=token_value;
+        this.minTradingQuan=minTradingQuan;
+        this.charge=charge;
     }
-    const defaultCoin=new coin("sangapy",100);
+    const defaultCoin=new coin("sangapy",100,10);
    
 
   

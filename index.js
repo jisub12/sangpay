@@ -1,11 +1,14 @@
+
+let bitcoin=new token("bitcoin",1,2,1,0.1);
+console.log(bitcoin);
 let one = new user(
   "gusdnr205@naver.com",
   123456789,
   "goldenbeer",
   false,
   defaultCoin,
-  new token("bitcoin", 100)
 );
+one.token[0]=bitcoin;
 let use = JSON.stringify(one);
 localStorage.setItem("user", use);
 let myData = localStorage.getItem("user");
@@ -32,6 +35,8 @@ let nowuser = ""; //로그인한 현재 유저
 // function compareUser(){
 
 // }
+
+
 function newUserBtn(user_id, user_pw, user_nickName, user_allow, coin, token) {
   let thing = new user(
     user_id,
@@ -51,7 +56,7 @@ newUserBtn(
   "gusdnr205@naver.com",
   123456789,
   "goldenbeer",
-  false,
+  true,
   defaultCoin,
   new token("bitcoin", 100)
 );
@@ -96,7 +101,6 @@ function loginUser(id, pw) {
       let cuurent_user = JSON.parse(localStorage.getItem(key));
       console.log(cuurent_user.user_id);
       console.log(cuurent_user.user_pw);
-
       if (
         pw == cuurent_user.user_pw &&
         id == cuurent_user.user_id &&
@@ -108,7 +112,7 @@ function loginUser(id, pw) {
     }
   }
 }
-loginUser("gusdnr205@naver.com", 123456789);
+loginUser("gusdnr205@naver.com",123456789);
 //내부값이랑 비교하는 구문 맞으면 로그인(쿠키추가)쿠키에 로그인상태 true 부여
 // 시간이 지나서 쿠키가 사라질때 로그인상태 false
 
@@ -178,7 +182,7 @@ function delCookies() {
   document.cookie = "username=leesoonsin;"; // 쿠키수정
   document.cookie =
     "username=leesoonsin; expires=Sat, 01 Jan 1972 00:00:00 GMT"; // 쿠키삭제
-  document.cookie = "userid=leesoonsin; expires=Sat, 01 Jan 1972 00:00:00 GMT"; // 쿠키삭제
+  document.cookie = "userid=leesoonsin; expires=Sat,  01 Jan 1972 00:00:00 GMT"; // 쿠키삭제
   alert("쿠키를 삭제하였습니다.");
 }
 
