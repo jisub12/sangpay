@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <ul></ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js">
+    
+</script>
+<script>
+    // 암호화할 문자열을 지정합니다.
+    const message = "Hello, world!";
+  
+    // MD5 알고리즘을 사용하여 문자열을 암호화합니다.
+    const encrypted = CryptoJS.MD5(message).toString();
+  
+    // 결과를 출력합니다.
+    function user(user_id,user_pw,user_nickName,user_allow=false,coin,token){
+        this.user_id=user_id;
+        this.user_pw=user_pw;
+        this.user_nickName=user_nickName;
+        this.user_allow=user_allow;
+        this.user_Hash= CryptoJS.MD5(this.user_id).toString();
+        this.coin=coin;
+        this.token=token;
+    }
+    function coin(coin_name,coin_num){
+        this.coin_name=coin_name;
+        this.coin_num=coin_num;
+    }
+    function token(token_name,token_num){
+        this.token_name=token_name;
+        this.token_num=token_num
+    }
+    const defaultCoin=new coin("sangapy",100);
+   
+
+  
+
+    
+  </script>
+  <script src="./index.js"></script>
+
+</html>
