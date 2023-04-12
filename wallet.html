@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Wallet</title>
+    <link rel="stylesheet" href="./wallet.css">
+</head>
+<body>
+    
+    <header>
+        <div class="logo">Logo</div>
+        <div class="session-time">00:00</div>
+        <button class="extend-session">시간 연장</button>
+        <button class="my-page">마이페이지</button>
+        <button class="contact-us">문의하기</button>
+    </header>
+
+    <main>
+        <div class="wallet">
+            <h2 class="wallet-title">Wallet</h2>
+            <hr class="divider" />
+            <div class="coin-info">
+                <div class="token-wrapper">
+                <span class="coin">상장페이</span>
+                <span class="coin-amount">0.0000</span>
+                </div>
+            </div>
+            <div class="token-info">
+                <div class="token-wrapper">
+                    <span class="token">Bitcoin</span>
+                    <span class="token-amount">0.0000</span>
+            </div>
+                <div class="token-wrapper">
+                    <span class="token">토큰2</span>
+                    <span class="token-amount">0.0000</span>
+               </div>
+                <div class="token-wrapper">
+                    <span class="token">토큰3</span>
+                    <span class="token-amount">0.0000</span>
+                </div>
+            <div class="token-wrapper">
+                    <span class="token">토큰4</span>
+                    <span class="token-amount">0.0000</span>
+                </div>
+            <div class="token-wrapper">
+                    <span class="token">토큰5</span>
+                    <span class="token-amount">0.0000</span>
+                </div>
+            <div class="token-wrapper">
+                    <span class="token">토큰6</span>
+                    <span class="token-amount">0.0000</span>
+            </div>
+            <div class="token-wrapper">
+                    <span class="token">토큰7</span>
+                    <span class="token-amount">0.0000</span>
+            </div>
+            <div class="token-wrapper">
+                    <span class="token">토큰8</span>
+                    <span class="token-amount">0.0000</span>
+            </div>
+            <div class="token-wrapper">
+                    <span class="token">토큰9</span>
+                    <span class="token-amount">0.0000</span>
+            </div>
+            <div class="token-wrapper">
+                    <span class="token">토큰10</span>
+                    <span class="token-amount">0.0000</span>
+            </div>
+        </div>
+            <!-- <div class="swap-info">
+                <button class="swap-button">스왑</button>
+                <span class="expected-swap-amount">0.0000</span>
+            </div> -->
+            <div class="swap-buttons">
+                <button class="send-btn">보내기</button>
+                <button class="swap-btn">스왑</button>
+                <button class="receive-btn">받기</button>
+            </div>
+        </div>
+
+        <!--------------------------- 팝업창 ----------------------------->
+        
+        
+        <!-- 보내기 버튼 팝업창 -->
+    <div class="popup1">        
+        <div id="send-popup">
+            <div class="popup-content">
+                <h2>보내기</h2>
+                <Input type="text" id="send-address" class="input-field" placeholder="지갑 주소를 입력해 주세요">
+                    <div class="coin-info">
+                        <!--  이부분 나중에 자바스크립트랑 연결해서 보유개수대로 표시하게 해야함  -->
+                        <span class="coin">상페코인</span>
+                        <span class="coin-amount">총 보유 개수</span>
+                    </div>
+                    <input type="number" id="send-amount" class="input-field" placeholder="개수를 입력해주세요" min="0">
+                    <!-- 보내기 눌렀을 떄 보내지는 기능은 없음. 그냥 닫혀야함 -->
+                    <button class="h-send-button" onclick="closePopup('send-popup')">보내기</button>
+                </div>
+            </div>
+        </div>
+    
+            <!-- 받기 버튼 팝업창 -->
+    <div class="popup3">
+        <div id="receive-popup">
+            <div class="popup-content">
+                <h2>받기</h2>
+                <img src="./img/qr코드.png" alt="QR Code" class="qrcode">
+                <p>결제 받은 주소를 스캔하세요</p>
+                <div class="wallet-address" onclick="copyAddress()">내 암호화페 지갑 주소 복사</div>
+                <div class="h-close-button" onclick="closePopup('receive-popup')">닫기</div>
+            </div>
+        </div>
+    </div>
+
+            <!-- 스왑 버튼 팝업창 -->
+
+    <div class="popup-swap">
+        <div id="swap-popup">
+            <div class="popup-content">
+                <h2>교환</h2>
+                <p class="swap-instruction">교환 수량을 입력하세요</p>
+                <div class="swap-input-wrapper">
+                <span class="coin">상장페이</span>
+                <input type="number" id="swap-amount" class="swap-input-field" placeholder="수량" min="0">
+                </div>
+                    <ul class="token-list">
+                        <li>토큰1</li>
+                        <li>토큰2</li>
+                        <li>토큰3</li>
+                        <li>토큰4</li>
+                        <li>토큰5</li>
+                        <li>토큰6</li>
+                        <li>토큰7</li>
+                        <li>토큰8</li>
+                        <li>토큰9</li>
+                        <li>토큰10</li>
+                    </ul>
+                    <div class="swap-details">
+                        <!-- 나중에 연결해서 기능 구현 되게 해야함 -->
+                        <p class="swap-expected">예상내역</p>
+                        <p class="swap-rate">교환비율 : 0.00</p>
+                        <p class="swap-minimum">최소거래수량 : 0.00</p>
+                        <p class="swap-fee">수수료 : 0.00</p>
+                    </div>
+                    <button class="swap-execute" onclick="closePopup('swap-popup')">교환하기</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    </main>
+</body>
+<script src="./wallet.js"></script>
+<script src="./index.js"></script>
+</html>
