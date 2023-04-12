@@ -13,10 +13,10 @@
 
 <body>
     <div class="header"></div>
-    <div class="a-board-box">
+    <div class="a-board-box a-edit-box">
         <!-- 등록/수정 -->
-        <h1>게시물 등록</h1>
-        <div class="a-center">
+        <div class="a-box">
+            <h1>게시물 등록</h1>
             <div>
                 <label for="title">
                     <h3>제목</h3>
@@ -31,10 +31,11 @@
                 <textarea name="content" id="content" cols="30" rows="10"></textarea>
             </div>
 
+
+            <!-- 등록/수정 -->
+            <div class="a-btn a-right">등록</div>
+            <div class="a-btn a-center">목록</div>
         </div>
-        <!-- 등록/수정 -->
-        <div class="a-btn">등록</div>
-        <div class="a-btn">목록</div>
     </div>
 </body>
 <script src="./board_edit.js"></script>
