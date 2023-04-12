@@ -206,8 +206,8 @@ function getRemainingTime(cookieExpire) {
 }
 let set1;
 //버튼 누르면 시간추가 쿠키값에 반영
+let expireDate = new Date(); // 쿠키 만료 날짜
 function userLogin(){
-  let expireDate = new Date(); // 쿠키 만료 날짜
   expireDate.setTime(expireDate.getTime() + 10 * 1000);
   let remainingTime = getRemainingTime(expireDate.toUTCString()); // 쿠키 만료까지 남은 시간 계산
   console.log(remainingTime);
@@ -225,9 +225,8 @@ function extensionTime(){
   let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
   // 만료시간을 현재시간 기준으로 10분 뒤로 설정
-  let expireDate = new Date();
   console.log(expireDate.getTime());
-  let time=expireDate.setTime(expireDate.getTime() + 10 * 60 * 1000);
+  let time=expireDate.setTime(expireDate.getTime() + 10 * 1000); //10 초뒤
   console.log(time);
   console.log("작동함");
   // 업데이트된 쿠키를 생성하여 저장
