@@ -185,6 +185,10 @@ input[class="b-not-yet-member"]:checked ~ .item2{
 .board-content div{
     width: 200px;
     height: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .item1{
