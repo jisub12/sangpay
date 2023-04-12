@@ -109,34 +109,4 @@ loginUser("gusdnr205@naver.com",1234456789);
 //내부값이랑 비교하는 구문 맞으면 로그인(쿠키추가)쿠키에 로그인상태 true 부여
 // 시간이 지나서 쿠키가 사라질때 로그인상태 false
 
-//------------------------------지섭-----------------------------------------//
 
-// // 로그인 성공 시, 로컬 스토리지에서 Bitcoin 수량 가져오기
-// function getBitcoinAmount(userId) {
-//   const userKey = "user_" + userId;
-//   const userData = JSON.parse(localStorage.getItem(userKey));
-//   return userData.token.amount;
-// }
-
-// // Bitcoin 수량을 wallet에 표시하기
-// function displayBitcoinAmount(userId) {
-//   const bitcoinAmount = getBitcoinAmount(userId);
-//   const tokenAmountElement = document.querySelector(".token-amount");
-//   tokenAmountElement.textContent = bitcoinAmount.toFixed(4);
-// }
-
-// // loginUser 함수 수정: 로그인 성공 시, Bitcoin 수량 표시하기
-// function loginUser(id, pw) {
-//   for (let i = 0; i < localStorage.length; i++) {
-//     let key = localStorage.key(i);
-//     if (key.startsWith("user_")) {
-//       let currentUser = JSON.parse(localStorage.getItem(key));
-//       console.log(currentUser.user_id);
-//       console.log(currentUser.user_pw);
-//       if (pw == currentUser.user_pw && id == currentUser.user_id && currentUser.user_allow == true) {
-//         console.log("로그인 성공");
-//         displayBitcoinAmount(currentUser.user_id);
-//       }
-//     }
-//   }
-// }
