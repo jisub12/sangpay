@@ -52,7 +52,7 @@ newUserBtn(
   "gusdnr205@naver.com",
   123456789,
   "goldenbeer",
-  false,
+  true,
   defaultCoin,
   new token("bitcoin", 100)
 );
@@ -97,7 +97,6 @@ function loginUser(id, pw) {
       let cuurent_user = JSON.parse(localStorage.getItem(key));
       console.log(cuurent_user.user_id);
       console.log(cuurent_user.user_pw);
-      console.log(cuurent_user.user_nickName);
       if ((pw == cuurent_user.user_pw && id == cuurent_user.user_id && cuurent_user.user_allow==true)) {
         console.log("로그인성공");
       }
