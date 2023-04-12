@@ -25,13 +25,13 @@
                 <div class="token-wrapper">
                 <span class="coin">상장페이</span>
                 <span class="coin-amount">0.0000</span>
-            </div>
+                </div>
             </div>
             <div class="token-info">
                 <div class="token-wrapper">
-                    <span class="token">토큰1</span>
+                    <span class="token">Bitcoin</span>
                     <span class="token-amount">0.0000</span>
-               </div>
+            </div>
                 <div class="token-wrapper">
                     <span class="token">토큰2</span>
                     <span class="token-amount">0.0000</span>
@@ -85,7 +85,6 @@
         
         <!-- 보내기 버튼 팝업창 -->
     <div class="popup1">        
-
         <div id="send-popup">
             <div class="popup-content">
                 <h2>보내기</h2>
@@ -103,30 +102,29 @@
         </div>
     
             <!-- 받기 버튼 팝업창 -->
-         <div class="popup3">
-            
-            <div id="receive-popup">
+    <div class="popup3">
+        <div id="receive-popup">
             <div class="popup-content">
                 <h2>받기</h2>
-                <img src="./qr코드.png" alt="QR Code" class="qrcode">
+                <img src="./img/qr코드.png" alt="QR Code" class="qrcode">
                 <p>결제 받은 주소를 스캔하세요</p>
                 <div class="wallet-address" onclick="copyAddress()">내 암호화페 지갑 주소 복사</div>
                 <div class="h-close-button" onclick="closePopup('receive-popup')">닫기</div>
             </div>
-          </div>
-          </div>
+        </div>
+    </div>
 
             <!-- 스왑 버튼 팝업창 -->
 
-            <div class="popup-swap">
-                <div id="swap-popup">
-                <div class="popup-content">
-                    <h2>교환</h2>
-                    <p class="swap-instruction">교환 수량을 입력하세요</p>
-                    <div class="swap-input-wrapper">
-                        <span class="coin">상장페이</span>
-                        <input type="number" id="swap-amount" class="swap-input-field" placeholder="수량">
-                    </div>
+    <div class="popup-swap">
+        <div id="swap-popup">
+            <div class="popup-content">
+                <h2>교환</h2>
+                <p class="swap-instruction">교환 수량을 입력하세요</p>
+                <div class="swap-input-wrapper">
+                <span class="coin">상장페이</span>
+                <input type="number" id="swap-amount" class="swap-input-field" placeholder="수량">
+                </div>
                     <ul class="token-list">
                         <li>토큰1</li>
                         <li>토큰2</li>
@@ -139,7 +137,6 @@
                         <li>토큰9</li>
                         <li>토큰10</li>
                     </ul>
-
                     <div class="swap-details">
                         <!-- 나중에 연결해서 기능 구현 되게 해야함 -->
                         <p class="swap-expected">예상내역</p>
@@ -148,15 +145,15 @@
                         <p class="swap-fee">수수료 : 0.00</p>
                     </div>
                     <button class="swap-execute" onclick="closePopup('swap-popup')">교환하기</button>
-                </div>
-                </div>
-                 </div>
-             </div>
-    
+            </div>
+        </div>
+    </div>
+
 
 
 
     </main>
 </body>
 <script src="./wallet.js"></script>
+<script src="./index.js"></script>
 </html>
