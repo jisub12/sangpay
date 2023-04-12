@@ -255,14 +255,17 @@ let waitingMemberArr = [];
 
 
 let waitingMember = JSON.parse(window.localStorage.getItem(window.localStorage.key(0)));
+let waitingMember2 = JSON.parse(window.localStorage.getItem(window.localStorage.key(1)));
 console.log(waitingMember);
+console.log(waitingMember2);
 
-function addList(){
+function addWaitingList(){
     waitingMemberArr.push(waitingMember);
+    waitingMemberArr.push(waitingMember2);
     console.log(waitingMemberArr);
     renderWaitingList();
 }
-addList();
+addWaitingList();
 
 function renderWaitingList(){
     confirmWaitingMember.innerHTML = "";
@@ -277,12 +280,17 @@ function renderWaitingList(){
 
         button01.onclick = function(){
             div01.remove();
+            let oneByOne = waitingMemberArr.splice(index,1);
             waitingMemberArr.splice(index,1);
             renderWaitingList();
+            oneByOne["user_allow"] = true;
+            // console.log(waitingMember[index]);
+            memberArr.push(oneByOne);
+            renderMemberList();
         }
 
-        div02.innerHTML = waitingMember.user_id;
-        div03.innerHTML = waitingMember.user_nickName;
+        div02.innerHTML = "아이디 : " + waitingMemberArr[index].user_id;
+        div03.innerHTML = "닉네임 : " + waitingMemberArr[index].user_nickName;
 
         div01.style.display = "flex";
         div01.className = "board-content";
@@ -292,5 +300,19 @@ function renderWaitingList(){
 }
 
 function renderMemberList(){
-    
+    member.innerHTML = "";
+
+    memberArr.forEach(function(item,index){
+        let div01 = document.createElement("div");
+        let div02 = document.createElement("div");
+        let div03 = document.createElement("div");
+
+        div02.innerHTML = "아이디 : " + memberArr[index].user_id;
+        div03.innerHTML = "닉네임 : " + memberArr[index].user_nickName;
+
+        div01.style.display = "flex";
+        div01.className = "board-content";
+        div01.append(div02,div03);
+        member.append(div01);
+    })
 }

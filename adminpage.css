@@ -182,8 +182,16 @@ input[class="b-not-yet-member"]:checked ~ .item2{
     margin: auto;
 }
 
+.board-content{
+    margin-top: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .board-content div{
-    width: 200px;
+    width: 300px;
     height: 30px;
 
     display: flex;
