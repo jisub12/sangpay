@@ -94,7 +94,7 @@
                         <span class="coin">상페코인</span>
                         <span class="coin-amount">총 보유 개수</span>
                     </div>
-                    <input type="number" id="send-amount" class="input-field" placeholder="개수를 입력해주세요">
+                    <input type="number" id="send-amount" class="input-field" placeholder="개수를 입력해주세요" min="0">
                     <!-- 보내기 눌렀을 떄 보내지는 기능은 없음. 그냥 닫혀야함 -->
                     <button class="h-send-button" onclick="closePopup('send-popup')">보내기</button>
                 </div>
@@ -123,7 +123,7 @@
                 <p class="swap-instruction">교환 수량을 입력하세요</p>
                 <div class="swap-input-wrapper">
                 <span class="coin">상장페이</span>
-                <input type="number" id="swap-amount" class="swap-input-field" placeholder="수량">
+                <input type="number" id="swap-amount" class="swap-input-field" placeholder="수량" min="0">
                 </div>
                     <ul class="token-list">
                         <li>토큰1</li>
