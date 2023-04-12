@@ -259,8 +259,10 @@ console.log(waitingMember);
 
 function addList(){
     waitingMemberArr.push(waitingMember);
+    console.log(waitingMemberArr);
     renderWaitingList();
 }
+addList();
 
 function renderWaitingList(){
     confirmWaitingMember.innerHTML = "";
@@ -284,5 +286,11 @@ function renderWaitingList(){
 
         div01.style.display = "flex";
         div01.className = "board-content";
+        div01.append(div02,div03,button01);
+        confirmWaitingMember.append(div01);
     })
+}
+
+function renderMemberList(){
+    
 }
