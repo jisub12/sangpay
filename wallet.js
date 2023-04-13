@@ -161,17 +161,19 @@ swapExecute2.onclick = function(){
 //     closePopup('exchange-popup');
 //     openPopup('swap-popup2');
 //   });
-  
-// 교환 버튼 팝업 열기 함수
-let exchangePopup = document.querySelector('.exchange-popup');
-function openPopup(exchangePopup) {
-    document.getElementById(exchangePopup).style.display = "";
-  }
 
-let 
+let exchangeBtn = document.querySelector('.exchange-btn');
+let popupExchange = document.querySelector('.popup-exchange');
+
+exchangeBtn.onclick = function(){
+    popupExchange.style.display = "flex";
+    console.log(exchangeBtn);
+}
+
+let exchangeCloseBtn = document.querySelector('.exchange-close-button');
+
+exchangeCloseBtn.onclick = function(){
+    popupExchange.style.display = "none";
+}
+
   
-  // 교환 버튼 팝업 닫기 함수
-  function closePopup(exchangePopup) {
-    document.getElementById(exchangePopup).style.display = "";
-  }
- 

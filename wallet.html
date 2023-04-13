@@ -75,8 +75,6 @@
             </div> -->
             <div class="swap-buttons">
                 <button class="send-btn">보내기</button>
-                <!-- <button class="swap-btn">토큰교환</button>
-                <button class="swap-btn2">페이교환</button> -->
                 <button class="exchange-btn">교환</button>
                 <button class="receive-btn">받기</button>
             </div>
@@ -84,15 +82,17 @@
 
         <!--------------------------- 팝업창 ----------------------------->
 
-        
      <!-- 교환 버튼 팝업창 -->
      <div class="popup-exchange">
         <div id="exchange-popup">
           <div class="popup-content">
             <h2>교환 방법 선택</h2>
-            <button class="token-exchange-btn">토큰교환</button>
-            <button class="pay-exchange-btn">페이교환</button>
-            <div class="exchange-close-button" onclick="closePopup('exchange-popup')">닫기</div>
+            <button class="swap-btn">페이 to 토큰</button>
+                <button class="swap-btn2">토큰 to 페이</button>
+            <!-- <button class="token-exchange-btn">토큰교환</button>
+            <button class="pay-exchange-btn">페이교환</button> -->
+            <!-- <div class="exchange-close-button" onclick="closePopup('exchange-popup')">닫기</div> -->
+            <button class="exchange-close-button" onclick="closePopup('exchange-popup')">닫기</button>
           </div>
         </div>
       </div>
@@ -204,5 +204,5 @@
     </main>
 </body>
 <script src="./wallet.js"></script>
-<script src="./index.js"></script>
+<!-- <script src="./index.js"></script> -->
 </html>
