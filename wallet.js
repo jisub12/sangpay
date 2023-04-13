@@ -181,10 +181,54 @@ exchangeCloseBtn.onclick = function(){
 
 // 상장페이 정보를 HTML 요소에 연결
 function updateSangpayInfo(){
+    //메인 지갑 부분 연결
     document.getElementById("sangpay-name").innerText = defaultCoin.coin_name;
     document.getElementById("sangpay-amount").innerText = defaultCoin.coin_num.toFixed(4);
+    // 보내기 버튼 부분 연결 
+    document.getElementById("send-sangpay-name").innerText = defaultCoin.coin_name;
+    document.getElementById("send-sangpay-amount").innerText = defaultCoin.coin_num.toFixed(4);
+    // 페이 to 토큰 부분 연결
+    document.getElementById("swap1-sangpay-name").innerText = defaultCoin.coin_name;
+    document.getElementById("swap1-sangpay-amount").innerText = defaultCoin.coin_num.toFixed(4);
+    // 토큰 to 페이 부분 연결
+    document.getElementById("swap2-sangpay-name").innerText = defaultCoin.coin_name;
+    document.getElementById("swap2-sangpay-amount").innerText = defaultCoin.coin_num.toFixed(4);
 }
 
 // 페이지 로드 시 상장페이 정보 업데이트
 window.addEventListener("DOMContentLoaded", updateSangpayInfo);
 
+
+
+// 토큰 목록을 생성합니다.
+const tokens = [
+    bittoken,
+    ethtoken,
+    dogetoken,
+    ahyeontoken,
+    byungjutoken,
+    hyunuktoken,
+    jisubtoken,
+    javascripttoken,
+    csstoken,
+    htmltoken,
+  ];
+  
+  // 메인 지갑 화면에 토큰 목록을 추가하는 함수입니다.
+  function displayTokens() {
+    const tokenList = document.getElementById("main-token-list");
+  
+    // 토큰 목록을 순회하며 각 토큰에 대한 정보를 추가합니다.
+    tokens.forEach((token) => {
+      const listItem = document.createElement("li");
+      listItem.innerHTML = `
+        <span class="token-name">${token.token_name}</span>
+        <span class="token-amount">${token.token_num.toFixed(4)}</span>
+      `;
+      tokenList.appendChild(listItem);
+    });
+  }
+  
+  // 페이지 로드 시 토큰 목록을 표시합니다.
+  window.addEventListener("DOMContentLoaded", displayTokens);
+  

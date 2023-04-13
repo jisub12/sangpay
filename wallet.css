@@ -277,3 +277,29 @@ main {
 .coin , .coin-amount {
     padding: 10px;
 }
+
+/* 수정중인 지갑안에 토큰들 css */
+
+.wallet-tokens {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+#main-token-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+}
+
+#main-token-list li {
+    
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 15px;
+}
