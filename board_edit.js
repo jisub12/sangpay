@@ -4,7 +4,7 @@
 // 등록/수정에 따라 버튼에 등록/수정 작성
 // 등록이면 빈 화면 출력, 수정이면 이미 작성되어있는 내용 출력
 
-import { Board } from "./board.js";
+import { Board, getCurrentUser } from "./board.js";
 
 // 처음 실행될때 작동할 함수
 window.onload = function() {
@@ -19,7 +19,7 @@ window.onload = function() {
 
 // 게시물 등록 부분
 
-//  작성하기 버튼 클릭할때 작동하는 함수
+//  등록 버튼 클릭할때 작동하는 함수
 function post() {
     let no;
     let boardList = JSON.parse(window.localStorage.getItem("board"));
@@ -32,6 +32,11 @@ function post() {
     console.log(date);
 
     // 쿠키에서 현재 사용자 정보 받아오기
+    let user = getCurrentUser();
+    if (!user) {
+        alert("로그인하세요.");
+        // 로그인 페이지로 이동하는 부분 추가해야함
+    }
 
     // 만약 게시판에 아무런 게시물도 등록되지 않았다면 no 0
     if (!boardList) {
@@ -42,7 +47,7 @@ function post() {
     }
 
     try {
-        boardList.push(new Board(no, title, content, "작성자아이디", date,""));
+        boardList.push(new Board(no, title, content, user, date,""));
         // 게시물 로컬스토리지에 추가
         window.localStorage.setItem("board", JSON.stringify(boardList));
         alert("작성되었습니다.");

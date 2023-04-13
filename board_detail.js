@@ -1,5 +1,5 @@
 // 상세 게시물
-import { boardListEdit } from "./board.js";
+import { boardListEdit, getCurrentUser } from "./board.js";
 
 window.onload = function() {
     // 출력할 게시물의 글번호
@@ -22,7 +22,10 @@ function render(no) {
     let adminAnswerAdd = document.querySelector('.a-detail-answer-add');
     let adminAnswer = document.querySelector('.a-detail-answer');
 
-    if ("현재사용자아이디" == "현재사용자아이디") {
+    // 현재 사용자 아이디
+    let user = getCurrentUser();
+
+    if (user == "admin") {
         // 현재 사용자가 관리자라면
 
         adminAnswer.style.display = "none";
@@ -51,11 +54,23 @@ function render(no) {
         adminAnswer.children[0].innerHTML = `${board.answer}`;
     }
 
-    // // 현재 사용자가 작성자와 동일하다면(이메일값으로 비교)
-    // if (board.user == "현재사용자아이디") {
-    //     // 삭제, 수정 버튼 보여주게(삭제->확인창 띄워주고 삭제기능, 수정-> board_edit.html로 이동)
+    // 현재 사용자가 작성자와 동일하다면(이메일값으로 비교)
+    if (user == board.user) {
+        console.log("작성자");
+        // 삭제, 수정 버튼 보여주게(삭제->확인창 띄워주고 삭제기능, 수정-> board_edit.html로 이동)
+        document.querySelector('.a-detail-edit-delete').style.display = "flex";
 
-    // } else { // 현재 사용자가 작성자가 아니라면 삭제, 수정버튼 안보이게
-
-    // }
+        // 수정 버튼 클릭하면 실행될 함수
+        document.querySelector('.a-detail-edit').addEventListener('click', function() {
+            console.log("수정버튼");
+            // edit 페이지로 이동하는 부분 추가
+        });
+        // 삭제 버튼 클릭하면 실행될 함수
+        document.querySelector('.a-detail-delete').addEventListener('click', function() {
+            console.log("삭제버튼");
+            // board 페이지로 이동하는 부분 추가
+        });
+    } else { // 현재 사용자가 작성자가 아니라면 삭제, 수정버튼 안보이게
+        document.querySelector('.a-detail-edit-delete').style.display = "none";
+    }
 }
