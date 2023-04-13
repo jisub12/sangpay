@@ -131,3 +131,47 @@ tokenListItems.forEach((item) => {
 //     }
 //   }
 // }
+let popupSwap2 = document.querySelector(".popup-swap2");
+let swapBtn2 = document.querySelector(".swap-btn2");
+
+swapBtn2.onclick = function(){
+    popupSwap2.style.display = "flex";
+}
+
+
+let swapExecute2 = document.querySelector(".swap-execute2");
+
+swapExecute2.onclick = function(){
+    popupSwap2.style.display = "none";
+};
+
+// // 교환 버튼 클릭 이벤트
+// document.querySelector('.exchange-btn').addEventListener('click', () => {
+//     openPopup('exchange-popup');
+//   });
+  
+//   // 토큰교환 버튼 클릭 이벤트
+//   document.querySelector('.token-exchange-btn').addEventListener('click', () => {
+//     closePopup('exchange-popup');
+//     openPopup('swap-popup');
+//   });
+  
+//   // 페이교환 버튼 클릭 이벤트
+//   document.querySelector('.pay-exchange-btn').addEventListener('click', () => {
+//     closePopup('exchange-popup');
+//     openPopup('swap-popup2');
+//   });
+  
+// 교환 버튼 팝업 열기 함수
+let exchangePopup = document.querySelector('.exchange-popup');
+function openPopup(exchangePopup) {
+    document.getElementById(exchangePopup).style.display = "";
+  }
+
+let 
+  
+  // 교환 버튼 팝업 닫기 함수
+  function closePopup(exchangePopup) {
+    document.getElementById(exchangePopup).style.display = "";
+  }
+ 

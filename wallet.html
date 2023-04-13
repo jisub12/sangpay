@@ -75,12 +75,27 @@
             </div> -->
             <div class="swap-buttons">
                 <button class="send-btn">보내기</button>
-                <button class="swap-btn">스왑</button>
+                <!-- <button class="swap-btn">토큰교환</button>
+                <button class="swap-btn2">페이교환</button> -->
+                <button class="exchange-btn">교환</button>
                 <button class="receive-btn">받기</button>
             </div>
         </div>
 
         <!--------------------------- 팝업창 ----------------------------->
+
+        
+     <!-- 교환 버튼 팝업창 -->
+     <div class="popup-exchange">
+        <div id="exchange-popup">
+          <div class="popup-content">
+            <h2>교환 방법 선택</h2>
+            <button class="token-exchange-btn">토큰교환</button>
+            <button class="pay-exchange-btn">페이교환</button>
+            <div class="exchange-close-button" onclick="closePopup('exchange-popup')">닫기</div>
+          </div>
+        </div>
+      </div>
         
         
         <!-- 보내기 버튼 팝업창 -->
@@ -114,7 +129,7 @@
         </div>
     </div>
 
-            <!-- 스왑 버튼 팝업창 -->
+            <!-- 토큰 스왑 버튼 팝업창 -->
 
     <div class="popup-swap">
         <div id="swap-popup">
@@ -148,7 +163,41 @@
             </div>
         </div>
     </div>
+              <!-- 페이 스왑 버튼 팝업창 -->
 
+        <div class="popup-swap2">
+            <div id="swap-popup2">
+                <div class="popup-content">
+                    <h2>교환</h2>
+                    <p class="swap-instruction">교환 수량을 입력하세요</p>
+                    <ul class="token-list">
+                        <li>토큰1</li>
+                        <li>토큰2</li>
+                        <li>토큰3</li>
+                        <li>토큰4</li>
+                        <li>토큰5</li>
+                        <li>토큰6</li>
+                        <li>토큰7</li>
+                        <li>토큰8</li>
+                        <li>토큰9</li>
+                        <li>토큰10</li>
+                    </ul>
+                    <div class="swap-input-wrapper">
+                    <span class="coin">상장페이</span>
+                    <!-- input 부분 수정해야함. 토큰 누르면 예상 페이 수량이 나올 수 있게 하면 됌. -->
+                    <input type="number" id="swap-amount" class="swap-input-field" placeholder="수량" min="0">
+                    </div>
+                    <div class="swap-details">
+                        <!-- 나중에 연결해서 기능 구현 되게 해야함 -->
+                        <p class="swap-expected">예상내역</p>
+                        <p class="swap-rate">교환비율 : 0.00</p>
+                        <p class="swap-minimum">최소거래수량 : 0.00</p>
+                        <p class="swap-fee">수수료 : 0.00</p>
+                    </div>
+                        <button class="swap-execute2" onclick="closePopup('swap-popup2')">교환하기</button>
+                </div>
+            </div>
+        </div>
 
 
 

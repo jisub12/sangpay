@@ -106,7 +106,7 @@ main {
     
 }
 
-.send-btn, .swap-btn, .receive-btn {
+.send-btn, .swap-btn, .receive-btn, .swap-btn2 {
     background-color: #4CAF50;
     border: none;
     color: white;
@@ -167,7 +167,7 @@ main {
     cursor: pointer;
 }
 
-.h-close-button , .h-send-button, .swap-execute{
+.h-close-button , .h-send-button, .swap-execute, .swap-execute2{
     background-color: #4CAF50;
     border: none;
     color: white;
@@ -192,7 +192,7 @@ main {
 
 /* 스왑 버튼 팝업창 */
 
-.popup-swap {
+.popup-swap, .popup-swap2{
     position: fixed;
     top: 0;
     left: 0;
@@ -262,6 +262,6 @@ main {
     text-align: center;
 }
 
-.coin {
+.coin , .coin-amount {
     padding: 10px;
 }
