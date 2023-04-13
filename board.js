@@ -1,28 +1,112 @@
 // 게시물 목록
 
 // --------------------
-let no = 0;
+// 한 페이지에 보여줄 게시물 개수
+let count = 5;
 
-// let boardList = [];
-// --------------------
+let nextBtn = document.querySelector("#nextBtn");
+let prevBtn = document.querySelector("#prevBtn");
+let currentPage = 1;
 
+// 처음 실행되면 작동할 함수
 window.onload = function () {
     document.querySelector('.a-board-add').addEventListener('click', function () {
         location.href = `board_edit.html`;
     });
 
-    // 게시판 출력
-    render();
+    // 페이지네이션 함수 실행
+    paginate(JSON.parse(window.localStorage.getItem("board")));
+
+    // 처음 실행했을때 1번 페이지가 표시되게
+    render(0, currentPage * count - 1, 1);
+
+    nextBtn.addEventListener('click', function () {
+        goNext(JSON.parse(window.localStorage.getItem("board")).length);
+    });
+
+    prevBtn.addEventListener('click', function () {
+        goPrev();
+    });
 }
 
+
+// 페이지네이션 함수(출력할 리스트를 매개변수로 받음)
+function paginate(list) {
+
+    let listLength = list.length;
+    let pageNumDiv = document.querySelector('.a-board-pagenum');
+
+    let totalPage = Math.ceil(listLength / count);
+    console.log(totalPage);
+
+    for (let i = 1; i <= totalPage; i++) {
+        let numbtn = document.createElement('input');
+        numbtn.setAttribute("type", "radio");
+        numbtn.setAttribute("name", "pagenum");
+        numbtn.setAttribute("id", i);
+        numbtn.setAttribute("class", `a-numbtn numbtn-${i}`);
+
+        let numbtnLabel = document.createElement('label');
+        numbtnLabel.textContent = i;
+        numbtnLabel.setAttribute("for", i);
+        numbtnLabel.setAttribute("name", "pagenum");
+
+        pageNumDiv.append(numbtn, numbtnLabel);
+    }
+
+    let numbtns = document.querySelectorAll('.a-numbtn');
+    numbtns.forEach(function(btn) {
+        btn.addEventListener('click', function () {
+            // 만약 배열의 마지막 요소의 인덱스보다 end가 크다면 end를 배열의 마지막요소의 인덱스로 설정
+            let i = parseInt(btn.getAttribute('id'));
+            let end = i * count - 1;
+            if (end >= listLength) {
+                end = listLength - 1;
+            }
+            currentPage = i;
+            render((i - 1) * count, end, i);
+        });
+    });
+}
+
+// 이전 버튼 눌렀을때 작동하는 함수
+function goPrev() {
+    currentPage -= 1;
+
+    let start = (currentPage - 1) * count;
+    let end= currentPage * count - 1;
+
+    render(start, end, currentPage);
+}
+
+// 다음 버튼 눌렀을때 작동하는 함수
+function goNext(listLength) {
+    currentPage += 1;
+
+    let start = (currentPage - 1) * count;
+    let end = currentPage * count - 1;
+
+    if (end >= listLength) {
+        end = listLength - 1;
+    }
+    render(start, end, currentPage);
+}
+
+
 // 게시판 출력
-function render() {
+function render(start, end, pagenum) {
     let boardList = JSON.parse(window.localStorage.getItem("board"));
 
-    boardList.forEach(function(board) {
-        // board 클릭하면 상세페이지로 이동하는 부분 추가해야함
+    // 가장 최근 게시물이 먼저 출력되게
+    boardList.reverse();
 
-        let boardListDiv = document.querySelector('.a-board-list');
+    let boardListDiv = document.querySelector('.a-board-list');
+    boardListDiv.innerHTML = "";
+
+    for (let i = start; i <= end; i++) {
+        // board 클릭하면 상세페이지로 이동하는 부분 추가해야함
+        let board = boardList[i];
+
         let ul = document.createElement('ul');
         let no = document.createElement('li');
         let title = document.createElement('li');
@@ -42,21 +126,35 @@ function render() {
 
         ul.append(no, title, user, date);
         boardListDiv.append(ul);
-    });
+    }
+
+    // 이전/다음 버튼 설정
+    pageBtnRender(boardList.length, pagenum);
 }
 
+function pageBtnRender(listLength, pagenum) { // 페이지 이전/다음 버튼 display값 설정
+    let totalPage = Math.ceil(listLength / count);
 
-// // 페이지네이션 함수
-// function paginate(list) {
-//     let listLength = list.length;
+    // 현재 첫번째 페이지라면 이전 버튼 출력 X
+    if (pagenum == 1) {
+        prevBtn.style.display = "none";
+        nextBtn.style.display = "block";
+    }
+    // 현재 마지막 페이지라면 다음 버튼 출력 X
+    if (pagenum == totalPage) {
+        nextBtn.style.display = "none";
+        prevBtn.style.display = "block";
+    }
 
-//     if (listLength) {
+    if (pagenum != 1 && pagenum != totalPage) {
+        prevBtn.style.display = "block";
+        nextBtn.style.display = "block";
+    }
 
-//     }
-// }
-
-
-
+    // 현재 페이지로 체크되게
+    console.log(pagenum);
+    document.querySelector(`.numbtn-${pagenum}`).checked = "checked";
+}
 
 // 게시물 객체 생성자 함수
 // function Board(no, title, content, user, date, answer) {
@@ -68,19 +166,6 @@ export function Board(no, title, content, user, date, answer) {
     this.date = date;
     this.answer = answer;
 }
-
-// export { Board }
-
-// 등록할때 배열의 마지막 객체의 no값 +1로 no 설정하기
-
-// console.log(boardList.push(new Board("df", "df", "dfdf","dfdf", "dfdf")));
-// console.log(boardList.push(new Board("df", "df", "dfdf","dfdf", "dfdf")));
-// console.log(boardList.push(new Board("df", "df", "dfdf","dfdf", "dfdf")));
-// console.log(boardList.push(new Board("df", "df", "dfdf","dfdf", "dfdf")));
-// console.log(boardList.push(new Board("df", "df", "dfdf","dfdf", "dfdf")));
-
-// window.localStorage.setItem("board", JSON.stringify(boardList));
-
 
 // 게시물 수정,삭제(+답변등록, 답변수정) 함수
 export function boardListEdit(board, value) {
@@ -113,7 +198,7 @@ export function boardListEdit(board, value) {
 // 쿠키에서 현재 사용자 아이디 가져오는 함수
 export function getCurrentUser() {
 
-    let userId="";
+    let userId = "";
 
     // 임의로 쿠키 생성
     let expireDate = new Date();
@@ -126,12 +211,5 @@ export function getCurrentUser() {
     if (start != -1) {
         userId = document.cookie.split('=')[1];
     }
-
-    console.log(userId);
-
-    // console.log(window.localStorage.getItem(`user_${userId}`));
-    // console.log(JSON.parse(window.localStorage.getItem(`user_${userId}`)).token);
-
     return userId;
 }
-getCurrentUser();
