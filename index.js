@@ -1,5 +1,5 @@
 
-let bitcoin=new token("bitcoin",1,2,1,0.1);
+
 console.log(bitcoin);
 let one = new user(
   "gusdnr205@naver.com",
@@ -8,7 +8,7 @@ let one = new user(
   false,
   defaultCoin,
 );
-one.token[0]=bitcoin;
+
 let use = JSON.stringify(one);
 localStorage.setItem("user", use);
 let myData = localStorage.getItem("user");
