@@ -97,6 +97,7 @@ function loginUser(id, pw) {
       let cuurent_user = JSON.parse(localStorage.getItem(key));
       console.log(cuurent_user.user_id);
       console.log(cuurent_user.user_pw);
+      // console.log(cuurent_user.token[0].token_name); // local 스토리지에 들어있는 current user의 token 에 접근하는법 [0] 번째는 비트 토큰 그 이름에 접근하는법은 .~~`
       if (
         pw == cuurent_user.user_pw &&
         id == cuurent_user.user_id &&
