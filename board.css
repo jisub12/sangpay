@@ -42,15 +42,9 @@
 .a-board-table {
     width: 100%;
     height: fit-content;
-
     display: flex;
     flex-direction: column;
-
     position: relative;
-
-    /* display:flex;
-    justify-content: center;
-    width: 100%; */
 }
 
 .a-board-btn {
@@ -104,6 +98,8 @@
 
     /* width: 100%;
     height: 500px; */
+
+    text-align: center;
     margin-top: 20px;
 }
 
@@ -134,7 +130,7 @@
     flex-direction: column;
     align-content: center;
     flex-wrap: nowrap;
-    max-height: fit-content;
+    height: fit-content;
 
     /* display: flex; */
     justify-content: center;
@@ -160,7 +156,6 @@
     display: flex;
     position: absolute;
     right: 0;
-    /* right: 28px; */
 }
 
 /* .a-detail-right * {
@@ -207,11 +202,12 @@
     margin: 20px 0;
 }
 
-.a-detail-answer {
+.a-detail-answer, .a-detail-answer-add {
     min-height: 200px;
     border: 1px solid;
     margin: 20px 0;
     position: relative;
+    display: none;
 }
 
 .a-detail-user, .a-detail-date {
