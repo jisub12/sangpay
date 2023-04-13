@@ -58,7 +58,6 @@ newUserBtn(
   "goldenbeer",
   true,
   defaultCoin,
-  new token("bitcoin", 100)
 );
 newUserBtn(
   "12321344asd@naver.com",
@@ -66,7 +65,6 @@ newUserBtn(
   "goldenbeer",
   false,
   defaultCoin,
-  new token("bitcoin", 100)
 );
 newUserBtn(
   "fadfwfr@naver.com",
@@ -74,7 +72,6 @@ newUserBtn(
   "goldenbeer",
   false,
   defaultCoin,
-  new token("bitcoin", 100)
 );
 newUserBtn(
   "wrfqgrqg@naver.com",
@@ -82,7 +79,6 @@ newUserBtn(
   "goldenbeer",
   false,
   defaultCoin,
-  new token("bitcoin", 100)
 );
 
 // 모든 유저 정보 출력
