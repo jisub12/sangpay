@@ -23,8 +23,8 @@
             <hr class="divider" />
             <div class="coin-info">
                 <div class="token-wrapper">
-                <span class="coin">상장페이</span>
-                <span class="coin-amount">0.0000</span>
+                <span class="coin" id="sangpay-name"></span>
+                <span class="coin-amount" id="sangpay-amount"></span>
                 </div>
             </div>
             <div class="token-info">
@@ -203,6 +203,70 @@
 
     </main>
 </body>
+<script>
+
+// // 암호화할 문자열을 지정합니다.
+// const message = "Hello, world!";
+  
+//   // MD5 알고리즘을 사용하여 문자열을 암호화합니다.
+//   const encrypted = CryptoJS.MD5(message).toString();
+
+  // 토큰 생성            토큰이름, 내가보유한개수, 그 토큰 1개의 가치, 최소거래량, 수수료
+  let bittoken=new token("bittoken",0,2,1,0.1);
+  let ethtoken=new token("ethtoken",0,2,1,0.1);
+  let dogetoken=new token("dogetoken",0,2,1,0.1);
+  let ahyeontoken=new token("ahyeontoken",0,2,1,0.1);
+  let byungjutoken=new token("byungjutoken",0,2,1,0.1);
+  let hyunuktoken=new token("hyunuktoken",0,2,1,0.1);
+  let jisubtoken=new token("jisubtoken",0,2,1,0.1);
+  let javascripttoken=new token("javascripttoken",0,2,1,0.1);
+  let csstoken=new token("csstoken",0,2,1,0.1);
+  let htmltoken=new token("htmltoken",0,2,1,0.1);
+  
+  // 결과를 출력합니다.
+  function user(user_id,user_pw,user_nickName,user_allow=false,coin,token){
+      this.user_id=user_id;
+      this.user_pw=user_pw;
+      this.user_nickName=user_nickName;
+      this.user_allow=user_allow;
+      this.user_Hash= CryptoJS.MD5(this.user_id).toString();
+      this.coin=coin;
+      this.token=new Array(10);
+      this.token[0]=bittoken;
+      this.token[1]=ethtoken;
+      this.token[2]=dogetoken;
+      this.token[3]=ahyeontoken;
+      this.token[4]=byungjutoken;
+      this.token[5]=hyunuktoken;
+      this.token[6]=jisubtoken;
+      this.token[7]=javascripttoken;
+      this.token[8]=csstoken;
+      this.token[9]=htmltoken;
+  }
+  
+  const defaultCoin=new coin("sangpay",100,10);
+
+  //            코인 이름 , 내가보유한개수 , 코인 1개의 가치
+
+  function coin(coin_name,coin_num,coin_value){
+      this.coin_name=coin_name;
+      this.coin_num=coin_num;
+      this.coin_value=coin_value
+  }
+
+  //                토큰이름, 내가보유한개수, 그 토큰 1개의 가치, 최소거래량, 수수료
+  function token(token_name,token_num,token_value,minTradingQuan,charge){
+      this.token_name=token_name;
+      this.token_num=token_num
+      this.token_value=token_value;
+      this.minTradingQuan=minTradingQuan;
+      this.charge=charge;
+  }
+  
+
+
+</script>
+
 <script src="./wallet.js"></script>
 <!-- <script src="./index.js"></script> -->
 </html>

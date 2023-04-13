@@ -177,3 +177,14 @@ exchangeCloseBtn.onclick = function(){
 }
 
   
+// sangpay 함수 부분
+
+// 상장페이 정보를 HTML 요소에 연결
+function updateSangpayInfo(){
+    document.getElementById("sangpay-name").innerText = defaultCoin.coin_name;
+    document.getElementById("sangpay-amount").innerText = defaultCoin.coin_num.toFixed(4);
+}
+
+// 페이지 로드 시 상장페이 정보 업데이트
+window.addEventListener("DOMContentLoaded", updateSangpayInfo);
+

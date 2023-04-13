@@ -119,7 +119,7 @@ main {
 }
 
 .swap-btn, .swap-btn2{
-    background-color: black;
+    background-color: royalblue;
     border: none;
     color: white;
     padding: 10px 20px;
@@ -178,7 +178,7 @@ main {
     text-decoration: underline;
     cursor: pointer;
 }
-
+/* 팝업 닫기 버튼들 */
 .h-close-button , .h-send-button, .swap-execute, .swap-execute2, .exchange-close-button{
     background-color: #4CAF50;
     border: none;
