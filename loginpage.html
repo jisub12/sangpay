@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./loginpage.css">
 </head>
 
 <body>
@@ -32,6 +33,11 @@
   
     // MD5 알고리즘을 사용하여 문자열을 암호화합니다.
     const encrypted = CryptoJS.MD5(message).toString();
+
+    //코인 생성    토큰이름,내가보유한개수,그토큰 1개의 가치,최소거래량 ,수수료
+    let bitcoin=new token("bitcoin",0,2,1,0.1);
+
+
   
     // 결과를 출력합니다.
     function user(user_id,user_pw,user_nickName,user_allow=false,coin,token){
@@ -41,17 +47,33 @@
         this.user_allow=user_allow;
         this.user_Hash= CryptoJS.MD5(this.user_id).toString();
         this.coin=coin;
-        this.token=token;
+        this.token=new Array(10);
+        this.token[0]=bitcoin
+        this.token[1]=
+        this.token[2]
+        this.token[3]
+        this.token[4]
+        this.token[5]
+        this.token[6]
+        this.token[7]
+        this.token[8]
+        this.token[9]
     }
-    function coin(coin_name,coin_num){
+
+    function coin(coin_name,coin_num,coin_value){
         this.coin_name=coin_name;
         this.coin_num=coin_num;
+        this.coin_value=coin_value
     }
-    function token(token_name,token_num){
+    function token(token_name,token_num,token_value,minTradingQuan,charge){
         this.token_name=token_name;
         this.token_num=token_num
+        this.token_value=token_value;
+        this.minTradingQuan=minTradingQuan;
+        this.charge=charge;
     }
-    const defaultCoin=new coin("sangapy",100);
+    const defaultCoin=new coin("sangapy",100,10);
+
    
 
   
