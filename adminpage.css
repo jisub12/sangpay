@@ -115,6 +115,8 @@
     background-color: white;
 
     margin: auto;
+
+    overflow-y: scroll;
 }
 
 .b-tab-menu{
