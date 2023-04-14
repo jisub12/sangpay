@@ -1,6 +1,11 @@
+@font-face {
+    font-family: "dynapuff";
+    src: url(./DynaPuff/DynaPuff-VariableFont_wdth\,wght.ttf);
+}
+
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: "dynapuff";
 
     background-color: #033104;
 }
@@ -51,6 +56,7 @@ main {
 
 .wallet-title {
     margin: 0;
+    font-size: 40px;
 }
 
 .divider {
