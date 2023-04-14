@@ -1,5 +1,10 @@
 /* 공통으로 작업할 css */
 
+@font-face {
+    font-family: "dynapuff";
+    src: url(./DynaPuff/DynaPuff-VariableFont_wdth\,wght.ttf);
+}
+
 .header{
     width: 100%;
     height: 50px;
@@ -14,7 +19,7 @@
     display: inline-flex;
     flex-wrap: nowrap;
 
-    font-family: Arial, sans-serif;
+    font-family: "dynapuff";
 }
 
 .b-sangpay-logo{
