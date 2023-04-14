@@ -72,7 +72,8 @@
                         <span class="coin-amount" id="send-sangpay-amount">총 보유 개수</span>
                     </div>
                     <input type="number" id="send-amount" class="input-field" placeholder="보낼 개수를 입력해주세요" min="0">
-                    <!-- 보내기 눌렀을 떄 보내지는 기능은 없음. 그냥 닫혀야함 -->
+                    
+                    <!-- 팝업창 안의 보내기 버튼 -->
                     <button class="h-send-button" onclick="closePopup('send-popup')">보내기</button>
                 </div>
             </div>
@@ -99,7 +100,7 @@
                 <p class="swap-instruction">교환 수량을 입력하세요</p>
                 <div class="swap-input-wrapper">
                 <span class="coin" id="swap1-sangpay-name">상장페이</span>
-                <span class="coin" id="swap1-sangpay-amount"></span>
+                <span class="coin-amount" id="swap1-sangpay-amount"></span>
                 
                 <!-- id = "swap1-sangpay-amount" 부분 number랑 연결 된건지 확인 해야됌.  -->
                 <input type="number" id="swap1-sangpay-amount" class="swap-input-field" placeholder="수량" min="0">

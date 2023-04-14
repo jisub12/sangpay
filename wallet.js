@@ -21,28 +21,14 @@ userId = document.cookie.split('=')[1];
 
 console.log(userId);
 
-console.log(window.localStorage.getItem(`user_${userId}`));
+let userStorage = window.localStorage.getItem(`user_${userId}`);
+if (userStorage){
+    console.log(JSON.parse(userStorage).token);
+}
+
+
+
 console.log(JSON.parse(window.localStorage.getItem(`user_${userId}`)).token);
-// console.log(JSON.parse(window.localStorage.getItem(`user_${userId}`)).sangpay);
-
-// let userTokenList = JSON.parse(window.localStorage.getItem(`user_${userId}`)).token;
-// console.log("dfdfdfdfdfd");
-// let bitTidx = userTokenList.findIndex(function(item) {
-// console.log(item);    
-// return item.token_name == "bittoken";
-// });
-// let bitT = userTokenList[bitTidx];
-// console.log("dfdf0",bitT);
-// // let bitTnum = parseInt(bitT.token_num);
-// // bitTnum+=1;
-// console.log(bitT);
-// bitT.token_num += 1;
-// console.log("dfdddf",bitT);
-
-// userTokenList.splice(bitTidx, 1, bitT);
-// console.log("wpqkf", userTokenList);
-
-
 
 return userId;
 }
@@ -245,7 +231,11 @@ const tokens = [
 function displayTokens() {
     const tokenList = document.getElementById("main-token-list");    
     let userId = getCurrentUser();
-    let userTokenList = JSON.parse(window.localStorage.getItem(`user_${userId}`)).token;
+    let userStorage = window.localStorage.getItem(`user_${userId}`);
+    if(userStorage) {
+        let userTokenList = JSON.parse(userStorage).token;
+    
+
     // 토큰 목록을 순회하며 각 토큰에 대한 정보를 추가합니다.
     userTokenList.forEach((token) => {
         const listItem = document.createElement("li");    
@@ -255,11 +245,10 @@ function displayTokens() {
         <span class="token-value" style = "display :none;">${token.token_value.toFixed(4)}</span>
         `;    
         tokenList.appendChild(listItem);
-    });    
+    
+     });    
+}
 }    
-// 
-
-
 
 // token to pay 팝업 화면에 토큰 목록을 추가하는 함수입니다.
 function displayTokens2() {
@@ -322,5 +311,62 @@ window.addEventListener("DOMContentLoaded", () => {
     addClickListeners(); 
 });
 
-// 
+  // "보내기" 팝업창의 확인 버튼 클릭 이벤트 처리
+document.querySelector(".h-send-button").addEventListener("click", () => {
+    const amountToSend = parseFloat(document.querySelector("#send-amount").value);
 
+    if (isNaN(amountToSend) || amountToSend <= 0) {
+      alert("올바른 개수를 입력하세요.");
+    } else {
+      // 현재 sangpay 잔액을 가져온다.
+      const currentAmount = parseFloat(document.querySelector(".coin-amount").textContent);
+
+      const currentUser = getCurrentUser("gusdnr205@naver.com");
+
+      function getCurrentUser(email) {
+        const userKey = "user_" + email;
+        const userData = localStorage.getItem(userKey);
+        return JSON.parse(userData);
+      }
+      if (amountToSend > currentAmount.coin) {
+        alert("잔액이 부족합니다.");
+      } else {
+        // sangpay 잔액을 업데이트한다.
+        document.querySelectorAll(".coin-amount").forEach(function(e){
+            e.textContent = (currentUser.coin - amountToSend).toFixed(4);
+        }) 
+        document.querySelector(".popup1").style.display = "none";
+      }
+    }
+  });
+  
+//   document.querySelector(".h-send-button").addEventListener("click", () => {
+//     const amountToSend = parseFloat(document.querySelector("#send-amount").value);
+
+//     if (isNaN(amountToSend) || amountToSend <= 0) {
+//       alert("올바른 개수를 입력하세요.");
+//     } else {
+//       const currentUser = getCurrentUser();
+
+//       // 로컬 스토리지에서 sangpay 잔액을 가져온다.
+//       const storedSangpay = parseFloat(localStorage.getItem(currentUser));
+
+//       if (amountToSend > storedSangpay) {
+//         alert("잔액이 부족합니다.");
+//       } else {
+//         // sangpay 잔액을 업데이트한다.
+//         const updatedSangpay = (storedSangpay - amountToSend).toFixed(4);
+
+//         // 로컬 스토리지에 업데이트된 잔액을 저장한다.
+//         localStorage.setItem(currentUser, updatedSangpay);
+
+//         // 화면에 있는 모든 .coin-amount 요소를 업데이트한다.
+//         document.querySelectorAll(".coin-amount").forEach(function(e){
+//             e.textContent = updatedSangpay;
+//         });
+
+//         // 보내기 팝업창을 닫는다.
+//         document.querySelector(".popup1").style.display = "none";
+//       }
+//     }
+// });
