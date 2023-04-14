@@ -50,10 +50,6 @@
                     </ul>
                    </div>
             </div>
-            <!-- <div class="swap-info">
-                <button class="swap-button">스왑</button>
-                <span class="expected-swap-amount">0.0000</span>
-            </div> -->
             <div class="swap-buttons">
                 <button class="send-btn">보내기</button>
                 <button class="exchange-btn">교환</button>
@@ -118,9 +114,12 @@
                 <h2>교환</h2>
                 <p class="swap-instruction">교환 수량을 입력하세요</p>
                 <div class="swap-input-wrapper">
-                <span class="coin">상장페이</span>
-                <input type="number" id="swap-amount" class="swap-input-field" placeholder="수량" min="0">
-            </div>
+                    <span class="coin" id="swap1-sangpay-name">상장페이</span>
+                    <span class="coin-amount" id="swap1-sangpay-amount"></span>
+                
+                    <!-- id = "swap1-sangpay-amount" 부분 number랑 연결 된건지 확인 해야됌.  -->
+                    <input type="number" id="swap1-sangpay-amount" class="swap-input-field" placeholder="수량" min="0">
+                </div>
                 <ul class="token-list" id="paytotoken-token-list">
                     <!-- 자바스크립트에서 li 요소 추가했음 -->
                 </ul>
@@ -135,23 +134,27 @@
                     <div class="final-exchange">최종 교환 예상 수량
                         <!-- 최종교환예상내역 표시하는 영역 -->
                     </div>
-                    <button class="swap-execute" onclick="closePopup('swap-popup')">교환하기</button>
                 </div>
+                <button class="swap-execute" onclick="closePopup('swap-popup')">교환하기</button>
             </div>
         </div>
-              <!-- 페이 스왑 버튼 팝업창 -->
+    </div>
+              <!-- 토큰 to 페이 스왑 버튼 팝업창 -->
 
         <div class="popup-swap2">
             <div id="swap-popup2">
                 <div class="popup-content">
                     <h2>교환</h2>
                     <p class="swap-instruction">교환할 토큰을 선택하세요</p>
+
+
+
                     <ul class="token-list" id="tokentopay-token-list">
                         <!-- 자바스크립트에서 li 요소 추가했음 -->
                     </ul>
                     <div class="swap-input-wrapper">
-                        <span class="coin" id="swap2-sangpay-name">상장페이</span>
-                        <span class="coin-amount" id="swap2-sangpay-amount">총 보유 개수</span>
+                    <span class="coin" id="swap2-sangpay-name">상장페이</span>
+                    <span class="coin-amount" id="swap2-sangpay-amount">총 보유 개수</span>
                     </div>
                     <div class="swap-details">
                         <!-- 연결해서 기능 구현 되게 해야함 -->
@@ -160,10 +163,10 @@
                         <p class="swap-minimum">최소거래수량 : 0.00</p>
                         <p class="swap-fee">수수료 : 0.00</p>
                         <!-- 가로 영역표시 실선 -->
-                        <hr class="separator"> 
-                        <div class="final-exchange">최종 교환 예상 수량
-                            <!-- 최종교환예상내역 표시하는 영역 -->
-                        </div>
+                         <hr class="separator"> 
+                         <div class="final-exchange">최종 교환 예상 수량
+                             <!-- 최종교환예상내역 표시하는 영역 -->
+                         </div>
                     </div>
                     <button class="swap-execute2" onclick="closePopup('swap-popup2')">교환하기</button>
                 </div>
