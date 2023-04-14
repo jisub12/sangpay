@@ -25,7 +25,8 @@ login.addEventListener('click',function(){
 
 
 
-console.log(bitcoin);
+console.log(bittoken);
+console.log(byungjutoken);
 let one = new user(
   "gusdnr205@naver.com",
   123456789,
