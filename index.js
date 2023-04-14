@@ -1,3 +1,28 @@
+    // 입력 필드의 기본값을 삭제하고, 포커스가 없을 경우에만 다시 표시합니다.
+const usernameInput = document.getElementById('username');
+const userPwInput = document.getElementById('password');
+const remainedTime= document.querySelector('.b-session');
+
+usernameInput.addEventListener('blur', function() {
+  if (!this.value) {
+    this.value = '이메일 또는 아이디';
+  }
+});
+
+
+const login= document.querySelector('.j-loginbtn');
+login.addEventListener('click',function(){
+  console.log(usernameInput.value);
+  console.log(userPwInput.value);
+  console.log("로그인 버튼 눌림");
+  loginUser(usernameInput.value,userPwInput.value);
+})
+// userPwInput.addEventListener('blur', function() {
+//   if (!this.value) {
+//     this.value = '';
+//   }
+// });
+
 
 
 console.log(bitcoin);
@@ -16,25 +41,25 @@ console.log(myData);
 let userString = ""; //유저 
 let nowuser = ""; //로그인한 현재 유저 
 
-// function newUserBtn(user_id,user_pw,user_nickName,user_allow,coin,token){
-//     // usercount++;
-//     let thing;
-//     thing=new user(user_id,user_pw,user_nickName,user_allow,coin,token)
-//     userString=userString+(JSON.stringify(thing));
-//     console.log(userString);
-//     localStorage.setItem('user1', userString);
-//     return userString;
-// }
+function newUserBtn(user_id,user_pw,user_nickName,user_allow,coin,token){
+    // usercount++;
+    let thing;
+    thing=new user(user_id,user_pw,user_nickName,user_allow,coin,token)
+    userString=userString+(JSON.stringify(thing));
+    console.log(userString);
+    localStorage.setItem('user1', userString);
+    return userString;
+}
 
-// newUserBtn("gusdnr205@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
-// newUserBtn("12321344asd@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
-// newUserBtn("fadfwfr@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
-// newUserBtn("wrfqgrqg@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
+newUserBtn("gusdnr205@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
+newUserBtn("12321344asd@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
+newUserBtn("fadfwfr@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
+newUserBtn("wrfqgrqg@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
 
-// console.log(JSON.parse(userString));
-// function compareUser(){
+console.log(JSON.parse(userString));
+function compareUser(){
 
-// }
+}
 
 
 function newUserBtn(user_id, user_pw, user_nickName, user_allow, coin, token) {
@@ -89,7 +114,7 @@ newUserBtn(
 //         console.log(user);
 //     }
 // }
-
+let expireDate = new Date(); // 쿠키 만료 날짜
 function loginUser(id, pw) {
   for (let i = 0; i < localStorage.length; i++) {
     let key = localStorage.key(i);
@@ -105,11 +130,14 @@ function loginUser(id, pw) {
       ) {
         console.log("로그인성공");
         nowuser = cuurent_user;
+        alert("로그인에 성공하셨습니다.")
+        expireDate=new Date();
+        userLogin();
+        console.log(nowuser)
       }
     }
   }
 }
-loginUser("gusdnr205@naver.com",123456789);
 //내부값이랑 비교하는 구문 맞으면 로그인(쿠키추가)쿠키에 로그인상태 true 부여
 // 시간이 지나서 쿠키가 사라질때 로그인상태 false
 
@@ -201,11 +229,11 @@ function getRemainingTime(cookieExpire) {
     console.log("끝");
     return "시간만료"
   }
-  return `${days}일 ${hours}시간 ${minutes}분 ${seconds}초`;
+  return `${minutes}분 ${seconds}초`;
 }
 let set1; //setInterval 함수 
 //버튼 누르면 시간추가 쿠키값에 반영
-let expireDate = new Date(); // 쿠키 만료 날짜
+
 function userLogin(){
   expireDate.setTime(expireDate.getTime() + 10 * 1000);
   let remainingTime = getRemainingTime(expireDate.toUTCString()); // 쿠키 만료까지 남은 시간 계산
@@ -216,9 +244,10 @@ function userLogin(){
   function printTime() {
     let remainingTime = getRemainingTime(expireDate.toUTCString()); // 쿠키 만료까지 남은 시간 계산
     console.log(remainingTime);
+    remainedTime.innerHTML=remainingTime;
   }
 }
-userLogin();
+
 
 function extensionTime(){
   let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");

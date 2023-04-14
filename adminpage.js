@@ -15,8 +15,8 @@
 
 let member = document.querySelector(".b-member-board");
 let confirmWaitingMember = document.querySelector(".b-confirm-waiting-member-board");
-console.log(window.localStorage.key(0));
-console.log(window.localStorage.getItem(window.localStorage.key(0)));
+// console.log(window.localStorage.key(0));
+// console.log(window.localStorage.getItem(window.localStorage.key(0)));
 
 let memberArr = [];
 let waitingMemberArr = [];
@@ -27,8 +27,18 @@ let waitingMemberArr = [];
 // testObj["user_allow"] = true;
 // console.log(testObj["user_allow"]);
 // console.log(testObj);
-
-// console.log(JSON.parse(window.localStorage.getItem(window.localStorage.key(0)))["user_allow"]);
+// console.log(JSON.parse(window.localStorage.getItem(window.localStorage.key(0))));
+// let testObj2 = JSON.parse(window.localStorage.getItem(window.localStorage.key(0)));
+// console.log(testObj2);
+// testObj2["user_allow"] = true;
+// console.log(testObj2);
+// console.log(`${testObj2}`);
+// console.log(testObj2.user_id);
+// window.localStorage.setItem("user_" + testObj2.user_id, JSON.stringify(testObj2));
+// window.localStorage.setItem("user_" + testObj2.user_id,testObj2);
+// console.log(window.localStorage.valueOf(0));
+// JSON.parse(window.localStorage.getItem(window.localStorage.key(0)))["user_allow"] = true;
+// console.log(JSON.parse(window.localStorage.getItem(window.localStorage.key(0))));
 // console.log(JSON.parse(window.localStorage.getItem(window.localStorage.key(0))).user_allow);
 // console.log(Object.values(JSON.parse(window.localStorage.getItem(window.localStorage.key(0)))));
 // console.log(Object.values(JSON.parse(window.localStorage.getItem(window.localStorage.key(0))))[3]);
@@ -253,44 +263,136 @@ let waitingMemberArr = [];
 //     }
 // }
 
+// for( i=0; i < window.localStorage.length; i++){
+//     waitingMemberArr.push(JSON.parse(window.localStorage.getItem(window.localStorage.key(i))));
+// }
+// console.log(waitingMemberArr);
 
-let waitingMember = JSON.parse(window.localStorage.getItem(window.localStorage.key(0)));
-console.log(waitingMember);
+// let waitingMember = JSON.parse(window.localStorage.getItem(window.localStorage.key(0)));
+// let waitingMember2 = JSON.parse(window.localStorage.getItem(window.localStorage.key(1)));
+// console.log(waitingMember);
+// console.log(waitingMember2);
 
-function addList(){
-    waitingMemberArr.push(waitingMember);
-    console.log(waitingMemberArr);
+function addWaitingList(){
+    for(i = 0; i < window.localStorage.length; i++){
+        waitingMemberArr.push(JSON.parse(window.localStorage.getItem(window.localStorage.key(i))));
+    }
+    // waitingMemberArr.push(waitingMember);
+    // waitingMemberArr.push(waitingMember2);
+    // console.log(waitingMemberArr);
     renderWaitingList();
 }
-addList();
+addWaitingList();
 
 function renderWaitingList(){
     confirmWaitingMember.innerHTML = "";
-    
-    waitingMemberArr.forEach(function(item,index){
+    // console.log(waitingMemberArr);
+    // waitingMemberArr.forEach(function(item,index){
+    //     let div01 = document.createElement("div");
+    //     let div02 = document.createElement("div");
+    //     let div03 = document.createElement("div");
+    //     let button01 = document.createElement("button");
+
+    //     console.log(waitingMemberArr);
+    //     // console.log(waitingMemberArr[index]);
+    //     // console.log(waitingMemberArr.splice(index,1));
+
+    //     button01.onclick = function(){
+    //         div01.remove();
+    //         let confirmedMember = waitingMemberArr.splice(index,1);
+    //         // console.log(waitingMemberArr.splice(index,1));
+    //         // let oneByOne = waitingMemberArr.splice(index,1);
+    //         // console.log(oneByOne[0]);
+    //         renderWaitingList();
+    //         // let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(index)));
+    //         // console.log(valueObj);
+    //         // valueObj["user_allow"] = true;
+    //         // console.log(valueObj);
+    //         let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(index)));
+    //         // for(i = 0; i < window.localStorage.length; i++){
+    //         valueObj["user_allow"] = true;
+    //         window.localStorage.setItem("user_" + valueObj.user_id, JSON.stringify(valueObj));
+    //         // }
+    //         // console.log(oneByOne[0]);
+    //         // let oneByOne = waitingMemberArr.splice(index,1);
+    //         memberArr.push(confirmedMember);
+    //         // console.log(memberArr);
+    //         renderMemberList();
+    //     }
+    //     button01.innerHTML = "승인";
+
+    //     div02.innerHTML = "아이디 : " + waitingMemberArr[index].user_id;
+    //     // div02.innerHTML = "아이디 : " + oneByOne[0].user_id;
+    //     div03.innerHTML = "닉네임 : " + waitingMemberArr[index].user_nickName;
+    //     // div03.innerHTML = "닉네임 : " + oneByOne[0].user_nickName;
+
+    //     div01.style.display = "flex";
+    //     div01.className = "board-content";
+    //     div01.append(div02,div03,button01);
+    //     confirmWaitingMember.append(div01);
+    // })
+    for(i = start; i <= end; i++){
         let div01 = document.createElement("div");
         let div02 = document.createElement("div");
         let div03 = document.createElement("div");
         let button01 = document.createElement("button");
 
-        button01.innerHTML = "승인";
+        console.log(waitingMemberArr);
+        // console.log(waitingMemberArr[index]);
+        // console.log(waitingMemberArr.splice(index,1));
 
         button01.onclick = function(){
             div01.remove();
-            waitingMemberArr.splice(index,1);
+            let confirmedMember = waitingMemberArr.splice(i,1);
+            // console.log(waitingMemberArr.splice(index,1));
+            // let oneByOne = waitingMemberArr.splice(index,1);
+            // console.log(oneByOne[0]);
             renderWaitingList();
+            // let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(index)));
+            // console.log(valueObj);
+            // valueObj["user_allow"] = true;
+            // console.log(valueObj);
+            let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(i)));
+            // for(i = 0; i < window.localStorage.length; i++){
+            valueObj["user_allow"] = true;
+            window.localStorage.setItem("user_" + valueObj.user_id, JSON.stringify(valueObj));
+            // }
+            // console.log(oneByOne[0]);
+            // let oneByOne = waitingMemberArr.splice(index,1);
+            memberArr.push(confirmedMember);
+            // console.log(memberArr);
+            renderMemberList();
         }
+        button01.innerHTML = "승인";
 
-        div02.innerHTML = waitingMember.user_id;
-        div03.innerHTML = waitingMember.user_nickName;
+        div02.innerHTML = "아이디 : " + waitingMemberArr[i].user_id;
+        // div02.innerHTML = "아이디 : " + oneByOne[0].user_id;
+        div03.innerHTML = "닉네임 : " + waitingMemberArr[i].user_nickName;
+        // div03.innerHTML = "닉네임 : " + oneByOne[0].user_nickName;
 
         div01.style.display = "flex";
         div01.className = "board-content";
         div01.append(div02,div03,button01);
         confirmWaitingMember.append(div01);
-    })
+    }
 }
 
 function renderMemberList(){
-    
+    member.innerHTML = "";
+    console.log(memberArr);
+    memberArr.forEach(function(item,index){
+        let div01 = document.createElement("div");
+        let div02 = document.createElement("div");
+        let div03 = document.createElement("div");
+
+        div02.innerHTML = "아이디 : " + memberArr[index][0].user_id;
+        div03.innerHTML = "닉네임 : " + memberArr[index][0].user_nickName;
+
+        div01.style.display = "flex";
+        div01.className = "board-content";
+        div01.append(div02,div03);
+        member.append(div01);
+    })
 }
+
+
