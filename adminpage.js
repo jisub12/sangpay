@@ -287,7 +287,51 @@ addWaitingList();
 function renderWaitingList(){
     confirmWaitingMember.innerHTML = "";
     // console.log(waitingMemberArr);
-    waitingMemberArr.forEach(function(item,index){
+    // waitingMemberArr.forEach(function(item,index){
+    //     let div01 = document.createElement("div");
+    //     let div02 = document.createElement("div");
+    //     let div03 = document.createElement("div");
+    //     let button01 = document.createElement("button");
+
+    //     console.log(waitingMemberArr);
+    //     // console.log(waitingMemberArr[index]);
+    //     // console.log(waitingMemberArr.splice(index,1));
+
+    //     button01.onclick = function(){
+    //         div01.remove();
+    //         let confirmedMember = waitingMemberArr.splice(index,1);
+    //         // console.log(waitingMemberArr.splice(index,1));
+    //         // let oneByOne = waitingMemberArr.splice(index,1);
+    //         // console.log(oneByOne[0]);
+    //         renderWaitingList();
+    //         // let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(index)));
+    //         // console.log(valueObj);
+    //         // valueObj["user_allow"] = true;
+    //         // console.log(valueObj);
+    //         let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(index)));
+    //         // for(i = 0; i < window.localStorage.length; i++){
+    //         valueObj["user_allow"] = true;
+    //         window.localStorage.setItem("user_" + valueObj.user_id, JSON.stringify(valueObj));
+    //         // }
+    //         // console.log(oneByOne[0]);
+    //         // let oneByOne = waitingMemberArr.splice(index,1);
+    //         memberArr.push(confirmedMember);
+    //         // console.log(memberArr);
+    //         renderMemberList();
+    //     }
+    //     button01.innerHTML = "승인";
+
+    //     div02.innerHTML = "아이디 : " + waitingMemberArr[index].user_id;
+    //     // div02.innerHTML = "아이디 : " + oneByOne[0].user_id;
+    //     div03.innerHTML = "닉네임 : " + waitingMemberArr[index].user_nickName;
+    //     // div03.innerHTML = "닉네임 : " + oneByOne[0].user_nickName;
+
+    //     div01.style.display = "flex";
+    //     div01.className = "board-content";
+    //     div01.append(div02,div03,button01);
+    //     confirmWaitingMember.append(div01);
+    // })
+    for(i = start; i <= end; i++){
         let div01 = document.createElement("div");
         let div02 = document.createElement("div");
         let div03 = document.createElement("div");
@@ -299,7 +343,7 @@ function renderWaitingList(){
 
         button01.onclick = function(){
             div01.remove();
-            let confirmedMember = waitingMemberArr.splice(index,1);
+            let confirmedMember = waitingMemberArr.splice(i,1);
             // console.log(waitingMemberArr.splice(index,1));
             // let oneByOne = waitingMemberArr.splice(index,1);
             // console.log(oneByOne[0]);
@@ -308,7 +352,7 @@ function renderWaitingList(){
             // console.log(valueObj);
             // valueObj["user_allow"] = true;
             // console.log(valueObj);
-            let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(index)));
+            let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(i)));
             // for(i = 0; i < window.localStorage.length; i++){
             valueObj["user_allow"] = true;
             window.localStorage.setItem("user_" + valueObj.user_id, JSON.stringify(valueObj));
@@ -321,16 +365,16 @@ function renderWaitingList(){
         }
         button01.innerHTML = "승인";
 
-        div02.innerHTML = "아이디 : " + waitingMemberArr[index].user_id;
+        div02.innerHTML = "아이디 : " + waitingMemberArr[i].user_id;
         // div02.innerHTML = "아이디 : " + oneByOne[0].user_id;
-        div03.innerHTML = "닉네임 : " + waitingMemberArr[index].user_nickName;
+        div03.innerHTML = "닉네임 : " + waitingMemberArr[i].user_nickName;
         // div03.innerHTML = "닉네임 : " + oneByOne[0].user_nickName;
 
         div01.style.display = "flex";
         div01.className = "board-content";
         div01.append(div02,div03,button01);
         confirmWaitingMember.append(div01);
-    })
+    }
 }
 
 function renderMemberList(){

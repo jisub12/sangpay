@@ -76,6 +76,11 @@
     scale: 1.1;
 }
 
+.b-header-my-page{
+    text-decoration: none;
+    color: black;
+}
+
 .b-admin-window{
     width: 60%;
     height: 600px;
