@@ -1,37 +1,37 @@
-// let one = new user(
-//   "gusdnr205@naver.com",
-//   123456789,
-//   "goldenbeer",
-//   false,
-//   defaultCoin,
-//   new token("bitcoin", 100)
-// );
-// let use = JSON.stringify(one);
-// localStorage.setItem("user", use);
-// let myData = localStorage.getItem("user");
-// console.log(myData);
-// let usercount = 0;
-// let userString = "";
+let one = new user(
+  "gusdnr205@naver.com",
+  123456789,
+  "goldenbeer",
+  false,
+  defaultCoin,
+  new token("bitcoin", 100)
+);
+let use = JSON.stringify(one);
+localStorage.setItem("user", use);
+let myData = localStorage.getItem("user");
+console.log(myData);
+let usercount = 0;
+let userString = "";
 
-// function newUserBtn(user_id,user_pw,user_nickName,user_allow,coin,token){
-//     // usercount++;
-//     let thing;
-//     thing=new user(user_id,user_pw,user_nickName,user_allow,coin,token)
-//     userString=userString+(JSON.stringify(thing));
-//     console.log(userString);
-//     localStorage.setItem('user1', userString);
-//     return userString;
-// }
+function newUserBtn(user_id,user_pw,user_nickName,user_allow,coin,token){
+    // usercount++;
+    let thing;
+    thing=new user(user_id,user_pw,user_nickName,user_allow,coin,token)
+    userString=userString+(JSON.stringify(thing));
+    console.log(userString);
+    localStorage.setItem('user1', userString);
+    return userString;
+}
 
-// newUserBtn("gusdnr205@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
-// newUserBtn("12321344asd@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
-// newUserBtn("fadfwfr@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
-// newUserBtn("wrfqgrqg@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
+newUserBtn("gusdnr205@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
+newUserBtn("12321344asd@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
+newUserBtn("fadfwfr@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
+newUserBtn("wrfqgrqg@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
 
-// console.log(JSON.parse(userString));
-// function compareUser(){
+console.log(JSON.parse(userString));
+function compareUser(){
 
-// }
+}
 
 function newUserBtn(user_id, user_pw, user_nickName, user_allow, coin, token) {
   let thing = new user(
@@ -47,87 +47,6 @@ function newUserBtn(user_id, user_pw, user_nickName, user_allow, coin, token) {
   localStorage.setItem(key, userString);
   return userString;
 }
-// window.localStorage.clear();
-newUserBtn(
-  "gusdnr200@naver.com",
-  123456789,
-  "goldenbeer",
-  false,
-  defaultCoin,
-  new token("bitcoin", 100)
-);
-
-newUserBtn(
-  "gusdnr201@naver.com",
-  123456789,
-  "goldenbeer",
-  false,
-  defaultCoin,
-  new token("bitcoin", 100)
-);
-
-newUserBtn(
-  "gusdnr202@naver.com",
-  123456789,
-  "goldenbeer",
-  false,
-  defaultCoin,
-  new token("bitcoin", 100)
-);
-
-newUserBtn(
-  "gusdnr203@naver.com",
-  123456789,
-  "goldenbeer",
-  false,
-  defaultCoin,
-  new token("bitcoin", 100)
-);
-
-newUserBtn(
-  "gusdnr204@naver.com",
-  123456789,
-  "goldenbeer",
-  false,
-  defaultCoin,
-  new token("bitcoin", 100)
-);
-
-newUserBtn(
-  "gusdnr206@naver.com",
-  123456789,
-  "goldenbeer",
-  false,
-  defaultCoin,
-  new token("bitcoin", 100)
-);
-
-newUserBtn(
-  "gusdnr207@naver.com",
-  123456789,
-  "goldenbeer",
-  false,
-  defaultCoin,
-  new token("bitcoin", 100)
-);
-
-newUserBtn(
-  "gusdnr208@naver.com",
-  123456789,
-  "goldenbeer",
-  false,
-  defaultCoin,
-  new token("bitcoin", 100)
-);
-
-newUserBtn(
-  "gusdnr209@naver.com",
-  123456789,
-  "goldenbeer",
-  false,
-  defaultCoin,
-  new token("bitcoin", 100)
-);
 
 newUserBtn(
   "gusdnr205@naver.com",
