@@ -303,3 +303,19 @@ main {
     width: 100%;
     margin-bottom: 15px;
 }
+
+/* 페이 to 토큰 가로 영역 표시 실선 */
+
+.separator{
+    border: 10px;
+    border-top: 1px solid black;
+    margin: 10px;
+}
+
+.final-exchange {
+    /* 최종 교환 예상 내역 영역 스타일 */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }

@@ -1,3 +1,120 @@
+// let expireDate2 = new Date();
+// expireDate2.setTime(expireDate2.getTime() + 1000 * 1000);
+// // document.cookie = `user_id=${"gusdnr205@naver.com"}; expires=` + new Date().setTime(new Date().getTime() + 1000* 10000).toUTCString() + "; path=/";
+// document.cookie =`user_id=${"gusdnr205@naver.com"}; expires=` + expireDate2.toUTCString() + "; path=/";
+
+function getCurrentUser() {
+
+let userId="";
+
+// 임의로 쿠키 생성
+let expireDate2 = new Date();
+expireDate2.setTime(expireDate2.getTime() + 100000 * 1000);
+// document.cookie = `user_id=${"gusdnr205@naver.com"}; expires=` + expireDate2.toUTCString() + "; path=/";
+
+console.log(document.cookie);
+let start = document.cookie.indexOf(`user_id=`);
+
+if (start != -1) {
+userId = document.cookie.split('=')[1];    
+}
+
+console.log(userId);
+
+console.log(window.localStorage.getItem(`user_${userId}`));
+console.log(JSON.parse(window.localStorage.getItem(`user_${userId}`)).token);
+// console.log(JSON.parse(window.localStorage.getItem(`user_${userId}`)).sangpay);
+
+// let userTokenList = JSON.parse(window.localStorage.getItem(`user_${userId}`)).token;
+// console.log("dfdfdfdfdfd");
+// let bitTidx = userTokenList.findIndex(function(item) {
+// console.log(item);    
+// return item.token_name == "bittoken";
+// });
+// let bitT = userTokenList[bitTidx];
+// console.log("dfdf0",bitT);
+// // let bitTnum = parseInt(bitT.token_num);
+// // bitTnum+=1;
+// console.log(bitT);
+// bitT.token_num += 1;
+// console.log("dfdddf",bitT);
+
+// userTokenList.splice(bitTidx, 1, bitT);
+// console.log("wpqkf", userTokenList);
+
+
+
+return userId;
+}
+// getCurrentUser();
+
+// // 암호화할 문자열을 지정합니다.
+// const message = "Hello, world!";
+
+//   // MD5 알고리즘을 사용하여 문자열을 암호화합니다.
+//   const encrypted = CryptoJS.MD5(message).toString();
+
+// 토큰 생성            토큰이름, 내가보유한개수, 그 토큰 1개의 가치, 최소거래량, 수수료
+let bittoken=new token("bittoken",0,2,1,0.1);
+let ethtoken=new token("ethtoken",0,2,1,0.1);
+let dogetoken=new token("dogetoken",0,2,1,0.1);
+let ahyeontoken=new token("ahyeontoken",0,2,1,0.1);
+let byungjutoken=new token("byungjutoken",5,2,1,0.1);
+let hyunuktoken=new token("hyunuktoken",0,2,1,0.1);
+let jisubtoken=new token("jisubtoken",0,2,1,0.1);
+let javascripttoken=new token("javascripttoken",0,2,1,0.1);
+let csstoken=new token("csstoken",0,2,1,0.1);
+let htmltoken=new token("htmltoken",0,2,1,0.1);
+
+let tokenArr = [bittoken, ethtoken, dogetoken, ahyeontoken, byungjutoken, hyunuktoken, jisubtoken, 
+             ,javascripttoken, csstoken, htmltoken];
+
+window.localStorage.setItem("token", JSON.stringify(tokenArr));             
+
+
+// 결과를 출력합니다.
+function user(user_id,user_pw,user_nickName,user_allow=false,coin,token){
+  this.user_id=user_id;  
+  this.user_pw=user_pw;
+  this.user_nickName=user_nickName;
+  this.user_allow=user_allow;
+  this.user_Hash= CryptoJS.MD5(this.user_id).toString();
+  this.coin=coin;
+  this.token=new Array(10);
+  this.token[0]=bittoken;
+  this.token[1]=ethtoken;
+  this.token[2]=dogetoken;
+  this.token[3]=ahyeontoken;
+  this.token[4]=byungjutoken;
+  this.token[5]=hyunuktoken;
+  this.token[6]=jisubtoken;
+  this.token[7]=javascripttoken;
+  this.token[8]=csstoken;
+  this.token[9]=htmltoken;
+}  
+
+const defaultCoin=new coin("sangpay",1000,10);
+
+//            코인 이름 , 내가보유한개수 , 코인 1개의 가치
+
+function coin(coin_name,coin_num,coin_value){
+  this.coin_name=coin_name;  
+  this.coin_num=coin_num;
+  this.coin_value=coin_value
+}  
+
+//                토큰이름, 내가보유한개수, 그 토큰 1개의 가치, 최소거래량, 수수료
+function token(token_name,token_num,token_value,minTradingQuan,charge){
+  this.token_name=token_name;  
+  this.token_num=token_num
+  this.token_value=token_value;
+  this.minTradingQuan=minTradingQuan;
+  this.charge=charge;
+}  
+
+
+    
+
 
 // 팝업 받기 부분 //
 
@@ -9,35 +126,18 @@ function copyAddress() {
     document.execCommand('copy');
     document.body.removeChild(el);
     alert('지갑 주소가 복사되었습니다.');
-}
-
-// let sendPopupId = document.querySelector(".send-popup");
-
-// function openPopup(sendPopupId) {
-//     document.getElementById(sendPopupId).classList.remove('popup-hidden');
-// }
-
-// function closePopup(sendPopupId) {
-//     document.getElementById(sendPopupId).classList.add('popup-hidden');
-// }
+}        
 
 let popup3 = document.querySelector(".popup3");
 let receiveBtn = document.querySelector(".receive-btn");
 receiveBtn.onclick = function(){
     popup3.style.display = "flex";
-}
+}        
 
 let closeBtn = document.querySelector(".h-close-button");
 closeBtn.onclick = function(){
     popup3.style.display = "none";
-}
-
-// let sendBtn = document.querySelector("send-btn");
-
-// sendBtn.onclick = function(){
-//     document.getElementById("send-popup").classList.remove("popup-hidden");
-
-// }
+}        
 
 // 팝업 보내기 부분 //
 
@@ -45,92 +145,35 @@ let popup1 = document.querySelector(".popup1");
 let sendBtn = document.querySelector(".send-btn");
 sendBtn.onclick = function(){
     popup1.style.display = "flex";
-}
+}        
 
 let closeSend = document.querySelector(".h-send-button");
 
 closeSend.onclick = function(){
     popup1.style.display = "none";
-}
+}        
 
 // 팝업 스왑 부분 // 
 
+// 페이 to 토큰 버튼 클릭 이벤트
 let popupSwap = document.querySelector(".popup-swap");
 let swapBtn = document.querySelector(".swap-btn");
 
 swapBtn.onclick = function(){
     popupSwap.style.display = "flex";
-}
+}        
 
 
 let swapExecute = document.querySelector(".swap-execute");
 
 swapExecute.onclick = function(){
     popupSwap.style.display = "none";
-};
-
-// 팝업 스왑 부분에 토큰 눌렀을 시 이벤트 //
-
-// ul안에 li 부분 클릭 이벤트
-let tokenListItems = document.querySelectorAll(".token-list li");
-
-tokenListItems.forEach((item) => {
-    item.addEventListener("click", () => {
-        // 현재 클릭된 토큰이 이미 선택되어 있으면 선택을 취소.
-        if(item.classList.contains("selected")){
-            item.classList.remove("selected")
-        } else {
-            // 그렇지 않으면 이전에 선택된 토큰의 선택 상태를 제거하고,
-            tokenListItems.forEach((i) => i.classList.remove("selected"));
-            // 현재 클릭된 토큰의 선택 상태를 추가.
-            item.classList.add("selected");
-        }    
-    });
-});
-
-// let tokenListItems = document.querySelectorAll(".token-list li");
-
-// tokenListItems.forEach((item) => {
-//   item.addEventListener("click", () => {
-//     // 이전에 선택된 토큰의 선택 상태를 제거합니다.
-//     tokenListItems.forEach((i) => i.classList.remove("selected"));
-    
-//     // 현재 클릭된 토큰에 선택 상태를 추가합니다.
-//     item.classList.add("selected");
-//   });
-// });
+};        
 
 // ------------------------------------------------------
 
-// // 로그인 성공 시, 로컬 스토리지에서 Bitcoin 수량 가져오기
-// function getBitcoinAmount(userId) {
-//   const userKey = "user_" + userId;
-//   const userData = JSON.parse(localStorage.getItem(userKey));
-//   return userData.token.amount;
-// }
+// 토큰 to 페이 버튼 클릭 이벤트
 
-// // Bitcoin 수량을 wallet에 표시하기
-// function displayBitcoinAmount(userId) {
-//   const bitcoinAmount = getBitcoinAmount(userId);
-//   const tokenAmountElement = document.querySelector(".token-amount");
-//   tokenAmountElement.textContent = bitcoinAmount.toFixed(4);
-// }
-
-// // loginUser 함수 수정: 로그인 성공 시, Bitcoin 수량 표시하기
-// function loginUser(id, pw) {
-//   for (let i = 0; i < localStorage.length; i++) {
-//     let key = localStorage.key(i);
-//     if (key.startsWith("user_")) {
-//       let currentUser = JSON.parse(localStorage.getItem(key));
-//       console.log(currentUser.user_id);
-//       console.log(currentUser.user_pw);
-//       if (pw == currentUser.user_pw && id == currentUser.user_id && currentUser.user_allow == true) {
-//         console.log("로그인 성공");
-//         displayBitcoinAmount(currentUser.user_id);
-//       }
-//     }
-//   }
-// }
 let popupSwap2 = document.querySelector(".popup-swap2");
 let swapBtn2 = document.querySelector(".swap-btn2");
 
@@ -138,45 +181,28 @@ swapBtn2.onclick = function(){
     popupSwap2.style.display = "flex";
 }
 
-
 let swapExecute2 = document.querySelector(".swap-execute2");
 
 swapExecute2.onclick = function(){
     popupSwap2.style.display = "none";
-};
+};        
 
-// // 교환 버튼 클릭 이벤트
-// document.querySelector('.exchange-btn').addEventListener('click', () => {
-//     openPopup('exchange-popup');
-//   });
-  
-//   // 토큰교환 버튼 클릭 이벤트
-//   document.querySelector('.token-exchange-btn').addEventListener('click', () => {
-//     closePopup('exchange-popup');
-//     openPopup('swap-popup');
-//   });
-  
-//   // 페이교환 버튼 클릭 이벤트
-//   document.querySelector('.pay-exchange-btn').addEventListener('click', () => {
-//     closePopup('exchange-popup');
-//     openPopup('swap-popup2');
-//   });
+// 교환 버튼 클릭 이벤트
 
 let exchangeBtn = document.querySelector('.exchange-btn');
 let popupExchange = document.querySelector('.popup-exchange');
 
 exchangeBtn.onclick = function(){
     popupExchange.style.display = "flex";
-    console.log(exchangeBtn);
-}
+}        
 
 let exchangeCloseBtn = document.querySelector('.exchange-close-button');
 
 exchangeCloseBtn.onclick = function(){
     popupExchange.style.display = "none";
-}
+}        
 
-  
+
 // sangpay 함수 부분
 
 // 상장페이 정보를 HTML 요소에 연결
@@ -184,6 +210,7 @@ function updateSangpayInfo(){
     //메인 지갑 부분 연결
     document.getElementById("sangpay-name").innerText = defaultCoin.coin_name;
     document.getElementById("sangpay-amount").innerText = defaultCoin.coin_num.toFixed(4);
+    document.getElementById("sangpay-value").innerText = defaultCoin.coin_value; // 적용 되는지 확인 필요;
     // 보내기 버튼 부분 연결 
     document.getElementById("send-sangpay-name").innerText = defaultCoin.coin_name;
     document.getElementById("send-sangpay-amount").innerText = defaultCoin.coin_num.toFixed(4);
@@ -193,7 +220,7 @@ function updateSangpayInfo(){
     // 토큰 to 페이 부분 연결
     document.getElementById("swap2-sangpay-name").innerText = defaultCoin.coin_name;
     document.getElementById("swap2-sangpay-amount").innerText = defaultCoin.coin_num.toFixed(4);
-}
+}        
 
 // 페이지 로드 시 상장페이 정보 업데이트
 window.addEventListener("DOMContentLoaded", updateSangpayInfo);
@@ -212,23 +239,88 @@ const tokens = [
     javascripttoken,
     csstoken,
     htmltoken,
-  ];
-  
-  // 메인 지갑 화면에 토큰 목록을 추가하는 함수입니다.
-  function displayTokens() {
-    const tokenList = document.getElementById("main-token-list");
-  
+];    
+
+// 메인 지갑 화면에 토큰 목록을 추가하는 함수입니다.
+function displayTokens() {
+    const tokenList = document.getElementById("main-token-list");    
+    let userId = getCurrentUser();
+    let userTokenList = JSON.parse(window.localStorage.getItem(`user_${userId}`)).token;
     // 토큰 목록을 순회하며 각 토큰에 대한 정보를 추가합니다.
-    tokens.forEach((token) => {
-      const listItem = document.createElement("li");
-      listItem.innerHTML = `
+    userTokenList.forEach((token) => {
+        const listItem = document.createElement("li");    
+        listItem.innerHTML = `
         <span class="token-name">${token.token_name}</span>
         <span class="token-amount">${token.token_num.toFixed(4)}</span>
-      `;
+        <span class="token-value" style = "display :none;">${token.token_value.toFixed(4)}</span>
+        `;    
+        tokenList.appendChild(listItem);
+    });    
+}    
+// 
+
+
+
+// token to pay 팝업 화면에 토큰 목록을 추가하는 함수입니다.
+function displayTokens2() {
+    const tokenList = document.getElementById("tokentopay-token-list");    
+    // 토큰 목록을 순회하며 각 토큰에 대한 정보를 추가합니다.
+    tokens.forEach((token) => {
+        const listItem = document.createElement("li");    
+        listItem.innerHTML = `
+        <span class="token-name">${token.token_name}</span>
+        <span class="token-amount" style = "display : none;">${token.token_num.toFixed(4)}</span>
+        <span class="token-value" style = "display :none;">${token.token_value.toFixed(4)}</span>
+        `;    
+        tokenList.appendChild(listItem);
+    });    
+}    
+
+// pay to token 팝업 화면에 토큰 목록을 추가하는 함수입니다.
+function displayTokens3() {
+    const tokenList = document.getElementById("paytotoken-token-list");    
+    // 토큰 목록을 순회하며 각 토큰에 대한 정보를 추가합니다.
+    tokens.forEach((token) => {
+        const listItem = document.createElement("li");    
+        listItem.innerHTML = `
+        <span class="token-name">${token.token_name}</span>
+        <span class="token-amount" style = "display : none";>${token.token_num.toFixed(4)}</span>
+        <span class="token-value" style = "display :none;">${token.token_value.toFixed(4)}</span>
+        `;    
       tokenList.appendChild(listItem);
-    });
-  }
-  
-  // 페이지 로드 시 토큰 목록을 표시합니다.
-  window.addEventListener("DOMContentLoaded", displayTokens);
-  
+    });    
+}    
+
+// ul안에 li 부분 클릭 이벤트 
+
+function addClickListeners() {
+    let tokenListItems = document.querySelectorAll(".token-list li");
+
+tokenListItems.forEach((item) => {
+    item.addEventListener("click", () => {
+        console.log("클릭 이벤트가 발생했습니다.");
+        // 현재 클릭된 토큰이 이미 선택되어 있으면 선택을 취소.
+        if(item.classList.contains("selected")){
+            item.classList.remove("selected")
+        } else {
+            // 그렇지 않으면 이전에 선택된 토큰의 선택 상태를 제거하고,
+            tokenListItems.forEach((i) => i.classList.remove("selected"));
+            // 현재 클릭된 토큰의 선택 상태를 추가.
+            item.classList.add("selected");
+        }            
+    });        
+});        
+}
+
+// 페이지 로드 시 토큰 목록을 표시합니다.
+
+window.addEventListener("DOMContentLoaded", () => {
+    displayTokens("main-token-list");
+    displayTokens2("tokentopay-token-list");
+    displayTokens3("paytotoken-token-list");
+    // li 클릭 부분 이벤트 함수
+    addClickListeners(); 
+});
+
+// 
+
