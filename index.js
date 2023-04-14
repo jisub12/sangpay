@@ -229,7 +229,7 @@ function getRemainingTime(cookieExpire) {
     console.log("끝");
     return "시간만료"
   }
-  return `${minutes}분 ${seconds}초`;
+  return `남은 시간 : ${minutes}분 ${seconds}초`;
 }
 let set1; //setInterval 함수 
 //버튼 누르면 시간추가 쿠키값에 반영
