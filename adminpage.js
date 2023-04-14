@@ -309,10 +309,10 @@ function renderWaitingList(){
             // valueObj["user_allow"] = true;
             // console.log(valueObj);
             let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(index)));
-            for(i = 0; i < window.localStorage.length; i++){
-                if(valueObj["user_allow"] === false) valueObj["user_allow"] = true;
-                window.localStorage.setItem("user_" + valueObj.user_id, JSON.stringify(valueObj));
-            }
+            // for(i = 0; i < window.localStorage.length; i++){
+            valueObj["user_allow"] = true;
+            window.localStorage.setItem("user_" + valueObj.user_id, JSON.stringify(valueObj));
+            // }
             // console.log(oneByOne[0]);
             // let oneByOne = waitingMemberArr.splice(index,1);
             memberArr.push(confirmedMember);
