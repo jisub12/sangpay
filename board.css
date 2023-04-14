@@ -1,10 +1,14 @@
+body{
+    background-color: #033104;
+}
+
 .a-board-box{
     width: 60%;
     height: 800px;
 
     border-radius: 15px;
     box-shadow: 10px 10px 5px rgba(100, 100, 100, 0.6), -2px -2px 5px rgba(100, 100, 100, 0.6);
-    /* background-color: whitesmoke; */
+    background-color: whitesmoke;
 
     margin: auto;
     margin-top: 60px;

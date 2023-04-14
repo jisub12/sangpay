@@ -13,6 +13,8 @@
 
     display: inline-flex;
     flex-wrap: nowrap;
+
+    font-family: Arial, sans-serif;
 }
 
 .b-sangpay-logo{
