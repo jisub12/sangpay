@@ -13,6 +13,8 @@
 // console.log(JSON.parse(testItem).user_nickName);
 // console.log(JSON.parse(testItem).user_id);
 
+// window.localStorage.clear();
+
 let member = document.querySelector(".b-member-board");
 let confirmWaitingMember = document.querySelector(".b-confirm-waiting-member-board");
 // console.log(window.localStorage.key(0));
