@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 게시물</title>
+    <!-- 게시물 등록/수정 -->
+    <link rel="stylesheet" href="./sharestyle.css">
+    <link rel="stylesheet" href="./board.css">
+</head>
+
+<body>
+    <div class="header"></div>
+    <div class="a-board-box a-edit-box">
+        <!-- 등록/수정 -->
+        <div class="a-box">
+            <h1>게시물 등록</h1>
+            <div>
+                <label for="title">
+                    <h3>제목</h3>
+                </label>
+                <input id="title" type="text" autofocus>
+            </div>
+            <div>
+                <label for="content">
+                    <h3>내용</h3>
+                </label>
+                <!-- <input id="content" type="text"> -->
+                <textarea name="content" id="content" cols="30" rows="10"></textarea>
+            </div>
+
+
+            <!-- 등록/수정 -->
+            <div class="a-btn a-right a-edit-submit">등록</div>
+            <div class="a-btn a-center">목록</div>
+        </div>
+    </div>
+</body>
+<script type="module" src="./board_edit.js"></script>
+<script type="module" src="./board.js"></script>
+
+</html>
