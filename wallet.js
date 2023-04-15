@@ -26,9 +26,7 @@ if (userStorage){
     console.log(JSON.parse(userStorage).token);
 }
 
-
-
-console.log(JSON.parse(window.localStorage.getItem(`user_${userId}`)).token);
+console.log(JSON.parse(window.localStorage.getItem(`user_${userId}`)));
 
 return userId;
 }
@@ -41,21 +39,37 @@ return userId;
 //   const encrypted = CryptoJS.MD5(message).toString();
 
 // 토큰 생성            토큰이름, 내가보유한개수, 그 토큰 1개의 가치, 최소거래량, 수수료
-let bittoken=new token("bittoken",0,2,1,0.1);
+let bittoken=new token("bittoken",1000,10,1,0.1);
 let ethtoken=new token("ethtoken",0,2,1,0.1);
 let dogetoken=new token("dogetoken",0,2,1,0.1);
 let ahyeontoken=new token("ahyeontoken",0,2,1,0.1);
-let byungjutoken=new token("byungjutoken",5,2,1,0.1);
+let byungjutoken=new token("byungjutoken",0,2,1,0.1);
 let hyunuktoken=new token("hyunuktoken",0,2,1,0.1);
 let jisubtoken=new token("jisubtoken",0,2,1,0.1);
 let javascripttoken=new token("javascripttoken",0,2,1,0.1);
 let csstoken=new token("csstoken",0,2,1,0.1);
 let htmltoken=new token("htmltoken",0,2,1,0.1);
 
+// 로컬 스토리지에 아이디값 임의로 생성해서 저장 - 스왑 실험용 // 
+let userEmail = "gusdnr205@naver.com";
 let tokenArr = [bittoken, ethtoken, dogetoken, ahyeontoken, byungjutoken, hyunuktoken, jisubtoken, 
              ,javascripttoken, csstoken, htmltoken];
+const defaultCoin = new coin("sangpay",1000,10);
 
-window.localStorage.setItem("token", JSON.stringify(tokenArr));             
+let userTokenData = {
+    email : userEmail,
+    sangpaycoin : defaultCoin,
+    tokens : tokenArr
+  };
+
+window.localStorage.setItem("userTokenData", JSON.stringify(userTokenData));
+// window.localStorage.setItem("token", JSON.stringify(tokenArr));       
+let storedData = JSON.parse(window.localStorage.getItem("userTokenData"));
+// 예를 들어, bittoken의 값을 10으로 변경하려면
+storedData.tokens[0].value = 10;
+window.localStorage.setItem("userTokenData", JSON.stringify(storedData));
+
+
 
 
 // 결과를 출력합니다.
@@ -79,7 +93,6 @@ function user(user_id,user_pw,user_nickName,user_allow=false,coin,token){
   this.token[9]=htmltoken;
 }  
 
-const defaultCoin=new coin("sangpay",1000,10);
 
 //            코인 이름 , 내가보유한개수 , 코인 1개의 가치
 
@@ -347,7 +360,7 @@ function getCurrentUser() {
         document.querySelectorAll(".coin-amount").forEach(function(e) {
           e.textContent = updatedSangpay;
         });
-        // document.querySelector("#send-amount").value = "";
+        document.querySelector("#send-amount").value = "";
         document.querySelector(".popup1").style.display = "none";
       }
     }

@@ -1,4 +1,4 @@
-    // 입력 필드의 기본값을 삭제하고, 포커스가 없을 경우에만 다시 표시합니다.
+// 입력 필드의 기본값을 삭제하고, 포커스가 없을 경우에만 다시 표시합니다.
 const usernameInput = document.getElementById('username');
 const userPwInput = document.getElementById('password');
 const remainedTime= document.querySelector('.b-session');
@@ -8,7 +8,6 @@ usernameInput.addEventListener('blur', function() {
     this.value = '이메일 또는 아이디';
   }
 });
-
 
 const login= document.querySelector('.j-loginbtn');
 login.addEventListener('click',function(){
@@ -248,7 +247,6 @@ function userLogin(){
     remainedTime.innerHTML=remainingTime;
   }
 }
-
 
 function extensionTime(){
   let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
