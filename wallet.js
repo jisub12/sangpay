@@ -328,45 +328,15 @@ document.querySelector(".h-send-button").addEventListener("click", () => {
         const userData = localStorage.getItem(userKey);
         return JSON.parse(userData);
       }
-      if (amountToSend > currentAmount.coin) {
+
+      if (amountToSend > currentAmount.coin_num) {
         alert("잔액이 부족합니다.");
       } else {
         // sangpay 잔액을 업데이트한다.
         document.querySelectorAll(".coin-amount").forEach(function(e){
-            e.textContent = (currentUser.coin - amountToSend).toFixed(4);
+            e.textContent = (currentUser.coin_num - amountToSend).toFixed(4);
         }) 
         document.querySelector(".popup1").style.display = "none";
       }
     }
   });
-  
-//   document.querySelector(".h-send-button").addEventListener("click", () => {
-//     const amountToSend = parseFloat(document.querySelector("#send-amount").value);
-
-//     if (isNaN(amountToSend) || amountToSend <= 0) {
-//       alert("올바른 개수를 입력하세요.");
-//     } else {
-//       const currentUser = getCurrentUser();
-
-//       // 로컬 스토리지에서 sangpay 잔액을 가져온다.
-//       const storedSangpay = parseFloat(localStorage.getItem(currentUser));
-
-//       if (amountToSend > storedSangpay) {
-//         alert("잔액이 부족합니다.");
-//       } else {
-//         // sangpay 잔액을 업데이트한다.
-//         const updatedSangpay = (storedSangpay - amountToSend).toFixed(4);
-
-//         // 로컬 스토리지에 업데이트된 잔액을 저장한다.
-//         localStorage.setItem(currentUser, updatedSangpay);
-
-//         // 화면에 있는 모든 .coin-amount 요소를 업데이트한다.
-//         document.querySelectorAll(".coin-amount").forEach(function(e){
-//             e.textContent = updatedSangpay;
-//         });
-
-//         // 보내기 팝업창을 닫는다.
-//         document.querySelector(".popup1").style.display = "none";
-//       }
-//     }
-// });
