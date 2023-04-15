@@ -147,7 +147,7 @@ let swapBtn = document.querySelector(".swap-btn");
 
 swapBtn.onclick = function(){
     popupSwap.style.display = "flex";
-}        
+}       
 
 
 let swapExecute = document.querySelector(".swap-execute");
@@ -263,6 +263,7 @@ function displayTokens2() {
         `;    
         tokenList.appendChild(listItem);
     });    
+    // console.log(displayTokens2);
 }    
 
 // pay to token 팝업 화면에 토큰 목록을 추가하는 함수입니다.
@@ -311,32 +312,45 @@ window.addEventListener("DOMContentLoaded", () => {
     addClickListeners(); 
 });
 
-  // "보내기" 팝업창의 확인 버튼 클릭 이벤트 처리
-document.querySelector(".h-send-button").addEventListener("click", () => {
+function getCurrentUser() {
+    return "gusdnr205@naver.com"; // 현재 사용자를 반환하는 코드를 적절하게 수정해주세요.
+  }
+  
+  function getSangpayForUser(user) {
+    const storedSangpay = parseFloat(localStorage.getItem(user));
+  
+    if (isNaN(storedSangpay)) {
+      // 초기 잔액 설정
+      const initialSangpay = 1000;
+      localStorage.setItem(user, initialSangpay);
+      return initialSangpay;
+    } else {
+      return storedSangpay;
+    }
+  }
+  
+  document.querySelector(".h-send-button").addEventListener("click", () => {
     const amountToSend = parseFloat(document.querySelector("#send-amount").value);
-
+  
     if (isNaN(amountToSend) || amountToSend <= 0) {
       alert("올바른 개수를 입력하세요.");
     } else {
-      // 현재 sangpay 잔액을 가져온다.
-      const currentAmount = parseFloat(document.querySelector(".coin-amount").textContent);
-
-      const currentUser = getCurrentUser("gusdnr205@naver.com");
-
-      function getCurrentUser(email) {
-        const userKey = "user_" + email;
-        const userData = localStorage.getItem(userKey);
-        return JSON.parse(userData);
-      }
-
-      if (amountToSend > currentAmount.coin_num) {
+      const currentUser = getCurrentUser();
+      const storedSangpay = getSangpayForUser(currentUser);
+  
+      if (amountToSend > storedSangpay) {
         alert("잔액이 부족합니다.");
       } else {
-        // sangpay 잔액을 업데이트한다.
-        document.querySelectorAll(".coin-amount").forEach(function(e){
-            e.textContent = (currentUser.coin_num - amountToSend).toFixed(4);
-        }) 
+        const updatedSangpay = (storedSangpay - amountToSend).toFixed(4);
+        localStorage.setItem(currentUser, updatedSangpay);
+  
+        document.querySelectorAll(".coin-amount").forEach(function(e) {
+          e.textContent = updatedSangpay;
+        });
+        // document.querySelector("#send-amount").value = "";
         document.querySelector(".popup1").style.display = "none";
       }
     }
   });
+  
+  
