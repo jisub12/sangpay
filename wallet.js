@@ -38,22 +38,36 @@ return userId;
 //   // MD5 알고리즘을 사용하여 문자열을 암호화합니다.
   // const encrypted = CryptoJS.MD5(message).toString();
 
-// 토큰 생성            토큰이름, 내가보유한개수, 그 토큰 1개의 가치, 수수료
-let bittoken=new token("bittoken",0,1,0.5);
-let ethtoken=new token("ethtoken",0,1,0.5);
-let dogetoken=new token("dogetoken",0,1,0.5);
-let ahyeontoken=new token("ahyeontoken",0,10,0.5);
-let byungjootoken=new token("byungjootoken",0,5,0.5);
-let hyunuktoken=new token("hyunuktoken",0,5,0.5);
-let jisubtoken=new token("jisubtoken",0,5,0.5);
-let loltoken=new token("loltoken",0,2,0.5);
-let bgtoken=new token("bgtoken",0,2,0.5);
-let overwatchtoken=new token("overwatchtoken",0,0.1,100);
+// // 토큰 생성            토큰이름, 내가보유한개수, 그 토큰 1개의 가치, 수수료
+// let bittoken=new token("bittoken",0,1,0.5);
+// let ethtoken=new token("ethtoken",0,1,0.5);
+// let dogetoken=new token("dogetoken",0,1,0.5);
+// let ahyeontoken=new token("ahyeontoken",0,10,0.5);
+// let byungjootoken=new token("byungjootoken",0,5,0.5);
+// let hyunuktoken=new token("hyunuktoken",0,5,0.5);
+// let jisubtoken=new token("jisubtoken",0,5,0.5);
+// let loltoken=new token("loltoken",0,2,0.5);
+// let bgtoken=new token("bgtoken",0,2,0.5);
+// let overwatchtoken=new token("overwatchtoken",0,0.1,0.5);
+
+// 김아현 ---테스트용으로 작성해봄
+let bittoken=new token("bittoken",10,1,0.5);  //
+let ethtoken=new token("ethtoken",10,1,0.5);
+let dogetoken=new token("dogetoken",10,1,0.5);
+let ahyeontoken=new token("ahyeontoken",10,10,0.5);
+let byungjootoken=new token("byungjootoken",10,5,0.5);
+let hyunuktoken=new token("hyunuktoken",20,5,0.5);
+let jisubtoken=new token("jisubtoken",10,5,0.5);
+let loltoken=new token("loltoken",10,2,0.5);
+let bgtoken=new token("bgtoken",10,2,0.5);
+let overwatchtoken=new token("overwatchtoken",10,0.1,0.5);
 
 // 로컬 스토리지에 아이디값 임의로 생성해서 저장 - 스왑 실험용 //
 let userEmail = "gusdnr205@naver.com";
 let tokenArr = [bittoken, ethtoken, dogetoken, ahyeontoken, byungjootoken, hyunuktoken, jisubtoken,
              ,loltoken, bgtoken, overwatchtoken];
+
+            //  기본으로 가진 상페코인 1000개, 가치 : 10
 const defaultCoin = new coin("sangpay",1000,10);
 
 // let userTokenData = {
@@ -112,11 +126,11 @@ function token(token_name,token_num,token_value,charge){
 let newUser = new user("gusdnr205@naver.com", "password", "nickname", false, defaultCoin, tokenArr);
 
 // user_Hash 값을 로컬스토리지에 저장
-localStorage.setItem("user_Hash", newUser.user_Hash);
+localStorage.setItem("Hash", newUser.user_Hash);
 
 // 해쉬값 가져오기
 function getUserHashFromLocalStorage() {
-  const storedData = localStorage.getItem("user_Hash");
+  const storedData = localStorage.getItem("Hash");
   return storedData === null ? "" : storedData;
 }
 console.log(newUser.user_Hash);
@@ -161,12 +175,18 @@ closeSend.onclick = function(){
 
 // 팝업 스왑 부분 //
 
+// 페이to토큰인지 토큰to페이인지 구분하는 변수 선언
+let ptt=true;
+
 // 페이 to 토큰 버튼 클릭 이벤트
 let popupSwap = document.querySelector(".popup-swap");
 let swapBtn = document.querySelector(".swap-btn");
 
 swapBtn.onclick = function(){
     popupSwap.style.display = "flex";
+
+    // 페이 to 토큰
+    ptt = true;
 }
 
 
@@ -185,6 +205,9 @@ let swapBtn2 = document.querySelector(".swap-btn2");
 
 swapBtn2.onclick = function(){
     popupSwap2.style.display = "flex";
+
+    // 토큰 to 페이
+    ptt = false;
 }
 
 let swapExecute2 = document.querySelector(".swap-execute2");
@@ -274,26 +297,45 @@ function displayTokens() {
 function displayTokens2() {
     const tokenList = document.getElementById("tokentopay-token-list");
 
+    // 김아현---
+    tokenList.innerHTML = "";
+    // 현재 사용자가 가지고 있는 토큰 정보 출력하기
+    let userToken = JSON.parse(window.localStorage.getItem("user_"+getCurrentUser())).token;
+    console.log("sdf", userToken);
+
     // 토큰 목록을 순회하며 각 토큰에 대한 정보를 추가합니다.
-    tokens.forEach((token) => {
-        const listItem = document.createElement("li");
-        listItem.innerHTML = `
-        <span class="token-name">${token.token_name}</span>
-        <span class="token-amount" style = "display : none;">${token.token_num.toFixed(4)}</span>
-        <span class="token-value" style = "display :none;">${token.token_value.toFixed(4)}</span>
-        `;
-        tokenList.appendChild(listItem);
-    });
+    userToken.forEach((token) => {
+      const listItem = document.createElement("li");
+
+      listItem.innerHTML = `
+      <span class="token-name" style="margin-right:10px">${token.token_name}</span>
+      <span class="token-amount">${token.token_num.toFixed(4)}</span>
+`;
+      tokenList.appendChild(listItem);
+  });
+
+    // // 토큰 목록을 순회하며 각 토큰에 대한 정보를 추가합니다.
+    // tokens.forEach((token) => {
+    //     const listItem = document.createElement("li");
+    //     listItem.innerHTML = `
+    //     <span class="token-name">${token.token_name}</span>
+    //     <span class="token-amount" style = "display : none;">${token.token_num.toFixed(4)}</span>
+    //     <span class="token-value" style = "display :none;">${token.token_value.toFixed(4)}</span>
+    //     `;
+    //     tokenList.appendChild(listItem);
+    // });
     // console.log(displayTokens2);
 }
 
 // 김아현-----
-// pay to token
-function payToTk(token_name) {
-  let amount = document.querySelector('#swap2-token-amount');
+// token to pay
+// 함수명 수정
+function tokenToPay(token_name) {
 
-  console.log("dfsdfsfdfsd",amount.value);
-  console.log("sdfd", token_name);
+  let amount;
+  let swapRate = document.querySelectorAll('.swap-rate');
+  let swapFee = document.querySelectorAll('.swap-fee');
+  let finalExchange = document.querySelectorAll('.final-exchange');
 
   // 토큰이름에 해당하는 토큰 찾아서 정보 출력
   let token2List = JSON.parse(window.localStorage.getItem('token'));
@@ -303,17 +345,109 @@ function payToTk(token_name) {
     return item.token_name == token_name;
   })[0];
 
-  let swapRate = document.querySelectorAll('.swap-rate');
-  let swapFee = document.querySelectorAll('.swap-fee');
+  if (ptt) {
+    amount = document.querySelector('#swap1-sangpay-amount');
+  } else {
+    amount = document.querySelector('#swap2-token-amount');
+  }
 
-  swapRate[0].innerHTML = `교환비율 : ${token.token_value}`;
-  swapRate[1].innerHTML = `교환비율 : ${token.token_value}`;
-  swapFee[0].innerHTML = `수수료 : ${token.charge}`;
-  swapFee[1].innerHTML = `수수료 : ${token.charge}`;
+  if (amount.value < 0) {
+    alert("0보다 큰 값 입력");
+    return true;
+  }
 
-  console.log(swapRate);
+  let userPay = JSON.parse(window.localStorage.getItem("user_"+getCurrentUser())).coin.coin_num;
+
+  // 페이to토큰 --> 현재 사용자가 가진 페이보다 큰 값 입력하면
+  if (ptt && amount.value > userPay) {
+    alert("현재 sangpay : " + userPay + "더 작은 값 입력");
+    amount.value = 0;
+    return true;
+  }
+
+  let user = JSON.parse(window.localStorage.getItem("user_"+getCurrentUser()));
+  let userToken = user.token.filter(function(item) {
+    return item.token_name == token_name;
+  })[0];
+
+  // 토큰to페이 --> 현재 사용자가 가진 토큰보다 큰 값 입력하면
+  if (!ptt && amount.value > userToken.token_num) {
+    alert("현재 토큰 : " + userToken.token_num + "더 작은 값 입력");
+    amount.value = 0;
+    return true;
+  }
+
+
+  if (ptt) {
+    // 페이 to 토큰
+    swapRate[0].innerHTML = `교환비율 : ${token.token_value}`;
+    swapFee[0].innerHTML = `수수료 : ${token.charge}`;
+
+    // 계산
+    let tokenAmount = amount.value * token.token_value - amount.value*token.charge*0.01;
+    finalExchange[0].innerHTML=`페이 : ${amount.value}, ${token.token_name} : ${tokenAmount}`;
+    return {ptt:ptt, pay:amount.value, token:[token_name, tokenAmount]};
+  } else {
+    // 토큰 to 페이
+    swapFee[1].innerHTML = `수수료 : ${token.charge}`;
+    swapRate[1].innerHTML = `교환비율 : ${token.token_value}`;
+
+    // 토큰 to 페이 계산식 수정
+    let payAmount = amount.value / (token.token_value) - amount.value*token.charge*0.01;
+    finalExchange[1].innerHTML=`${token.token_name} : ${amount.value}, 페이 : ${payAmount}`;
+    // finalExchange[1].innerHTML=`페이 : ${amount.value}, ${token.token_name} : ${amount.value *1.1574 - amount.value*0.25*0.01}`;
+    return {ptt:ptt, pay:payAmount, token:[token_name, amount.value]};
+  }
+
 }
 
+// 페이투토큰 교환하기 버튼 클릭했을때 처리하는 부분
+let payinfo;
+
+let executeBtn =  document.querySelector('.swap-execute');
+executeBtn.addEventListener('click', function() {
+  executefunc();
+});
+
+
+// 토큰투페이 교환하기 버튼
+let executeBtn2 =  document.querySelector('.swap-execute2');
+executeBtn2.addEventListener('click', function() {
+  console.log("exe2");
+  executefunc();
+});
+
+// 교환하기 버튼(페이투토큰, 토큰투페이) 누르면 동작할 함수
+function executefunc() {
+  alert(payinfo);
+  if (payinfo) {
+            // 페이투토큰 사용자 값 처리
+            let user= JSON.parse(window.localStorage.getItem("user_"+getCurrentUser()));
+            console.log(user);
+            // ptt true --> pay 값 빼고 token값 더하기 (페이투토큰)
+            if (payinfo.ptt) {
+              user.coin.coin_num -= payinfo.pay;
+              user.token.filter(function(item) {
+                  if (item.token_name == payinfo.token[0]) {
+                    item.token_num+=payinfo.token[1];
+                  }
+              });
+
+            } else { // ptt false --> pay 값 더하고 token값 빼기(토큰투페이)
+              user.coin.coin_num += payinfo.pay;
+              user.token.filter(function(item) {
+                  if (item.token_name == payinfo.token[0]) {
+                    item.token_num-=payinfo.token[1];
+                  }
+              });
+            }
+
+            console.log(payinfo);
+            window.localStorage.setItem("user_"+getCurrentUser(), JSON.stringify(user));
+            // 토큰투페이 토큰 목록 작성
+            // displayTokens2();
+  }
+}
 
 // 로컬 스토리지에 저장할 토큰
 function token2(token_name, token_value, charge) {
@@ -326,7 +460,7 @@ function token2(token_name, token_value, charge) {
 function setTokenLocal() {
   let token2List = [];
   for (let i = 0; i < tokens.length; i++) {
-     token2List.push(new token2(tokens[i].token_name, 2, 1));
+     token2List.push(new token2(tokens[i].token_name, tokens[i].token_value, tokens[i].charge));
   }
   console.log(token2List);
   // 로컬 스토리지에 토큰 정보 저장
@@ -353,6 +487,7 @@ function displayTokens3() {
 
 // ul안에 li 부분 클릭 이벤트
 
+
 function addClickListeners() {
     let tokenListItems = document.querySelectorAll(".token-list li");
 
@@ -369,7 +504,10 @@ tokenListItems.forEach((item) => {
             item.classList.add("selected");
 
             // 현재 클릭된 토큰의 이름 전달
-            payToTk(item.firstElementChild.textContent);
+            payinfo = tokenToPay(item.firstElementChild.textContent);
+
+
+
         }
     });
 });
@@ -532,10 +670,12 @@ function getCurrentUser() {
     let userList = [];
 
     for (let i = 0; i < window.localStorage.length; i++) {
-        let key = window.localStorage.key(i);
-        let user = JSON.parse(window.localStorage.getItem(key));
-        if (key.startsWith("user_") && user.user_allow == true) {
+      let key = window.localStorage.key(i);
+      if (key.startsWith("user_")) {
+          let user = JSON.parse(window.localStorage.getItem(key));
+          if (user.user_allow == true) {
             userList.push(JSON.parse(window.localStorage.getItem(key)));
+          }
         };
     }
     console.log("승인회원목록", userList);
