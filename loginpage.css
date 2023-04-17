@@ -99,7 +99,7 @@
 
 .b-my-page-box{
     width: 60%;
-    height: 450px;
+    height: 550px;
     
     border-radius: 15px;
     /* box-shadow: 5px 5px 5px; */
@@ -355,9 +355,19 @@
     height: 7px;
 }
 .j-loginbtnbox{
-    text-align: center;
+    height: 50px;
+
+    border-radius: 5px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    background-color: #033104;
 }
 .j-loginbtn{
+    font-size: 20px;
+    color: white;
     cursor: pointer;
     border: none; 
     background-color: transparent;
@@ -380,10 +390,66 @@
     height: 19px;
 }
 .j-signup{
-    text-align: center;
+    width: 200px;
+    height: 50px;
+    margin: auto;
+    margin-top: 0;
     cursor: pointer;
-    
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* border: 1px solid; */
+    border-radius: 5px;
+
+    /* background-color: #066508; */
+
+    font-size: 15px;
+}
+.b-signup-options{
+    width: 100%;
+    height: 60px;
+    border: 1px solid;
+
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.b-signup-options div{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.b-signup-option-image-google{
+    width: 50px;
+    height: 50px;
+    /* border: 1px solid; */
+    border-radius: 50%;
+    background-image: url(./google_logo.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.b-signup-option-image-facebook{
+    width: 50px;
+    height: 50px;
+    /* border: 1px solid; */
+    border-radius: 50%;
+    background-image: url(./facebook_logo.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.b-signup-option-image-naver{
+    width: 50px;
+    height: 50px;
+    /* border: 1px solid; */
+    border-radius: 50%;
+    background-image: url(./naver_logo.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .j-input1{
     width: 100%;
