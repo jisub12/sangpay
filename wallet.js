@@ -36,28 +36,25 @@ return userId;
 // const message = "Hello, world!";
 
 //   // MD5 알고리즘을 사용하여 문자열을 암호화합니다.
-//   const encrypted = CryptoJS.MD5(message).toString();
+  // const encrypted = CryptoJS.MD5(message).toString();
 
-// 토큰 생성            토큰이름, 내가보유한개수, 그 토큰 1개의 가치, 최소거래량, 수수료
-let bittoken=new token("bittoken",1000,10,1,0.1);
-let ethtoken=new token("ethtoken",100,2,1,0.1);
-let dogetoken=new token("dogetoken",1000,2,1,0.1);
-let ahyeontoken=new token("ahyeontoken",0,2,1,0.1);
-let byungjutoken=new token("byungjutoken",0,2,1,0.1);
-let hyunuktoken=new token("hyunuktoken",0,2,1,0.1);
-let jisubtoken=new token("jisubtoken",0,2,1,0.1);
-let javascripttoken=new token("javascripttoken",0,2,1,0.1);
-let csstoken=new token("csstoken",0,2,1,0.1);
-let htmltoken=new token("htmltoken",0,2,1,0.1);
+// 토큰 생성            토큰이름, 내가보유한개수, 그 토큰 1개의 가치, 수수료
+let bittoken=new token("bittoken",0,1,0.5);
+let ethtoken=new token("ethtoken",0,1,0.5);
+let dogetoken=new token("dogetoken",0,1,0.5);
+let ahyeontoken=new token("ahyeontoken",0,10,0.5);
+let byungjootoken=new token("byungjootoken",0,5,0.5);
+let hyunuktoken=new token("hyunuktoken",0,5,0.5);
+let jisubtoken=new token("jisubtoken",0,5,0.5);
+let loltoken=new token("loltoken",0,2,0.5);
+let bgtoken=new token("bgtoken",0,2,0.5);
+let overwatchtoken=new token("overwatchtoken",0,0.1,100);
 
 // 로컬 스토리지에 아이디값 임의로 생성해서 저장 - 스왑 실험용 //
 let userEmail = "gusdnr205@naver.com";
-let tokenArr = [bittoken, ethtoken, dogetoken, ahyeontoken, byungjutoken, hyunuktoken, jisubtoken,
-             ,javascripttoken, csstoken, htmltoken];
+let tokenArr = [bittoken, ethtoken, dogetoken, ahyeontoken, byungjootoken, hyunuktoken, jisubtoken,
+             ,loltoken, bgtoken, overwatchtoken];
 const defaultCoin = new coin("sangpay",1000,10);
-
-
-
 
 // let userTokenData = {
 //     user_id : userEmail,
@@ -72,9 +69,6 @@ const defaultCoin = new coin("sangpay",1000,10);
 // // storedData.tokens[0].value = 1000;
 // window.localStorage.setItem("userTokenData", JSON.stringify(storedData));
 
-
-
-
 // 결과를 출력합니다.
 function user(user_id,user_pw,user_nickName,user_allow=false,coin,token){
   this.user_id=user_id;
@@ -88,12 +82,12 @@ function user(user_id,user_pw,user_nickName,user_allow=false,coin,token){
   this.token[1]=ethtoken;
   this.token[2]=dogetoken;
   this.token[3]=ahyeontoken;
-  this.token[4]=byungjutoken;
+  this.token[4]=byungjootoken;
   this.token[5]=hyunuktoken;
   this.token[6]=jisubtoken;
-  this.token[7]=javascripttoken;
-  this.token[8]=csstoken;
-  this.token[9]=htmltoken;
+  this.token[7]=loltoken;
+  this.token[8]=bgtoken;
+  this.token[9]=overwatchtoken;
 }
 
 
@@ -114,19 +108,30 @@ function token(token_name,token_num,token_value,charge){
 }
 
 
+// user 객체 생성 (Hash값 가져오기 위해 만듦)
+let newUser = new user("gusdnr205@naver.com", "password", "nickname", false, defaultCoin, tokenArr);
 
+// user_Hash 값을 로컬스토리지에 저장
+localStorage.setItem("user_Hash", newUser.user_Hash);
 
+// 해쉬값 가져오기
+function getUserHashFromLocalStorage() {
+  const storedData = localStorage.getItem("user_Hash");
+  return storedData === null ? "" : storedData;
+}
+console.log(newUser.user_Hash);
 
-// 팝업 받기 부분 //
+// 팝업 받기 부분 // + 지갑 주소 해쉬 연결 추가함
 
 function copyAddress() {
-    const el = document.createElement('textarea');
-    el.value = '내 암호화폐 지갑 주소 복사';
+  let userHash = getUserHashFromLocalStorage();
+  const el = document.createElement('textarea');
+    el.value = userHash;
     document.body.appendChild(el);
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
-    alert('지갑 주소가 복사되었습니다.');
+    alert('지갑 주소가 복사되었습니다.\n' + userHash);
 }
 
 let popup3 = document.querySelector(".popup3");
@@ -234,12 +239,12 @@ const tokens = [
     ethtoken,
     dogetoken,
     ahyeontoken,
-    byungjutoken,
+    byungjootoken,
     hyunuktoken,
     jisubtoken,
-    javascripttoken,
-    csstoken,
-    htmltoken,
+    loltoken,
+    bgtoken,
+    overwatchtoken,
 ];
 
 // 메인 지갑 화면에 토큰 목록을 추가하는 함수입니다.
