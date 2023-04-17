@@ -1,4 +1,14 @@
-    // 입력 필드의 기본값을 삭제하고, 포커스가 없을 경우에만 다시 표시합니다.
+let mainLoginPage = document.querySelector(".whole-mypage");
+let mainLoginPageHeader = document.querySelector(".header");
+let mainLoginPageTitle = document.querySelector(".b-login-page-title");
+
+mainLoginPage.style.display = "none";
+mainLoginPageHeader.style.display = "none";
+mainLoginPageTitle.style.display = "none";
+
+
+
+// 입력 필드의 기본값을 삭제하고, 포커스가 없을 경우에만 다시 표시합니다.
 const usernameInput = document.getElementById('username');
 const userPwInput = document.getElementById('password');
 const remainedTime= document.querySelector('.b-session');
