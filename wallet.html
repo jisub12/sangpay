@@ -6,16 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crypto Wallet</title>
     <link rel="stylesheet" href="./wallet.css">
+    <link rel="stylesheet" href="./sharestyle.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
 </head>
 <body>
-    
-    <header>
-        <div class="logo">Logo</div>
-        <div class="session-time">00:00</div>
-        <button class="extend-session">시간 연장</button>
-        <button class="my-page">마이페이지</button>
-        <button class="contact-us">문의하기</button>
-    </header>
+    <div class="header">
+        <div class="b-sangpay-logo">
+            <a href="./wallet.html">
+                <div class="b-logo"></div>
+            </a>
+        </div>
+        <div class="b-session-time">
+            <div class="b-session">남은 시간 : 00분 00초</div>
+            <button class="b-time-extend-btn">시간 연장</button>
+        </div>
+        <div class="b-menu-option">
+            <ul class="b-header-list">
+                <li class="b-header-list-item">
+                    <a class="b-header-my-page" href="./mypage.html">MY PAGE</a>
+                </li>
+                <li class="b-header-list-item">
+                    <a class="b-header-faq" href="./board.html">FAQ</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
     <main>
         <div class="wallet">
@@ -23,56 +38,20 @@
             <hr class="divider" />
             <div class="coin-info">
                 <div class="token-wrapper">
-                <span class="coin">상장페이</span>
-                <span class="coin-amount">0.0000</span>
+                <span class="coin" id="sangpay-name">상장페이</span>
+                <span class="coin-amount" id="sangpay-amount"></span>
+                <span class="coin-value" id="sangpay-value" style="display: none;"></span>
                 </div>
             </div>
             <div class="token-info">
-                <div class="token-wrapper">
-                    <span class="token">Bitcoin</span>
-                    <span class="token-amount">0.0000</span>
+                <!-- 메인 지갑 화면의 토큰 목록 -->
+                <div class="wallet-tokens">
+
+                    <ul id="main-token-list">
+                     <!-- 토큰 목록이 추가됩니다. -->
+                    </ul>
+                   </div>
             </div>
-                <div class="token-wrapper">
-                    <span class="token">토큰2</span>
-                    <span class="token-amount">0.0000</span>
-               </div>
-                <div class="token-wrapper">
-                    <span class="token">토큰3</span>
-                    <span class="token-amount">0.0000</span>
-                </div>
-            <div class="token-wrapper">
-                    <span class="token">토큰4</span>
-                    <span class="token-amount">0.0000</span>
-                </div>
-            <div class="token-wrapper">
-                    <span class="token">토큰5</span>
-                    <span class="token-amount">0.0000</span>
-                </div>
-            <div class="token-wrapper">
-                    <span class="token">토큰6</span>
-                    <span class="token-amount">0.0000</span>
-            </div>
-            <div class="token-wrapper">
-                    <span class="token">토큰7</span>
-                    <span class="token-amount">0.0000</span>
-            </div>
-            <div class="token-wrapper">
-                    <span class="token">토큰8</span>
-                    <span class="token-amount">0.0000</span>
-            </div>
-            <div class="token-wrapper">
-                    <span class="token">토큰9</span>
-                    <span class="token-amount">0.0000</span>
-            </div>
-            <div class="token-wrapper">
-                    <span class="token">토큰10</span>
-                    <span class="token-amount">0.0000</span>
-            </div>
-        </div>
-            <!-- <div class="swap-info">
-                <button class="swap-button">스왑</button>
-                <span class="expected-swap-amount">0.0000</span>
-            </div> -->
             <div class="swap-buttons">
                 <button class="send-btn">보내기</button>
                 <button class="exchange-btn">교환</button>
@@ -89,9 +68,6 @@
             <h2>교환 방법 선택</h2>
             <button class="swap-btn">페이 to 토큰</button>
                 <button class="swap-btn2">토큰 to 페이</button>
-            <!-- <button class="token-exchange-btn">토큰교환</button>
-            <button class="pay-exchange-btn">페이교환</button> -->
-            <!-- <div class="exchange-close-button" onclick="closePopup('exchange-popup')">닫기</div> -->
             <button class="exchange-close-button" onclick="closePopup('exchange-popup')">닫기</button>
           </div>
         </div>
@@ -106,16 +82,16 @@
                 <Input type="text" id="send-address" class="input-field" placeholder="지갑 주소를 입력해 주세요">
                     <div class="coin-info">
                         <!--  이부분 나중에 자바스크립트랑 연결해서 보유개수대로 표시하게 해야함  -->
-                        <span class="coin">상페코인</span>
-                        <span class="coin-amount">총 보유 개수</span>
+                        <span class="coin" id="send-sangpay-name">상페코인</span>
+                        <span class="coin-amount" id="send-sangpay-amount">총 보유 개수</span>
                     </div>
-                    <input type="number" id="send-amount" class="input-field" placeholder="개수를 입력해주세요" min="0">
-                    <!-- 보내기 눌렀을 떄 보내지는 기능은 없음. 그냥 닫혀야함 -->
+                    <input type="number" id="send-amount" class="input-field" placeholder="보낼 개수를 입력해주세요" min="0">
+                    
+                    <!-- 팝업창 안의 보내기 버튼 -->
                     <button class="h-send-button" onclick="closePopup('send-popup')">보내기</button>
                 </div>
             </div>
         </div>
-    
             <!-- 받기 버튼 팝업창 -->
     <div class="popup3">
         <div id="receive-popup">
@@ -129,7 +105,7 @@
         </div>
     </div>
 
-            <!-- 토큰 스왑 버튼 팝업창 -->
+            <!-- 페이 to 토큰 스왑 버튼 팝업창 -->
 
     <div class="popup-swap">
         <div id="swap-popup">
@@ -137,64 +113,65 @@
                 <h2>교환</h2>
                 <p class="swap-instruction">교환 수량을 입력하세요</p>
                 <div class="swap-input-wrapper">
-                <span class="coin">상장페이</span>
-                <input type="number" id="swap-amount" class="swap-input-field" placeholder="수량" min="0">
+
+                <span class="coin" id="swap1-sangpay-name">상장페이</span>
+                <span class="coin-amount" id="swap1-sangpay-amount"></span>
+                
+                <!-- id = "swap1-sangpay-amount" 부분 number랑 연결 된건지 확인 해야됌.  -->
+                <input type="number" id="swap1-sangpay-amount" class="swap-input-field" placeholder="수량" min="0">
                 </div>
-                    <ul class="token-list">
-                        <li>토큰1</li>
-                        <li>토큰2</li>
-                        <li>토큰3</li>
-                        <li>토큰4</li>
-                        <li>토큰5</li>
-                        <li>토큰6</li>
-                        <li>토큰7</li>
-                        <li>토큰8</li>
-                        <li>토큰9</li>
-                        <li>토큰10</li>
+                    <ul class="token-list" id="paytotoken-token-list">
+                      <!-- 자바스크립트에서 li 요소 추가했음 -->
                     </ul>
                     <div class="swap-details">
                         <!-- 나중에 연결해서 기능 구현 되게 해야함 -->
-                        <p class="swap-expected">예상내역</p>
+                        <p class="swap-expected">정보</p>
                         <p class="swap-rate">교환비율 : 0.00</p>
                         <p class="swap-minimum">최소거래수량 : 0.00</p>
                         <p class="swap-fee">수수료 : 0.00</p>
+                        <!-- 가로 영역표시 실선 -->
+                        <hr class="separator"> 
+                        <div class="final-exchange">최종 교환 예상 수량
+                            <!-- 최종교환예상내역 표시하는 영역 -->
+                        </div>
+
                     </div>
-                    <button class="swap-execute" onclick="closePopup('swap-popup')">교환하기</button>
+                </div>
+                <button class="swap-execute" onclick="closePopup('swap-popup')">교환하기</button>
             </div>
         </div>
     </div>
-              <!-- 페이 스왑 버튼 팝업창 -->
+              <!-- 토큰 to 페이 스왑 버튼 팝업창 -->
 
         <div class="popup-swap2">
             <div id="swap-popup2">
                 <div class="popup-content">
                     <h2>교환</h2>
-                    <p class="swap-instruction">교환 수량을 입력하세요</p>
-                    <ul class="token-list">
-                        <li>토큰1</li>
-                        <li>토큰2</li>
-                        <li>토큰3</li>
-                        <li>토큰4</li>
-                        <li>토큰5</li>
-                        <li>토큰6</li>
-                        <li>토큰7</li>
-                        <li>토큰8</li>
-                        <li>토큰9</li>
-                        <li>토큰10</li>
+                    <p class="swap-instruction">교환할 토큰을 선택하세요</p>
+
+
+                    <ul class="token-list" id="tokentopay-token-list">
+                        <!-- 자바스크립트에서 li 요소 추가했음 -->
                     </ul>
                     <div class="swap-input-wrapper">
-                    <span class="coin">상장페이</span>
-                    <!-- input 부분 수정해야함. 토큰 누르면 예상 페이 수량이 나올 수 있게 하면 됌. -->
-                    <input type="number" id="swap-amount" class="swap-input-field" placeholder="수량" min="0">
+                    <span class="coin" id="swap2-sangpay-name">상장페이</span>
+                    <span class="coin-amount" id="swap2-sangpay-amount">총 보유 개수</span>
                     </div>
                     <div class="swap-details">
-                        <!-- 나중에 연결해서 기능 구현 되게 해야함 -->
-                        <p class="swap-expected">예상내역</p>
+                        <!-- 연결해서 기능 구현 되게 해야함 -->
+                        <p class="swap-expected">정보</p>
                         <p class="swap-rate">교환비율 : 0.00</p>
                         <p class="swap-minimum">최소거래수량 : 0.00</p>
                         <p class="swap-fee">수수료 : 0.00</p>
+
+                        <!-- 가로 영역표시 실선 -->
+
+                         <hr class="separator"> 
+                         <div class="final-exchange">최종 교환 예상 수량
+                             <!-- 최종교환예상내역 표시하는 영역 -->
+                         </div>
                     </div>
-                        <button class="swap-execute2" onclick="closePopup('swap-popup2')">교환하기</button>
+                    <button class="swap-execute2" onclick="closePopup('swap-popup2')">교환하기</button>
                 </div>
             </div>
         </div>
@@ -203,6 +180,7 @@
 
     </main>
 </body>
+
 <script src="./wallet.js"></script>
-<!-- <script src="./index.js"></script> -->
+<script src="./index.js"></script>
 </html>
