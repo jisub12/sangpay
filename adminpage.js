@@ -649,7 +649,7 @@ function renderWaitingList() {
         console.log(waitingMemberArr);
         // console.log(waitingMemberArr[index]);
         // console.log(waitingMemberArr.splice(index,1));
-        let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(index)));
+        // let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(index)));
         button01.onclick = function(){
             div01.remove();
             let confirmedMember = waitingMemberArr.splice(index,1);
@@ -657,7 +657,7 @@ function renderWaitingList() {
             // let oneByOne = waitingMemberArr.splice(index,1);
             // console.log(oneByOne[0]);
             renderWaitingList();
-            // let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(index)));
+            let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(index)));
             // console.log(valueObj);
             // valueObj["user_allow"] = true;
             // console.log(valueObj);
