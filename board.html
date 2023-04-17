@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문의 게시판</title>
+    <link rel="stylesheet" href="./sharestyle.css">
+    <link rel="stylesheet" href="./board.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="b-sangpay-logo">
+            <a href="./wallet.html">
+                <div class="b-logo"></div>
+            </a>
+        </div>
+        <div class="b-session-time">
+            <div class="b-session">남은 시간 : 00분 00초</div>
+            <button class="b-time-extend-btn" onclick="extensionTime()">시간 연장</button>
+        </div>
+        <div class="b-menu-option">
+            <ul class="b-header-list">
+                <li class="b-header-list-item">
+                    <a class="b-header-my-page" href="./mypage.html">MY PAGE</a>
+                </li>
+                <li class="b-header-list-item">
+                    <a class="b-header-faq" href="./">FAQ</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="a-board-box">
+        <div class="a-box a-center">
+            <h1>문의 게시판</h1>
+            <div class="a-board-table">
+                <div class="a-btn a-right a-board-add">작성하기</div>
+                <div class="a-board-list">
+                    <ul class="a-board-tablelist">
+                        <li class="a-w1 a-title">번호</li>
+                        <li class="a-w4 a-title">제목</li>
+                        <li class="a-w2 a-title">작성자</li>
+                        <li class="a-w3 a-title">작성일</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="a-pagenum-div">
+                <div id="prevBtn">이전</div>
+                <div class="a-board-pagenum"></div>
+                <div id="nextBtn">다음</div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+<script type="module" src="./board.js"></script>
+<script type="module" src="./a_share.js"></script>
+
+</html>

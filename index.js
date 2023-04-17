@@ -1,4 +1,14 @@
-    // 입력 필드의 기본값을 삭제하고, 포커스가 없을 경우에만 다시 표시합니다.
+let mainLoginPage = document.querySelector(".whole-mypage");
+let mainLoginPageHeader = document.querySelector(".header");
+let mainLoginPageTitle = document.querySelector(".b-login-page-title");
+
+mainLoginPage.style.display = "none";
+mainLoginPageHeader.style.display = "none";
+mainLoginPageTitle.style.display = "none";
+
+
+
+// 입력 필드의 기본값을 삭제하고, 포커스가 없을 경우에만 다시 표시합니다.
 const usernameInput = document.getElementById('username');
 const userPwInput = document.getElementById('password');
 const remainedTime= document.querySelector('.b-session');
@@ -25,7 +35,8 @@ login.addEventListener('click',function(){
 
 
 
-console.log(bitcoin);
+console.log(bittoken);
+console.log(byungjutoken);
 let one = new user(
   "gusdnr205@naver.com",
   123456789,
@@ -41,25 +52,25 @@ console.log(myData);
 let userString = ""; //유저 
 let nowuser = ""; //로그인한 현재 유저 
 
-// function newUserBtn(user_id,user_pw,user_nickName,user_allow,coin,token){
-//     // usercount++;
-//     let thing;
-//     thing=new user(user_id,user_pw,user_nickName,user_allow,coin,token)
-//     userString=userString+(JSON.stringify(thing));
-//     console.log(userString);
-//     localStorage.setItem('user1', userString);
-//     return userString;
-// }
+function newUserBtn(user_id,user_pw,user_nickName,user_allow,coin,token){
+    // usercount++;
+    let thing;
+    thing=new user(user_id,user_pw,user_nickName,user_allow,coin,token)
+    userString=userString+(JSON.stringify(thing));
+    console.log(userString);
+    localStorage.setItem('user1', userString);
+    return userString;
+}
 
-// newUserBtn("gusdnr205@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
-// newUserBtn("12321344asd@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
-// newUserBtn("fadfwfr@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
-// newUserBtn("wrfqgrqg@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
+newUserBtn("gusdnr205@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
+newUserBtn("12321344asd@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
+newUserBtn("fadfwfr@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
+newUserBtn("wrfqgrqg@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
 
-// console.log(JSON.parse(userString));
-// function compareUser(){
+console.log(JSON.parse(userString));
+function compareUser(){
 
-// }
+}
 
 
 function newUserBtn(user_id, user_pw, user_nickName, user_allow, coin, token) {
