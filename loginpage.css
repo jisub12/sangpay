@@ -22,12 +22,13 @@ body{
     margin: 0;
 
     position: relative;
+    z-index: 0;
 }
 
 .b-wallet-intro::before{
     content: "";
 
-    width: 50%;
+    width: 100%;
     height: 2px;
 
     background-color: white;
@@ -71,6 +72,8 @@ body{
 
     animation: breakingLineMoving1 4s linear forwards, lineBreaking2 0.2s linear forwards;
     animation-delay: 0s, 1s;
+
+    z-index: -1;
 }
 
 
@@ -87,6 +90,8 @@ body{
 
     animation: breakingLineMoving1 4s linear forwards, lineBreaking1 0.2s linear forwards;
     animation-delay: 0s, 1s;
+
+    z-index: -1;
 }
 
 .b-breaking-line3{
@@ -101,6 +106,8 @@ body{
 
     animation: breakingLineMoving2 5s linear forwards, lineBreaking2 0.2s linear forwards;
     animation-delay: 0s, 2s;
+
+    z-index: -1;
 }
 
 .b-breaking-line4{
@@ -115,6 +122,8 @@ body{
 
     animation: breakingLineMoving2 5s linear forwards, lineBreaking1 0.2s linear forwards;
     animation-delay: 0s, 2s;
+
+    z-index: -1;
 }
 
 @keyframes boxMoving{
