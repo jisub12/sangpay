@@ -178,10 +178,14 @@ window.addEventListener('DOMContentLoaded', () => {
     console.log('Sign up button clicked!');
     document.querySelector('#startButton').click();
     // 여기에 sign up 버튼을 눌렀을 때 해야 할 동작들을 추가합니다.
+    setTimeout(() => {
+      document.querySelector('#stopButton').click();
+    }, 5000);
   }
   
   // sign up 버튼에 이벤트 리스너 추가
   document.querySelector('#h-gusdnr').addEventListener('click', signUp);
+  
 });
 
 
