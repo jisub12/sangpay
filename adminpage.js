@@ -649,7 +649,7 @@ function renderWaitingList() {
         console.log(waitingMemberArr);
         // console.log(waitingMemberArr[index]);
         // console.log(waitingMemberArr.splice(index,1));
-
+        let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(index)));
         button01.onclick = function(){
             div01.remove();
             let confirmedMember = waitingMemberArr.splice(index,1);
@@ -661,9 +661,12 @@ function renderWaitingList() {
             // console.log(valueObj);
             // valueObj["user_allow"] = true;
             // console.log(valueObj);
-            let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(index)));
+            // let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(index)));
             // for(i = 0; i < window.localStorage.length; i++){
-            valueObj["user_allow"] = true;
+            console.log(valueObj);
+            if(JSON.parse(window.localStorage.getItem(window.localStorage.key(index) === false))){
+                JSON.parse(window.localStorage.getItem(window.localStorage.key(index))) = true;
+            }
             window.localStorage.setItem("user_" + valueObj.user_id, JSON.stringify(valueObj));
             // }
             // console.log(oneByOne[0]);
