@@ -523,7 +523,7 @@
     // renderWaitingList(start,end);
 // }
 
-
+// window.localStorage.clear();
 
 
 let member = document.querySelector(".b-member-board");
@@ -657,17 +657,19 @@ function renderWaitingList() {
             // let oneByOne = waitingMemberArr.splice(index,1);
             // console.log(oneByOne[0]);
             renderWaitingList();
-            let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(index)));
             // console.log(valueObj);
             // valueObj["user_allow"] = true;
             // console.log(valueObj);
             // let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(index)));
-            // for(i = 0; i < window.localStorage.length; i++){
-            console.log(valueObj);
-            if(JSON.parse(window.localStorage.getItem(window.localStorage.key(index) === false))){
-                JSON.parse(window.localStorage.getItem(window.localStorage.key(index))) = true;
+            for(i = 0; i < window.localStorage.length; i++){
+                index = i;
+                let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(index)));
+                console.log(valueObj);
+                if(JSON.parse(window.localStorage.getItem(window.localStorage.key(index) === false))){
+                    JSON.parse(window.localStorage.getItem(window.localStorage.key(index))) = true;
+                }
+                window.localStorage.setItem("user_" + valueObj.user_id, JSON.stringify(valueObj));
             }
-            window.localStorage.setItem("user_" + valueObj.user_id, JSON.stringify(valueObj));
             // }
             // console.log(oneByOne[0]);
             // let oneByOne = waitingMemberArr.splice(index,1);
