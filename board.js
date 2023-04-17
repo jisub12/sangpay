@@ -1,3 +1,5 @@
+// import { paginate, addBtnEvent, pageBtnRender, count, currentPage } from "./a_share.js";
+
 // 게시물 목록
 
 // --------------------
@@ -8,6 +10,8 @@ let currentPage = 1;
 
 // 처음 실행되면 작동할 함수
 window.onload = function () {
+    console.log("dfdfd");
+
     document.querySelector('.a-board-add').addEventListener('click', function () {
         location.href = `board_edit.html`;
     });
@@ -23,8 +27,8 @@ window.onload = function () {
 
 
 // 페이지네이션 함수(출력할 리스트를 매개변수로 받음)
-function paginate(list) {
-
+export function paginate(list) {
+    console.log("페이지네이션");
     let listLength = list.length;
 
     // 페이지 번호를 표시해줄 div
@@ -69,7 +73,7 @@ function paginate(list) {
 }
 
 // 이전 다음 버튼에 이벤트 추가하는 함수
-function addBtnEvent() {
+export function addBtnEvent() {
 
     let nextBtn = document.querySelector("#nextBtn");
     let prevBtn = document.querySelector("#prevBtn");
@@ -85,7 +89,7 @@ function addBtnEvent() {
 
 
 // 이전 버튼 눌렀을때 작동하는 함수
-function goPrev() {
+export function goPrev() {
     currentPage -= 1;
 
     let start = (currentPage - 1) * count;
@@ -95,7 +99,7 @@ function goPrev() {
 }
 
 // 다음 버튼 눌렀을때 작동하는 함수
-function goNext(listLength) {
+export function goNext(listLength) {
     currentPage += 1;
 
     let start = (currentPage - 1) * count;
@@ -147,7 +151,7 @@ function render(start, end, pagenum) {
     pageBtnRender(boardList.length, pagenum);
 }
 
-function pageBtnRender(listLength, pagenum) { // 페이지 이전/다음 버튼 display값 설정
+export function pageBtnRender(listLength, pagenum) { // 페이지 이전/다음 버튼 display값 설정
     let totalPage = Math.ceil(listLength / count);
 
     let nextBtn = document.querySelector("#nextBtn");
