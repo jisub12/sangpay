@@ -56,23 +56,59 @@ body{
     background-repeat: no-repeat;
     background-size: 100%;
 
-    animation: boxMoving 1s ease forwards;
+    animation: boxMoving 1s linear forwards;
 }
 
-.b-moving-box::before{
-    content: "";
+.b-breaking-line1{
+    height: 50%;
+    border: 1px solid white;
+
+    position: absolute;
+    top: 0;
+    left: 100%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving1 2s linear forwards;
+}
+
+.b-breaking-line2{
+    height: 50%;
+    border: 1px solid white;
 
     position: absolute;
     top: 50%;
-    left: 0;
-    transform: translate(0,-50%);
+    left: 100%;
 
-    width: 50%;
-    height: 2px;
+    transform: rotate(0deg);
 
-    background-color: white;
+    animation: breakingLineMoving1 2s linear forwards;
+}
 
-    animation: lineMoving 1s linear forwards;
+.b-breaking-line3{
+    height: 50%;
+    border: 1px solid white;
+
+    position: absolute;
+    top: 0;
+    left: 150%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving2 3s linear forwards;
+}
+
+.b-breaking-line4{
+    height: 50%;
+    border: 1px solid white;
+
+    position: absolute;
+    top: 50%;
+    left: 150%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving2 3s linear forwards;
 }
 
 @keyframes boxMoving{
@@ -90,6 +126,24 @@ body{
     }
     to{
         left: 0;
+    }
+}
+
+@keyframes breakingLineMoving1{
+    from{
+        left: 100%;
+    }
+    to{
+        left: -1%;
+    }
+}
+
+@keyframes breakingLineMoving2{
+    from{
+        left: 150%;
+    }
+    to{
+        left: -1%;
     }
 }
 
