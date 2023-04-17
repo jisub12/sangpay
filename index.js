@@ -3,14 +3,15 @@ const usernameInput = document.getElementById('username');
 const userPwInput = document.getElementById('password');
 const remainedTime= document.querySelector('.b-session');
 
-usernameInput.addEventListener('blur', function() {
+
+usernameInput?.addEventListener('blur', function() {
   if (!this.value) {
     this.value = '이메일 또는 아이디';
   }
 });
 
-const login= document.querySelector('.j-loginbtn');
-login.addEventListener('click',function(){
+const login= document?.querySelector('.j-loginbtn');
+login?.addEventListener('click',function(){
   console.log(usernameInput.value);
   console.log(userPwInput.value);
   console.log("로그인 버튼 눌림");
@@ -23,9 +24,6 @@ login.addEventListener('click',function(){
 // });
 
 
-
-console.log(bittoken);
-console.log(byungjutoken);
 let one = new user(
   "gusdnr205@naver.com",
   123456789,
@@ -56,7 +54,7 @@ newUserBtn("12321344asd@naver.com",123456789,"goldenbeer",false,defaultCoin,new 
 newUserBtn("fadfwfr@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
 newUserBtn("wrfqgrqg@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
 
-console.log(JSON.parse(userString));
+// console.log(JSON.parse(userString));
 function compareUser(){
 
 }

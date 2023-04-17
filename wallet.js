@@ -40,8 +40,8 @@ return userId;
 
 // 토큰 생성            토큰이름, 내가보유한개수, 그 토큰 1개의 가치, 최소거래량, 수수료
 let bittoken=new token("bittoken",1000,10,1,0.1);
-let ethtoken=new token("ethtoken",0,2,1,0.1);
-let dogetoken=new token("dogetoken",0,2,1,0.1);
+let ethtoken=new token("ethtoken",100,2,1,0.1);
+let dogetoken=new token("dogetoken",1000,2,1,0.1);
 let ahyeontoken=new token("ahyeontoken",0,2,1,0.1);
 let byungjutoken=new token("byungjutoken",0,2,1,0.1);
 let hyunuktoken=new token("hyunuktoken",0,2,1,0.1);
@@ -56,18 +56,21 @@ let tokenArr = [bittoken, ethtoken, dogetoken, ahyeontoken, byungjutoken, hyunuk
              ,javascripttoken, csstoken, htmltoken];
 const defaultCoin = new coin("sangpay",1000,10);
 
-let userTokenData = {
-    email : userEmail,
-    sangpaycoin : defaultCoin,
-    tokens : tokenArr
-  };
 
-window.localStorage.setItem("userTokenData", JSON.stringify(userTokenData));
-// window.localStorage.setItem("token", JSON.stringify(tokenArr));       
-let storedData = JSON.parse(window.localStorage.getItem("userTokenData"));
-// 예를 들어, bittoken의 값을 10으로 변경하려면
-storedData.tokens[0].value = 10;
-window.localStorage.setItem("userTokenData", JSON.stringify(storedData));
+
+
+// let userTokenData = {
+//     user_id : userEmail,
+//     sangpaycoin : defaultCoin,
+//     tokens : tokenArr
+//   };
+
+// window.localStorage.setItem("userTokenData", JSON.stringify(userTokenData));
+// // window.localStorage.setItem("token", JSON.stringify(tokenArr));       
+// let storedData = JSON.parse(window.localStorage.getItem("userTokenData"));
+// // 예를 들어, bittoken의 값을 10으로 변경하려면
+// // storedData.tokens[0].value = 1000;
+// window.localStorage.setItem("userTokenData", JSON.stringify(storedData));
 
 
 
@@ -265,7 +268,10 @@ function displayTokens() {
 
 // token to pay 팝업 화면에 토큰 목록을 추가하는 함수입니다.
 function displayTokens2() {
-    const tokenList = document.getElementById("tokentopay-token-list");    
+    const tokenList = document.getElementById("tokentopay-token-list"); 
+    
+    
+
     // 토큰 목록을 순회하며 각 토큰에 대한 정보를 추가합니다.
     tokens.forEach((token) => {
         const listItem = document.createElement("li");    
@@ -325,6 +331,10 @@ window.addEventListener("DOMContentLoaded", () => {
     addClickListeners(); 
 });
 
+
+
+// 로컬스토리지 아이디 연결 (sangpay)
+
 function getCurrentUser() {
     return "gusdnr205@naver.com"; // 현재 사용자를 반환하는 코드를 적절하게 수정해주세요.
   }
@@ -341,7 +351,46 @@ function getCurrentUser() {
       return storedSangpay;
     }
   }
+
+  function saveWalletToLocalStorage(email, sangpayAmount) {
+    localStorage.setItem(`user_${email}`, sangpayAmount);
+    console.log(sangpayAmount);
+  }
   
+  function loadWalletFromLocalStorage(email) {
+    const storedData = localStorage.getItem(`user_${email}`);
+    console.log( JSON.parse( storedData).coin.coin_num);
+
+    return storedData === null ? 0 : parseFloat(JSON.parse(storedData).coin.coin_num);
+  }
+  
+
+  // 보내기 기능 구현
+
+  // document.querySelector(".h-send-button").addEventListener("click", () => {
+  //   const amountToSend = parseFloat(document.querySelector("#send-amount").value);
+  
+  //   if (isNaN(amountToSend) || amountToSend <= 0) {
+  //     alert("올바른 개수를 입력하세요.");
+  //   } else {
+  //     const currentUser = getCurrentUser();
+  //     const storedSangpay = getSangpayForUser(currentUser);
+  
+  //     if (amountToSend > storedSangpay) {
+  //       alert("잔액이 부족합니다.");
+  //     } else {
+  //       const updatedSangpay = (storedSangpay - amountToSend).toFixed(4);
+  //       localStorage.setItem(currentUser,updatedSangpay);
+  
+  //       document.querySelectorAll(".coin-amount").forEach(function(e) {
+  //         e.textContent = updatedSangpay;
+  //       });
+  //       document.querySelector("#send-amount").value = "";
+  //       document.querySelector(".popup1").style.display = "none";
+  //     }
+  //   }
+  // });
+
   document.querySelector(".h-send-button").addEventListener("click", () => {
     const amountToSend = parseFloat(document.querySelector("#send-amount").value);
   
@@ -349,15 +398,26 @@ function getCurrentUser() {
       alert("올바른 개수를 입력하세요.");
     } else {
       const currentUser = getCurrentUser();
-      const storedSangpay = getSangpayForUser(currentUser);
+      const storedSangpay = loadWalletFromLocalStorage(currentUser); // 변경된 부분
   
       if (amountToSend > storedSangpay) {
         alert("잔액이 부족합니다.");
       } else {
         const updatedSangpay = (storedSangpay - amountToSend).toFixed(4);
-        localStorage.setItem(currentUser, updatedSangpay);
-  
-        document.querySelectorAll(".coin-amount").forEach(function(e) {
+        
+        let user = JSON.parse(window.localStorage.getItem("user_"+getCurrentUser()));
+        console.log(user);
+        console.log(user.coin.coin_num);
+        user.coin.coin_num = updatedSangpay;
+        console.log(user.coin);
+        console.log(user);
+        
+        localStorage.setItem("user_"+getCurrentUser(), JSON.stringify(user));
+        // saveWalletToLocalStorage(currentUser, JSON.stringify(user)); // 변경된 부분
+
+        console.log(storedSangpay);
+        console.log(updatedSangpay);
+        document.querySelectorAll(".coin-amount").forEach(function (e) {
           e.textContent = updatedSangpay;
         });
         document.querySelector("#send-amount").value = "";
@@ -365,5 +425,3 @@ function getCurrentUser() {
       }
     }
   });
-  
-  
