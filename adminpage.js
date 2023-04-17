@@ -525,11 +525,20 @@
 
 
 
+
 let member = document.querySelector(".b-member-board");
 let confirmWaitingMember = document.querySelector(".b-confirm-waiting-member-board");
 
 let memberArr = [];
 let waitingMemberArr = [];
+
+function addList(){
+    for(i = 0; i < window.localStorage.length; i++){
+        waitingMemberArr.push(JSON.parse(window.localStorage.getItem(window.localStorage.key(i))));
+    }
+    renderWaitingList();
+}
+addList();
 
 function renderWaitingList() {
     // addList(allow);
@@ -676,6 +685,7 @@ function renderWaitingList() {
         confirmWaitingMember.append(div01);
     })
 }
+// renderWaitingList();
 
 
 function renderMemberList() {
@@ -689,10 +699,10 @@ function renderMemberList() {
         let div02 = document.createElement("div");
         let div03 = document.createElement("div");
 
-        div02.innerHTML = "아이디 : " + item.user_id;
-        div03.innerHTML = "닉네임 : " + item.user_nickName;
-        // div02.innerHTML = "아이디 : " + memberArr[index][0].user_id;
-        // div03.innerHTML = "닉네임 : " + memberArr[index][0].user_nickName;
+        // div02.innerHTML = "아이디 : " + item.user_id;
+        // div03.innerHTML = "닉네임 : " + item.user_nickName;
+        div02.innerHTML = "아이디 : " + memberArr[index][0].user_id;
+        div03.innerHTML = "닉네임 : " + memberArr[index][0].user_nickName;
 
         div01.style.display = "flex";
         div01.className = "board-content";
