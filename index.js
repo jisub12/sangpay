@@ -1,17 +1,17 @@
-    // 입력 필드의 기본값을 삭제하고, 포커스가 없을 경우에만 다시 표시합니다.
+// 입력 필드의 기본값을 삭제하고, 포커스가 없을 경우에만 다시 표시합니다.
 const usernameInput = document.getElementById('username');
 const userPwInput = document.getElementById('password');
 const remainedTime= document.querySelector('.b-session');
 
-usernameInput.addEventListener('blur', function() {
+
+usernameInput?.addEventListener('blur', function() {
   if (!this.value) {
     this.value = '이메일 또는 아이디';
   }
 });
 
-
-const login= document.querySelector('.j-loginbtn');
-login.addEventListener('click',function(){
+const login= document?.querySelector('.j-loginbtn');
+login?.addEventListener('click',function(){
   console.log(usernameInput.value);
   console.log(userPwInput.value);
   console.log("로그인 버튼 눌림");
@@ -24,9 +24,6 @@ login.addEventListener('click',function(){
 // });
 
 
-
-console.log(bittoken);
-console.log(byungjutoken);
 let one = new user(
   "gusdnr205@naver.com",
   123456789,
@@ -57,7 +54,7 @@ newUserBtn("12321344asd@naver.com",123456789,"goldenbeer",false,defaultCoin,new 
 newUserBtn("fadfwfr@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
 newUserBtn("wrfqgrqg@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
 
-console.log(JSON.parse(userString));
+// console.log(JSON.parse(userString));
 function compareUser(){
 
 }
@@ -248,7 +245,6 @@ function userLogin(){
     remainedTime.innerHTML=remainingTime;
   }
 }
-
 
 function extensionTime(){
   let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");

@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Wallet</title>
+    <title>My Wallet</title>
     <link rel="stylesheet" href="./wallet.css">
     <link rel="stylesheet" href="./sharestyle.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+    
 </head>
 <body>
     <div class="header">
@@ -38,7 +39,7 @@
             <hr class="divider" />
             <div class="coin-info">
                 <div class="token-wrapper">
-                <span class="coin" id="sangpay-name">상장페이</span>
+                <span class="coin" id="sangpay-name"></span>
                 <span class="coin-amount" id="sangpay-amount"></span>
                 <span class="coin-value" id="sangpay-value" style="display: none;"></span>
                 </div>
@@ -136,8 +137,8 @@
                         </div>
 
                     </div>
+                    <button class="swap-execute" onclick="closePopup('swap-popup')">교환하기</button>
                 </div>
-                <button class="swap-execute" onclick="closePopup('swap-popup')">교환하기</button>
             </div>
         </div>
     </div>
@@ -178,9 +179,9 @@
 
 
 
+       
     </main>
 </body>
-
 <script src="./wallet.js"></script>
 <script src="./index.js"></script>
 </html>
