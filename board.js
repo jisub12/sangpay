@@ -1,16 +1,16 @@
+// import { paginate, addBtnEvent, pageBtnRender, count, currentPage } from "./a_share.js";
+
 // 게시물 목록
 
 // --------------------
 // 한 페이지에 보여줄 게시물 개수
-let count = 10;
+let count = 5;
 
 let currentPage = 1;
 
 // 처음 실행되면 작동할 함수
 window.onload = function () {
-    document.querySelector('.a-board-add').addEventListener('click', function () {
-        location.href = `board_edit.html`;
-    });
+    console.log("dfdfd");
 
     // 페이지네이션 함수 실행
     paginate(JSON.parse(window.localStorage.getItem("board")));
@@ -24,7 +24,7 @@ window.onload = function () {
 
 // 페이지네이션 함수(출력할 리스트를 매개변수로 받음)
 function paginate(list) {
-
+    console.log("페이지네이션");
     let listLength = list.length;
 
     // 페이지 번호를 표시해줄 div
@@ -68,17 +68,26 @@ function paginate(list) {
     });
 }
 
-// 이전 다음 버튼에 이벤트 추가하는 함수
+//버튼에 이벤트 추가하는 함수
 function addBtnEvent() {
 
-    let nextBtn = document.querySelector("#nextBtn");
-    let prevBtn = document.querySelector("#prevBtn");
+    // 작성하기 버튼
+    let user = getCurrentUser();
+    document.querySelector('.a-board-add').addEventListener('click', function () {
+        if (!user) {
+            alert("로그인하세요");
+        } else {
+            location.href = `board_edit.html`;
+        }
+    });
 
-    nextBtn.addEventListener('click', function () {
+    // 다음버튼
+    document.querySelector("#nextBtn").addEventListener('click', function () {
         goNext(JSON.parse(window.localStorage.getItem("board")).length);
     });
 
-    prevBtn.addEventListener('click', function () {
+    // 이전버튼
+    document.querySelector("#prevBtn").addEventListener('click', function () {
         goPrev();
     });
 }
@@ -118,6 +127,26 @@ function render(start, end, pagenum) {
     let boardListDiv = document.querySelector('.a-board-list');
     boardListDiv.innerHTML = "";
 
+    let ul = document.createElement('ul');
+    let no = document.createElement('li');
+    let title = document.createElement('li');
+    let user = document.createElement('li');
+    let date = document.createElement('li');
+
+    ul.setAttribute("class", "a-board-tablelist");
+    no.setAttribute("class", "a-w1 a-title");
+    title.setAttribute("class", "a-w4 a-title");
+    user.setAttribute("class", "a-w2 a-title");
+    date.setAttribute("class", "a-w3 a-title");
+
+    no.textContent = `번호`;
+    title.textContent = `제목`;
+    user.textContent = `작성자`;
+    date.textContent = `작성일`;
+
+    ul.append(no, title, user, date);
+    boardListDiv.append(ul);
+
     for (let i = start; i <= end; i++) {
         // board 클릭하면 상세페이지로 이동하는 부분 추가해야함
         let board = boardList[i];
@@ -134,10 +163,15 @@ function render(start, end, pagenum) {
         user.setAttribute("class", "a-w2 a-list");
         date.setAttribute("class", "a-w3 a-list");
 
-        no.textContent = `${board.no}`;
+        // no.textContent = `${board.no}`;
+        no.textContent = `${i + 1}`;
         title.textContent = `${board.title}`;
         user.textContent = `${board.user}`;
         date.textContent = `${board.date}`;
+
+        title.addEventListener("click", function () {
+            location.href = `board_detail.html?${board.no}`;
+        });
 
         ul.append(no, title, user, date);
         boardListDiv.append(ul);
@@ -170,14 +204,13 @@ function pageBtnRender(listLength, pagenum) { // 페이지 이전/다음 버튼 
     }
 
     // 현재 페이지로 체크되게
-    console.log(pagenum);
     document.querySelector(`.numbtn-${pagenum}`).checked = "checked";
 }
 
 // 게시물 객체 생성자 함수
 // function Board(no, title, content, user, date, answer) {
 export function Board(no, title, content, user, date, answer) {
-    this.no = no++;
+    this.no = no;
     this.title = title;
     this.content = content;
     this.user = user;
@@ -186,7 +219,7 @@ export function Board(no, title, content, user, date, answer) {
 }
 
 // 게시물 수정,삭제(+답변등록, 답변수정) 함수
-export function boardListEdit(board, value) {
+export function boardListEdit({ board, value }) {
     // function boardListEdit(board, value) {
     console.log("게시물수정삭제함수")
     console.log(board);
@@ -208,8 +241,6 @@ export function boardListEdit(board, value) {
     }
 
     localStorage.setItem("board", JSON.stringify(boardList));
-    // 로컬스토리지.setitem(키 :board, stringify(배열))
-
 }
 
 
@@ -221,6 +252,7 @@ export function getCurrentUser() {
     // 임의로 쿠키 생성
     let expireDate = new Date();
     expireDate.setTime(expireDate.getTime() + 100000 * 1000);
+    document.cookie = `user_id=${"admin"}; expires=` + expireDate.toUTCString() + "; path=/";
     // document.cookie = `user_id=${"gusdnr205@naver.com"}; expires=` + expireDate.toUTCString() + "; path=/";
 
     console.log(document.cookie);
