@@ -69,7 +69,8 @@ checkId.addEventListener("click", function () {
   }
   console.log("dfdsfdfsdfdsfd", user);
 });
-checkNick.addEventListener("click", function () {0
+checkNick.addEventListener("click", function () {
+  0
   for (let i = 0; i < localStorage.length; i++) {
     let key = localStorage.key(i);
     console.log(key);
@@ -80,7 +81,7 @@ checkNick.addEventListener("click", function () {0
         nickpass = true;
         if (nicknameValue.length != 0)
           nicknameValidation.innerHTML = "통과되엇습니다.";
-          nicknameValidation.style.color = "blue";
+        nicknameValidation.style.color = "blue";
       }
       if (nicknameValue == cuurent_user.user_nickName) {
         nicknameValidation.innerHTML = "중복된 닉네임이 존재합니다.";
@@ -165,3 +166,17 @@ function newUserBtn(
   nickpass = false;
   pwpass = false;
 }
+
+$(document).ready(function () {
+  //티스토리 공감버튼 이벤트
+  function reAction() {
+    $("#startButton").trigger("click");
+    setTimeout(function () {
+      $("#stopButton").trigger("click");
+    }, 6000);
+  }
+
+    reAction();
+    gusdnr25();
+  ;
+});
