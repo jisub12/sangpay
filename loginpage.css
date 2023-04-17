@@ -24,10 +24,12 @@ body{
     position: relative;
 }
 
-.b-moving-box{
-    width: 50px;
-    height: 50px;
-    border: 1px solid white;
+.b-wallet-intro::before{
+    content: "";
+
+    width: 50%;
+    height: 2px;
+
     background-color: white;
 
     position: absolute;
@@ -35,11 +37,42 @@ body{
     left: 0;
     transform: translate(0,-50%);
 
-    background-image: url(./facebook_logo.png);
+    animation: lineMoving 1s linear forwards;
+}
+
+.b-moving-box{
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+    background-color: white;
+
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0,-50%);
+
+    background-image: url(./121383751_padded_logo.png);
     background-repeat: no-repeat;
     background-size: 100%;
 
-    animation: boxMoving 1s ease;
+    animation: boxMoving 1s ease forwards;
+}
+
+.b-moving-box::before{
+    content: "";
+
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0,-50%);
+
+    width: 50%;
+    height: 2px;
+
+    background-color: white;
+
+    animation: lineMoving 1s linear forwards;
 }
 
 @keyframes boxMoving{
@@ -48,7 +81,15 @@ body{
     }
     to{
         left: 50%;
-        transform: translate(-50%,-50%);
+    }
+}
+
+@keyframes lineMoving{
+    from{
+        left: -50%;
+    }
+    to{
+        left: 0;
     }
 }
 
