@@ -36,8 +36,8 @@ let use = JSON.stringify(one);
 localStorage.setItem("user", use);
 let myData = localStorage.getItem("user");
 console.log(myData);
-let userString = ""; //유저 
-let nowuser = ""; //로그인한 현재 유저 
+let userString = ""; //유저
+let nowuser = ""; //로그인한 현재 유저
 
 function newUserBtn(user_id,user_pw,user_nickName,user_allow,coin,token){
     // usercount++;
@@ -86,21 +86,21 @@ newUserBtn(
   "12321344asd@naver.com",
   123456789,
   "goldenbeer",
-  false,
+  true,  //김아현-임의로 true로 설정 다시 false로 바꾸세요
   defaultCoin,
 );
 newUserBtn(
   "fadfwfr@naver.com",
   123456789,
   "goldenbeer",
-  false,
+  true, //김아현-임의로 true로 설정 다시 false로 바꾸세요
   defaultCoin,
 );
 newUserBtn(
   "wrfqgrqg@naver.com",
   123456789,
   "goldenbeer",
-  false,
+  true, //김아현-임의로 true로 설정 다시 false로 바꾸세요
   defaultCoin,
 );
 
@@ -229,7 +229,7 @@ function getRemainingTime(cookieExpire) {
   }
   return `남은 시간 : ${minutes}분 ${seconds}초`;
 }
-let set1; //setInterval 함수 
+let set1; //setInterval 함수
 //버튼 누르면 시간추가 쿠키값에 반영
 
 function userLogin(){
