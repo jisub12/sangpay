@@ -12,10 +12,6 @@ let currentPage = 1;
 window.onload = function () {
     console.log("dfdfd");
 
-    document.querySelector('.a-board-add').addEventListener('click', function () {
-        location.href = `board_edit.html`;
-    });
-
     // 페이지네이션 함수 실행
     paginate(JSON.parse(window.localStorage.getItem("board")));
 
@@ -72,17 +68,26 @@ function paginate(list) {
     });
 }
 
-// 이전 다음 버튼에 이벤트 추가하는 함수
+//버튼에 이벤트 추가하는 함수
 function addBtnEvent() {
 
-    let nextBtn = document.querySelector("#nextBtn");
-    let prevBtn = document.querySelector("#prevBtn");
+    // 작성하기 버튼
+    let user = getCurrentUser();
+    document.querySelector('.a-board-add').addEventListener('click', function () {
+        if (!user) {
+            alert("로그인하세요");
+        } else {
+            location.href = `board_edit.html`;
+        }
+    });
 
-    nextBtn.addEventListener('click', function () {
+    // 다음버튼
+    document.querySelector("#nextBtn").addEventListener('click', function () {
         goNext(JSON.parse(window.localStorage.getItem("board")).length);
     });
 
-    prevBtn.addEventListener('click', function () {
+    // 이전버튼
+    document.querySelector("#prevBtn").addEventListener('click', function () {
         goPrev();
     });
 }
@@ -247,7 +252,7 @@ export function getCurrentUser() {
     // 임의로 쿠키 생성
     let expireDate = new Date();
     expireDate.setTime(expireDate.getTime() + 100000 * 1000);
-    // document.cookie = `user_id=${"admin"}; expires=` + expireDate.toUTCString() + "; path=/";
+    document.cookie = `user_id=${"admin"}; expires=` + expireDate.toUTCString() + "; path=/";
     // document.cookie = `user_id=${"gusdnr205@naver.com"}; expires=` + expireDate.toUTCString() + "; path=/";
 
     console.log(document.cookie);
