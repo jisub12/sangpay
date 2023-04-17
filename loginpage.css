@@ -39,15 +39,16 @@ body{
     background-repeat: no-repeat;
     background-size: 100%;
 
-    /* animation: boxMoving 1s ease; */
+    animation: boxMoving 1s ease;
 }
 
 @keyframes boxMoving{
-    0%{
-        top: 0;
+    from{
+        left: 0;
     }
-    100%{
-        top: 100vh;
+    to{
+        left: 50%;
+        transform: translate(-50%,-50%);
     }
 }
 
