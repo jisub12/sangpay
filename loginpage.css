@@ -35,8 +35,7 @@ body{
 
     position: absolute;
     top: 50%;
-    left: 0;
-    transform: translate(0,-50%);
+    left: -100%;
 
     animation: lineMoving 1s linear forwards;
 }
@@ -137,10 +136,10 @@ body{
 
 @keyframes lineMoving{
     from{
-        left: -50%;
+        left: -100%;
     }
     to{
-        left: 0;
+        left: -50%;
     }
 }
 
