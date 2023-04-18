@@ -242,7 +242,8 @@ function updateSangpayInfo() {
   document.getElementById("sangpay-value").innerText = defaultCoin.coin_value; // 적용 되는지 확인 필요;
   // 보내기 버튼 부분 연결
   document.getElementById("send-sangpay-name").innerText = defaultCoin.coin_name;
-  document.getElementById("send-sangpay-amount").innerText = defaultCoin.coin_num.toFixed(4);
+  document.querySelector('#send-sangpay-amount').innerHTML = JSON.parse(window.localStorage.getItem(`user_` + getCurrentUser())).coin.coin_num;
+  // document.getElementById("send-sangpay-amount").innerText = defaultCoin.coin_num.toFixed(4);
   // 페이 to 토큰 부분 연결
   document.getElementById("swap1-sangpay-name").innerText = defaultCoin.coin_name;
   document.getElementById("swap1-sangpay-amount").innerText = defaultCoin.coin_num.toFixed(4);
@@ -363,9 +364,17 @@ function tokenToPay(token_name) {
     amount = document.querySelector('#swap2-token-amount');
   }
 
+  let amountFloat = amount.value.toString().split('.');
+  console.log(amountFloat);
+
   if (amount.value < 0) {
     alert("0보다 큰 값 입력");
-    return true;
+    amount.value = 0;
+    return false;
+  }  else if (amountFloat[1] && amountFloat[1].length > 4) {
+    alert("소수점 4자리까지만 입력");
+    amount.value = 0;
+    return false;
   }
 
   let userPay = JSON.parse(window.localStorage.getItem("user_" + getCurrentUser())).coin.coin_num;
@@ -374,7 +383,7 @@ function tokenToPay(token_name) {
   if (ptt && amount.value > userPay) {
     alert("현재 sangpay : " + userPay + "더 작은 값 입력");
     amount.value = 0;
-    return true;
+    return false;
   }
 
   let user = JSON.parse(window.localStorage.getItem("user_" + getCurrentUser()));
@@ -386,7 +395,7 @@ function tokenToPay(token_name) {
   if (!ptt && amount.value > userToken.token_num) {
     alert("현재 토큰 : " + userToken.token_num + "더 작은 값 입력");
     amount.value = 0;
-    return true;
+    return false;
   }
 
 
@@ -396,7 +405,7 @@ function tokenToPay(token_name) {
     swapFee[0].innerHTML = `수수료 : ${token.charge}`;
 
     // 계산
-    let tokenAmount = amount.value * token.token_value - amount.value * token.charge * 0.01;
+    let tokenAmount = Number((amount.value * token.token_value - amount.value * token.charge * 0.01).toFixed(4));
     finalExchange[0].innerHTML = `페이 : ${amount.value}, ${token.token_name} : ${tokenAmount}`;
     return { ptt: ptt, pay: amount.value, token: [token_name, tokenAmount] };
   } else {
@@ -405,7 +414,7 @@ function tokenToPay(token_name) {
     swapRate[1].innerHTML = `교환비율 : ${token.token_value}`;
 
     // 토큰 to 페이 계산식 수정
-    let payAmount = amount.value / (token.token_value) - amount.value * token.charge * 0.01;
+    let payAmount = Number((amount.value / (token.token_value) - amount.value * token.charge * 0.01).toFixed(4));
     finalExchange[1].innerHTML = `${token.token_name} : ${amount.value}, 페이 : ${payAmount}`;
     // finalExchange[1].innerHTML=`페이 : ${amount.value}, ${token.token_name} : ${amount.value *1.1574 - amount.value*0.25*0.01}`;
     return { ptt: ptt, pay: payAmount, token: [token_name, amount.value] };
@@ -431,38 +440,41 @@ executeBtn2.addEventListener('click', function () {
 
 // 교환하기 버튼(페이투토큰, 토큰투페이) 누르면 동작할 함수
 function executefunc() {
-  alert(payinfo);
   if (payinfo) {
-    // 페이투토큰 사용자 값 처리
-    let user = JSON.parse(window.localStorage.getItem("user_" + getCurrentUser()));
-    console.log(user);
-    // ptt true --> pay 값 빼고 token값 더하기 (페이투토큰)
-    if (payinfo.ptt) {
-      user.coin.coin_num -= payinfo.pay;
-      user.token.filter(function (item) {
-        if (item.token_name == payinfo.token[0]) {
-          item.token_num += payinfo.token[1];
-        }
-      });
+    let executeBool = confirm("교환하시겠습니까? ");
+    if(executeBool) {
+      // 페이투토큰 사용자 값 처리
+      let user = JSON.parse(window.localStorage.getItem("user_" + getCurrentUser()));
+      console.log(user);
+      // ptt true --> pay 값 빼고 token값 더하기 (페이투토큰)
+      if (payinfo.ptt) {
+        user.coin.coin_num -= payinfo.pay;
+        user.token.filter(function (item) {
+          if (item.token_name == payinfo.token[0]) {
+            item.token_num += payinfo.token[1];
+          }
+        });
 
-    } else { // ptt false --> pay 값 더하고 token값 빼기(토큰투페이)
-      user.coin.coin_num += payinfo.pay;
-      user.token.filter(function (item) {
-        if (item.token_name == payinfo.token[0]) {
-          item.token_num -= payinfo.token[1];
-        }
-      });
+      } else { // ptt false --> pay 값 더하고 token값 빼기(토큰투페이)
+        user.coin.coin_num += payinfo.pay;
+        user.token.filter(function (item) {
+          if (item.token_name == payinfo.token[0]) {
+            item.token_num -= payinfo.token[1];
+          }
+        });
+      }
+
+      console.log(payinfo);
+      window.localStorage.setItem("user_" + getCurrentUser(), JSON.stringify(user));
+
+      // 새로고침
+      location.reload();
+    } else {
+      alert("교환 취소");
     }
 
-    console.log(payinfo);
-    window.localStorage.setItem("user_" + getCurrentUser(), JSON.stringify(user));
-
-
-    displayCoin();
-    displayTokens();
-    // 토큰투페이 토큰 목록 작성
-    displayTokens2();
-    addClickListeners();
+  } else {
+    alert("교환 취소");
   }
 }
 
@@ -501,6 +513,48 @@ function displayTokens3() {
     tokenList.appendChild(listItem);
   });
 }
+
+// 교환 -> 페이/토큰 입력했을때 실시간으로 반영되게
+document.querySelector("#swap1-sangpay-amount").addEventListener('change', function() {
+  // 현재 선택된 토큰이름 구하는 코드
+
+  let token;
+  let tokenListItems = document.querySelectorAll(".token-list li");
+  tokenListItems.forEach(function(item) {
+    if (item.classList.contains("selected")) {
+      token = item;
+    }
+  });
+
+  if (token) {
+    console.log(token.firstElementChild.textContent);
+    // 선택된 토큰 이름 전달
+    tokenToPay(token.firstElementChild.textContent);
+  }
+
+});
+
+// 교환 -> 페이/토큰 입력했을때 실시간으로 반영되게
+document.querySelector("#swap2-token-amount").addEventListener('change', function() {
+  let token;
+  let tokenListItems = document.querySelectorAll(".token-list li");
+  tokenListItems.forEach(function(item) {
+    if (item.classList.contains("selected")) {
+      token = item;
+    }
+  });
+
+  if (token) {
+    console.log(token.firstElementChild.textContent);
+    // 선택된 토큰 이름 전달
+    tokenToPay(token.firstElementChild.textContent);
+  }
+
+
+});
+
+
+
 
 // ul안에 li 부분 클릭 이벤트
 
@@ -616,6 +670,10 @@ document.querySelector(".h-send-button").addEventListener("click", () => {
 
     if (amountToSend > storedSangpay) {
       alert("잔액이 부족합니다.");
+    } else if (!Number.isInteger(amountToSend)) {
+      alert("정수로만 입력 가능");
+      // document.querySelector("#send-amount").value = parseInt(amountToSend);
+      document.querySelector("#send-amount").value = 0;
     } else {
       const updatedSangpay = (storedSangpay - amountToSend).toFixed(4);
 
