@@ -220,10 +220,6 @@ body{
     margin-right: 6px;
 } */
 
-.a-detail-writer {
-    display: flex;
-}
-
 /* .a-board-user-date h4:first-child {
     margin-right: 10px;
 } */
@@ -243,7 +239,8 @@ body{
     /* width: 90%; */
     border: 1px solid;
 
-    justify-content: space-between;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .a-detail-btns {
@@ -275,8 +272,9 @@ body{
 
 .a-detail-user, .a-detail-date {
     border: 1px solid;
-    width: 200px;
+    width: fit-content;
     margin: 0;
+    padding: 5px;
     /* min-width: 140px; */
     /* max-width: 200px; */
 }
