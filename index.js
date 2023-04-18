@@ -60,10 +60,11 @@ function newUserBtn(user_id,user_pw,user_nickName,user_allow,coin,token){
     return userString;
 }
 
-newUserBtn("gusdnr205@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
-newUserBtn("12321344asd@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
-newUserBtn("fadfwfr@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
-newUserBtn("wrfqgrqg@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
+// 김아현=---임의로 주석처리 (새로고침할때마다 사용자 정보 초기화됨)
+// newUserBtn("gusdnr205@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
+// newUserBtn("12321344asd@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
+// newUserBtn("fadfwfr@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
+// newUserBtn("wrfqgrqg@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
 
 // console.log(JSON.parse(userString));
 function compareUser(){
@@ -86,34 +87,36 @@ function newUserBtn(user_id, user_pw, user_nickName, user_allow, coin, token) {
   return userString;
 }
 
-newUserBtn(
-  "gusdnr205@naver.com",
-  123456789,
-  "goldenbeer",
-  true,
-  defaultCoin,
-);
-newUserBtn(
-  "12321344asd@naver.com",
-  123456789,
-  "goldenbeer",
-  true,  //김아현-임의로 true로 설정 다시 false로 바꾸세요
-  defaultCoin,
-);
-newUserBtn(
-  "fadfwfr@naver.com",
-  123456789,
-  "goldenbeer",
-  true, //김아현-임의로 true로 설정 다시 false로 바꾸세요
-  defaultCoin,
-);
-newUserBtn(
-  "wrfqgrqg@naver.com",
-  123456789,
-  "goldenbeer",
-  true, //김아현-임의로 true로 설정 다시 false로 바꾸세요
-  defaultCoin,
-);
+
+// 김아현 --- 전체 주석처리(새로고침할때마다 사용자 정보 초기화됨)
+// newUserBtn(
+//   "gusdnr205@naver.com",
+//   123456789,
+//   "goldenbeer",
+//   true,
+//   defaultCoin,
+// );
+// newUserBtn(
+//   "12321344asd@naver.com",
+//   123456789,
+//   "goldenbeer",
+//   true,  //김아현-임의로 true로 설정 다시 false로 바꾸세요
+//   defaultCoin,
+// );
+// newUserBtn(
+//   "fadfwfr@naver.com",
+//   123456789,
+//   "goldenbeer",
+//   true, //김아현-임의로 true로 설정 다시 false로 바꾸세요
+//   defaultCoin,
+// );
+// newUserBtn(
+//   "wrfqgrqg@naver.com",
+//   123456789,
+//   "goldenbeer",
+//   true, //김아현-임의로 true로 설정 다시 false로 바꾸세요
+//   defaultCoin,
+// );
 
 // 모든 유저 정보 출력
 // for(let i=0;i<localStorage.length;i++){
