@@ -116,8 +116,8 @@
                 <div class="swap-input-wrapper">
 
                 <span class="coin" id="swap1-sangpay-name">상장페이</span>
-                <span class="coin-amount" id="swap1-sangpay-amount"></span>
-                
+                <span class="coin-amount" id="swap1-sangpay-amount-span"></span>
+
                 <!-- id = "swap1-sangpay-amount" 부분 number랑 연결 된건지 확인 해야됌.  -->
                 <input type="number" id="swap1-sangpay-amount" class="swap-input-field" placeholder="수량" min="0">
                 </div>
@@ -149,6 +149,14 @@
                     <h2>교환</h2>
                     <p class="swap-instruction">교환할 토큰을 선택하세요</p>
 
+                    <!-- ---- -->
+                    <div class="swap-input-wrapper">
+                        <!-- <span class="coin-amount" id="swap2-token-amount"></span> -->
+                        <span></span>
+                        <!-- 토큰 수량 입력할 영역 -->
+                        <input type="number" id="swap2-token-amount" class="swap-input-field" placeholder="수량" min="0">
+                    </div>
+                    <!-- ---- -->
 
                     <ul class="token-list" id="tokentopay-token-list">
                         <!-- 자바스크립트에서 li 요소 추가했음 -->
