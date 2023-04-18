@@ -388,7 +388,7 @@ body{
     z-index: 2;
     opacity: 0;
 
-    animation: textFadeIn 1s ease forwards;
+    animation: textFadeIn 2s ease forwards;
     animation-delay: 9.5s;
 }
 .b-open-your-wallet2::after{

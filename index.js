@@ -274,9 +274,6 @@ let mainLoginPageTitle = document.querySelector(".b-login-page-title");
 let walletIntro = document.querySelector(".b-wallet-intro");
 
 mainLoginPage.style.display = "none";
-// mainLoginPage.style.display = "none";
-// mainLoginPageHeader.style.display = "none";
-// mainLoginPageTitle.style.display = "none";
 
 let walletIcon = document.querySelector(".b-wallet-icon");
 let nevercoin = document.querySelector(".b-moving-box");
@@ -284,6 +281,7 @@ walletIcon.onclick = function(){
   nevercoin.style.animation = "walletAndCoinFadeOut 1s ease forwards";
   walletIcon.style.animation = "walletAndCoinFadeOut 1s ease forwards";
   walletIntro.style.display = "none";
+  // walletIntro.style.animation = "walletIntroFadeOut 1s ease forwards";
   mainLoginPage.style.display = "block";
   mainLoginPage.style.animation = "mainLoginPageFadeIn 1s ease forwards";
   mainLoginPage.style.animationDelay = "1s";
