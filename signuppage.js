@@ -435,3 +435,23 @@ window.addEventListener('DOMContentLoaded', () => {
 //   ;
 // });
 
+
+let tologinpage=document.querySelector('.h-Tologinpage');
+let h_adminallodw=document.querySelector('.h-adminallow');
+
+setTimeout(() => {
+  // h_adminallodw.style.display='block';
+  h_adminallodw.style.animation = 'fadeIn 1s ease-in-out';
+  // h_adminallodw.style.opacity = 1;
+  h_adminallodw.classList.add('isactive')
+ 
+  
+}, 3000);
+
+setTimeout(() => {
+  tologinpage.style.display='block';
+  tologinpage.style.animation = 'fadeIn 1s ease-in-out';
+  tologinpage.style.opacity = 1;
+  
+}, 5000);
+
