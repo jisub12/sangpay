@@ -24,6 +24,10 @@ window.onload = function () {
 
 // 페이지네이션 함수(출력할 리스트를 매개변수로 받음)
 function paginate(list) {
+    if (!list) {
+        window.localStorage.setItem('board', 0);
+    }
+
     console.log("페이지네이션");
     let listLength = list.length;
 
@@ -252,7 +256,7 @@ export function getCurrentUser() {
     // 임의로 쿠키 생성
     let expireDate = new Date();
     expireDate.setTime(expireDate.getTime() + 100000 * 1000);
-    document.cookie = `user_id=${"admin"}; expires=` + expireDate.toUTCString() + "; path=/";
+    // document.cookie = `user_id=${"admin"}; expires=` + expireDate.toUTCString() + "; path=/";
     // document.cookie = `user_id=${"gusdnr205@naver.com"}; expires=` + expireDate.toUTCString() + "; path=/";
 
     console.log(document.cookie);

@@ -1,9 +1,183 @@
+@font-face {
+    font-family: "dynapuff";
+    src: url(./DynaPuff/DynaPuff-VariableFont_wdth\,wght.ttf);
+}
+
+body{
+    margin: 0;
+}
+
 .whole-mypage{
     width: 100%;
-    height: 900px;
+    height: 100vh;
     background-color: #033104;
 
-    font-family: Arial, sans-serif;
+    font-family: "dynapuff";
+}
+
+.b-wallet-intro{
+    width: 100%;
+    height: 100vh;
+    background-color: #033104;
+    margin: 0;
+
+    position: relative;
+    z-index: 0;
+}
+
+.b-wallet-intro::before{
+    content: "";
+
+    width: 100%;
+    height: 2px;
+
+    background-color: white;
+
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0,-50%);
+
+    animation: lineMoving 1s linear forwards;
+}
+
+.b-moving-box{
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+    background-color: white;
+
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0,-50%);
+
+    background-image: url(./121383751_padded_logo.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+    animation: boxMoving 1s linear forwards;
+}
+
+.b-breaking-line1{
+    height: 100%;
+    border: 1px solid white;
+
+    position: absolute;
+    top: -50%;
+    left: 100%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving1 4s linear forwards, lineBreaking2 0.2s linear forwards;
+    animation-delay: 0s, 1s;
+
+    z-index: -1;
+}
+
+
+
+.b-breaking-line2{
+    height: 100%;
+    border: 1px solid white;
+
+    position: absolute;
+    top: 50%;
+    left: 100%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving1 4s linear forwards, lineBreaking1 0.2s linear forwards;
+    animation-delay: 0s, 1s;
+
+    z-index: -1;
+}
+
+.b-breaking-line3{
+    height: 100%;
+    border: 1px solid white;
+
+    position: absolute;
+    top: -50%;
+    left: 150%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving2 5s linear forwards, lineBreaking2 0.2s linear forwards;
+    animation-delay: 0s, 2s;
+
+    z-index: -1;
+}
+
+.b-breaking-line4{
+    height: 100%;
+    border: 1px solid white;
+
+    position: absolute;
+    top: 50%;
+    left: 150%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving2 5s linear forwards, lineBreaking1 0.2s linear forwards;
+    animation-delay: 0s, 2s;
+
+    z-index: -1;
+}
+
+@keyframes boxMoving{
+    from{
+        left: 0;
+    }
+    to{
+        left: 50%;
+    }
+}
+
+@keyframes lineMoving{
+    from{
+        left: -50%;
+    }
+    to{
+        left: 0;
+    }
+}
+
+@keyframes breakingLineMoving1{
+    from{
+        left: 100%;
+    }
+    to{
+        left: -100%;
+    }
+}
+
+@keyframes breakingLineMoving2{
+    from{
+        left: 150%;
+    }
+    to{
+        left: -100%;
+    }
+}
+
+@keyframes lineBreaking1{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(30deg);
+    }
+}
+
+@keyframes lineBreaking2{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(-30deg);
+    }
 }
 
 /* .header{
@@ -73,16 +247,38 @@
     justify-content: flex-end;
 } */
 
+.b-login-page-title{
+    width: 500px;
+    height: 100px;
+
+    margin: auto;
+    margin-top: 50px;
+    padding: 0;
+
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: "dynapuff";
+    font-size: 40px;
+    font-weight: 400;
+}
+
 .b-my-page-box{
     width: 60%;
-    height: 800px;
+    height: 500px;
     
     border-radius: 15px;
     /* box-shadow: 5px 5px 5px; */
     background-color: whitesmoke;
 
     margin: auto;
-    margin-top: 80px;
+}
+
+.b-login-box{
+    margin-top: 30px;
 }
 
 .b-fixed-values{
@@ -328,9 +524,19 @@
     height: 7px;
 }
 .j-loginbtnbox{
-    text-align: center;
+    height: 50px;
+
+    border-radius: 5px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    background-color: #033104;
 }
 .j-loginbtn{
+    font-size: 20px;
+    color: white;
     cursor: pointer;
     border: none; 
     background-color: transparent;
@@ -353,14 +559,77 @@
     height: 19px;
 }
 .j-signup{
-    text-align: center;
+    width: 200px;
+    height: 50px;
+    margin: auto;
+    margin-top: 0;
     cursor: pointer;
-    
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* border: 1px solid; */
+    border-radius: 5px;
+
+    /* background-color: #066508; */
+
+    font-size: 15px;
+}
+.b-signup-options{
+    width: 100%;
+    height: 60px;
+    /* border: 1px solid; */
+
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.b-signup-options div{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.b-signup-option-image-google{
+    width: 50px;
+    height: 50px;
+    /* border: 1px solid; */
+    border-radius: 50%;
+    background-image: url(./google_logo.png);
+    background-repeat: no-repeat;
+    background-size: 60%;
+    background-position: center;
+}
+.b-signup-option-image-facebook{
+    width: 50px;
+    height: 50px;
+    /* border: 1px solid; */
+    border-radius: 50%;
+    background-image: url(./facebook_logo.png);
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: center;
+}
+.b-signup-option-image-naver{
+    width: 50px;
+    height: 50px;
+    /* border: 1px solid; */
+    border-radius: 50%;
+    background-image: url(./naver_logo.png);
+    background-repeat: no-repeat;
+    background-size: 75%;
+    background-position: center;
 }
 .j-input1{
     width: 100%;
     height: 44px;
     border: none; 
     background-color: transparent;
+}
+.b-login-to-signup{
+    text-decoration: none;
+    color: black;
 }
