@@ -1,3 +1,4 @@
+
 let mainLoginPage = document.querySelector(".whole-mypage");
 let mainLoginPageHeader = document.querySelector(".header");
 let mainLoginPageTitle = document.querySelector(".b-login-page-title");
@@ -13,15 +14,15 @@ const usernameInput = document.getElementById('username');
 const userPwInput = document.getElementById('password');
 const remainedTime= document.querySelector('.b-session');
 
-usernameInput.addEventListener('blur', function() {
+
+usernameInput?.addEventListener('blur', function() {
   if (!this.value) {
     this.value = '이메일 또는 아이디';
   }
 });
 
-
-const login= document.querySelector('.j-loginbtn');
-login.addEventListener('click',function(){
+const login= document?.querySelector('.j-loginbtn');
+login?.addEventListener('click',function(){
   console.log(usernameInput.value);
   console.log(userPwInput.value);
   console.log("로그인 버튼 눌림");
@@ -34,9 +35,6 @@ login.addEventListener('click',function(){
 // });
 
 
-
-console.log(bittoken);
-console.log(byungjutoken);
 let one = new user(
   "gusdnr205@naver.com",
   123456789,
@@ -49,8 +47,8 @@ let use = JSON.stringify(one);
 localStorage.setItem("user", use);
 let myData = localStorage.getItem("user");
 console.log(myData);
-let userString = ""; //유저 
-let nowuser = ""; //로그인한 현재 유저 
+let userString = ""; //유저
+let nowuser = ""; //로그인한 현재 유저
 
 // function newUserBtn(user_id,user_pw,user_nickName,user_allow,coin,token){
 //     // usercount++;
@@ -62,12 +60,15 @@ let nowuser = ""; //로그인한 현재 유저
 //     return userString;
 // }
 
+
+// 김아현=---임의로 주석처리 (새로고침할때마다 사용자 정보 초기화됨)
+
 // newUserBtn("gusdnr205@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
 // newUserBtn("12321344asd@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
 // newUserBtn("fadfwfr@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
 // newUserBtn("wrfqgrqg@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
 
-console.log(JSON.parse(userString));
+// console.log(JSON.parse(userString));
 function compareUser(){
 
 }
@@ -88,34 +89,36 @@ function newUserBtn(user_id, user_pw, user_nickName, user_allow, coin, token) {
   return userString;
 }
 
-newUserBtn(
-  "gusdnr205@naver.com",
-  123456789,
-  "goldenbeer",
-  true,
-  defaultCoin,
-);
-newUserBtn(
-  "12321344asd@naver.com",
-  123456789,
-  "goldenbeer",
-  false,
-  defaultCoin,
-);
-newUserBtn(
-  "fadfwfr@naver.com",
-  123456789,
-  "goldenbeer",
-  false,
-  defaultCoin,
-);
-newUserBtn(
-  "wrfqgrqg@naver.com",
-  123456789,
-  "goldenbeer",
-  false,
-  defaultCoin,
-);
+
+// 김아현 --- 전체 주석처리(새로고침할때마다 사용자 정보 초기화됨)
+// newUserBtn(
+//   "gusdnr205@naver.com",
+//   123456789,
+//   "goldenbeer",
+//   true,
+//   defaultCoin,
+// );
+// newUserBtn(
+//   "12321344asd@naver.com",
+//   123456789,
+//   "goldenbeer",
+//   true,  //김아현-임의로 true로 설정 다시 false로 바꾸세요
+//   defaultCoin,
+// );
+// newUserBtn(
+//   "fadfwfr@naver.com",
+//   123456789,
+//   "goldenbeer",
+//   true, //김아현-임의로 true로 설정 다시 false로 바꾸세요
+//   defaultCoin,
+// );
+// newUserBtn(
+//   "wrfqgrqg@naver.com",
+//   123456789,
+//   "goldenbeer",
+//   true, //김아현-임의로 true로 설정 다시 false로 바꾸세요
+//   defaultCoin,
+// );
 
 // 모든 유저 정보 출력
 // for(let i=0;i<localStorage.length;i++){
@@ -242,7 +245,7 @@ function getRemainingTime(cookieExpire) {
   }
   return `남은 시간 : ${minutes}분 ${seconds}초`;
 }
-let set1; //setInterval 함수 
+let set1; //setInterval 함수
 //버튼 누르면 시간추가 쿠키값에 반영
 
 function userLogin(){
@@ -258,7 +261,6 @@ function userLogin(){
     remainedTime.innerHTML=remainingTime;
   }
 }
-
 
 function extensionTime(){
   let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");

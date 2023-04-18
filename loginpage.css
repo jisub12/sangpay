@@ -22,12 +22,13 @@ body{
     margin: 0;
 
     position: relative;
+    z-index: 0;
 }
 
 .b-wallet-intro::before{
     content: "";
 
-    width: 50%;
+    width: 100%;
     height: 2px;
 
     background-color: white;
@@ -56,23 +57,73 @@ body{
     background-repeat: no-repeat;
     background-size: 100%;
 
-    animation: boxMoving 1s ease forwards;
+    animation: boxMoving 1s linear forwards;
 }
 
-.b-moving-box::before{
-    content: "";
+.b-breaking-line1{
+    height: 100%;
+    border: 1px solid white;
+
+    position: absolute;
+    top: -50%;
+    left: 100%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving1 4s linear forwards, lineBreaking2 0.2s linear forwards;
+    animation-delay: 0s, 1s;
+
+    z-index: -1;
+}
+
+
+
+.b-breaking-line2{
+    height: 100%;
+    border: 1px solid white;
 
     position: absolute;
     top: 50%;
-    left: 0;
-    transform: translate(0,-50%);
+    left: 100%;
 
-    width: 50%;
-    height: 2px;
+    transform: rotate(0deg);
 
-    background-color: white;
+    animation: breakingLineMoving1 4s linear forwards, lineBreaking1 0.2s linear forwards;
+    animation-delay: 0s, 1s;
 
-    animation: lineMoving 1s linear forwards;
+    z-index: -1;
+}
+
+.b-breaking-line3{
+    height: 100%;
+    border: 1px solid white;
+
+    position: absolute;
+    top: -50%;
+    left: 150%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving2 5s linear forwards, lineBreaking2 0.2s linear forwards;
+    animation-delay: 0s, 2s;
+
+    z-index: -1;
+}
+
+.b-breaking-line4{
+    height: 100%;
+    border: 1px solid white;
+
+    position: absolute;
+    top: 50%;
+    left: 150%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving2 5s linear forwards, lineBreaking1 0.2s linear forwards;
+    animation-delay: 0s, 2s;
+
+    z-index: -1;
 }
 
 @keyframes boxMoving{
@@ -90,6 +141,42 @@ body{
     }
     to{
         left: 0;
+    }
+}
+
+@keyframes breakingLineMoving1{
+    from{
+        left: 100%;
+    }
+    to{
+        left: -100%;
+    }
+}
+
+@keyframes breakingLineMoving2{
+    from{
+        left: 150%;
+    }
+    to{
+        left: -100%;
+    }
+}
+
+@keyframes lineBreaking1{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(30deg);
+    }
+}
+
+@keyframes lineBreaking2{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(-30deg);
     }
 }
 
