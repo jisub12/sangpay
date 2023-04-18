@@ -124,7 +124,7 @@ console.log(newUser.user_Hash);
 // 팝업 받기 부분 // + 지갑 주소 해쉬 연결 추가함
 
 function copyAddress() {
-  let userHash = getUserHashFromLocalStorage();
+  let userHash;
   const el = document.createElement('textarea');
     el.value = userHash;
     document.body.appendChild(el);
