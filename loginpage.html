@@ -26,7 +26,16 @@
       border-radius: 5px;
     }
   </style>
-<body class="whole-mypage">
+<body>
+  <div class="b-wallet-intro">
+    <div class="b-moving-box"></div>
+    <div class="b-breaking-line1"></div>
+    <div class="b-breaking-line2"></div>
+    <div class="b-breaking-line3"></div>
+    <div class="b-breaking-line4"></div>
+    <div class="b-wallet-icon"></div>
+  </div>
+  <div class="whole-mypage">
     <div class="header">
         <div class="b-sangpay-logo">
           <a href="">
@@ -48,15 +57,16 @@
             </ul>
         </div>
     </div>
+    <div class="b-login-page-title">log in</div>
     <div class="b-my-page-box">
         <div class="j-login-flex-box">
-            <div class="j-logo"><a href="">상장페이</a></div>
+            <!-- <div class="j-logo"><a href="">상장페이</a></div>
             <div class="j-underBar"></div>
             <div class="j-blank"></div>
             <div class="j-id-loginText">아이디 로그인</div>
             <div class="j-underBar"></div>
-            <div class="j-blank"></div>
-            <form>
+            <div class="j-blank"></div> -->
+            <form class="b-login-box">
                 <div class="form-group">
                   <label for="username">이메일 또는 아이디</label>
                   <input type="text" id="username" name="username" value="이메일 또는 아이디" onfocus="if (this.value == '이메일 또는 아이디') {this.value = '';}">
@@ -70,24 +80,32 @@
             <div class="j-blank2"></div>
             <div class="j-blank"></div>
             <div class="j-blank"></div>
-            <div class="j-underBar"></div>
+            <!-- <div class="j-underBar"></div> -->
             <div class="j-loginbtnbox"><button class="j-loginbtn" type="submit">로그인</button></div>
-            <div class="j-underBar"></div>
+            <!-- <div class="j-underBar"></div> -->
             <div class="j-blank"></div>
-            <div class="j-underBar"></div>
+            <!-- <div class="j-underBar"></div> -->
             <div class="j-flex-findbox">
                 <div class="j-findId">아이디 찾기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
                 || 
                 <div class="j-findpw">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;비밀번호 찾기</div>
             </div>
-            <div class="j-underBar"></div>
-            <div class="j-blank"></div>
-            <div class="j-underBar"></div>
-            <div class="j-signup">회원가입</div>
-            <div class="j-underBar"></div>
+            <!-- <div class="j-underBar"></div> -->
+            <!-- <div class="j-blank"></div> -->
+            <!-- <div class="j-underBar"></div> -->
+            <div class="b-signup-options">
+              <div class="b-signup-option-image-google"></div>
+              <div class="b-signup-option-image-facebook"></div>
+              <div class="b-signup-option-image-naver"></div>
+            </div>
+            <div class="j-signup">
+              <a class="b-login-to-signup" href="./signuppage.html">회원가입</a>
+            </div>
+            <!-- <div class="j-underBar"></div> -->
         </div>
         
     </div>
+  </div>
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js">
