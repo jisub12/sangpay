@@ -1,22 +1,47 @@
+@font-face {
+    font-family: "dynapuff";
+    src: url(./DynaPuff/DynaPuff-VariableFont_wdth\,wght.ttf);
+}
+
 body{
     background-color: #033104;
+    font-family: "dynapuff";
+}
+
+.b-page-title{
+    width: 500px;
+    height: 100px;
+
+    margin: auto;
+    margin-top: 50px;
+    padding: 0;
+
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: "dynapuff";
+    font-size: 40px;
+    font-weight: 400;
 }
 
 .a-board-box{
     width: 60%;
-    height: 800px;
+    height: 500px;
 
     border-radius: 15px;
     box-shadow: 10px 10px 5px rgba(100, 100, 100, 0.6), -2px -2px 5px rgba(100, 100, 100, 0.6);
     background-color: whitesmoke;
 
     margin: auto;
-    margin-top: 60px;
+    /* margin-top: 20px; */
 
     box-sizing: border-box;
 /*
     position: relative; */
-    padding-top: 80px;
+    /* padding-top: 30px; */
 }
 
 .a-center {
@@ -163,7 +188,7 @@ body{
     flex-direction: column;
     align-content: center;
     flex-wrap: nowrap;
-    height: fit-content;
+    /* height: fit-content; */
 
     /* display: flex; */
     justify-content: center;
@@ -203,11 +228,16 @@ body{
     margin-right: 10px;
 } */
 
-.a-detail-box .a-wrap {
-    border-top: 2px solid #000;
-    border-bottom: 2px solid #000;
-    /* width: 100%; */
+.a-detail-box{
+    width: 60%;
+    height: 600px;
 }
+
+/* .a-detail-box .a-wrap {
+    /* border-top: 2px solid #000; */
+    /* border-bottom: 2px solid #000; */
+    /* width: 100%; */
+/* } */
 
 .a-detail-writer {
     /* width: 90%; */
@@ -218,7 +248,7 @@ body{
 
 .a-detail-btns {
     display: flex;
-    margin-top: 20px;
+    margin-top: 10px;
     position: relative;
 }
 
@@ -232,7 +262,7 @@ body{
     min-height: 200px;
     max-height: fit-content;
     border: 1px solid;
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 .a-detail-answer, .a-detail-answer-add {
