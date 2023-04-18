@@ -252,7 +252,7 @@ export function getCurrentUser() {
     // 임의로 쿠키 생성
     let expireDate = new Date();
     expireDate.setTime(expireDate.getTime() + 100000 * 1000);
-    document.cookie = `user_id=${"admin"}; expires=` + expireDate.toUTCString() + "; path=/";
+    // document.cookie = `user_id=${"admin"}; expires=` + expireDate.toUTCString() + "; path=/";
     // document.cookie = `user_id=${"gusdnr205@naver.com"}; expires=` + expireDate.toUTCString() + "; path=/";
 
     console.log(document.cookie);
