@@ -75,8 +75,6 @@ body{
     z-index: -1;
 }
 
-
-
 .b-breaking-line2{
     height: 100%;
     border: 1px solid white;
@@ -125,6 +123,134 @@ body{
     z-index: -1;
 }
 
+.b-breaking-line5{
+    height: 100%;
+    border: 1px solid white;
+
+    position: absolute;
+    top: -50%;
+    left: 250%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving3 7s linear forwards, lineBreaking2 0.2s linear forwards;
+    animation-delay: 0.1s, 3.55s;
+
+    z-index: -1;
+}
+
+.b-breaking-line6{
+    height: 100%;
+    border: 1px solid white;
+
+    position: absolute;
+    top: 50%;
+    left: 250%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving3 7s linear forwards, lineBreaking1 0.2s linear forwards;
+    animation-delay: 0.1s, 3.55s;
+
+    z-index: -1;
+}
+
+.b-breaking-line7{
+    height: 100%;
+    border: 1px solid white;
+
+    position: absolute;
+    top: -50%;
+    left: 250%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving3 7s linear forwards, lineBreaking2 0.2s linear forwards;
+    animation-delay: 0.15s, 3.57s;
+
+    z-index: -1;
+}
+
+.b-breaking-line8{
+    height: 100%;
+    border: 1px solid white;
+
+    position: absolute;
+    top: 50%;
+    left: 250%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving3 7s linear forwards, lineBreaking1 0.2s linear forwards;
+    animation-delay: 0.15s, 3.57s;
+
+    z-index: -1;
+}
+
+.b-breaking-line9{
+    height: 100%;
+    border: 1px solid white;
+
+    position: absolute;
+    top: -50%;
+    left: 250%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving3 7s linear forwards, lineBreaking2 0.2s linear forwards;
+    animation-delay: 0.2s, 3.59s;
+
+    z-index: -1;
+}
+
+.b-breaking-line10{
+    height: 100%;
+    border: 1px solid white;
+
+    position: absolute;
+    top: 50%;
+    left: 250%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving3 7s linear forwards, lineBreaking1 0.2s linear forwards;
+    animation-delay: 0.2s, 3.59s;
+
+    z-index: -1;
+}
+
+.b-breaking-line11{
+    height: 100%;
+    border: 1px solid white;
+
+    position: absolute;
+    top: -50%;
+    left: 250%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving3 7s linear forwards, lineBreaking2 0.2s linear forwards;
+    animation-delay: 0.25s, 3.61s;
+
+    z-index: -1;
+}
+
+.b-breaking-line12{
+    height: 100%;
+    border: 1px solid white;
+
+    position: absolute;
+    top: 50%;
+    left: 250%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving3 7s linear forwards, lineBreaking1 0.2s linear forwards;
+    animation-delay: 0.25s, 3.61s;
+
+    z-index: -1;
+}
+
 @keyframes boxMoving{
     from{
         left: 0;
@@ -155,6 +281,15 @@ body{
 @keyframes breakingLineMoving2{
     from{
         left: 150%;
+    }
+    to{
+        left: -100%;
+    }
+}
+
+@keyframes breakingLineMoving3{
+    from{
+        left: 250%;
     }
     to{
         left: -100%;
