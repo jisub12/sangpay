@@ -1,3 +1,5 @@
+// import { getCurrentUser } from "./board.js";
+
 // let expireDate2 = new Date();
 // expireDate2.setTime(expireDate2.getTime() + 1000 * 1000);
 // // document.cookie = `user_id=${"gusdnr205@naver.com"}; expires=` + new Date().setTime(new Date().getTime() + 1000* 10000).toUTCString() + "; path=/";

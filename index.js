@@ -1,12 +1,4 @@
 
-let mainLoginPage = document.querySelector(".whole-mypage");
-let mainLoginPageHeader = document.querySelector(".header");
-let mainLoginPageTitle = document.querySelector(".b-login-page-title");
-
-mainLoginPage.style.display = "none";
-mainLoginPageHeader.style.display = "none";
-mainLoginPageTitle.style.display = "none";
-
 
 
 // 입력 필드의 기본값을 삭제하고, 포커스가 없을 경우에만 다시 표시합니다.
@@ -63,10 +55,14 @@ let nowuser = ""; //로그인한 현재 유저
 
 // 김아현=---임의로 주석처리 (새로고침할때마다 사용자 정보 초기화됨)
 
-// newUserBtn("gusdnr205@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
-// newUserBtn("12321344asd@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
-// newUserBtn("fadfwfr@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
-// newUserBtn("wrfqgrqg@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
+
+
+
+
+newUserBtn("gusdnr205@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
+newUserBtn("12321344asd@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
+newUserBtn("fadfwfr@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
+newUserBtn("wrfqgrqg@naver.com",123456789,"goldenbeer",false,defaultCoin,new token("bitcoin",100));
 
 // console.log(JSON.parse(userString));
 function compareUser(){

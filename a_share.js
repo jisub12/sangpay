@@ -1,119 +1,53 @@
 
-// // 한 페이지에 보여줄 게시물 개수
-// export let count = 10;
+// 김아현 ---테스트용으로 작성해봄
+let bittoken = new token("bittoken", 10, 1, 0.5);  //
+let ethtoken = new token("ethtoken", 10, 1, 0.5);
+let dogetoken = new token("dogetoken", 10, 1, 0.5);
+let ahyeontoken = new token("ahyeontoken", 10, 10, 0.5);
+let byungjootoken = new token("byungjootoken", 10, 5, 0.5);
+let hyunuktoken = new token("hyunuktoken", 20, 5, 0.5);
+let jisubtoken = new token("jisubtoken", 10, 5, 0.5);
+let loltoken = new token("loltoken", 10, 2, 0.5);
+let bgtoken = new token("bgtoken", 10, 2, 0.5);
+let overwatchtoken = new token("overwatchtoken", 10, 0.1, 0.5);
 
-// export let currentPage = 1;
-
-// // 페이지네이션 함수(출력할 리스트를 매개변수로 받음)
-// export function paginate(list) {
-//     console.log("페이지네이션");
-//     let listLength = list.length;
-
-//     // 페이지 번호를 표시해줄 div
-//     let pageNumDiv = document.querySelector('.a-board-pagenum');
-
-//     // 총 페이지 개수 구하는
-//     let totalPage = Math.ceil(listLength / count);
-//     console.log(totalPage);
-
-//     // 페이지 개수만큼 페이지 번호 버튼 생성
-//     for (let i = 1; i <= totalPage; i++) {
-//         let numbtn = document.createElement('input');
-//         numbtn.setAttribute("type", "radio");
-//         numbtn.setAttribute("name", "pagenum");
-//         // 페이지번호 버튼의 id값으로 i 설정(id=페이지번호)
-//         numbtn.setAttribute("id", i);
-//         numbtn.setAttribute("class", `a-numbtn numbtn-${i}`);
-
-//         let numbtnLabel = document.createElement('label');
-//         numbtnLabel.textContent = i;
-//         numbtnLabel.setAttribute("for", i);
-//         numbtnLabel.setAttribute("name", "pagenum");
-
-//         // 페이지 번호를 표시해줄 div에 페이지 번호 버튼 추가
-//         pageNumDiv.append(numbtn, numbtnLabel);
-//     }
-
-//     // 페이지 번호 버튼들
-//     let numbtns = document.querySelectorAll('.a-numbtn');
-//     numbtns.forEach(function (btn) {
-//         btn.addEventListener('click', function () {
-//             // 만약 배열의 마지막 요소의 인덱스보다 end가 크다면 end를 배열의 마지막요소의 인덱스로 설정
-//             let i = parseInt(btn.getAttribute('id'));
-//             let end = i * count - 1;
-//             if (end >= listLength) {
-//                 end = listLength - 1;
-//             }
-//             currentPage = i;
-//             render((i - 1) * count, end, i);
-//         });
-//     });
-// }
-
-// // 이전 다음 버튼에 이벤트 추가하는 함수
-// export function addBtnEvent() {
-
-//     let nextBtn = document.querySelector("#nextBtn");
-//     let prevBtn = document.querySelector("#prevBtn");
-
-//     nextBtn.addEventListener('click', function () {
-//         goNext(JSON.parse(window.localStorage.getItem("board")).length);
-//     });
-
-//     prevBtn.addEventListener('click', function () {
-//         goPrev();
-//     });
-// }
-
-
-// // 이전 버튼 눌렀을때 작동하는 함수
-// export function goPrev() {
-//     currentPage -= 1;
-
-//     let start = (currentPage - 1) * count;
-//     let end = currentPage * count - 1;
-
-//     render(start, end, currentPage);
-// }
-
-// // 다음 버튼 눌렀을때 작동하는 함수
-// export function goNext(listLength) {
-//     currentPage += 1;
-
-//     let start = (currentPage - 1) * count;
-//     let end = currentPage * count - 1;
-
-//     if (end >= listLength) {
-//         end = listLength - 1;
-//     }
-//     render(start, end, currentPage);
-// }
-
-
-
-// export function pageBtnRender(listLength, pagenum) { // 페이지 이전/다음 버튼 display값 설정
-//     let totalPage = Math.ceil(listLength / count);
-
-//     let nextBtn = document.querySelector("#nextBtn");
-//     let prevBtn = document.querySelector("#prevBtn");
-
-//     // 현재 첫번째 페이지라면 이전 버튼 출력 X
-//     if (pagenum == 1) {
-//         prevBtn.style.display = "none";
-//         nextBtn.style.display = "block";
-//     }
-//     // 현재 마지막 페이지라면 다음 버튼 출력 X
-//     if (pagenum == totalPage) {
-//         nextBtn.style.display = "none";
-//         prevBtn.style.display = "block";
-//     }
-
-//     if (pagenum != 1 && pagenum != totalPage) {
-//         prevBtn.style.display = "block";
-//         nextBtn.style.display = "block";
-//     }
-
-//     // 현재 페이지로 체크되게
-//     console.log(pagenum);
-//     document.querySelector(`.numbtn-${pagenum}`).checked = "checked";
-// }
+function user(user_id, user_pw, user_nickName, user_allow = false, coin, token) {
+    this.user_id = user_id;
+    this.user_pw = user_pw;
+    this.user_nickName = user_nickName;
+    this.user_allow = user_allow;
+    this.user_Hash = CryptoJS.MD5(this.user_id).toString();
+    this.coin = coin;
+    this.token = new Array(10);
+    this.token[0] = bittoken;
+    this.token[1] = ethtoken;
+    this.token[2] = dogetoken;
+    this.token[3] = ahyeontoken;
+    this.token[4] = byungjootoken;
+    this.token[5] = hyunuktoken;
+    this.token[6] = jisubtoken;
+    this.token[7] = loltoken;
+    this.token[8] = bgtoken;
+    this.token[9] = overwatchtoken;
+  }
+  
+  
+  //            코인 이름 , 내가보유한개수 , 코인 1개의 가치
+  
+  function coin(coin_name, coin_num, coin_value) {
+    this.coin_name = coin_name;
+    this.coin_num = coin_num;
+    this.coin_value = coin_value
+  }
+  
+  //                토큰이름, 내가보유한개수, 그 토큰 1개의 가치, 수수료
+  function token(token_name, token_num, token_value, charge) {
+    this.token_name = token_name;
+    this.token_num = token_num
+    this.token_value = token_value;
+    this.charge = charge;
+  }
+  
+  
+  const defaultCoin = new coin("sangpay", 1000, 10);
+  // user 객체 생성 (Hash값 가져오기 위해 만듦)

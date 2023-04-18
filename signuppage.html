@@ -6,32 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="./signuppage.css">
+	<link rel="stylesheet" type="text/css" href="./signuppage.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 </head>
 <style>
     .form-group {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
     }
 
     .form-group label {
-        font-size: 16px;
-        margin-bottom: 5px;
+      font-size: 16px;
+      margin-bottom: 5px;
     }
 
     .form-group input {
-        font-size: 16px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
+      font-size: 16px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
     canvas{z-index:10;pointer-events: none;position: fixed;top: 0;transform: scale(1.1);}
 
-</style>
+  </style>
 
 <body class="whole-mypage">
     <div class="header">
@@ -57,9 +57,9 @@
                 <p>아이디</p>
                 <div class="j-signupflexbox" style="display: flex; flex-wrap: wrap;">
                     <input type="text" id="id" name="id"><br>
-                    <div class="checkoverlap">중복확인</div>
-                </div>
-                <div id="id-validation" class="validation"></div>
+                        <div class="checkoverlap">중복확인</div>
+                    </div>
+                    <div id="id-validation" class="validation"></div>
                 <p>비밀번호</p>
                 <div>
                     <input type="password" id="password" name="password"><br>
@@ -96,20 +96,20 @@
         </div>
 
 
-
+        
     </div>
     </div>
 
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js">
-
+    
 </script>
 <script>
-
+   
     // 암호화할 문자열을 지정합니다.
     const message = "Hello, world!";
-
+  
     // MD5 알고리즘을 사용하여 문자열을 암호화합니다.
     const encrypted = CryptoJS.MD5(message).toString();
 
@@ -127,7 +127,7 @@
         this.token = new Array(10);
         this.token[0] = bitcoin
         this.token[1] =
-            this.token[2]
+        this.token[2]
         this.token[3]
         this.token[4]
         this.token[5]
@@ -151,9 +151,9 @@
     }
     const defaultCoin = new coin("sangapy", 100, 10);
 
-
+    
     console.log("dd");
-</script>
-<script src="./signuppage.js"></script>
+  </script>
+  <script src="./signuppage.js"></script>
 
 </html>
