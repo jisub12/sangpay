@@ -25,6 +25,12 @@ window.onload = function () {
 // 페이지네이션 함수(출력할 리스트를 매개변수로 받음)
 function paginate(list) {
     console.log("페이지네이션");
+
+    if (!list) {
+        window.localStorage.setItem('board', JSON.stringify([]));
+        list = JSON.parse(window.localStorage.getItem('board'));
+    }
+
     let listLength = list.length;
 
     // 페이지 번호를 표시해줄 div
@@ -119,10 +125,11 @@ function goNext(listLength) {
 
 // 게시판 출력
 function render(start, end, pagenum) {
-    let boardList = JSON.parse(window.localStorage.getItem("board"));
 
-    // 가장 최근 게시물이 먼저 출력되게
-    boardList.reverse();
+    let boardList = JSON.parse(window.localStorage.getItem("board"));
+    if (end >= boardList.length) {
+        end = boardList.length-1;
+    }
 
     let boardListDiv = document.querySelector('.a-board-list');
     boardListDiv.innerHTML = "";
@@ -146,6 +153,13 @@ function render(start, end, pagenum) {
 
     ul.append(no, title, user, date);
     boardListDiv.append(ul);
+
+    if (boardList.length != 0) {
+        // 가장 최근 게시물이 먼저 출력되게
+        boardList.reverse();    
+
+    
+
 
     for (let i = start; i <= end; i++) {
         // board 클릭하면 상세페이지로 이동하는 부분 추가해야함
@@ -179,6 +193,8 @@ function render(start, end, pagenum) {
 
     // 이전/다음 버튼 설정
     pageBtnRender(boardList.length, pagenum);
+
+    }
 }
 
 function pageBtnRender(listLength, pagenum) { // 페이지 이전/다음 버튼 display값 설정
