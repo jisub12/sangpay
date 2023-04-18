@@ -534,7 +534,9 @@ let waitingMemberArr = [];
 
 function addList(){
     for(i = 0; i < window.localStorage.length; i++){
-        waitingMemberArr.push(JSON.parse(window.localStorage.getItem(window.localStorage.key(i))));
+        if(JSON.parse(window.localStorage.getItem(window.localStorage.key(i))).user_allow==false){
+            waitingMemberArr.push(JSON.parse(window.localStorage.getItem(window.localStorage.key(i))));
+        }
     }
     renderWaitingList();
 }
@@ -665,9 +667,17 @@ function renderWaitingList() {
                 index = i;
                 let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(index)));
                 console.log(valueObj);
-                if(JSON.parse(window.localStorage.getItem(window.localStorage.key(index) === false))){
-                    JSON.parse(window.localStorage.getItem(window.localStorage.key(index))) = true;
+                console.log("응애");
+                console.log(valueObj.user_allow);
+                // if(JSON.parse(window.localStorage.getItem(window.localStorage.key(index) === false))){
+                   
+                //     JSON.parse(window.localStorage.getItem(window.localStorage.key(index))) = true;
+                // }
+                if(valueObj.user_allow==false)
+                {
+                    valueObj.user_allow=true;
                 }
+                console.log(valueObj.user_allow);
                 window.localStorage.setItem("user_" + valueObj.user_id, JSON.stringify(valueObj));
             }
             // }
