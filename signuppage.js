@@ -71,6 +71,7 @@ checkId.addEventListener("click", function () {
   }
   console.log("dfdsfdfsdfdsfd", user);
 });
+
 checkNick.addEventListener("click", function () {
   0
   for (let i = 0; i < localStorage.length; i++) {
