@@ -48,7 +48,7 @@ let hyunuktoken=new token("hyunuktoken",0,5,0.5);
 let jisubtoken=new token("jisubtoken",0,5,0.5);
 let loltoken=new token("loltoken",0,2,0.5);
 let bgtoken=new token("bgtoken",0,2,0.5);
-let overwatchtoken=new token("overwatchtoken",0,0.1,100);
+let overwatchtoken=new token("overwatchtoken",0,0.1,0.5);
 
 // 로컬 스토리지에 아이디값 임의로 생성해서 저장 - 스왑 실험용 //
 let userEmail = "gusdnr205@naver.com";
@@ -112,11 +112,11 @@ function token(token_name,token_num,token_value,charge){
 let newUser = new user("gusdnr205@naver.com", "password", "nickname", false, defaultCoin, tokenArr);
 
 // user_Hash 값을 로컬스토리지에 저장
-localStorage.setItem("user_Hash", newUser.user_Hash);
+localStorage.setItem("Hash", newUser.user_Hash);
 
 // 해쉬값 가져오기
 function getUserHashFromLocalStorage() {
-  const storedData = localStorage.getItem("user_Hash");
+  const storedData = localStorage.getItem("Hash");
   return storedData === null ? "" : storedData;
 }
 console.log(newUser.user_Hash);
