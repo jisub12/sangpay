@@ -17,6 +17,7 @@
 
     display: inline-flex;
     flex-wrap: nowrap;
+    z-index: 2;
 }
 
 .b-sangpay-logo{
@@ -81,6 +82,7 @@
 
     margin: auto;
     margin-top: 80px;
+    position: relative;
 }
 
 .b-fixed-values{
@@ -378,3 +380,27 @@
     font-weight: 600;
     text-align: center;
 }
+
+.h-welcomepopup{
+    font-family: "dynapuff";
+    font-size: 40px;
+    font-weight: 400;
+    width: 100%;
+    height: 100%;
+    border:  1px solid black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: white;
+    display: none;
+}
+.h-welcomepopup.popupactive{
+    display: block;
+}
+@font-face {
+    font-family: "dynapuff";
+    src: url(./DynaPuff/DynaPuff-VariableFont_wdth\,wght.ttf);
+}
+
+
