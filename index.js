@@ -284,7 +284,7 @@ walletIcon.onclick = function(){
   nevercoin.style.animation = "walletAndCoinFadeOut 1s ease forwards";
   walletIcon.style.animation = "walletAndCoinFadeOut 1s ease forwards";
   walletIntro.style.display = "none";
+  mainLoginPage.style.display = "block";
   mainLoginPage.style.animation = "mainLoginPageFadeIn 1s ease forwards";
   mainLoginPage.style.animationDelay = "1s";
-  // mainLoginPage.style.display =
 }
