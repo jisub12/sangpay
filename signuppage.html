@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="./signuppage.css">
+    <link rel="stylesheet" href="./sharestyle.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
@@ -36,15 +37,22 @@
 <body class="whole-mypage">
     <div class="header">
         <div class="b-sangpay-logo">
-            <div class="b-logo"></div>
+            <a href="./wallet.html">
+                <div class="b-logo"></div>
+            </a>
         </div>
         <div class="b-session-time">
-            <div class="b-session"></div>
+            <div class="b-session">남은 시간 : 00분 00초</div>
+            <button class="b-time-extend-btn">시간 연장</button>
         </div>
         <div class="b-menu-option">
             <ul class="b-header-list">
-                <li class="b-header-list-item">my page</li>
-                <li class="b-header-list-item">FAQ</li>
+                <li class="b-header-list-item">
+                    <a class="b-header-my-page" href="./mypage.html">MY PAGE</a>
+                </li>
+                <li class="b-header-list-item">
+                    <a class="b-header-faq" href="./board.html">FAQ</a>
+                </li>
             </ul>
         </div>
     </div>
