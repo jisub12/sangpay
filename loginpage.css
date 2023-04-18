@@ -27,6 +27,12 @@ body{
     z-index: 0;
 
     scale: 1;
+
+    font-family: "dynapuff";
+
+    /* opacity: 0;
+    background-color: rgba(3, 49, 4,0.8);
+    transition: 10s; */
 }
 
 .b-wallet-intro::before{
@@ -304,6 +310,92 @@ body{
     z-index: -1;
 }
 
+.b-open-your-wallet1{
+    width: 200px;
+    height: 50px;
+
+    position: absolute;
+    top: 30%;
+    left: 250px;
+
+    font-size: 40px;
+
+    z-index: 2;
+    opacity: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    animation: textFadeIn 1s ease forwards;
+    animation-delay: 9.5s;
+}
+.b-open-your-wallet2{
+    width: 200px;
+    height: 50px;
+
+    position: absolute;
+    top: 45%;
+    left: 250px;
+
+    font-size: 40px;
+
+    z-index: 2;
+    opacity: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    animation: textFadeIn 1s ease forwards;
+    animation-delay: 9.5s;
+}
+.b-open-your-wallet3{
+    width: 200px;
+    height: 50px;
+
+    position: absolute;
+    top: 60%;
+    left: 250px;
+
+    font-size: 40px;
+
+    z-index: 2;
+    opacity: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    animation: textFadeIn 1s ease forwards;
+    animation-delay: 9.5s;
+}
+
+.b-open-your-wallet2::before,
+.b-open-your-wallet2::after{
+    content: "";
+
+    width: 15px;
+    height: 4px;
+    border-radius: 10px;
+    background-color: black;
+
+    position: absolute;
+    top: 50%;
+    left: 265px;
+    transform: translate(0,-50%) rotate(45deg);
+
+    z-index: 2;
+    opacity: 0;
+
+    animation: textFadeIn 1s ease forwards;
+    animation-delay: 9.5s;
+}
+.b-open-your-wallet2::after{
+    transform: rotate(-45deg);
+    top: 63%;
+}
+
 @keyframes boxMoving{
     from{
         left: 0;
@@ -449,6 +541,15 @@ body{
 }
 
 @keyframes mainLoginPageFadeIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes textFadeIn{
     from{
         opacity: 0;
     }
