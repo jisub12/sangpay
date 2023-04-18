@@ -1,3 +1,4 @@
+
 const remainedTime= document.querySelector('.b-session');
 
 let nowuser = ""; //로그인한 현재 유저
@@ -115,6 +116,7 @@ function newUserBtn(
 }
 
 
+
 let expireDate = new Date(); // 쿠키 만료 날짜
 function getRemainingTime(cookieExpire) {
   let expire = new Date(cookieExpire);
@@ -174,7 +176,14 @@ function userLogin(){
     remainingTime = getRemainingTime(expireDate.toUTCString()); // 쿠키 만료까지 남은 시간 계산
     console.log(remainingTime);
     remainedTime.innerHTML=remainingTime;
-    remainingTime=remainingTime;
+    
+    const minutes = remainingTime.match(/\d+분/);
+    const seconds = remainingTime.match(/\d+초/);
+    if (minutes && seconds) {
+      const timeString = `${minutes[0]} ${seconds[0]}`;
+      localStorage.setItem('remaining_time', timeString);
+    }
+    
   }
 }
 
@@ -183,9 +192,8 @@ function userLogin(){
 
 function extensionTime(){
   let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-
-  // 만료시간을 현재시간 기준으로 10분 뒤로 설정
   console.log(expireDate.getTime());
+  console.log(cookieValue);
   let time=expireDate.setTime(expireDate.getTime() + 10 * 10000); //10 초뒤
   console.log(time);
   console.log("작동함");
@@ -193,3 +201,4 @@ function extensionTime(){
   document.cookie = `user_id=${cookieValue}; expires=${expireDate.toUTCString()}; path=/`;
   console.log(document.cookie);
 }
+
