@@ -3,6 +3,10 @@
     src: url(./DynaPuff/DynaPuff-VariableFont_wdth\,wght.ttf);
 }
 
+.intro-page{
+    margin: 0;
+}
+
 .b-wallet-intro{
     width: 100%;
     height: 100vh;
@@ -119,6 +123,8 @@
 }
 .b-wallet-icon-fake2:hover{
     cursor: pointer;
+
+    animation: walletWiggle 1s ease-in infinite;
 }
 
 .b-moving-box{
@@ -570,9 +576,31 @@
     from{
         scale: 1;
         opacity: 1;
+        top: 41.8%;
+        left: 48.1%;
     }
     to{
         scale: 10;
         opacity: 0;
+        top: 0;
+        left: 0;
+    }
+}
+
+@keyframes walletWiggle{
+    0%{
+        transform: translate(0,-50%) rotate(0deg);
+    }
+    25%{
+        transform: translate(0,-50%) rotate(10deg);
+    }
+    50%{
+        transform: translate(0,-50%) rotate(0deg);
+    }
+    75%{
+        transform: translate(0,-50%) rotate(-10deg);
+    }
+    100%{
+        transform: translate(0,-50%) rotate(0deg);
     }
 }
