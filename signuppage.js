@@ -13,7 +13,7 @@ let checkNick = document.querySelector('.check-nickname-overlap');
 
 let welcomeNewuser = document.querySelector(".submitNewUserBtnBox");
 
-let welcomeNewuser = document.querySelector(".submitNewUserBtnBox");
+// let welcomeNewuser = document.querySelector(".submitNewUserBtnBox");
 
 let idpass = false;
 let nickpass = false;
