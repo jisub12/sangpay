@@ -187,7 +187,7 @@ main {
     cursor: pointer;
 }
 /* 팝업 닫기 버튼들 */
-.h-close-button , .h-send-button, .swap-execute, .swap-execute2, .exchange-close-button{
+.h-close-button , .h-send-button, .swap-execute, .swap-execute2, .exchange-close-button , .send-close-button{
     background-color: #4CAF50;
     border: none;
     color: white;
