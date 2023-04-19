@@ -1,119 +1,204 @@
 
-// // 한 페이지에 보여줄 게시물 개수
-// export let count = 10;
+const remainedTime= document.querySelector('.b-session');
 
-// export let currentPage = 1;
+let nowuser = ""; //로그인한 현재 유저
+// 김아현 ---테스트용으로 작성해봄
+let bittoken = new token("bittoken", 10, 1, 0.5);  //
+let ethtoken = new token("ethtoken", 10, 1, 0.5);
+let dogetoken = new token("dogetoken", 10, 1, 0.5);
+let ahyeontoken = new token("ahyeontoken", 10, 10, 0.5);
+let byungjootoken = new token("byungjootoken", 10, 5, 0.5);
+let hyunuktoken = new token("hyunuktoken", 20, 5, 0.5);
+let jisubtoken = new token("jisubtoken", 10, 5, 0.5);
+let loltoken = new token("loltoken", 10, 2, 0.5);
+let bgtoken = new token("bgtoken", 10, 2, 0.5);
+let overwatchtoken = new token("overwatchtoken", 10, 0.1, 0.5);
 
-// // 페이지네이션 함수(출력할 리스트를 매개변수로 받음)
-// export function paginate(list) {
-//     console.log("페이지네이션");
-//     let listLength = list.length;
+function user(user_id, user_pw, user_nickName, user_allow = false, coin, token) {
+    this.user_id = user_id;
+    this.user_pw = user_pw;
+    this.user_nickName = user_nickName;
+    this.user_allow = user_allow;
+    this.user_Hash = CryptoJS.MD5(this.user_id).toString();
+    this.coin = coin;
+    this.token = new Array(10);
+    this.token[0] = bittoken;
+    this.token[1] = ethtoken;
+    this.token[2] = dogetoken;
+    this.token[3] = ahyeontoken;
+    this.token[4] = byungjootoken;
+    this.token[5] = hyunuktoken;
+    this.token[6] = jisubtoken;
+    this.token[7] = loltoken;
+    this.token[8] = bgtoken;
+    this.token[9] = overwatchtoken;
+  }
+  
+  
+  //            코인 이름 , 내가보유한개수 , 코인 1개의 가치
+  
+  function coin(coin_name, coin_num, coin_value) {
+    this.coin_name = coin_name;
+    this.coin_num = coin_num;
+    this.coin_value = coin_value
+  }
+  
+  //                토큰이름, 내가보유한개수, 그 토큰 1개의 가치, 수수료
+  function token(token_name, token_num, token_value, charge) {
+    this.token_name = token_name;
+    this.token_num = token_num
+    this.token_value = token_value;
+    this.charge = charge;
+  }
+  
+  
+  const defaultCoin = new coin("sangpay", 1000, 10);
+  // user 객체 생성 (Hash값 가져오기 위해 만듦)
 
-//     // 페이지 번호를 표시해줄 div
-//     let pageNumDiv = document.querySelector('.a-board-pagenum');
+  function getCurrentUser() {
 
-//     // 총 페이지 개수 구하는
-//     let totalPage = Math.ceil(listLength / count);
-//     console.log(totalPage);
+    let userId = "";
+  
+    // 임의로 쿠키 생성
+    let expireDate2 = new Date();
+    expireDate2.setTime(expireDate2.getTime() + 100000000 * 1000);
+    // document.cookie = `user_id=${"12321344asd@naver.com"}; expires=` + expireDate2.toUTCString() + "; path=/";
+  
+    console.log(document.cookie);
+    let start = document.cookie.indexOf(`user_id=`);
+  
+    if (start != -1) {
+      userId = document.cookie.split('=')[1];
+    }
+  
+    console.log(userId);
+  
+    let userStorage = window.localStorage.getItem(`user_${userId}`);
+    if (userStorage) {
+      console.log(JSON.parse(userStorage).token);
+    }
+  
+    console.log(JSON.parse(window.localStorage.getItem(`user_${userId}`)));
+  
+    return userId;
+  }
 
-//     // 페이지 개수만큼 페이지 번호 버튼 생성
-//     for (let i = 1; i <= totalPage; i++) {
-//         let numbtn = document.createElement('input');
-//         numbtn.setAttribute("type", "radio");
-//         numbtn.setAttribute("name", "pagenum");
-//         // 페이지번호 버튼의 id값으로 i 설정(id=페이지번호)
-//         numbtn.setAttribute("id", i);
-//         numbtn.setAttribute("class", `a-numbtn numbtn-${i}`);
+  
+function newUserBtn(
+  user_id = idValue,
+  user_pw = passwordValue,
+  user_nickName = nicknameValue,
+  user_allow,
+  coin=defaultCoin,
+  token
+) {
+  if (idpass == true || nickpass == true || pwpass == true) {
+    let thing = new user(
+      user_id,
+      user_pw,
+      user_nickName,
+      user_allow,
+      coin,
+      token
+    );
+    let userString = JSON.stringify(thing);
+    let key = "user_" + user_id; // 고유한 저장소 키 생성
+    localStorage.setItem(key, userString);
+    console.log("새로운 유저가 생성되었습니다");
+    let popup = document.querySelector('.h-welcomepopup');
+    popup.classList.add("popupactive")
 
-//         let numbtnLabel = document.createElement('label');
-//         numbtnLabel.textContent = i;
-//         numbtnLabel.setAttribute("for", i);
-//         numbtnLabel.setAttribute("name", "pagenum");
-
-//         // 페이지 번호를 표시해줄 div에 페이지 번호 버튼 추가
-//         pageNumDiv.append(numbtn, numbtnLabel);
-//     }
-
-//     // 페이지 번호 버튼들
-//     let numbtns = document.querySelectorAll('.a-numbtn');
-//     numbtns.forEach(function (btn) {
-//         btn.addEventListener('click', function () {
-//             // 만약 배열의 마지막 요소의 인덱스보다 end가 크다면 end를 배열의 마지막요소의 인덱스로 설정
-//             let i = parseInt(btn.getAttribute('id'));
-//             let end = i * count - 1;
-//             if (end >= listLength) {
-//                 end = listLength - 1;
-//             }
-//             currentPage = i;
-//             render((i - 1) * count, end, i);
-//         });
-//     });
-// }
-
-// // 이전 다음 버튼에 이벤트 추가하는 함수
-// export function addBtnEvent() {
-
-//     let nextBtn = document.querySelector("#nextBtn");
-//     let prevBtn = document.querySelector("#prevBtn");
-
-//     nextBtn.addEventListener('click', function () {
-//         goNext(JSON.parse(window.localStorage.getItem("board")).length);
-//     });
-
-//     prevBtn.addEventListener('click', function () {
-//         goPrev();
-//     });
-// }
-
-
-// // 이전 버튼 눌렀을때 작동하는 함수
-// export function goPrev() {
-//     currentPage -= 1;
-
-//     let start = (currentPage - 1) * count;
-//     let end = currentPage * count - 1;
-
-//     render(start, end, currentPage);
-// }
-
-// // 다음 버튼 눌렀을때 작동하는 함수
-// export function goNext(listLength) {
-//     currentPage += 1;
-
-//     let start = (currentPage - 1) * count;
-//     let end = currentPage * count - 1;
-
-//     if (end >= listLength) {
-//         end = listLength - 1;
-//     }
-//     render(start, end, currentPage);
-// }
+    return userString;
+  }
+  idpass = false;
+  nickpass = false;
+  pwpass = false;
+}
 
 
 
-// export function pageBtnRender(listLength, pagenum) { // 페이지 이전/다음 버튼 display값 설정
-//     let totalPage = Math.ceil(listLength / count);
+let expireDate = new Date(); // 쿠키 만료 날짜
+function getRemainingTime(cookieExpire) {
+  let expire = new Date(cookieExpire);
+  let now = new Date()
+  now=now.getTime();
+  let nowTime=new Date(now);
+  const diff = expire - nowTime;
+  let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+  if (diff < 2 ){
+    // 지울 Interval 함수 매개변수로 전달하면된다.
+    clearInterval(set1);
+    console.log("끝");
+    return "시간만료"
+  }
+  return `남은 시간 : ${minutes}분 ${seconds}초`;
+}
+let set1; //setInterval 함수
+//버튼 누르면 시간추가 쿠키값에 반영
 
-//     let nextBtn = document.querySelector("#nextBtn");
-//     let prevBtn = document.querySelector("#prevBtn");
 
-//     // 현재 첫번째 페이지라면 이전 버튼 출력 X
-//     if (pagenum == 1) {
-//         prevBtn.style.display = "none";
-//         nextBtn.style.display = "block";
-//     }
-//     // 현재 마지막 페이지라면 다음 버튼 출력 X
-//     if (pagenum == totalPage) {
-//         nextBtn.style.display = "none";
-//         prevBtn.style.display = "block";
-//     }
+function loginUser(id, pw) {
+  for (let i = 0; i < localStorage.length; i++) {
+    let key = localStorage.key(i);
+    if (key.startsWith("user_")) {
+      let cuurent_user = JSON.parse(localStorage.getItem(key));
+      console.log(cuurent_user.user_id);
+      console.log(cuurent_user.user_pw);
+      // console.log(cuurent_user.token[0].token_name); // local 스토리지에 들어있는 current user의 token 에 접근하는법 [0] 번째는 비트 토큰 그 이름에 접근하는법은 .~~`
+      if (
+        pw == cuurent_user.user_pw &&
+        id == cuurent_user.user_id &&
+        cuurent_user.user_allow == true
+      ) {
+        console.log("로그인성공");
+        nowuser = cuurent_user;
+        alert("로그인에 성공하셨습니다.")
+        expireDate=new Date();
+        userLogin();
+        console.log(nowuser)
+      }
+    }
+  }
+}
 
-//     if (pagenum != 1 && pagenum != totalPage) {
-//         prevBtn.style.display = "block";
-//         nextBtn.style.display = "block";
-//     }
+let remainingTime
+function userLogin(){
+  expireDate.setTime(expireDate.getTime() + 10 * 1000);
+   remainingTime = getRemainingTime(expireDate.toUTCString()); // 쿠키 만료까지 남은 시간 계산
+  console.log(remainingTime);
+  set1=setInterval(printTime, 1000);
+  // `userid=${nowuser.user_id}; expires=${kstTime.toUTCString()}; path=/
+  document.cookie =`user_id=${nowuser.user_id}; expires=` + expireDate.toUTCString() + "; path=/";
+  function printTime() {
+    remainingTime = getRemainingTime(expireDate.toUTCString()); // 쿠키 만료까지 남은 시간 계산
+    console.log(remainingTime);
+    remainedTime.innerHTML=remainingTime;
+    
+    const minutes = remainingTime.match(/\d+분/);
+    const seconds = remainingTime.match(/\d+초/);
+    if (minutes && seconds) {
+      const timeString = `${minutes[0]} ${seconds[0]}`;
+      localStorage.setItem('remaining_time', timeString);
+    }
+    
+  }
+}
 
-//     // 현재 페이지로 체크되게
-//     console.log(pagenum);
-//     document.querySelector(`.numbtn-${pagenum}`).checked = "checked";
-// }
+
+
+
+function extensionTime(){
+  let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+  console.log(expireDate.getTime());
+  console.log(cookieValue);
+  let time=expireDate.setTime(expireDate.getTime() + 10 * 10000); //10 초뒤
+  console.log(time);
+  console.log("작동함");
+  // 업데이트된 쿠키를 생성하여 저장
+  document.cookie = `user_id=${cookieValue}; expires=${expireDate.toUTCString()}; path=/`;
+  console.log(document.cookie);
+}
+
