@@ -49,7 +49,7 @@
         <div class="b-menu-option">
             <ul class="b-header-list">
                 <li class="b-header-list-item">
-                  <a class="b-header-my-page" href="">MY PAGE</a>
+                  <a class="b-header-my-page" href="./mypage.html">MY PAGE</a>
                 </li>
                 <li class="b-header-list-item">
                   <a class="b-header-faq" href="">FAQ</a>
@@ -120,42 +120,42 @@
     const encrypted = CryptoJS.MD5(message).toString();
 
     //코인 생성    토큰이름,내가보유한개수,그토큰 1개의 가치,최소거래량 ,수수료
-    let bitcoin=new token("bitcoin",0,2,1,0.1);
+    // let bitcoin=new token("bitcoin",0,2,1,0.1);
 
-    // 결과를 출력합니다.
-    function user(user_id,user_pw,user_nickName,user_allow=false,coin,token){
-        this.user_id=user_id;
-        this.user_pw=user_pw;
-        this.user_nickName=user_nickName;
-        this.user_allow=user_allow;
-        this.user_Hash= CryptoJS.MD5(this.user_id).toString();
-        this.coin=coin;
-        this.token=new Array(10);
-        this.token[0]=bitcoin
-        this.token[1]=
-        this.token[2]
-        this.token[3]
-        this.token[4]
-        this.token[5]
-        this.token[6]
-        this.token[7]
-        this.token[8]
-        this.token[9]
-    }
+    // // 결과를 출력합니다.
+    // function user(user_id,user_pw,user_nickName,user_allow=false,coin,token){
+    //     this.user_id=user_id;
+    //     this.user_pw=user_pw;
+    //     this.user_nickName=user_nickName;
+    //     this.user_allow=user_allow;
+    //     this.user_Hash= CryptoJS.MD5(this.user_id).toString();
+    //     this.coin=coin;
+    //     this.token=new Array(10);
+    //     this.token[0]=bitcoin
+    //     this.token[1]=
+    //     this.token[2]
+    //     this.token[3]
+    //     this.token[4]
+    //     this.token[5]
+    //     this.token[6]
+    //     this.token[7]
+    //     this.token[8]
+    //     this.token[9]
+    // }
 
-    function coin(coin_name,coin_num,coin_value){
-        this.coin_name=coin_name;
-        this.coin_num=coin_num;
-        this.coin_value=coin_value
-    }
-    function token(token_name,token_num,token_value,minTradingQuan,charge){
-        this.token_name=token_name;
-        this.token_num=token_num
-        this.token_value=token_value;
-        this.minTradingQuan=minTradingQuan;
-        this.charge=charge;
-    }
-    const defaultCoin=new coin("sangapy",100,10);
+    // function coin(coin_name,coin_num,coin_value){
+    //     this.coin_name=coin_name;
+    //     this.coin_num=coin_num;
+    //     this.coin_value=coin_value
+    // }
+    // function token(token_name,token_num,token_value,minTradingQuan,charge){
+    //     this.token_name=token_name;
+    //     this.token_num=token_num
+    //     this.token_value=token_value;
+    //     this.minTradingQuan=minTradingQuan;
+    //     this.charge=charge;
+    // }
+    // const defaultCoin=new coin("sangapy",100,10);
 
    
 
@@ -163,6 +163,7 @@
 
     
   </script>
+  <script src="./a_share.js"></script>
   <script src="./index.js"></script>
 
 </html>

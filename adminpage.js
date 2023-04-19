@@ -532,13 +532,38 @@ let confirmWaitingMember = document.querySelector(".b-confirm-waiting-member-boa
 let memberArr = [];
 let waitingMemberArr = [];
 
-function addList(){
-    for(i = 0; i < window.localStorage.length; i++){
-        waitingMemberArr.push(JSON.parse(window.localStorage.getItem(window.localStorage.key(i))));
+// 승인여부에 따라 승인회원/승인대기회원 배열로 회원 추가
+function setUserList() {
+    memberArr = [];
+    waitingMemberArr = [];
+
+    for (let i = 0; i < window.localStorage.length; i++) {
+      let key = window.localStorage.key(i);
+      if (key.startsWith("user_")) {
+        console.log(key);
+        let user = JSON.parse(window.localStorage.getItem(key));
+        if (user.user_allow == true) {
+            memberArr.push(user);
+        } else {
+            console.log(user);
+            waitingMemberArr.push(user);
+        }
+      }
     }
-    renderWaitingList();
-}
-addList();
+  }
+  setUserList();
+
+// function addList(){
+
+
+//     // for(i = 0; i < window.localStorage.length; i++){
+//     //     if(JSON.parse(window.localStorage.getItem(window.localStorage.key(i))).user_allow==false){
+//     //         waitingMemberArr.push(JSON.parse(window.localStorage.getItem(window.localStorage.key(i))));
+//     //     }
+//     // }
+//     renderWaitingList();
+// }
+// addList();
 
 function renderWaitingList() {
     // addList(allow);
@@ -638,6 +663,8 @@ function renderWaitingList() {
     //     div01.append(div02, div03, button01);
     //     confirmWaitingMember.append(div01);
     // })
+
+    setUserList();
     confirmWaitingMember.innerHTML = "";
 
     waitingMemberArr.forEach(function(item,index){
@@ -651,38 +678,59 @@ function renderWaitingList() {
         // console.log(waitingMemberArr.splice(index,1));
         // let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(index)));
         button01.onclick = function(){
-            div01.remove();
-            let confirmedMember = waitingMemberArr.splice(index,1);
-            // console.log(waitingMemberArr.splice(index,1));
-            // let oneByOne = waitingMemberArr.splice(index,1);
-            // console.log(oneByOne[0]);
-            renderWaitingList();
-            // console.log(valueObj);
-            // valueObj["user_allow"] = true;
-            // console.log(valueObj);
-            // let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(index)));
-            for(i = 0; i < window.localStorage.length; i++){
-                index = i;
-                let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(index)));
-                console.log(valueObj);
-                if(JSON.parse(window.localStorage.getItem(window.localStorage.key(index) === false))){
-                    JSON.parse(window.localStorage.getItem(window.localStorage.key(index))) = true;
-                }
-                window.localStorage.setItem("user_" + valueObj.user_id, JSON.stringify(valueObj));
-            }
-            // }
-            // console.log(oneByOne[0]);
-            // let oneByOne = waitingMemberArr.splice(index,1);
-            memberArr.push(confirmedMember);
-            // console.log(memberArr);
+
+            item.user_allow = true;
+            window.localStorage.setItem("user_" + item.user_id, JSON.stringify(item));
+            setUserList();
             renderMemberList();
+            renderWaitingList();
+
+
+
+            // div01.remove();
+            // let confirmedMember = waitingMemberArr.splice(index,1);
+            // // console.log(waitingMemberArr.splice(index,1));
+            // // let oneByOne = waitingMemberArr.splice(index,1);
+            // // console.log(oneByOne[0]);
+            // renderWaitingList();
+            // // console.log(valueObj);
+            // // valueObj["user_allow"] = true;
+            // // console.log(valueObj);
+            // // let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(index)));
+            // for(i = 0; i < window.localStorage.length; i++){
+            //     index = i;
+            //     let valueObj = JSON.parse(window.localStorage.getItem(window.localStorage.key(index)));
+            //     console.log(valueObj);
+            //     console.log(valueObj.user_allow);
+            //     // if(JSON.parse(window.localStorage.getItem(window.localStorage.key(index) === false))){
+
+            //     //     JSON.parse(window.localStorage.getItem(window.localStorage.key(index))) = true;
+            //     // }
+            //     if(valueObj.user_allow==false)
+            //     {
+            //         valueObj.user_allow=true;
+            //     }
+            //     console.log(valueObj.user_allow);
+            //     window.localStorage.setItem("user_" + valueObj.user_id, JSON.stringify(valueObj));
+            // }
+            // // }
+            // // console.log(oneByOne[0]);
+            // // let oneByOne = waitingMemberArr.splice(index,1);
+            // memberArr.push(confirmedMember);
+            // // console.log(memberArr);
+            // renderMemberList();
         }
         button01.innerHTML = "승인";
 
-        div02.innerHTML = "아이디 : " + waitingMemberArr[index].user_id;
-        // div02.innerHTML = "아이디 : " + oneByOne[0].user_id;
-        div03.innerHTML = "닉네임 : " + waitingMemberArr[index].user_nickName;
-        // div03.innerHTML = "닉네임 : " + oneByOne[0].user_nickName;
+
+        div02.innerHTML = "아이디 : " + item.user_id;
+        div03.innerHTML = "닉네임 : " + item.user_nickName;
+
+
+        // div02.innerHTML = "아이디 : " + waitingMemberArr[index].user_id;
+        // // div02.innerHTML = "아이디 : " + oneByOne[0].user_id;
+        // div03.innerHTML = "닉네임 : " + waitingMemberArr[index].user_nickName;
+        // // div03.innerHTML = "닉네임 : " + oneByOne[0].user_nickName;
 
         div01.style.display = "flex";
         div01.className = "board-content";
@@ -690,11 +738,12 @@ function renderWaitingList() {
         confirmWaitingMember.append(div01);
     })
 }
-// renderWaitingList();
+renderWaitingList();
 
 
 function renderMemberList() {
     // addList(true);
+    setUserList();
 
     member.innerHTML = "";
 
@@ -704,10 +753,10 @@ function renderMemberList() {
         let div02 = document.createElement("div");
         let div03 = document.createElement("div");
 
-        // div02.innerHTML = "아이디 : " + item.user_id;
-        // div03.innerHTML = "닉네임 : " + item.user_nickName;
-        div02.innerHTML = "아이디 : " + memberArr[index][0].user_id;
-        div03.innerHTML = "닉네임 : " + memberArr[index][0].user_nickName;
+        div02.innerHTML = "아이디 : " + item.user_id;
+        div03.innerHTML = "닉네임 : " + item.user_nickName;
+        // div02.innerHTML = "아이디 : " + memberArr[index][0].user_id;
+        // div03.innerHTML = "닉네임 : " + memberArr[index][0].user_nickName;
 
         div01.style.display = "flex";
         div01.className = "board-content";
@@ -716,3 +765,4 @@ function renderMemberList() {
     })
 }
 
+renderMemberList();

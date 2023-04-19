@@ -1,35 +1,42 @@
+
+// getRemainingTime();
+// userLogin();
+// import { getCurrentUser } from "./board.js";
+
 // let expireDate2 = new Date();
 // expireDate2.setTime(expireDate2.getTime() + 1000 * 1000);
 // // document.cookie = `user_id=${"gusdnr205@naver.com"}; expires=` + new Date().setTime(new Date().getTime() + 1000* 10000).toUTCString() + "; path=/";
 // document.cookie =`user_id=${"gusdnr205@naver.com"}; expires=` + expireDate2.toUTCString() + "; path=/";
 
-function getCurrentUser() {
+// function getCurrentUser() {
 
-  let userId = "";
+//   let userId = "";
 
-  // 임의로 쿠키 생성
-  let expireDate2 = new Date();
-  expireDate2.setTime(expireDate2.getTime() + 100000000 * 1000);
-  document.cookie = `user_id=${"wrfqgrqg@naver.com"}; expires=` + expireDate2.toUTCString() + "; path=/";
 
-  console.log(document.cookie);
-  let start = document.cookie.indexOf(`user_id=`);
+//   // 임의로 쿠키 생성
+//   let expireDate2 = new Date();
+//   expireDate2.setTime(expireDate2.getTime() + 100000000 * 1000);
+//   // document.cookie = `user_id=${"12321344asd@naver.com"}; expires=` + expireDate2.toUTCString() + "; path=/";
 
-  if (start != -1) {
-    userId = document.cookie.split('=')[1];
-  }
 
-  console.log(userId);
+//   console.log(document.cookie);
+//   let start = document.cookie.indexOf(`user_id=`);
 
-  let userStorage = window.localStorage.getItem(`user_${userId}`);
-  if (userStorage) {
-    console.log(JSON.parse(userStorage).token);
-  }
+//   if (start != -1) {
+//     userId = document.cookie.split('=')[1];
+//   }
 
-  console.log(JSON.parse(window.localStorage.getItem(`user_${userId}`)));
+//   console.log(userId);
 
-  return userId;
-}
+//   let userStorage = window.localStorage.getItem(`user_${userId}`);
+//   if (userStorage) {
+//     console.log(JSON.parse(userStorage).token);
+//   }
+
+//   console.log(JSON.parse(window.localStorage.getItem(`user_${userId}`)));
+
+//   return userId;
+// }
 // getCurrentUser();
 
 // // 암호화할 문자열을 지정합니다.
@@ -50,25 +57,25 @@ function getCurrentUser() {
 // let bgtoken=new token("bgtoken",0,2,0.5);
 // let overwatchtoken=new token("overwatchtoken",0,0.1,0.5);
 
-// 김아현 ---테스트용으로 작성해봄
-let bittoken = new token("bittoken", 10, 1, 0.5);  //
-let ethtoken = new token("ethtoken", 10, 1, 0.5);
-let dogetoken = new token("dogetoken", 10, 1, 0.5);
-let ahyeontoken = new token("ahyeontoken", 10, 10, 0.5);
-let byungjootoken = new token("byungjootoken", 10, 5, 0.5);
-let hyunuktoken = new token("hyunuktoken", 20, 5, 0.5);
-let jisubtoken = new token("jisubtoken", 10, 5, 0.5);
-let loltoken = new token("loltoken", 10, 2, 0.5);
-let bgtoken = new token("bgtoken", 10, 2, 0.5);
-let overwatchtoken = new token("overwatchtoken", 10, 0.1, 0.5);
+// // 김아현 ---테스트용으로 작성해봄
+// let bittoken = new token("bittoken", 10, 1, 0.5);  //
+// let ethtoken = new token("ethtoken", 10, 1, 0.5);
+// let dogetoken = new token("dogetoken", 10, 1, 0.5);
+// let ahyeontoken = new token("ahyeontoken", 10, 10, 0.5);
+// let byungjootoken = new token("byungjootoken", 10, 5, 0.5);
+// let hyunuktoken = new token("hyunuktoken", 20, 5, 0.5);
+// let jisubtoken = new token("jisubtoken", 10, 5, 0.5);
+// let loltoken = new token("loltoken", 10, 2, 0.5);
+// let bgtoken = new token("bgtoken", 10, 2, 0.5);
+// let overwatchtoken = new token("overwatchtoken", 10, 0.1, 0.5);
 
 // 로컬 스토리지에 아이디값 임의로 생성해서 저장 - 스왑 실험용 //
-let userEmail = "gusdnr205@naver.com";
-let tokenArr = [bittoken, ethtoken, dogetoken, ahyeontoken, byungjootoken, hyunuktoken, jisubtoken,
-  , loltoken, bgtoken, overwatchtoken];
+// let userEmail = "gusdnr205@naver.com";
+// let tokenArr = [bittoken, ethtoken, dogetoken, ahyeontoken, byungjootoken, hyunuktoken, jisubtoken,
+//   , loltoken, bgtoken, overwatchtoken];
 
 //  기본으로 가진 상페코인 1000개, 가치 : 10
-const defaultCoin = new coin("sangpay", 1000, 10);
+// const defaultCoin = new coin("sangpay", 1000, 10);
 
 // let userTokenData = {
 //     user_id : userEmail,
@@ -84,56 +91,56 @@ const defaultCoin = new coin("sangpay", 1000, 10);
 // window.localStorage.setItem("userTokenData", JSON.stringify(storedData));
 
 // 결과를 출력합니다.
-function user(user_id, user_pw, user_nickName, user_allow = false, coin, token) {
-  this.user_id = user_id;
-  this.user_pw = user_pw;
-  this.user_nickName = user_nickName;
-  this.user_allow = user_allow;
-  this.user_Hash = CryptoJS.MD5(this.user_id).toString();
-  this.coin = coin;
-  this.token = new Array(10);
-  this.token[0] = bittoken;
-  this.token[1] = ethtoken;
-  this.token[2] = dogetoken;
-  this.token[3] = ahyeontoken;
-  this.token[4] = byungjootoken;
-  this.token[5] = hyunuktoken;
-  this.token[6] = jisubtoken;
-  this.token[7] = loltoken;
-  this.token[8] = bgtoken;
-  this.token[9] = overwatchtoken;
-}
+// function user(user_id, user_pw, user_nickName, user_allow = false, coin, token) {
+//   this.user_id = user_id;
+//   this.user_pw = user_pw;
+//   this.user_nickName = user_nickName;
+//   this.user_allow = user_allow;
+//   this.user_Hash = CryptoJS.MD5(this.user_id).toString();
+//   this.coin = coin;
+//   this.token = new Array(10);
+//   this.token[0] = bittoken;
+//   this.token[1] = ethtoken;
+//   this.token[2] = dogetoken;
+//   this.token[3] = ahyeontoken;
+//   this.token[4] = byungjootoken;
+//   this.token[5] = hyunuktoken;
+//   this.token[6] = jisubtoken;
+//   this.token[7] = loltoken;
+//   this.token[8] = bgtoken;
+//   this.token[9] = overwatchtoken;
+// }
 
 
-//            코인 이름 , 내가보유한개수 , 코인 1개의 가치
+// //            코인 이름 , 내가보유한개수 , 코인 1개의 가치
 
-function coin(coin_name, coin_num, coin_value) {
-  this.coin_name = coin_name;
-  this.coin_num = coin_num;
-  this.coin_value = coin_value
-}
+// function coin(coin_name, coin_num, coin_value) {
+//   this.coin_name = coin_name;
+//   this.coin_num = coin_num;
+//   this.coin_value = coin_value
+// }
 
-//                토큰이름, 내가보유한개수, 그 토큰 1개의 가치, 수수료
-function token(token_name, token_num, token_value, charge) {
-  this.token_name = token_name;
-  this.token_num = token_num
-  this.token_value = token_value;
-  this.charge = charge;
-}
+// //                토큰이름, 내가보유한개수, 그 토큰 1개의 가치, 수수료
+// function token(token_name, token_num, token_value, charge) {
+//   this.token_name = token_name;
+//   this.token_num = token_num
+//   this.token_value = token_value;
+//   this.charge = charge;
+// }
 
 
 // user 객체 생성 (Hash값 가져오기 위해 만듦)
-let newUser = new user("gusdnr205@naver.com", "password", "nickname", false, defaultCoin, tokenArr);
+// let newUser = new user("gusdnr205@naver.com", "password", "nickname", false, defaultCoin, tokenArr);
 
 // user_Hash 값을 로컬스토리지에 저장
-localStorage.setItem("Hash", newUser.user_Hash);
+// localStorage.setItem("Hash", newUser.user_Hash);
 
 // 해쉬값 가져오기
-function getUserHashFromLocalStorage() {
-  const storedData = localStorage.getItem("Hash");
-  return storedData === null ? "" : storedData;
-}
-console.log(newUser.user_Hash);
+// function getUserHashFromLocalStorage() {
+//   const storedData = localStorage.getItem("Hash");
+//   return storedData === null ? "" : storedData;
+// }
+// console.log(newUser.user_Hash);
 
 // 팝업 받기 부분 // + 지갑 주소 해쉬 연결 추가함
 
@@ -407,20 +414,23 @@ function tokenToPay(token_name) {
 
   if (ptt) {
     // 페이 to 토큰
-    swapRate[0].innerHTML = `교환비율 : ${token.token_value}`;
-    swapFee[0].innerHTML = `수수료 : ${token.charge}`;
+    swapRate[0].innerHTML = `토큰가치 : ${token.token_value}`;
+    swapFee[0].innerHTML = `토큰 당 수수료 : ${token.charge}`;
 
     // 계산
     let tokenAmount = Number((amount.value * token.token_value - amount.value * token.charge * 0.01).toFixed(4));
+    alert(tokenAmount);
     finalExchange[0].innerHTML = `페이 : ${amount.value}, ${token.token_name} : ${tokenAmount}`;
     return { ptt: ptt, pay: amount.value, token: [token_name, tokenAmount] };
   } else {
     // 토큰 to 페이
-    swapFee[1].innerHTML = `수수료 : ${token.charge}`;
-    swapRate[1].innerHTML = `교환비율 : ${token.token_value}`;
+    swapFee[1].innerHTML = `토큰 당 수수료 : ${token.charge} %`;
+    swapRate[1].innerHTML = `토큰가치 : ${token.token_value}`;
 
     // 토큰 to 페이 계산식 수정
-    let payAmount = Number((amount.value / (token.token_value) - amount.value * token.charge * 0.01).toFixed(4));
+    // let payAmount = Number((10 * amount.value / (token.token_value) - amount.value * token.charge * 0.01).toFixed(4));
+    let payAmount = Number((token.token_value * amount.value / 10 - amount.value * token.charge * 0.01).toFixed(4));
+    alert(payAmount);
     finalExchange[1].innerHTML = `${token.token_name} : ${amount.value}, 페이 : ${payAmount}`;
     // finalExchange[1].innerHTML=`페이 : ${amount.value}, ${token.token_name} : ${amount.value *1.1574 - amount.value*0.25*0.01}`;
     return { ptt: ptt, pay: payAmount, token: [token_name, amount.value] };
