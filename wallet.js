@@ -406,20 +406,23 @@ function tokenToPay(token_name) {
 
   if (ptt) {
     // 페이 to 토큰
-    swapRate[0].innerHTML = `교환비율 : ${token.token_value}`;
-    swapFee[0].innerHTML = `수수료 : ${token.charge}`;
+    swapRate[0].innerHTML = `토큰가치 : ${token.token_value}`;
+    swapFee[0].innerHTML = `토큰 당 수수료 : ${token.charge}`;
 
     // 계산
     let tokenAmount = Number((amount.value * token.token_value - amount.value * token.charge * 0.01).toFixed(4));
+    alert(tokenAmount);
     finalExchange[0].innerHTML = `페이 : ${amount.value}, ${token.token_name} : ${tokenAmount}`;
     return { ptt: ptt, pay: amount.value, token: [token_name, tokenAmount] };
   } else {
     // 토큰 to 페이
-    swapFee[1].innerHTML = `수수료 : ${token.charge}`;
-    swapRate[1].innerHTML = `교환비율 : ${token.token_value}`;
+    swapFee[1].innerHTML = `토큰 당 수수료 : ${token.charge} %`;
+    swapRate[1].innerHTML = `토큰가치 : ${token.token_value}`;
 
     // 토큰 to 페이 계산식 수정
-    let payAmount = Number((amount.value / (token.token_value) - amount.value * token.charge * 0.01).toFixed(4));
+    // let payAmount = Number((10 * amount.value / (token.token_value) - amount.value * token.charge * 0.01).toFixed(4));
+    let payAmount = Number((token.token_value * amount.value / 10 - amount.value * token.charge * 0.01).toFixed(4));
+    alert(payAmount);
     finalExchange[1].innerHTML = `${token.token_name} : ${amount.value}, 페이 : ${payAmount}`;
     // finalExchange[1].innerHTML=`페이 : ${amount.value}, ${token.token_name} : ${amount.value *1.1574 - amount.value*0.25*0.01}`;
     return { ptt: ptt, pay: payAmount, token: [token_name, amount.value] };
