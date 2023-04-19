@@ -72,31 +72,53 @@
     background-repeat: no-repeat;
     background-size: contain;
 
-    animation: walletAppearing 1s linear forwards, walletMoving 1s linear forwards;
-    animation-delay: 5s, 8s;
+    animation: walletAppearing 1s linear forwards;
+    animation-delay: 5s;
 
     z-index: 10;
     scale: 1;
 }
-.b-wallet-icon-fake{
-    width: 450px;
-    height: 450px;
+.b-wallet-icon-fake1{
+    width: 350px;
+    height: 350px;
 
     position: absolute;
-    top: 44.5%;
-    left: 100%;
+    top: 41.8%;
+    left: 90.55%;
     transform: translate(0,-50%);
 
     background-image: url(./wallet_icon_fake.png);
     background-repeat: no-repeat;
     background-size: contain;
 
-    animation: fakeWalletAppearing 1s linear forwards, walletMoving 1s linear forwards;
-    animation-delay: 6s, 8s;
+    animation: walletMoving 1s linear forwards;
+    animation-delay: 2s;
 
     z-index: 10;
     scale: 1;
-    opacity: 0;
+
+    display: none;
+}
+.b-wallet-icon-fake2{
+    width: 350px;
+    height: 350px;
+
+    position: absolute;
+    top: 41.8%;
+    left: 48.1%;
+    transform: translate(0,-50%);
+
+    background-image: url(./wallet_icon_fake.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    z-index: 10;
+    scale: 1;
+
+    display: none;
+}
+.b-wallet-icon-fake2:hover{
+    cursor: pointer;
 }
 
 .b-moving-box{
@@ -513,13 +535,13 @@
         left: 100%;
     }
     to{
-        left: 90%;
+        left: 90.55%;
     }
 }
 
 @keyframes walletMoving{
     from{
-        left: 90%;
+        left: 90.55%;
     }
     to{
         left: 48.1%;
@@ -544,11 +566,13 @@
     }
 }
 
-@keyframes fakeWalletAppearing{
+@keyframes walletZoomIn{
     from{
-        opacity: 0;
+        scale: 1;
+        opacity: 1;
     }
     to{
-        opacity: 1;
+        scale: 10;
+        opacity: 0;
     }
 }
