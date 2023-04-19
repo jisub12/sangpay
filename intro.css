@@ -36,7 +36,7 @@
 
     animation: lineMoving 1s linear forwards, lineMoving2 1s linear forwards, lineToCenter 1s linear forwards;
     /* lineDisappearing 1s linear forwards */
-    animation-delay: 0s, 6s, 8s, 8s;
+    animation-delay: 0s, 5s, 8s, 8s;
 
     z-index: 0;
 }
@@ -65,7 +65,7 @@
 
     position: absolute;
     top: 41.8%;
-    right: -352px;
+    left: 100%;
     transform: translate(0,-50%);
 
     background-image: url(./wallet_icon.png);
@@ -73,7 +73,7 @@
     background-size: contain;
 
     animation: walletAppearing 1s linear forwards, walletMoving 1s linear forwards;
-    animation-delay: 6s, 8s;
+    animation-delay: 5s, 8s;
 
     z-index: 10;
     scale: 1;
@@ -102,7 +102,7 @@
     scale: 1;
 
     animation: boxMoving 1s linear forwards, boxMoving2 1s linear forwards, boxToCenter 1s linear forwards;
-    animation-delay: 0s, 6s, 8s;
+    animation-delay: 0s, 5s, 8s;
 }
 
 .b-breaking-line1{
@@ -303,7 +303,7 @@
 
     position: absolute;
     top: 30%;
-    left: 250px;
+    left: 20%;
 
     font-size: 40px;
 
@@ -323,7 +323,7 @@
 
     position: absolute;
     top: 45%;
-    left: 250px;
+    left: 20%;
 
     font-size: 40px;
 
@@ -343,7 +343,7 @@
 
     position: absolute;
     top: 60%;
-    left: 250px;
+    left: 20%;
 
     font-size: 40px;
 
@@ -369,7 +369,7 @@
 
     position: absolute;
     top: 50%;
-    left: 265px;
+    left: 130%;
     transform: translate(0,-50%) rotate(45deg);
 
     z-index: 2;
@@ -493,19 +493,19 @@
 
 @keyframes walletAppearing{
     from{
-        right: -352px;
+        left: 100%;
     }
     to{
-        right: -15%;
+        left: 90%;
     }
 }
 
 @keyframes walletMoving{
     from{
-        right: -30%;
+        left: 90%;
     }
     to{
-        right: 25.5%;
+        left: 48.1%;
     }
 }
 
