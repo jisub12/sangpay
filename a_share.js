@@ -157,6 +157,10 @@ function loginUser(id, pw) {
         nowuser = cuurent_user;
         alert("로그인에 성공하셨습니다.")
         expireDate=new Date();
+
+        location.href = './wallet.html';
+        
+        // 쿠키 생성
         userLogin();
         console.log(nowuser)
       }
