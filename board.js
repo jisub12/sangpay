@@ -155,6 +155,20 @@ function render(start, end, pagenum) {
     user.textContent = `작성자`;
     date.textContent = `작성일`;
 
+    no.style.border = "1px solid";
+
+    title.style.borderTop = "1px solid";
+    title.style.borderRight = "1px solid";
+    title.style.borderBottom = "1px solid";
+
+    user.style.borderTop = "1px solid";
+    user.style.borderRight = "1px solid";
+    user.style.borderBottom = "1px solid";
+
+    date.style.borderTop = "1px solid";
+    date.style.borderRight = "1px solid";
+    date.style.borderBottom = "1px solid";
+
     ul.append(no, title, user, date);
     boardListDiv.append(ul);
 
@@ -186,6 +200,12 @@ function render(start, end, pagenum) {
         title.textContent = `${board.title}`;
         user.textContent = `${board.user}`;
         date.textContent = `${board.date}`;
+
+        no.style.borderRight = "1px dashed";
+
+        title.style.borderRight = "1px dashed";
+
+        user.style.borderRight = "1px dashed";
 
         title.addEventListener("click", function () {
             location.href = `board_detail.html?${board.no}`;

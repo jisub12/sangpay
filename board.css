@@ -54,9 +54,13 @@ body{
     padding-top: 20px;
 }
 
-/* .a-center {
-    margin: 0 auto;
-} */
+.a-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0;
+}
 
 /* .a-center {
     text-align: center;
@@ -84,6 +88,9 @@ body{
     height: 550px;
     /* display: flex;
     flex-direction: column; */
+    padding-left: 5%;
+
+
     position: relative;
 }
 
@@ -96,15 +103,18 @@ body{
     /* width: 430px; */
     width: 100%;
     display: block;
+    padding: 0;
+    margin: auto;
 
+    box-sizing: border-box;
 }
 
 .a-board-tablelist li {
     float: left;
     text-align: center;
     list-style:none;
-    border:solid 1px;
-
+    /* border:solid 1px; */
+    box-sizing: border-box;
 }
 .a-w1 {width:10%; }
 .a-w2 {width:25%; }
@@ -129,14 +139,20 @@ body{
 
 .a-pagenum-div {
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
 .a-board-pagenum {
-    height: 100px;
+    /* height: 100px; */
     /* text-align: center; */
     display: flex;
+    justify-content: center;
+    align-items: center;
     /* margin-top: 20px; */
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .a-numbtn {
@@ -144,14 +160,17 @@ body{
 }
 
 .a-numbtn:checked+label {
-    color: aqua;
+    scale: 1.2;
+    text-decoration: underline;
 }
 
 .a-board-pagenum label {
-    margin-right: 40px;
+    /* margin-right: 40px; */
+    margin: 5px;
     width: 20px;
     height: 20px;
-    border: 1px solid;
+    /* border: 1px solid; */
+    /* text-decoration: underline; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -168,6 +187,8 @@ body{
     height: 500px; */
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     text-align: center;
     margin-top: 20px;
@@ -209,10 +230,20 @@ body{
     /* width: 90%; */
 }
 
-.a-box {
+.a-box-edit{
     padding: 20px;
     padding-left: 5px;
     padding-bottom: 5px;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.a-box {
+    padding-top: 20px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
 
     display: flex;
     flex-wrap: wrap;
