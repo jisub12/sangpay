@@ -6,25 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-	<link rel="stylesheet" type="text/css" href="./signuppage.css">
+    <link rel="stylesheet" type="text/css" href="./signuppage.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 </head>
 <style>
     .form-group {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
     }
+
     .form-group label {
-      font-size: 16px;
-      margin-bottom: 5px;
+        font-size: 16px;
+        margin-bottom: 5px;
     }
+
     .form-group input {
-      font-size: 16px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+        font-size: 16px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
     }
-  </style>
+    canvas{z-index:10;pointer-events: none;position: fixed;top: 0;transform: scale(1.1);}
+
+</style>
+
 <body class="whole-mypage">
     <div class="header">
         <div class="b-sangpay-logo">
@@ -48,10 +56,10 @@
                 <div class="j-blank"></div>
                 <p>아이디</p>
                 <div class="j-signupflexbox" style="display: flex; flex-wrap: wrap;">
-                        <input  type="text" id="id" name="id"><br>
-                        <div class="checkoverlap">중복확인</div>
-                    </div>
-                    <div id="id-validation" class="validation"></div>
+                    <input type="text" id="id" name="id"><br>
+                    <div class="checkoverlap">중복확인</div>
+                </div>
+                <div id="id-validation" class="validation"></div>
                 <p>비밀번호</p>
                 <div>
                     <input type="password" id="password" name="password"><br>
@@ -63,41 +71,63 @@
                     <div class="check-nickname-overlap">중복확인</div>
                 </div>
                 <div id="nickname-validation" class="validation"></div>
-                <div class="submitNewUserBtnBox" onclick="newUserBtn()">
+                <div class="submitNewUserBtnBox" id="h-gusdnr" onclick="newUserBtn()">
                     가입하기
                 </div>
             </form>
         </div>
-        
+        <div class="h-welcomepopup">
+            <div class="buttonContainer">
+                <button class="canvasBtn" id="stopButton">끄기</button>
+                <button style="display: none;" class="canvasBtn" id="startButton">켜기</button>	
+            </div>
+            <div>
+                <p>
+                    축하드립니다 성공적으로 신청이 되었습니다.
+                </p> 
+            </div>
+            <div>
+                <p class="h-adminallow"> 관리자의 승인을 기다려주세요. </p>
+            </div>
+            <div>
+                <a class="h-Tologinpage" href="" >로그인페이지로</a>
+            </div>
+            <canvas id="canvas"></canvas>
+        </div>
+
+
+
     </div>
+    </div>
+
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js">
-    
+
 </script>
 <script>
-   
+
     // 암호화할 문자열을 지정합니다.
     const message = "Hello, world!";
-  
+
     // MD5 알고리즘을 사용하여 문자열을 암호화합니다.
     const encrypted = CryptoJS.MD5(message).toString();
 
     //코인 생성    토큰이름,내가보유한개수,그토큰 1개의 가치,최소거래량 ,수수료
-    let bitcoin=new token("bitcoin",0,2,1,0.1);
+    let bitcoin = new token("bitcoin", 0, 2, 1, 0.1);
 
     // 결과를 출력합니다.
-    function user(user_id,user_pw,user_nickName,user_allow=false,coin,token){
-        this.user_id=user_id;
-        this.user_pw=user_pw;
-        this.user_nickName=user_nickName;
-        this.user_allow=user_allow;
-        this.user_Hash= CryptoJS.MD5(this.user_id).toString();
-        this.coin=coin;
-        this.token=new Array(10);
-        this.token[0]=bitcoin
-        this.token[1]=
-        this.token[2]
+    function user(user_id, user_pw, user_nickName, user_allow = false, coin, token) {
+        this.user_id = user_id;
+        this.user_pw = user_pw;
+        this.user_nickName = user_nickName;
+        this.user_allow = user_allow;
+        this.user_Hash = CryptoJS.MD5(this.user_id).toString();
+        this.coin = coin;
+        this.token = new Array(10);
+        this.token[0] = bitcoin
+        this.token[1] =
+            this.token[2]
         this.token[3]
         this.token[4]
         this.token[5]
@@ -107,26 +137,23 @@
         this.token[9]
     }
 
-    function coin(coin_name,coin_num,coin_value){
-        this.coin_name=coin_name;
-        this.coin_num=coin_num;
-        this.coin_value=coin_value
+    function coin(coin_name, coin_num, coin_value) {
+        this.coin_name = coin_name;
+        this.coin_num = coin_num;
+        this.coin_value = coin_value
     }
-    function token(token_name,token_num,token_value,minTradingQuan,charge){
-        this.token_name=token_name;
-        this.token_num=token_num
-        this.token_value=token_value;
-        this.minTradingQuan=minTradingQuan;
-        this.charge=charge;
+    function token(token_name, token_num, token_value, minTradingQuan, charge) {
+        this.token_name = token_name;
+        this.token_num = token_num
+        this.token_value = token_value;
+        this.minTradingQuan = minTradingQuan;
+        this.charge = charge;
     }
-    const defaultCoin=new coin("sangapy",100,10);
+    const defaultCoin = new coin("sangapy", 100, 10);
 
-   
 
-  
-
-    
-  </script>
-  <script src="./signuppage.js"></script>
+    console.log("dd");
+</script>
+<script src="./signuppage.js"></script>
 
 </html>
