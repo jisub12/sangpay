@@ -625,17 +625,27 @@ function addClickListeners() {
 // 페이지 로드 시 토큰 목록을 표시합니다.
 
 window.addEventListener("DOMContentLoaded", () => {
-  displayTokens("main-token-list");
-  displayTokens2("tokentopay-token-list");
-  displayTokens3("paytotoken-token-list");
-  displayCoin();
-  displayCoinInpaytoToken(); // 801~ 804 부분 (페이to토큰 팝업 안에 코인수량표기)
+  let user = JSON.parse(window.localStorage.getItem("user_" + getCurrentUser()));
+  // 승인된 회원이라면
+  if (user.user_allow) {
+    displayTokens("main-token-list");
+    displayTokens2("tokentopay-token-list");
+    displayTokens3("paytotoken-token-list");
+    displayCoin();
+    displayCoinInpaytoToken(); // 801~ 804 부분 (페이to토큰 팝업 안에 코인수량표기)
 
-  // li 클릭 부분 이벤트 함수 추가
-  addClickListeners();
+    // li 클릭 부분 이벤트 함수 추가
+    addClickListeners();
 
-  // 임의로 로컬스토리지에 토큰 추가
-  setTokenLocal();
+    // 임의로 로컬스토리지에 토큰 추가
+    setTokenLocal();
+  } else {
+    // 회원 승인 안됐다면
+    alert('회원가입 승인 기다리세요');
+    // 로그인페이지로 이동
+    location.href = './loginpage.html';
+  }
+
 });
 
 
@@ -802,7 +812,7 @@ function getUserList() {
 function displayCoin() {
   document.querySelector('#sangpay-amount').innerHTML = JSON.parse(window.localStorage.getItem(`user_` + getCurrentUser())).coin.coin_num;
 }
-// 화면에 사용자 보유중인 sangpay 값 출력하는 함수 // (페이 to 토큰 팝업창 안에) 
+// 화면에 사용자 보유중인 sangpay 값 출력하는 함수 // (페이 to 토큰 팝업창 안에)
 function displayCoinInpaytoToken() {
   document.querySelector('#paytotoken-amount').innerHTML = JSON.parse(window.localStorage.getItem(`user_` + getCurrentUser())).coin.coin_num;
 }
