@@ -115,3 +115,20 @@ function testNickname(user, tempNick) {
 
     return true;
 }
+
+// 복사 기능 
+JSON.parse(window.localStorage.getItem("user_" + getCurrentUser())).user_Hash;
+console.log(JSON.parse(window.localStorage.getItem("user_" + getCurrentUser())).user_Hash);
+
+
+function copyAddress() {
+  let userHash = JSON.parse(window.localStorage.getItem("user_" + getCurrentUser())).user_Hash;;
+
+  const el = document.createElement('textarea');
+  el.value = userHash;
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
+  alert('지갑 주소가 복사되었습니다.\n' + userHash);
+}
