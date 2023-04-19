@@ -466,11 +466,14 @@ setTimeout(() => {
   h_adminallodw.style.animation = 'fadeIn 1s ease-in-out';
   // h_adminallodw.style.opacity = 1;
   h_adminallodw.classList.add('isactive')
-}, 3000);
+}, 2000);
 
 setTimeout(() => {
-  tologinpage.style.display = 'block';
+  tologinpage.style.display = 'flex';
+  tologinpage.style.justifyContent = "center";
+  tologinpage.style.alignItems = "center";
+  tologinpage.style.border = "1px solid #033104";
   tologinpage.style.animation = 'fadeIn 1s ease-in-out';
   tologinpage.style.opacity = 1;
-}, 5000);
+}, 3000);
 
