@@ -2,6 +2,9 @@ var idInput = document.getElementById("id");
 var idValidation = document.getElementById("id-validation");
 var passwordInput = document.getElementById("password");
 var passwordValidation = document.getElementById("password-validation");
+let pwcfInput = document.getElementById("pwcf");
+let pwcfValidation = document.getElementById("pwcf-validation");
+
 var nicknameValidation = document.getElementById("nickname-validation");
 var nickname = document.getElementById("nickname");
 
@@ -10,9 +13,12 @@ let checkNick = document.querySelector('.check-nickname-overlap');
 
 let welcomeNewuser = document.querySelector(".submitNewUserBtnBox");
 
+let welcomeNewuser = document.querySelector(".submitNewUserBtnBox");
+
 let idpass = false;
 let nickpass = false;
 let pwpass = false;
+let pwcf = false;
 
 checkId.addEventListener("click", function () {
   // for (let i = 0; i < localStorage.length; i++) {
@@ -71,8 +77,8 @@ checkId.addEventListener("click", function () {
   }
   console.log("dfdsfdfsdfdsfd", user);
 });
-
 checkNick.addEventListener("click", function () {
+
   for (let i = 0; i < localStorage.length; i++) {
     let key = localStorage.key(i);
     console.log(key);
@@ -82,8 +88,10 @@ checkNick.addEventListener("click", function () {
       if (nicknameValue != cuurent_user.user_nickName) {
         nickpass = true;
         if (nicknameValue.length != 0)
-          nicknameValidation.innerHTML = "통과되엇습니다.";
-        nicknameValidation.style.color = "blue";
+
+          nicknameValidation.innerHTML = "사용 가능한 닉네임입니다.";
+          nicknameValidation.style.color = "blue";
+
       }
       if (nicknameValue == cuurent_user.user_nickName) {
         nicknameValidation.innerHTML = "중복된 닉네임이 존재합니다.";
@@ -112,36 +120,48 @@ idInput.addEventListener("input", function () {
   } else {
     idValidation.innerHTML = "";
   }
+  idpass = false;
 });
+
 var passwordValue;
 passwordInput.addEventListener("input", function () {
-  passwordValue = passwordInput.value;
-  if (passwordValue.length < 8 || passwordValue.length > 20) {
-    passwordValidation.innerHTML = "비밀번호는 8자 이상 20자 이하여야 합니다.";
-  } else if (
-    !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d~!@#$%^&*()_+|{}[\]:;'<>,.?/`-]+$/.test(
-      passwordValue
-    )
-  ) {
-    passwordValidation.innerHTML =
-      "비밀번호는 영문 대/소문자, 숫자, 특수문자(~!@#$%^&*()_+|{}[]:;'<>,.?/`) 중 3가지 이상을 포함해야 합니다.";
-  } else {
-    passwordValidation.innerHTML = "";
-    pwpass = true;
-  }
+  pwpass = checkPasswordInput(passwordInput, passwordValidation);
+  pwcf = checkpwchInput(passwordInput, pwcfInput, pwcfValidation);
 });
+
+// 비밀번호 확인 input에 이벤트리스너 추가
+pwcfInput.addEventListener("input", function() {
+  pwcf = checkpwchInput(passwordInput, pwcfInput, pwcfValidation);
+});
+
 
 let nicknameValue;
 nickname.addEventListener("input", function () {
-  nicknameValue = nickname.value;
-  console.log(nickname.value);
-  if (nicknameValue.length < 2 || nicknameValue.length > 10) {
-    nicknameValidation.innerHTML = "닉네임은 2자이상 10자 이하여야합니다.";
-    nicknameValidation.style.color = "red";
-  } else {
-    nicknameValidation.innerHTML = "";
-  }
+  idpass = false;
+  checkNicknameInput(nickname, nicknameValidation);
 });
+// nickname.addEventListener("input", function () {
+//   nicknameValue = nickname.value;
+//   console.log(nickname.value);
+//   if (nicknameValue.length < 2 || nicknameValue.length > 10) {
+//     nicknameValidation.innerHTML = "닉네임은 2자이상 10자 이하여야합니다.";
+//     nicknameValidation.style.color = "red";
+//   } else {
+//     nicknameValidation.innerHTML = "";
+//   }
+// });
+
+// // 닉네임 입력할때마다 변경될 함수
+// function nicknameInput(nickname, nicknameValidation) {
+//   nicknameValue = nickname.value;
+//   console.log(nickname.value);
+//   if (nicknameValue.length < 2 || nicknameValue.length > 10) {
+//     nicknameValidation.innerHTML = "닉네임은 2자이상 10자 이하여야합니다.";
+//     nicknameValidation.style.color = "red";
+//   } else {
+//     nicknameValidation.innerHTML = "";
+//   }
+// }
 
 // function newUserBtn(
 //   user_id = idValue,
@@ -198,6 +218,7 @@ window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       document.querySelector('#stopButton').click();
     }, 6000);
+
   }
 
 });
@@ -421,8 +442,6 @@ window.requestAnimFrame = (function () {
     };
 })();
 
-
-
 // $(document).ready(function () {
 //   //티스토리 공감버튼 이벤트
 //   function reAction() {
@@ -438,6 +457,7 @@ window.requestAnimFrame = (function () {
 // });
 
 
+
 let tologinpage = document.querySelector('.h-Tologinpage');
 let h_adminallodw = document.querySelector('.h-adminallow');
 
@@ -446,14 +466,11 @@ setTimeout(() => {
   h_adminallodw.style.animation = 'fadeIn 1s ease-in-out';
   // h_adminallodw.style.opacity = 1;
   h_adminallodw.classList.add('isactive')
-
-
 }, 3000);
 
 setTimeout(() => {
   tologinpage.style.display = 'block';
   tologinpage.style.animation = 'fadeIn 1s ease-in-out';
   tologinpage.style.opacity = 1;
-
 }, 5000);
 

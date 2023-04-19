@@ -150,6 +150,7 @@ console.log(JSON.parse(window.localStorage.getItem("user_" + getCurrentUser())).
 
 function copyAddress() {
   let userHash = JSON.parse(window.localStorage.getItem("user_" + getCurrentUser())).user_Hash;;
+
   const el = document.createElement('textarea');
   el.value = userHash;
   document.body.appendChild(el);

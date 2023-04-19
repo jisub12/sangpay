@@ -29,6 +29,12 @@ function paginate(list) {
     }
 
     console.log("페이지네이션");
+
+    if (!list) {
+        window.localStorage.setItem('board', JSON.stringify([]));
+        list = JSON.parse(window.localStorage.getItem('board'));
+    }
+
     let listLength = list.length;
 
     // 페이지 번호를 표시해줄 div
@@ -51,6 +57,7 @@ function paginate(list) {
         numbtnLabel.textContent = i;
         numbtnLabel.setAttribute("for", i);
         numbtnLabel.setAttribute("name", "pagenum");
+        numbtnLabel.setAttribute("class", "b-pagination-num");
 
         // 페이지 번호를 표시해줄 div에 페이지 번호 버튼 추가
         pageNumDiv.append(numbtn, numbtnLabel);
@@ -123,10 +130,11 @@ function goNext(listLength) {
 
 // 게시판 출력
 function render(start, end, pagenum) {
-    let boardList = JSON.parse(window.localStorage.getItem("board"));
 
-    // 가장 최근 게시물이 먼저 출력되게
-    boardList.reverse();
+    let boardList = JSON.parse(window.localStorage.getItem("board"));
+    if (end >= boardList.length) {
+        end = boardList.length-1;
+    }
 
     let boardListDiv = document.querySelector('.a-board-list');
     boardListDiv.innerHTML = "";
@@ -148,8 +156,33 @@ function render(start, end, pagenum) {
     user.textContent = `작성자`;
     date.textContent = `작성일`;
 
+    no.style.border = "1px solid";
+    no.style.backgroundColor = "lightgray";
+
+    title.style.borderTop = "1px solid";
+    title.style.borderRight = "1px solid";
+    title.style.borderBottom = "1px solid";
+    title.style.backgroundColor = "lightgray";
+
+    user.style.borderTop = "1px solid";
+    user.style.borderRight = "1px solid";
+    user.style.borderBottom = "1px solid";
+    user.style.backgroundColor = "lightgray";
+
+    date.style.borderTop = "1px solid";
+    date.style.borderRight = "1px solid";
+    date.style.borderBottom = "1px solid";
+    date.style.backgroundColor = "lightgray";
+
     ul.append(no, title, user, date);
     boardListDiv.append(ul);
+
+    if (boardList.length != 0) {
+        // 가장 최근 게시물이 먼저 출력되게
+        boardList.reverse();    
+
+    
+
 
     for (let i = start; i <= end; i++) {
         // board 클릭하면 상세페이지로 이동하는 부분 추가해야함
@@ -173,6 +206,12 @@ function render(start, end, pagenum) {
         user.textContent = `${board.user}`;
         date.textContent = `${board.date}`;
 
+        no.style.borderRight = "1px dashed";
+
+        title.style.borderRight = "1px dashed";
+
+        user.style.borderRight = "1px dashed";
+
         title.addEventListener("click", function () {
             location.href = `board_detail.html?${board.no}`;
         });
@@ -183,6 +222,8 @@ function render(start, end, pagenum) {
 
     // 이전/다음 버튼 설정
     pageBtnRender(boardList.length, pagenum);
+
+    }
 }
 
 function pageBtnRender(listLength, pagenum) { // 페이지 이전/다음 버튼 display값 설정
@@ -193,18 +234,18 @@ function pageBtnRender(listLength, pagenum) { // 페이지 이전/다음 버튼 
 
     // 현재 첫번째 페이지라면 이전 버튼 출력 X
     if (pagenum == 1) {
-        prevBtn.style.display = "none";
-        nextBtn.style.display = "block";
+        prevBtn.style.opacity = "0";
+        nextBtn.style.opacity = "1";
     }
     // 현재 마지막 페이지라면 다음 버튼 출력 X
     if (pagenum == totalPage) {
-        nextBtn.style.display = "none";
-        prevBtn.style.display = "block";
+        nextBtn.style.opacity = "0";
+        prevBtn.style.opacity = "1";
     }
 
     if (pagenum != 1 && pagenum != totalPage) {
-        prevBtn.style.display = "block";
-        nextBtn.style.display = "block";
+        prevBtn.style.opacity = "1";
+        nextBtn.style.opacity = "1";
     }
 
     // 현재 페이지로 체크되게
