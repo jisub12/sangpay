@@ -144,8 +144,13 @@
 
 // 팝업 받기 부분 // + 지갑 주소 해쉬 연결 추가함
 
+JSON.parse(window.localStorage.getItem("user_" + getCurrentUser())).user_Hash;
+console.log(JSON.parse(window.localStorage.getItem("user_" + getCurrentUser())).user_Hash);
+
+
 function copyAddress() {
-  let userHash;
+  let userHash = JSON.parse(window.localStorage.getItem("user_" + getCurrentUser())).user_Hash;;
+
   const el = document.createElement('textarea');
   el.value = userHash;
   document.body.appendChild(el);
@@ -184,6 +189,7 @@ let sendCloseButton = document.querySelector(".send-close-button");
 
 sendCloseButton.onclick = function (){
   popup1.style.display = "none";
+  document.querySelector("#send-amount").value = "";
 };
 
 // 팝업 스왑 부분 //
@@ -201,6 +207,14 @@ swapBtn.onclick = function () {
   // 페이 to 토큰
   ptt = true;
 }
+ // 페이 투 토큰 팝업창 안에 취소하기 버튼
+let swapCancel = document.querySelector(".swap-cancel");
+
+swapCancel.onclick = function()
+ {
+  popupSwap.style.display = "none";
+  document.querySelector("#swap1-sangpay-amount").value = "";
+ }
 
 
 let swapExecute = document.querySelector(".swap-execute");
@@ -228,6 +242,14 @@ let swapExecute2 = document.querySelector(".swap-execute2");
 swapExecute2.onclick = function () {
   popupSwap2.style.display = "none";
 };
+
+// 토큰 투 페이 팝업창 안에 취소하기 버튼
+let swapCancel2 = document.querySelector(".swap-cancel2");
+
+swapCancel2.onclick = function(){
+  popupSwap2.style.display = "none";
+  document.querySelector("#swap2-token-amount").value = "";
+}
 
 // 교환 버튼 클릭 이벤트
 
@@ -331,7 +353,7 @@ function displayTokens2() {
 
     listItem.innerHTML = `
       <span class="token-name" style="margin-right:10px">${token.token_name}</span>
-      <span class="token-amount">${token.token_num.toFixed(4)}</span>
+      <span class="token-amount" style="flex-direction: column">${token.token_num.toFixed(4)}</span>
 `;
     tokenList.appendChild(listItem);
   });
@@ -418,7 +440,7 @@ function tokenToPay(token_name) {
     swapFee[0].innerHTML = `토큰 당 수수료 : ${token.charge}`;
 
     // 계산
-    let tokenAmount = Number((amount.value * token.token_value - amount.value * token.charge * 0.01).toFixed(4));
+    let tokenAmount = Number((amount.value * 10/ token.token_value - amount.value * token.charge * 0.01).toFixed(4));
     alert(tokenAmount);
     finalExchange[0].innerHTML = `페이 : ${amount.value}, ${token.token_name} : ${tokenAmount}`;
     return { ptt: ptt, pay: amount.value, token: [token_name, tokenAmount] };
@@ -430,7 +452,7 @@ function tokenToPay(token_name) {
     // 토큰 to 페이 계산식 수정
     // let payAmount = Number((10 * amount.value / (token.token_value) - amount.value * token.charge * 0.01).toFixed(4));
     let payAmount = Number((token.token_value * amount.value / 10 - amount.value * token.charge * 0.01).toFixed(4));
-    alert(payAmount);
+    // alert(payAmount);
     finalExchange[1].innerHTML = `${token.token_name} : ${amount.value}, 페이 : ${payAmount}`;
     // finalExchange[1].innerHTML=`페이 : ${amount.value}, ${token.token_name} : ${amount.value *1.1574 - amount.value*0.25*0.01}`;
     return { ptt: ptt, pay: payAmount, token: [token_name, amount.value] };
@@ -551,7 +573,7 @@ document.querySelector("#swap1-sangpay-amount").addEventListener('change', funct
 });
 
 // 교환 -> 페이/토큰 입력했을때 실시간으로 반영되게
-document.querySelector("#swap2-token-amount").addEventListener('change', function() {
+document.querySelector("#swap2-token-amount").addEventListener('input', function() {
   let token;
   let tokenListItems = document.querySelectorAll(".token-list li");
   tokenListItems.forEach(function(item) {
@@ -603,16 +625,27 @@ function addClickListeners() {
 // 페이지 로드 시 토큰 목록을 표시합니다.
 
 window.addEventListener("DOMContentLoaded", () => {
-  displayTokens("main-token-list");
-  displayTokens2("tokentopay-token-list");
-  displayTokens3("paytotoken-token-list");
-  displayCoin();
+  let user = JSON.parse(window.localStorage.getItem("user_" + getCurrentUser()));
+  // 승인된 회원이라면
+  if (user.user_allow) {
+    displayTokens("main-token-list");
+    displayTokens2("tokentopay-token-list");
+    displayTokens3("paytotoken-token-list");
+    displayCoin();
+    displayCoinInpaytoToken(); // 801~ 804 부분 (페이to토큰 팝업 안에 코인수량표기)
 
-  // li 클릭 부분 이벤트 함수 추가
-  addClickListeners();
+    // li 클릭 부분 이벤트 함수 추가
+    addClickListeners();
 
-  // 임의로 로컬스토리지에 토큰 추가
-  setTokenLocal();
+    // 임의로 로컬스토리지에 토큰 추가
+    setTokenLocal();
+  } else {
+    // 회원 승인 안됐다면
+    alert('회원가입 승인 기다리세요');
+    // 로그인페이지로 이동
+    location.href = './loginpage.html';
+  }
+
 });
 
 
@@ -778,4 +811,8 @@ function getUserList() {
 // 화면에 사용자 보유중인 sangpay 값 출력하는 함수
 function displayCoin() {
   document.querySelector('#sangpay-amount').innerHTML = JSON.parse(window.localStorage.getItem(`user_` + getCurrentUser())).coin.coin_num;
+}
+// 화면에 사용자 보유중인 sangpay 값 출력하는 함수 // (페이 to 토큰 팝업창 안에)
+function displayCoinInpaytoToken() {
+  document.querySelector('#paytotoken-amount').innerHTML = JSON.parse(window.localStorage.getItem(`user_` + getCurrentUser())).coin.coin_num;
 }

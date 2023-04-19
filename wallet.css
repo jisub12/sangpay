@@ -187,7 +187,8 @@ main {
     cursor: pointer;
 }
 /* 팝업 닫기 버튼들 */
-.h-close-button , .h-send-button, .swap-execute, .swap-execute2, .exchange-close-button , .send-close-button{
+.h-close-button , .h-send-button, .swap-execute, .swap-execute2, .exchange-close-button , .send-close-button
+, .swap-cancel , .swap-cancel2{
     background-color: #4CAF50;
     border: none;
     color: white;
@@ -237,7 +238,7 @@ main {
 
 .swap-input-wrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
 }
 
@@ -245,9 +246,10 @@ main {
     width: 50%;
     padding: 8px;
     font-size: 14px;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid #ccc;
     gap: 5px;
+    text-align: center;
 }
 
 /* 스왑 안에 토큰 10개 */
@@ -264,6 +266,7 @@ main {
 
 .token-list li {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #f1f1f1;
@@ -326,4 +329,10 @@ main {
     flex-direction: column;
     gap: 10px;
     width: 100%;
+  }
+
+  /* 교환 버튼 안에 페이 투 토큰 팝업창 안에 취소하기 버튼 */
+  .button-container {
+    display: flex;
+    justify-content: space-between;
   }
