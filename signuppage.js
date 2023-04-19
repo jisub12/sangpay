@@ -2,6 +2,9 @@ var idInput = document.getElementById("id");
 var idValidation = document.getElementById("id-validation");
 var passwordInput = document.getElementById("password");
 var passwordValidation = document.getElementById("password-validation");
+let pwcfInput = document.getElementById("pwcf");
+let pwcfValidation = document.getElementById("pwcf-validation");
+
 var nicknameValidation = document.getElementById("nickname-validation");
 var nickname = document.getElementById("nickname");
 
@@ -13,6 +16,7 @@ let welcomeNewuser = document.querySelector(".submitNewUserBtnBox");
 let idpass = false;
 let nickpass = false;
 let pwpass = false;
+let pwcf = false;
 
 checkId.addEventListener("click", function () {
   // for (let i = 0; i < localStorage.length; i++) {
@@ -112,36 +116,48 @@ idInput.addEventListener("input", function () {
   } else {
     idValidation.innerHTML = "";
   }
+  idpass = false;
 });
+
 var passwordValue;
 passwordInput.addEventListener("input", function () {
-  passwordValue = passwordInput.value;
-  if (passwordValue.length < 8 || passwordValue.length > 20) {
-    passwordValidation.innerHTML = "비밀번호는 8자 이상 20자 이하여야 합니다.";
-  } else if (
-    !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d~!@#$%^&*()_+|{}[\]:;'<>,.?/`-]+$/.test(
-      passwordValue
-    )
-  ) {
-    passwordValidation.innerHTML =
-      "비밀번호는 영문 대/소문자, 숫자, 특수문자(~!@#$%^&*()_+|{}[]:;'<>,.?/`) 중 3가지 이상을 포함해야 합니다.";
-  } else {
-    passwordValidation.innerHTML = "";
-    pwpass = true;
-  }
+  pwpass = checkPasswordInput(passwordInput, passwordValidation);
+  pwcf = checkpwchInput(passwordInput, pwcfInput, pwcfValidation);
 });
+
+// 비밀번호 확인 input에 이벤트리스너 추가
+pwcfInput.addEventListener("input", function() {
+  pwcf = checkpwchInput(passwordInput, pwcfInput, pwcfValidation);
+});
+
 
 let nicknameValue;
 nickname.addEventListener("input", function () {
-  nicknameValue = nickname.value;
-  console.log(nickname.value);
-  if (nicknameValue.length < 2 || nicknameValue.length > 10) {
-    nicknameValidation.innerHTML = "닉네임은 2자이상 10자 이하여야합니다.";
-    nicknameValidation.style.color = "red";
-  } else {
-    nicknameValidation.innerHTML = "";
-  }
+  idpass = false;
+  checkNicknameInput(nickname, nicknameValidation);
 });
+// nickname.addEventListener("input", function () {
+//   nicknameValue = nickname.value;
+//   console.log(nickname.value);
+//   if (nicknameValue.length < 2 || nicknameValue.length > 10) {
+//     nicknameValidation.innerHTML = "닉네임은 2자이상 10자 이하여야합니다.";
+//     nicknameValidation.style.color = "red";
+//   } else {
+//     nicknameValidation.innerHTML = "";
+//   }
+// });
+
+// // 닉네임 입력할때마다 변경될 함수
+// function nicknameInput(nickname, nicknameValidation) {
+//   nicknameValue = nickname.value;
+//   console.log(nickname.value);
+//   if (nicknameValue.length < 2 || nicknameValue.length > 10) {
+//     nicknameValidation.innerHTML = "닉네임은 2자이상 10자 이하여야합니다.";
+//     nicknameValidation.style.color = "red";
+//   } else {
+//     nicknameValidation.innerHTML = "";
+//   }
+// }
 
 // function newUserBtn(
 //   user_id = idValue,
