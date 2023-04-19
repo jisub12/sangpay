@@ -78,8 +78,25 @@
     z-index: 10;
     scale: 1;
 }
-.b-wallet-icon:hover{
-    cursor: pointer;
+.b-wallet-icon-fake{
+    width: 450px;
+    height: 450px;
+
+    position: absolute;
+    top: 44.5%;
+    left: 100%;
+    transform: translate(0,-50%);
+
+    background-image: url(./wallet_icon_fake.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    animation: fakeWalletAppearing 1s linear forwards, walletMoving 1s linear forwards;
+    animation-delay: 6s, 8s;
+
+    z-index: 10;
+    scale: 1;
+    opacity: 0;
 }
 
 .b-moving-box{
@@ -519,6 +536,15 @@
 }
 
 @keyframes textFadeIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes fakeWalletAppearing{
     from{
         opacity: 0;
     }
