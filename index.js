@@ -1,4 +1,7 @@
-
+let wholePage = document.querySelector(".whole-mypage");
+window.onload = function(){
+  wholePage.style.animation = "mainLoginPageFadeIn 1s ease forwards";
+}
 
 
 // 입력 필드의 기본값을 삭제하고, 포커스가 없을 경우에만 다시 표시합니다.
@@ -268,21 +271,21 @@ function extensionTime(){
 // expireDate.setTime(expireDate.getTime() + 10 * 60 * 1000); 10분
 
 
-let mainLoginPage = document.querySelector(".whole-mypage");
-let mainLoginPageHeader = document.querySelector(".header");
-let mainLoginPageTitle = document.querySelector(".b-login-page-title");
-let walletIntro = document.querySelector(".b-wallet-intro");
+// let mainLoginPage = document.querySelector(".whole-mypage");
+// let mainLoginPageHeader = document.querySelector(".header");
+// let mainLoginPageTitle = document.querySelector(".b-login-page-title");
+// let walletIntro = document.querySelector(".b-wallet-intro");
 
-mainLoginPage.style.display = "none";
+// mainLoginPage.style.display = "none";
 
-let walletIcon = document.querySelector(".b-wallet-icon");
-let nevercoin = document.querySelector(".b-moving-box");
-walletIcon.onclick = function(){
-  nevercoin.style.animation = "walletAndCoinFadeOut 1s ease forwards";
-  walletIcon.style.animation = "walletAndCoinFadeOut 1s ease forwards";
-  walletIntro.style.display = "none";
-  // walletIntro.style.animation = "walletIntroFadeOut 1s ease forwards";
-  mainLoginPage.style.display = "block";
-  mainLoginPage.style.animation = "mainLoginPageFadeIn 1s ease forwards";
-  mainLoginPage.style.animationDelay = "1s";
-}
+// let walletIcon = document.querySelector(".b-wallet-icon");
+// let nevercoin = document.querySelector(".b-moving-box");
+// walletIcon.onclick = function(){
+//   nevercoin.style.animation = "walletAndCoinFadeOut 1s ease forwards";
+//   walletIcon.style.animation = "walletAndCoinFadeOut 1s ease forwards";
+//   walletIntro.style.display = "none";
+//   // walletIntro.style.animation = "walletIntroFadeOut 1s ease forwards";
+//   mainLoginPage.style.display = "block";
+//   mainLoginPage.style.animation = "mainLoginPageFadeIn 1s ease forwards";
+//   mainLoginPage.style.animationDelay = "1s";
+// }

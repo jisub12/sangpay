@@ -82,8 +82,8 @@ checkNick.addEventListener("click", function () {
       if (nicknameValue != cuurent_user.user_nickName) {
         nickpass = true;
         if (nicknameValue.length != 0)
-          nicknameValidation.innerHTML = "통과되엇습니다.";
-        nicknameValidation.style.color = "blue";
+          nicknameValidation.innerHTML = "사용 가능한 닉네임입니다.";
+          nicknameValidation.style.color = "blue";
       }
       if (nicknameValue == cuurent_user.user_nickName) {
         nicknameValidation.innerHTML = "중복된 닉네임이 존재합니다.";

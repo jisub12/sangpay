@@ -2,6 +2,8 @@
     width: 100%;
     height: 900px;
     background-color: #033104;
+
+    font-family: "dynapuff";
 }
 
 /* .header{
@@ -72,16 +74,34 @@
     justify-content: flex-end;
 } */
 
+.b-signup-page-title{
+    width: 500px;
+    height: 100px;
+
+    margin: auto;
+    margin-top: 50px;
+    padding: 0;
+
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: "dynapuff";
+    font-size: 40px;
+    font-weight: 400;
+}
+
 .b-my-page-box{
     width: 60%;
-    height: 600px;
+    height: 500px;
     
     border-radius: 15px;
     /* box-shadow: 5px 5px 5px; */
     background-color: whitesmoke;
 
     margin: auto;
-    margin-top: 80px;
     position: relative;
 }
 
@@ -373,12 +393,19 @@
 
 .submitNewUserBtnBox{
     width: 100%;
-    border: 1px solid black;
+    height: 40px;
+    /* border: 1px solid black; */
+    border-radius: 10px;
     cursor: pointer;
     background-color: rgba(85, 63, 233, 0.8);
     color: white;
     font-weight: 600;
     text-align: center;
+    margin-top: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .h-welcomepopup{
@@ -388,6 +415,7 @@
     width: 100%;
     height: 100%;
     border:  1px solid black;
+    border-radius: 15px;
     position: absolute;
     top: 0;
     left: 0;
@@ -430,4 +458,34 @@
     to{
         opacity: 1;
     }
+}
+
+.checkoverlap{
+    border: 1px solid;
+    margin-left: 5px;
+    padding: 5px;
+
+    font-size: 15px;
+    
+    background-color: lightgray;
+}
+.checkoverlap:hover{
+    cursor: pointer;
+}
+
+.check-nickname-overlap{
+    border: 1px solid;
+    margin-left: 5px;
+    padding: 5px;
+
+    font-size: 15px;
+
+    background-color: lightgray;
+}
+.check-nickname-overlap{
+    cursor: pointer;
+}
+
+#password{
+    height: 25px;
 }
