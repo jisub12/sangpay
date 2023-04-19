@@ -764,5 +764,4 @@ function renderMemberList() {
         member.append(div01);
     })
 }
-
 renderMemberList();
