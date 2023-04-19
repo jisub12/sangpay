@@ -32,7 +32,7 @@
     </div>
     <div class="b-page-title">my page</div>
     <div class="b-my-page-box">
-        <div class="b-fixed-values">    
+        <div class="b-fixed-values">
             <div class="b-profile-image-box">
                 <div class="b-profile-image"></div>
             </div>
@@ -53,6 +53,8 @@
                 <span class="b-text-nickname">닉네임</span>
                 <div class="b-new-nickname-input-box">
                     <input type="text">
+                    <!-- 입력값에 따라 적당한지 아닌지 메시지가 표시될 부분 -->
+                    <div class="a-nickname-validation"></div>
                 </div>
                 <div class="b-nickname-change-btn">
                     <button>변경</button>
@@ -62,13 +64,17 @@
                 <div class="b-new-password-box">
                     <span class="b-text-password">새 비밀번호</span>
                     <div class="b-new-password-input-box">
-                        <input type="text">
+                        <input type="password">
+                        <!-- 입력값에 따라 적당한지 아닌지 메시지가 표시될 부분 -->
+                        <div class="a-pw-validation"></div>
                     </div>
                 </div>
                 <div class="b-new-password-confirm-box">
                     <span class="b-text-password-confirm">비밀번호 확인</span>
                     <div class="b-new-password-confirm-input-box">
-                        <input type="text">
+                        <input type="password">
+                        <!-- 입력값에 따라 적당한지 아닌지 메시지가 표시될 부분 -->
+                        <div class="a-pwcf-validation"></div>
                     </div>
                     <div class="b-password-change-btn">
                         <button>변경</button>
@@ -79,4 +85,5 @@
     </div>
 </body>
 <script src="./mypage.js"></script>
+<script src="./a_share.js"></script>
 </html>
