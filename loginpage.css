@@ -320,10 +320,11 @@ body{
     background-color: transparent;
 }
 .j-flex-findbox{
-
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    
+    padding-left: 2.5%;
 }
 
 .j-findId{
@@ -365,7 +366,7 @@ body{
     /* border: 1px solid; */
 
     margin: auto;
-    margin-top: 20px;
+    margin-top: 5px;
     margin-bottom: 0;
 
     display: flex;
