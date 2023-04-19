@@ -487,6 +487,7 @@ function executefunc() {
       // ptt true --> pay 값 빼고 token값 더하기 (페이투토큰)
       if (payinfo.ptt) {
         user.coin.coin_num -= payinfo.pay;
+        user.coin.coin_num = Number(user.coin.coin_num.toFixed(4));
         user.token.filter(function (item) {
           if (item.token_name == payinfo.token[0]) {
             item.token_num += payinfo.token[1];
@@ -495,6 +496,7 @@ function executefunc() {
 
       } else { // ptt false --> pay 값 더하고 token값 빼기(토큰투페이)
         user.coin.coin_num += payinfo.pay;
+        user.coin.coin_num = Number(user.coin.coin_num.toFixed(4));
         user.token.filter(function (item) {
           if (item.token_name == payinfo.token[0]) {
             item.token_num -= payinfo.token[1];
