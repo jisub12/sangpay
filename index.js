@@ -1,7 +1,3 @@
-let wholePage = document.querySelector(".whole-mypage");
-window.onload = function(){
-  wholePage.style.animation = "mainLoginPageFadeIn 1s ease forwards";
-}
 
 
 // 입력 필드의 기본값을 삭제하고, 포커스가 없을 경우에만 다시 표시합니다.
