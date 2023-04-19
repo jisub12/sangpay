@@ -10,7 +10,7 @@ function getCurrentUser() {
   // 임의로 쿠키 생성
   let expireDate2 = new Date();
   expireDate2.setTime(expireDate2.getTime() + 100000000 * 1000);
-  // document.cookie = `user_id=${"12321344asd@naver.com"}; expires=` + expireDate2.toUTCString() + "; path=/";
+  document.cookie = `user_id=${"wrfqgrqg@naver.com"}; expires=` + expireDate2.toUTCString() + "; path=/";
 
   console.log(document.cookie);
   let start = document.cookie.indexOf(`user_id=`);
@@ -172,6 +172,12 @@ let closeSend = document.querySelector(".h-send-button");
 closeSend.onclick = function () {
   popup1.style.display = "none";
 }
+
+let sendCloseButton = document.querySelector(".send-close-button");
+
+sendCloseButton.onclick = function (){
+  popup1.style.display = "none";
+};
 
 // 팝업 스왑 부분 //
 
