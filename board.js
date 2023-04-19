@@ -57,6 +57,7 @@ function paginate(list) {
         numbtnLabel.textContent = i;
         numbtnLabel.setAttribute("for", i);
         numbtnLabel.setAttribute("name", "pagenum");
+        numbtnLabel.setAttribute("class", "b-pagination-num");
 
         // 페이지 번호를 표시해줄 div에 페이지 번호 버튼 추가
         pageNumDiv.append(numbtn, numbtnLabel);
@@ -156,18 +157,22 @@ function render(start, end, pagenum) {
     date.textContent = `작성일`;
 
     no.style.border = "1px solid";
+    no.style.backgroundColor = "lightgray";
 
     title.style.borderTop = "1px solid";
     title.style.borderRight = "1px solid";
     title.style.borderBottom = "1px solid";
+    title.style.backgroundColor = "lightgray";
 
     user.style.borderTop = "1px solid";
     user.style.borderRight = "1px solid";
     user.style.borderBottom = "1px solid";
+    user.style.backgroundColor = "lightgray";
 
     date.style.borderTop = "1px solid";
     date.style.borderRight = "1px solid";
     date.style.borderBottom = "1px solid";
+    date.style.backgroundColor = "lightgray";
 
     ul.append(no, title, user, date);
     boardListDiv.append(ul);
@@ -229,18 +234,18 @@ function pageBtnRender(listLength, pagenum) { // 페이지 이전/다음 버튼 
 
     // 현재 첫번째 페이지라면 이전 버튼 출력 X
     if (pagenum == 1) {
-        prevBtn.style.display = "none";
-        nextBtn.style.display = "block";
+        prevBtn.style.opacity = "0";
+        nextBtn.style.opacity = "1";
     }
     // 현재 마지막 페이지라면 다음 버튼 출력 X
     if (pagenum == totalPage) {
-        nextBtn.style.display = "none";
-        prevBtn.style.display = "block";
+        nextBtn.style.opacity = "0";
+        prevBtn.style.opacity = "1";
     }
 
     if (pagenum != 1 && pagenum != totalPage) {
-        prevBtn.style.display = "block";
-        nextBtn.style.display = "block";
+        prevBtn.style.opacity = "1";
+        nextBtn.style.opacity = "1";
     }
 
     // 현재 페이지로 체크되게
