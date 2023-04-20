@@ -116,6 +116,8 @@ function newUserBtn(
     pwcf = false;
 
     return userString;
+  } else {
+    alert("제대로 입력했는지 확인하세요.");
   }
 }
 
@@ -161,7 +163,7 @@ function loginUser(id, pw) {
       console.log(pw);
 
       // 관리자 쿠키 생성
-      let expireDate = new Date(); 
+      let expireDate = new Date();
       expireDate.setTime(expireDate.getTime() + 100000 * 10000);
       // document.cookie = `user_id=${"admin"}; expires=` + expireDate.toUTCString() + "; path=/";
       nowuser=admin;
@@ -212,7 +214,7 @@ function loginUser(id, pw) {
       alert("로그인에 성공하셨습니다.")
       expireDate = new Date();
       // 쿠키 생성
-      
+
       userLogin();
 
      location.href = './wallet.html';
@@ -269,7 +271,7 @@ function extensionTime() {
   console.log(expireDate.getTime());
   console.log(cookieValue);
   let time = expireDate.setTime(expireDate.getTime() + 10 * 10000); //100 초뒤
-  // 로컬스토리지에 이함수 실행마다. 더해진값 저장 
+  // 로컬스토리지에 이함수 실행마다. 더해진값 저장
   localStorage.setItem('expireDate', time);
   console.log(time);
   console.log("작동함");

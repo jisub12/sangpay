@@ -43,9 +43,9 @@ function extensionTime1() {
   let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
   console.log(expireDate.getTime());
   console.log(cookieValue);
-  //expireDate.getTime() 
+  //expireDate.getTime()
   let time = expireDate.setTime(expireDate.getTime() + 10 * 10000); //100 초뒤
-  // 로컬스토리지에 이함수 실행마다. 더해진값 저장 
+  // 로컬스토리지에 이함수 실행마다. 더해진값 저장
   localStorage.setItem('expireDate', time);
   console.log(time);
   console.log("작동함");
@@ -493,7 +493,7 @@ function tokenToPay(token_name) {
   if (ptt) {
     // 페이 to 토큰
     swapRate[0].innerHTML = `토큰가치 : ${token.token_value}`;
-    swapFee[0].innerHTML = `토큰 당 수수료 : ${token.charge}`;
+    swapFee[0].innerHTML = `페이 당 수수료 : ${token.charge}`;
 
     // 계산
     let tokenAmount = Number((amount.value * 10/ token.token_value - amount.value * token.charge * 0.01).toFixed(4));
