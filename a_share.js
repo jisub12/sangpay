@@ -186,7 +186,7 @@ function loginUser(id, pw) {
       // 쿠키 생성
       userLogin();
 
-      location.href = './wallet.html';
+      // location.href = './wallet.html';
 
     } else if (user.user_pw == pw && !user.user_allow) {
       alert("관리자의 승인을 기다리세요");
@@ -201,17 +201,21 @@ function loginUser(id, pw) {
 }
 
 let remainingTime
+let coookie1;
 function userLogin() {
   expireDate.setTime(expireDate.getTime() + 10 * 1000);
   remainingTime = getRemainingTime(expireDate.toUTCString()); // 쿠키 만료까지 남은 시간 계산
   console.log(remainingTime);
   set1 = setInterval(printTime, 1000);
   // `userid=${nowuser.user_id}; expires=${kstTime.toUTCString()}; path=/
-  document.cookie = `user_id=${nowuser.user_id}; expires=` + expireDate.toUTCString() + "; path=/";
+  localStorage.setItem('expireDate', expireDate.getTime());
+  coookie1=document.cookie = `user_id=${nowuser.user_id}; expires=` + expireDate.toUTCString() + "; path=/";
   function printTime() {
     remainingTime = getRemainingTime(expireDate.toUTCString()); // 쿠키 만료까지 남은 시간 계산
     console.log(remainingTime);
     remainedTime.innerHTML = remainingTime;
+    // coookie1=document.cookie = `user_id=${nowuser.user_id}; expires=` + expireDate.toUTCString() + "; path=/";
+    // console.log(coookie1);
 
     const minutes = remainingTime.match(/\d+분/);
     const seconds = remainingTime.match(/\d+초/);
@@ -230,7 +234,9 @@ function extensionTime() {
   let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
   console.log(expireDate.getTime());
   console.log(cookieValue);
-  let time = expireDate.setTime(expireDate.getTime() + 10 * 10000); //10 초뒤
+  let time = expireDate.setTime(expireDate.getTime() + 10 * 10000); //100 초뒤
+  // 로컬스토리지에 이함수 실행마다. 더해진값 저장 
+  localStorage.setItem('expireDate', time);
   console.log(time);
   console.log("작동함");
   // 업데이트된 쿠키를 생성하여 저장
