@@ -79,6 +79,9 @@ checkId.addEventListener("click", function () {
 });
 checkNick.addEventListener("click", function () {
 
+  let user;
+
+
   for (let i = 0; i < localStorage.length; i++) {
     let key = localStorage.key(i);
     console.log(key);
@@ -86,21 +89,28 @@ checkNick.addEventListener("click", function () {
       let cuurent_user = JSON.parse(localStorage.getItem(key));
       console.log(cuurent_user.user_nickName);
       if (nicknameValue != cuurent_user.user_nickName) {
-        nickpass = true;
-        if (nicknameValue.length != 0)
+        // nickpass = true;
+        if (nicknameValue.length != 0) {
 
           nicknameValidation.innerHTML = "사용 가능한 닉네임입니다.";
           nicknameValidation.style.color = "blue";
+        }
 
       }
       if (nicknameValue == cuurent_user.user_nickName) {
         nicknameValidation.innerHTML = "중복된 닉네임이 존재합니다.";
         nickname.value = "";
-        nickpass = false;
+        user = cuurent_user;
+        // nickpass = false;
+        break;
       }
       // console.log(cuurent_user.token[0].token_name); // local 스토리지에 들어있는 current user의 token 에 접근하는법 [0] 번째는 비트 토큰 그 이름에 접근하는법은 .~~`
     }
 
+  }
+
+  if (!user) {
+    nickpass = true;
   }
 });
 
@@ -137,7 +147,7 @@ pwcfInput.addEventListener("input", function() {
 
 let nicknameValue;
 nickname.addEventListener("input", function () {
-  idpass = false;
+  nickpass = false;
   checkNicknameInput(nickname, nicknameValidation);
 });
 // nickname.addEventListener("input", function () {

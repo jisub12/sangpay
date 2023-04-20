@@ -11,9 +11,10 @@ window.onload = function () {
     // 출력할 게시물의 글번호
     let currentNo = location.href.split('?')[1];
     let user = getCurrentUser();
+    let userInfo = JSON.parse(window.localStorage.getItem("user_"+getCurrentUser()));
 
     // 현재 로그인한 사용자인지 확인
-    if (user) { // 로그인했다면
+    if (user && userInfo && userInfo.user_allow || user=="admin") { // 로그인했다면
         console.log("로그인함");
         console.log(user);
 
@@ -41,7 +42,8 @@ window.onload = function () {
                 addBtnEvent(true, board);
 
             } else {
-                location.href = `board_detail.html?${no}`;
+                alert("권한없음");
+                location.href = `board_detail.html?${currentNo}`;
             }
             // 아니면 지금 게시물 상세페이지로 이동
         } else {
@@ -50,7 +52,7 @@ window.onload = function () {
         }
 
     } else { //아니면 목록으로 이동
-        console.log("목록");
+        alert("로그인하세요");
         location.href = `board.html`;
 
     }
@@ -144,14 +146,10 @@ function edit(board) {
     board.date = date;
 
     if (isNotBlank(title, content)) {
-        try {
-            boardListEdit({board:board, value:"수정"});
-            alert("수정되었습니다.");
-            //  //수정 완료되면 방금 수정한 게시물의 상세 페이지로 넘어가기
-            //  location.href = `board_detail.html?${no}`;
-        } catch (error) {
-            console.log(error);
-        }
+        boardListEdit({board:board, value:"수정"});
+        alert("수정되었습니다.");
+        //  //수정 완료되면 방금 수정한 게시물의 상세 페이지로 넘어가기
+        location.href = `board_detail.html?${board.no}`;
 
     } else {
         alert("제목내용 공란인지 확인");
