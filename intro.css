@@ -161,7 +161,7 @@
     transform: rotate(0deg);
 
     animation: breakingLineMoving1 4s linear forwards, lineBreaking2 0.2s linear forwards;
-    animation-delay: 0s, 1s;
+    animation-delay: 0s, 0.95s;
 
     z-index: -1;
 }
@@ -177,7 +177,7 @@
     transform: rotate(0deg);
 
     animation: breakingLineMoving1 4s linear forwards, lineBreaking1 0.2s linear forwards;
-    animation-delay: 0s, 1s;
+    animation-delay: 0s, 0.95s;
 
     z-index: -1;
 }
@@ -193,7 +193,7 @@
     transform: rotate(0deg);
 
     animation: breakingLineMoving2 5s linear forwards, lineBreaking2 0.2s linear forwards;
-    animation-delay: 0s, 2s;
+    animation-delay: 0s, 1.95s;
 
     z-index: -1;
 }
@@ -209,7 +209,7 @@
     transform: rotate(0deg);
 
     animation: breakingLineMoving2 5s linear forwards, lineBreaking1 0.2s linear forwards;
-    animation-delay: 0s, 2s;
+    animation-delay: 0s, 1.95s;
 
     z-index: -1;
 }
@@ -225,7 +225,7 @@
     transform: rotate(0deg);
 
     animation: breakingLineMoving3 6.25s linear forwards, lineBreaking2 0.2s linear forwards;
-    animation-delay: 0s, 3.55s;
+    animation-delay: 0s, 3.5s;
 
     z-index: -1;
 }
@@ -241,7 +241,7 @@
     transform: rotate(0deg);
 
     animation: breakingLineMoving3 6.25s linear forwards, lineBreaking1 0.2s linear forwards;
-    animation-delay: 0s, 3.55s;
+    animation-delay: 0s, 3.5s;
 
     z-index: -1;
 }
@@ -257,7 +257,7 @@
     transform: rotate(0deg);
 
     animation: breakingLineMoving3 6.25s linear forwards, lineBreaking2 0.2s linear forwards;
-    animation-delay: 0.05s, 3.6s;
+    animation-delay: 0.05s, 3.55s;
 
     z-index: -1;
 }
@@ -273,7 +273,7 @@
     transform: rotate(0deg);
 
     animation: breakingLineMoving3 6.25s linear forwards, lineBreaking1 0.2s linear forwards;
-    animation-delay: 0.05s, 3.6s;
+    animation-delay: 0.05s, 3.55s;
 
     z-index: -1;
 }
@@ -289,7 +289,7 @@
     transform: rotate(0deg);
 
     animation: breakingLineMoving3 6.25s linear forwards, lineBreaking2 0.2s linear forwards;
-    animation-delay: 0.1s, 3.65s;
+    animation-delay: 0.1s, 3.6s;
 
     z-index: -1;
 }
@@ -305,7 +305,7 @@
     transform: rotate(0deg);
 
     animation: breakingLineMoving3 6.25s linear forwards, lineBreaking1 0.2s linear forwards;
-    animation-delay: 0.1s, 3.65s;
+    animation-delay: 0.1s, 3.6s;
 
     z-index: -1;
 }
@@ -321,7 +321,7 @@
     transform: rotate(0deg);
 
     animation: breakingLineMoving3 6.25s linear forwards, lineBreaking2 0.2s linear forwards;
-    animation-delay: 0.15s, 3.7s;
+    animation-delay: 0.15s, 3.65s;
 
     z-index: -1;
 }
@@ -337,7 +337,7 @@
     transform: rotate(0deg);
 
     animation: breakingLineMoving3 6.25s linear forwards, lineBreaking1 0.2s linear forwards;
-    animation-delay: 0.15s, 3.7s;
+    animation-delay: 0.15s, 3.65s;
 
     z-index: -1;
 }
@@ -576,7 +576,7 @@
     from{
         scale: 1;
         opacity: 1;
-        top: 41.8%;
+        top: 100%;
         left: 48.1%;
     }
     to{
