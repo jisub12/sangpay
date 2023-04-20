@@ -200,10 +200,12 @@ function render(start, end, pagenum) {
         user.setAttribute("class", "a-w2 a-list");
         date.setAttribute("class", "a-w3 a-list");
 
+        let nick = getUserNick(board.user);
+
         // no.textContent = `${board.no}`;
         no.textContent = `${i + 1}`;
         title.textContent = `${board.title}`;
-        user.textContent = `${board.user}`;
+        user.textContent = `${nick}`;
         date.textContent = `${board.date}`;
 
         no.style.borderRight = "1px dashed";
@@ -232,20 +234,23 @@ function pageBtnRender(listLength, pagenum) { // 페이지 이전/다음 버튼 
     let nextBtn = document.querySelector("#nextBtn");
     let prevBtn = document.querySelector("#prevBtn");
 
+    nextBtn.style.visibility = "visible";
+    prevBtn.style.visibility = "visible";
+
     // 현재 첫번째 페이지라면 이전 버튼 출력 X
     if (pagenum == 1) {
         prevBtn.style.visibility = "hidden";
-        nextBtn.style.visibility = "visible";
+        // nextBtn.style.visibility = "visible";
     }
     // 현재 마지막 페이지라면 다음 버튼 출력 X
     if (pagenum == totalPage) {
         nextBtn.style.visibility = "hidden";
-        prevBtn.style.visibility = "visible";
+        // prevBtn.style.visibility = "visible";
     }
 
     if (pagenum != 1 && pagenum != totalPage) {
-        nextBtn.style.visibility = "visible";
-        prevBtn.style.visibility = "visible";
+        // nextBtn.style.visibility = "visible";
+        // prevBtn.style.visibility = "visible";
     }
 
     // 현재 페이지로 체크되게
@@ -266,6 +271,7 @@ function Board(no, title, content, user, date, answer) {
 // 게시물 수정,삭제(+답변등록, 답변수정) 함수
 function boardListEdit({ board, value }) {
     // function boardListEdit(board, value) {
+
     console.log("게시물수정삭제함수")
     console.log(board);
     console.log(value);
@@ -290,6 +296,7 @@ function boardListEdit({ board, value }) {
 
 
 // 쿠키에서 현재 사용자 아이디 가져오는 함수
+
 // function getCurrentUser() {
 
 //     let userId = "";
@@ -364,3 +371,15 @@ function extensionTime2() {
   console.log(document.cookie);
   console.log("extensionTime 작동함")
 }
+
+// 회원 아이디로 닉네임 찾는 함수
+function getUserNick(userId) {
+    let nick="";
+    if (userId != "admin") {
+        nick = JSON.parse(window.localStorage.getItem("user_"+userId)).user_nickName;
+    } else {
+        nick = userId;
+    }
+    return nick;
+  }
+

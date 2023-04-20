@@ -473,7 +473,7 @@ function tokenToPay(token_name) {
   // 페이to토큰 --> 현재 사용자가 가진 페이보다 큰 값 입력하면
   if (ptt && amount.value > userPay) {
     alert("현재 sangpay : " + userPay + "더 작은 값 입력");
-    amount.value = 0;
+    amount.value = userPay;
     return false;
   }
 
@@ -485,7 +485,7 @@ function tokenToPay(token_name) {
   // 토큰to페이 --> 현재 사용자가 가진 토큰보다 큰 값 입력하면
   if (!ptt && amount.value > userToken.token_num) {
     alert("현재 토큰 : " + userToken.token_num + "더 작은 값 입력");
-    amount.value = 0;
+    amount.value = userToken.token_num;
     return false;
   }
 
@@ -505,10 +505,9 @@ function tokenToPay(token_name) {
     swapRate[1].innerHTML = `토큰가치 : ${token.token_value}`;
 
     // 토큰 to 페이 계산식 수정
-    // let payAmount = Number((10 * amount.value / (token.token_value) - amount.value * token.charge * 0.01).toFixed(4));
     let payAmount = Number((token.token_value * amount.value / 10 - amount.value * token.charge * 0.01).toFixed(4));
     finalExchange[1].innerHTML = `${token.token_name} : ${amount.value}, 페이 : ${payAmount}`;
-    // finalExchange[1].innerHTML=`페이 : ${amount.value}, ${token.token_name} : ${amount.value *1.1574 - amount.value*0.25*0.01}`;
+
     return { ptt: ptt, pay: payAmount, token: [token_name, amount.value] };
   }
 
@@ -537,7 +536,7 @@ function executefunc() {
     if(executeBool) {
       // 페이투토큰 사용자 값 처리
       let user = JSON.parse(window.localStorage.getItem("user_" + getCurrentUser()));
-      console.log(user);
+
       // ptt true --> pay 값 빼고 token값 더하기 (페이투토큰)
       if (payinfo.ptt) {
         user.coin.coin_num -= payinfo.pay;
@@ -545,20 +544,20 @@ function executefunc() {
         user.token.filter(function (item) {
           if (item.token_name == payinfo.token[0]) {
             item.token_num += payinfo.token[1];
+            item.token_num = Number(item.token_num.toFixed(4));
           }
         });
-
       } else { // ptt false --> pay 값 더하고 token값 빼기(토큰투페이)
         user.coin.coin_num += payinfo.pay;
         user.coin.coin_num = Number(user.coin.coin_num.toFixed(4));
         user.token.filter(function (item) {
           if (item.token_name == payinfo.token[0]) {
             item.token_num -= payinfo.token[1];
+            item.token_num = Number(item.token_num.toFixed(4));
           }
         });
       }
 
-      console.log(payinfo);
       window.localStorage.setItem("user_" + getCurrentUser(), JSON.stringify(user));
 
       // 새로고침
@@ -623,7 +622,7 @@ document.querySelector("#swap1-sangpay-amount").addEventListener('input', functi
   if (token) {
     console.log(token.firstElementChild.textContent);
     // 선택된 토큰 이름 전달
-    tokenToPay(token.firstElementChild.textContent);
+    payinfo = tokenToPay(token.firstElementChild.textContent);
   }
 
 });
@@ -641,18 +640,14 @@ document.querySelector("#swap2-token-amount").addEventListener('input', function
   if (token) {
     console.log(token.firstElementChild.textContent);
     // 선택된 토큰 이름 전달
-    tokenToPay(token.firstElementChild.textContent);
+    payinfo = tokenToPay(token.firstElementChild.textContent);
   }
-
-
 });
 
 
 
 
 // ul안에 li 부분 클릭 이벤트
-
-
 function addClickListeners() {
   let tokenListItems = document.querySelectorAll(".token-list li");
 
@@ -670,8 +665,6 @@ function addClickListeners() {
 
         // 현재 클릭된 토큰의 이름 전달
         payinfo = tokenToPay(item.firstElementChild.textContent);
-
-
 
       }
     });
@@ -704,13 +697,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
 });
 
-
-
-// 로컬스토리지 아이디 연결 (sangpay)
-
-// function getCurrentUser() {
-//     return "gusdnr205@naver.com"; // 현재 사용자를 반환하는 코드를 적절하게 수정해주세요.
-//   }
 
 function getSangpayForUser(user) {
   const storedSangpay = parseFloat(localStorage.getItem(user));
@@ -792,7 +778,7 @@ document.querySelector(".h-send-button").addEventListener("click", () => {
       console.log(storedSangpay);
       console.log(updatedSangpay);
       document.querySelectorAll(".coin-amount").forEach(function (e) {
-        e.textContent = updatedSangpay;
+        e.textContent = loadWalletFromLocalStorage(currentUser);
       });
       document.querySelector("#send-amount").value = "";
       document.querySelector(".popup1").style.display = "none";

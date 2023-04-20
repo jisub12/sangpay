@@ -297,6 +297,7 @@ function checkNicknameInput(nickname, nicknameValidation) {
 // 비밀번호 입력할때마다 실행될 함수
 function checkPasswordInput(passwordInput, passwordValidation, pwpass) {
   passwordValue = passwordInput.value;
+  passwordValidation.style.color = "red";
   if (passwordValue.length < 8 || passwordValue.length > 20) {
     passwordValidation.innerHTML = "비밀번호는 8자 이상 20자 이하여야 합니다.";
     return false;
@@ -317,6 +318,7 @@ function checkPasswordInput(passwordInput, passwordValidation, pwpass) {
 
 // 비밀번호 확인 input에 입력할때마다 실행될 함수
 function checkpwchInput(passwordInput, pwcfInput, pwcfValidation) {
+  pwcfValidation.style.color = "red";
   if (passwordInput.value != pwcfInput.value) {
     pwcfValidation.innerHTML = "비밀번호가 동일하지 않습니다.";
     return false;
