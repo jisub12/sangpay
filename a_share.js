@@ -144,8 +144,30 @@ let set1; //setInterval 함수
 //버튼 누르면 시간추가 쿠키값에 반영
 
 
+// admin 아이디, 비밀번호 로컬스토리지에 저장
+window.localStorage.setItem("admin", JSON.stringify({'id': 'admin', 'pw':'admin'}));
+
 function loginUser(id, pw) {
   let user;
+
+  let admin = JSON.parse(window.localStorage.getItem('admin'));
+  // id가 admin이라면
+  if (id == admin.id) {
+    if (pw == admin.pw) {
+      // 관리자 로그인 성공
+
+      // 관리자 쿠키 생성
+      let expireDate = new Date();
+      expireDate.setTime(expireDate.getTime() + 100000 * 1000);
+      document.cookie = `user_id=${"admin"}; expires=` + expireDate.toUTCString() + "; path=/";
+
+      location.href = 'adminpage.html';
+      return true;
+    } else {
+      alert('비밀번호 확인');
+      return true;
+    }
+  }
 
   for (let i = 0; i < localStorage.length; i++) {
     let key = localStorage.key(i);

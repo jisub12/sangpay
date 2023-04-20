@@ -171,6 +171,5 @@ function isNotBlank(title, content) {
 
 // 현재 날짜 시간 문자열로 반환하는 함수
 function getdate() {
-    let date = new Date();
-    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    return new Date(new Date().getTime() + 9 * 60 * 60 * 1000).toISOString().replace('T', ' ').slice(0, -5);
 }
