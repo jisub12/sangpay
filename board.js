@@ -179,9 +179,9 @@ function render(start, end, pagenum) {
 
     if (boardList.length != 0) {
         // 가장 최근 게시물이 먼저 출력되게
-        boardList.reverse();    
+        boardList.reverse();
 
-    
+
 
 
     for (let i = start; i <= end; i++) {
@@ -234,18 +234,18 @@ function pageBtnRender(listLength, pagenum) { // 페이지 이전/다음 버튼 
 
     // 현재 첫번째 페이지라면 이전 버튼 출력 X
     if (pagenum == 1) {
-        prevBtn.style.opacity = "0";
-        nextBtn.style.opacity = "1";
+        prevBtn.style.visibility = "hidden";
+        nextBtn.style.visibility = "visible";
     }
     // 현재 마지막 페이지라면 다음 버튼 출력 X
     if (pagenum == totalPage) {
-        nextBtn.style.opacity = "0";
-        prevBtn.style.opacity = "1";
+        nextBtn.style.visibility = "hidden";
+        prevBtn.style.visibility = "visible";
     }
 
     if (pagenum != 1 && pagenum != totalPage) {
-        prevBtn.style.opacity = "1";
-        nextBtn.style.opacity = "1";
+        nextBtn.style.visibility = "visible";
+        prevBtn.style.visibility = "visible";
     }
 
     // 현재 페이지로 체크되게

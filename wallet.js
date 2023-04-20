@@ -441,7 +441,6 @@ function tokenToPay(token_name) {
 
     // 계산
     let tokenAmount = Number((amount.value * 10/ token.token_value - amount.value * token.charge * 0.01).toFixed(4));
-    alert(tokenAmount);
     finalExchange[0].innerHTML = `페이 : ${amount.value}, ${token.token_name} : ${tokenAmount}`;
     return { ptt: ptt, pay: amount.value, token: [token_name, tokenAmount] };
   } else {
@@ -452,7 +451,6 @@ function tokenToPay(token_name) {
     // 토큰 to 페이 계산식 수정
     // let payAmount = Number((10 * amount.value / (token.token_value) - amount.value * token.charge * 0.01).toFixed(4));
     let payAmount = Number((token.token_value * amount.value / 10 - amount.value * token.charge * 0.01).toFixed(4));
-    // alert(payAmount);
     finalExchange[1].innerHTML = `${token.token_name} : ${amount.value}, 페이 : ${payAmount}`;
     // finalExchange[1].innerHTML=`페이 : ${amount.value}, ${token.token_name} : ${amount.value *1.1574 - amount.value*0.25*0.01}`;
     return { ptt: ptt, pay: payAmount, token: [token_name, amount.value] };
@@ -555,7 +553,7 @@ function displayTokens3() {
 }
 
 // 교환 -> 페이/토큰 입력했을때 실시간으로 반영되게
-document.querySelector("#swap1-sangpay-amount").addEventListener('change', function() {
+document.querySelector("#swap1-sangpay-amount").addEventListener('input', function() {
   // 현재 선택된 토큰이름 구하는 코드
 
   let token;
@@ -788,6 +786,8 @@ function editUserSangpay(amountToSend, updatedSangpay) {
 
     console.log("받는회원", user);
 
+  } else {
+    alert("지갑 주소 확인");
   }
 
 }
