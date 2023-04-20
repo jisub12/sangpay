@@ -1,5 +1,5 @@
 // 상세 게시물
-import { boardListEdit, getCurrentUser, getUserNick } from "./board.js";
+// import { boardListEdit, getCurrentUser, getUserNick } from "./board.js";
 
 window.onload = function() {
     // 출력할 게시물의 글번호
