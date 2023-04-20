@@ -33,12 +33,17 @@ getRemainingTime1();
 set2=setInterval(getRemainingTime1, 1000);
 
 
+let WalletexpireDate;
+document.addEventListener("DOMContentLoaded",function(){
+  expireDate.setTime(window.localStorage.getItem('expireDate'))
+})
 
 function extensionTime1() {
   console.log("extensionTime 시작")
   let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
   console.log(expireDate.getTime());
   console.log(cookieValue);
+  //expireDate.getTime() 
   let time = expireDate.setTime(expireDate.getTime() + 10 * 10000); //100 초뒤
   // 로컬스토리지에 이함수 실행마다. 더해진값 저장 
   localStorage.setItem('expireDate', time);

@@ -167,7 +167,10 @@ function getRemainingTime1() {
 }
 getRemainingTime1();
 set2=setInterval(getRemainingTime1, 1000);
-
+document.addEventListener("DOMContentLoaded",function(){
+    expireDate.setTime(window.localStorage.getItem('expireDate'))
+  })
+  
 
 
 function extensionTime1() {

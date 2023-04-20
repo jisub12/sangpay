@@ -254,7 +254,7 @@ function pageBtnRender(listLength, pagenum) { // 페이지 이전/다음 버튼 
 
 // 게시물 객체 생성자 함수
 // function Board(no, title, content, user, date, answer) {
-export function Board(no, title, content, user, date, answer) {
+function Board(no, title, content, user, date, answer) {
     this.no = no;
     this.title = title;
     this.content = content;
@@ -264,7 +264,7 @@ export function Board(no, title, content, user, date, answer) {
 }
 
 // 게시물 수정,삭제(+답변등록, 답변수정) 함수
-export function boardListEdit({ board, value }) {
+function boardListEdit({ board, value }) {
     // function boardListEdit(board, value) {
     console.log("게시물수정삭제함수")
     console.log(board);
@@ -290,24 +290,24 @@ export function boardListEdit({ board, value }) {
 
 
 // 쿠키에서 현재 사용자 아이디 가져오는 함수
-export function getCurrentUser() {
+// function getCurrentUser() {
 
-    let userId = "";
+//     let userId = "";
 
-    // 임의로 쿠키 생성
-    let expireDate = new Date();
-    expireDate.setTime(expireDate.getTime() + 100000 * 1000);
-    // document.cookie = `user_id=${"admin"}; expires=` + expireDate.toUTCString() + "; path=/";
-    // document.cookie = `user_id=${"gusdnr205@naver.com"}; expires=` + expireDate.toUTCString() + "; path=/";
+//     // 임의로 쿠키 생성
+//     let expireDate = new Date();
+//     expireDate.setTime(expireDate.getTime() + 100000 * 1000);
+//     // document.cookie = `user_id=${"admin"}; expires=` + expireDate.toUTCString() + "; path=/";
+//     // document.cookie = `user_id=${"gusdnr205@naver.com"}; expires=` + expireDate.toUTCString() + "; path=/";
 
-    console.log(document.cookie);
-    let start = document.cookie.indexOf(`user_id=`);
+//     console.log(document.cookie);
+//     let start = document.cookie.indexOf(`user_id=`);
 
-    if (start != -1) {
-        userId = document.cookie.split('=')[1];
-    }
-    return userId;
-}
+//     if (start != -1) {
+//         userId = document.cookie.split('=')[1];
+//     }
+//     return userId;
+// }
 
 
 let set2;
@@ -343,10 +343,13 @@ function getRemainingTime1() {
 }
 getRemainingTime1();
 set2=setInterval(getRemainingTime1, 1000);
+document.addEventListener("DOMContentLoaded",function(){
+    expireDate.setTime(window.localStorage.getItem('expireDate'))
+  })
+  
 
 
-
-function extensionTime1() {
+function extensionTime2() {
   console.log("extensionTime 시작")
   let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
   console.log(expireDate.getTime());
