@@ -13,6 +13,8 @@ let checkNick = document.querySelector('.check-nickname-overlap');
 
 let welcomeNewuser = document.querySelector(".submitNewUserBtnBox");
 
+// let welcomeNewuser = document.querySelector(".submitNewUserBtnBox");
+
 let idpass = false;
 let nickpass = false;
 let pwpass = false;
@@ -75,8 +77,8 @@ checkId.addEventListener("click", function () {
   }
   console.log("dfdsfdfsdfdsfd", user);
 });
-
 checkNick.addEventListener("click", function () {
+
   for (let i = 0; i < localStorage.length; i++) {
     let key = localStorage.key(i);
     console.log(key);
@@ -86,8 +88,10 @@ checkNick.addEventListener("click", function () {
       if (nicknameValue != cuurent_user.user_nickName) {
         nickpass = true;
         if (nicknameValue.length != 0)
-          nicknameValidation.innerHTML = "통과되엇습니다.";
-        nicknameValidation.style.color = "blue";
+
+          nicknameValidation.innerHTML = "사용 가능한 닉네임입니다.";
+          nicknameValidation.style.color = "blue";
+
       }
       if (nicknameValue == cuurent_user.user_nickName) {
         nicknameValidation.innerHTML = "중복된 닉네임이 존재합니다.";
@@ -214,6 +218,7 @@ window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       document.querySelector('#stopButton').click();
     }, 6000);
+
   }
 
 });
@@ -437,8 +442,6 @@ window.requestAnimFrame = (function () {
     };
 })();
 
-
-
 // $(document).ready(function () {
 //   //티스토리 공감버튼 이벤트
 //   function reAction() {
@@ -454,6 +457,7 @@ window.requestAnimFrame = (function () {
 // });
 
 
+
 let tologinpage = document.querySelector('.h-Tologinpage');
 let h_adminallodw = document.querySelector('.h-adminallow');
 
@@ -462,14 +466,14 @@ setTimeout(() => {
   h_adminallodw.style.animation = 'fadeIn 1s ease-in-out';
   // h_adminallodw.style.opacity = 1;
   h_adminallodw.classList.add('isactive')
-
-
-}, 3000);
+}, 2000);
 
 setTimeout(() => {
-  tologinpage.style.display = 'block';
+  tologinpage.style.display = 'flex';
+  tologinpage.style.justifyContent = "center";
+  tologinpage.style.alignItems = "center";
+  tologinpage.style.border = "1px solid #033104";
   tologinpage.style.animation = 'fadeIn 1s ease-in-out';
   tologinpage.style.opacity = 1;
-
-}, 5000);
+}, 3000);
 

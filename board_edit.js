@@ -28,7 +28,7 @@ window.onload = function () {
             if (user==board.user) {
                 // 수정 권한 있음
 
-                document.querySelector(".a-header-title").innerHTML = "게시물 수정";
+                // document.querySelector(".a-header-title").innerHTML = "게시물 수정";
                 // 이미 등록된 게시물 정보 출력
                 // document.querySelector("")
                 document.querySelector("#title").value = `${board.title}`;
@@ -108,7 +108,7 @@ function post() {
 
     } else {
         // 만약 게시판에 아무런 게시물도 등록되지 않았다면 no 0
-        if (!boardList) {
+        if (boardList.length == 0) {
             no = 0;
         } else {
             // 가장 마지막 게시물의 글번호 +1
@@ -171,6 +171,5 @@ function isNotBlank(title, content) {
 
 // 현재 날짜 시간 문자열로 반환하는 함수
 function getdate() {
-    let date = new Date();
-    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    return new Date(new Date().getTime() + 9 * 60 * 60 * 1000).toISOString().replace('T', ' ').slice(0, -5);
 }

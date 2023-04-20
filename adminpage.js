@@ -526,6 +526,14 @@
 // window.localStorage.clear();
 
 
+// 페이지 들어왔을때 현재사용자가 관리자가 맞는지
+if (getCurrentUser() == 'admin') {
+    console.log("관리자 맞음");
+} else {
+    alert("관리자 로그인 하세요");
+    location.href = './loginpage.html';
+}
+
 let member = document.querySelector(".b-member-board");
 let confirmWaitingMember = document.querySelector(".b-confirm-waiting-member-board");
 
@@ -764,5 +772,4 @@ function renderMemberList() {
         member.append(div01);
     })
 }
-
 renderMemberList();

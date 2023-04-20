@@ -1,0 +1,606 @@
+@font-face {
+    font-family: "dynapuff";
+    src: url(./DynaPuff/DynaPuff-VariableFont_wdth\,wght.ttf);
+}
+
+.intro-page{
+    margin: 0;
+}
+
+.b-wallet-intro{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+
+    margin: 0;
+
+    position: relative;
+    z-index: 0;
+
+    scale: 1;
+
+    font-family: "dynapuff";
+
+    /* opacity: 0;
+    background-color: rgba(3, 49, 4,0.8);
+    transition: 10s; */
+}
+
+.b-wallet-intro::before{
+    content: "";
+
+    width: 100%;
+    height: 2px;
+
+    background-color: black;
+
+    position: absolute;
+    top: 50%;
+    left: -100%;
+
+    animation: lineMoving 1s linear forwards, lineMoving2 1s linear forwards, lineToCenter 1s linear forwards;
+    /* lineDisappearing 1s linear forwards */
+    animation-delay: 0s, 5s, 8s, 8s;
+
+    z-index: 0;
+}
+
+.b-wallet-intro::after{
+    content: "";
+
+    width: 100%;
+    height: 2px;
+
+    background-color: white;
+
+    position: absolute;
+    top: 50%;
+    left: -100%;
+
+    animation: lineMoving 1s linear forwards;
+    animation-delay: 8s;
+
+    z-index: 1;
+}
+
+.b-wallet-icon{
+    width: 350px;
+    height: 350px;
+
+    position: absolute;
+    top: 41.8%;
+    left: 100%;
+    transform: translate(0,-50%);
+
+    background-image: url(./wallet_icon.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    animation: walletAppearing 1s linear forwards;
+    animation-delay: 5s;
+
+    z-index: 10;
+    scale: 1;
+}
+.b-wallet-icon-fake1{
+    width: 350px;
+    height: 350px;
+
+    position: absolute;
+    top: 41.8%;
+    left: 90.55%;
+    transform: translate(0,-50%);
+
+    background-image: url(./wallet_icon_fake.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    animation: walletMoving 1s linear forwards;
+    animation-delay: 2s;
+
+    z-index: 10;
+    scale: 1;
+
+    display: none;
+}
+.b-wallet-icon-fake2{
+    width: 350px;
+    height: 350px;
+
+    position: absolute;
+    top: 41.8%;
+    left: 48.1%;
+    transform: translate(0,-50%);
+
+    background-image: url(./wallet_icon_fake.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    z-index: 10;
+    scale: 1;
+
+    display: none;
+}
+.b-wallet-icon-fake2:hover{
+    cursor: pointer;
+
+    animation: walletWiggle 1s ease-in infinite;
+}
+
+.b-moving-box{
+    width: 60px;
+    height: 60px;
+
+    border-radius: 50%;
+    background-color: black;
+
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0,-50%);
+
+    background-image: url(./121383751_padded_logo.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+    z-index: 2;
+    scale: 1;
+
+    animation: boxMoving 1s linear forwards, boxMoving2 1s linear forwards, boxToCenter 1s linear forwards;
+    animation-delay: 0s, 5s, 8s;
+}
+
+.b-breaking-line1{
+    height: 100%;
+    border: 1px solid black;
+
+    position: absolute;
+    top: -50%;
+    left: 100%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving1 4s linear forwards, lineBreaking2 0.2s linear forwards;
+    animation-delay: 0s, 0.95s;
+
+    z-index: -1;
+}
+
+.b-breaking-line2{
+    height: 100%;
+    border: 1px solid black;
+
+    position: absolute;
+    top: 50%;
+    left: 100%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving1 4s linear forwards, lineBreaking1 0.2s linear forwards;
+    animation-delay: 0s, 0.95s;
+
+    z-index: -1;
+}
+
+.b-breaking-line3{
+    height: 100%;
+    border: 1px solid black;
+
+    position: absolute;
+    top: -50%;
+    left: 150%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving2 5s linear forwards, lineBreaking2 0.2s linear forwards;
+    animation-delay: 0s, 1.95s;
+
+    z-index: -1;
+}
+
+.b-breaking-line4{
+    height: 100%;
+    border: 1px solid black;
+
+    position: absolute;
+    top: 50%;
+    left: 150%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving2 5s linear forwards, lineBreaking1 0.2s linear forwards;
+    animation-delay: 0s, 1.95s;
+
+    z-index: -1;
+}
+
+.b-breaking-line5{
+    height: 100%;
+    border: 1px solid black;
+
+    position: absolute;
+    top: -50%;
+    left: 250%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving3 6.25s linear forwards, lineBreaking2 0.2s linear forwards;
+    animation-delay: 0s, 3.5s;
+
+    z-index: -1;
+}
+
+.b-breaking-line6{
+    height: 100%;
+    border: 1px solid black;
+
+    position: absolute;
+    top: 50%;
+    left: 250%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving3 6.25s linear forwards, lineBreaking1 0.2s linear forwards;
+    animation-delay: 0s, 3.5s;
+
+    z-index: -1;
+}
+
+.b-breaking-line7{
+    height: 100%;
+    border: 1px solid black;
+
+    position: absolute;
+    top: -50%;
+    left: 250%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving3 6.25s linear forwards, lineBreaking2 0.2s linear forwards;
+    animation-delay: 0.05s, 3.55s;
+
+    z-index: -1;
+}
+
+.b-breaking-line8{
+    height: 100%;
+    border: 1px solid black;
+
+    position: absolute;
+    top: 50%;
+    left: 250%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving3 6.25s linear forwards, lineBreaking1 0.2s linear forwards;
+    animation-delay: 0.05s, 3.55s;
+
+    z-index: -1;
+}
+
+.b-breaking-line9{
+    height: 100%;
+    border: 1px solid black;
+
+    position: absolute;
+    top: -50%;
+    left: 250%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving3 6.25s linear forwards, lineBreaking2 0.2s linear forwards;
+    animation-delay: 0.1s, 3.6s;
+
+    z-index: -1;
+}
+
+.b-breaking-line10{
+    height: 100%;
+    border: 1px solid black;
+
+    position: absolute;
+    top: 50%;
+    left: 250%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving3 6.25s linear forwards, lineBreaking1 0.2s linear forwards;
+    animation-delay: 0.1s, 3.6s;
+
+    z-index: -1;
+}
+
+.b-breaking-line11{
+    height: 100%;
+    border: 1px solid black;
+
+    position: absolute;
+    top: -50%;
+    left: 250%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving3 6.25s linear forwards, lineBreaking2 0.2s linear forwards;
+    animation-delay: 0.15s, 3.65s;
+
+    z-index: -1;
+}
+
+.b-breaking-line12{
+    height: 100%;
+    border: 1px solid black;
+
+    position: absolute;
+    top: 50%;
+    left: 250%;
+
+    transform: rotate(0deg);
+
+    animation: breakingLineMoving3 6.25s linear forwards, lineBreaking1 0.2s linear forwards;
+    animation-delay: 0.15s, 3.65s;
+
+    z-index: -1;
+}
+
+.b-open-your-wallet1{
+    width: 200px;
+    height: 50px;
+
+    position: absolute;
+    top: 30%;
+    left: 20%;
+
+    font-size: 40px;
+
+    z-index: 2;
+    opacity: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    animation: textFadeIn 1s ease forwards;
+    animation-delay: 9.5s;
+}
+.b-open-your-wallet2{
+    width: 200px;
+    height: 50px;
+
+    position: absolute;
+    top: 45%;
+    left: 20%;
+
+    font-size: 40px;
+
+    z-index: 2;
+    opacity: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    animation: textFadeIn 1s ease forwards;
+    animation-delay: 9.5s;
+}
+.b-open-your-wallet3{
+    width: 200px;
+    height: 50px;
+
+    position: absolute;
+    top: 60%;
+    left: 20%;
+
+    font-size: 40px;
+
+    z-index: 2;
+    opacity: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    animation: textFadeIn 1s ease forwards;
+    animation-delay: 9.5s;
+}
+
+.b-open-your-wallet2::before,
+.b-open-your-wallet2::after{
+    content: "";
+
+    width: 15px;
+    height: 4px;
+    border-radius: 10px;
+    background-color: black;
+
+    position: absolute;
+    top: 50%;
+    left: 130%;
+    transform: translate(0,-50%) rotate(45deg);
+
+    z-index: 2;
+    opacity: 0;
+
+    animation: textFadeIn 2s ease forwards;
+    animation-delay: 9.5s;
+}
+.b-open-your-wallet2::after{
+    transform: rotate(-45deg);
+    top: 63%;
+}
+
+@keyframes boxMoving{
+    from{
+        left: 0;
+    }
+    to{
+        left: 50%;
+    }
+}
+
+@keyframes boxMoving2{
+    from{
+        left: 50%;
+    }
+    to{
+        left: 92.5%;
+    }
+}
+
+@keyframes lineMoving{
+    from{
+        left: -100%;
+    }
+    to{
+        left: -50%;
+    }
+}
+
+@keyframes lineMoving2{
+    from{
+        left: -50%;
+    }
+    to{
+        left: -7.5%;
+    }
+}
+
+@keyframes lineDisappearing{
+    from{
+        width: -100%;
+    }
+    to{
+        width: 0;
+    }
+}
+
+@keyframes boxToCenter{
+    from{
+        left: 92.5%;
+    }
+    to{
+        left: 50%;
+    }
+}
+
+@keyframes lineToCenter{
+    from{
+        left: -6.74%;
+    }
+    to{
+        left: -50%;
+    }
+}
+
+@keyframes breakingLineMoving1{
+    from{
+        left: 100%;
+    }
+    to{
+        left: -100%;
+    }
+}
+
+@keyframes breakingLineMoving2{
+    from{
+        left: 150%;
+    }
+    to{
+        left: -100%;
+    }
+}
+
+@keyframes breakingLineMoving3{
+    from{
+        left: 250%;
+    }
+    to{
+        left: -100%;
+    }
+}
+
+@keyframes lineBreaking1{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(30deg);
+    }
+}
+
+@keyframes lineBreaking2{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(-30deg);
+    }
+}
+
+@keyframes walletAppearing{
+    from{
+        left: 100%;
+    }
+    to{
+        left: 90.55%;
+    }
+}
+
+@keyframes walletMoving{
+    from{
+        left: 90.55%;
+    }
+    to{
+        left: 48.1%;
+    }
+}
+
+@keyframes walletIntroFadeOut{
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+    }
+}
+
+@keyframes textFadeIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes walletZoomIn{
+    from{
+        scale: 1;
+        opacity: 1;
+        top: 50%;
+        left: 48.1%;
+    }
+    to{
+        scale: 10;
+        opacity: 0;
+        top: 0;
+        left: 0;
+    }
+}
+
+@keyframes walletWiggle{
+    0%{
+        transform: translate(0,-50%) rotate(0deg);
+    }
+    25%{
+        transform: translate(0,-50%) rotate(10deg);
+    }
+    50%{
+        transform: translate(0,-50%) rotate(0deg);
+    }
+    75%{
+        transform: translate(0,-50%) rotate(-10deg);
+    }
+    100%{
+        transform: translate(0,-50%) rotate(0deg);
+    }
+}
