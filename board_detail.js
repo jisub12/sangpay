@@ -1,5 +1,5 @@
 // 상세 게시물
-import { boardListEdit, getCurrentUser } from "./board.js";
+import { boardListEdit, getCurrentUser, getUserNick } from "./board.js";
 
 window.onload = function() {
     // 출력할 게시물의 글번호
@@ -24,7 +24,7 @@ function render(no) {
     console.log(board);
 
     document.querySelector('.a-detail-title').innerHTML = `${board.title}`;
-    document.querySelector('.a-detail-user').innerHTML = `${board.user}`;
+    document.querySelector('.a-detail-user').innerHTML = `${getUserNick(board.user)}`;
     document.querySelector('.a-detail-date').innerHTML = `${board.date}`;
     document.querySelector('.a-detail-content').innerHTML = `${board.content}`;
 
@@ -56,8 +56,6 @@ function render(no) {
 
                 // 수정완료되었다면 작동할 부분
                 alert("수정완료");
-                // // 새로고침
-                // window.location.reload();
             } catch (error) {
                 console.log(error);
             }
@@ -85,16 +83,16 @@ function render(no) {
         });
         // 삭제 버튼 클릭하면 실행될 함수
         document.querySelector('.a-detail-delete').addEventListener('click', function() {
-            console.log("삭제버튼");
-            try {
-                boardListEdit({board:board, value:"삭제"});
-                // board 페이지로 이동
-                location.href = `board.html`;
-            } catch (error) {
-                console.log("삭제실패");
-                window.location.reload();
+            let deleteBool = confirm("삭제하시겠습니까?");
+            if (deleteBool) {
+                try {
+                    boardListEdit({board:board, value:"삭제"});
+                    // board 페이지로 이동
+                    location.href = `board.html`;
+                } catch (error) {
+                    window.location.reload();
+                }
             }
-
         });
     } else { // 현재 사용자가 작성자가 아니라면 삭제, 수정버튼 안보이게
         document.querySelector('.a-detail-edit-delete').style.display = "none";
