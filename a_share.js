@@ -73,12 +73,12 @@ function getCurrentUser() {
 
   console.log(userId);
 
-  let userStorage = window.localStorage.getItem(`user_${userId}`);
-  if (userStorage) {
-    console.log(JSON.parse(userStorage).token);
-  }
+  // let userStorage = window.localStorage.getItem(`user_${userId}`);
+  // if (userStorage) {
+  //   console.log(JSON.parse(userStorage).token);
+  // }
 
-  console.log(JSON.parse(window.localStorage.getItem(`user_${userId}`)));
+  // console.log(JSON.parse(window.localStorage.getItem(`user_${userId}`)));
 
   return userId;
 }
@@ -163,9 +163,8 @@ function loginUser(id, pw) {
       console.log(pw);
 
       // 관리자 쿠키 생성
-      let expireDate = new Date();
-      expireDate.setTime(expireDate.getTime() + 100000 * 10000);
-      // document.cookie = `user_id=${"admin"}; expires=` + expireDate.toUTCString() + "; path=/";
+      // let expireDate = new Date();
+      // expireDate.setTime(expireDate.getTime() + 100000 * 10000);
       nowuser=admin;
       userLogin();
       console.log("관리자 입력들어옴");
@@ -244,7 +243,6 @@ function userLogin() {
   {
     console.log(admin);
     coookie1=document.cookie = `user_id=${nowuser.id}; expires=` + expireDate.toUTCString() + "; path=/";
-
   }else coookie1=document.cookie = `user_id=${nowuser.user_id}; expires=` + expireDate.toUTCString() + "; path=/";
   function printTime() {
     remainingTime = getRemainingTime(expireDate.toUTCString()); // 쿠키 만료까지 남은 시간 계산

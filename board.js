@@ -208,7 +208,7 @@ function render(start, end, pagenum) {
         no.textContent = `${i + 1}`;
         title.textContent = `${board.title}`;
         user.textContent = `${nick}`;
-        date.textContent = `${board.date}`;
+        date.textContent = `${board.date}`.slice(0,10);
 
         no.style.borderRight = "1px dashed";
 
@@ -376,14 +376,14 @@ function pageBtnRender(listLength, pagenum) { // 페이지 이전/다음 버튼 
 //   console.log("extensionTime 작동함")
 // }
 
-// // 회원 아이디로 닉네임 찾는 함수
-// function getUserNick(userId) {
-//     let nick="";
-//     if (userId != "admin") {
-//         nick = JSON.parse(window.localStorage.getItem("user_"+userId)).user_nickName;
-//     } else {
-//         nick = userId;
-//     }
-//     return nick;
-//   }
+// 회원 아이디로 닉네임 찾는 함수
+function getUserNick(userId) {
+    let nick="";
+    if (userId != "admin") {
+        nick = JSON.parse(window.localStorage.getItem("user_"+userId)).user_nickName;
+    } else {
+        nick = userId;
+    }
+    return nick;
+  }
 
