@@ -450,6 +450,10 @@
 .h-Tologinpage.isactive2{
     display: flex;   
 }
+.h-Tologinpage:hover{
+    background-color: lightgray;
+    cursor: pointer;
+}
 
 .h-adminallow{
   display: none;
@@ -479,6 +483,7 @@
 
 .checkoverlap{
     border: 1px solid;
+    border-radius: 5px;
     margin-left: 5px;
     padding: 5px;
 
@@ -492,6 +497,7 @@
 
 .check-nickname-overlap{
     border: 1px solid;
+    border-radius: 5px;
     margin-left: 5px;
     padding: 5px;
 
