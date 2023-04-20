@@ -88,15 +88,15 @@ checkNick.addEventListener("click", function () {
     if (key.startsWith("user_")) {
       let cuurent_user = JSON.parse(localStorage.getItem(key));
       console.log(cuurent_user.user_nickName);
-      if (nicknameValue != cuurent_user.user_nickName) {
-        // nickpass = true;
-        if (nicknameValue.length != 0) {
+      // if (nicknameValue != cuurent_user.user_nickName) {
+      //   // nickpass = true;
+      //   if (nicknameValue.length != 0) {
 
-          nicknameValidation.innerHTML = "사용 가능한 닉네임입니다.";
-          nicknameValidation.style.color = "blue";
-        }
+      //     nicknameValidation.innerHTML = "사용 가능한 닉네임입니다.";
+      //     nicknameValidation.style.color = "blue";
+      //   }
 
-      }
+      // }
       if (nicknameValue == cuurent_user.user_nickName) {
         nicknameValidation.innerHTML = "중복된 닉네임이 존재합니다.";
         nickname.value = "";
@@ -110,6 +110,8 @@ checkNick.addEventListener("click", function () {
   }
 
   if (!user) {
+    nicknameValidation.innerHTML = "사용 가능한 닉네임입니다.";
+    nicknameValidation.style.color = "blue";
     nickpass = true;
   }
 });
