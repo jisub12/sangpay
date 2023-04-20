@@ -450,6 +450,10 @@
 .h-Tologinpage.isactive2{
     display: flex;   
 }
+.h-Tologinpage:hover{
+    background-color: lightgray;
+    cursor: pointer;
+}
 
 .h-adminallow{
   display: none;
