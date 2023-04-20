@@ -277,11 +277,15 @@ body{
     right: 0;
 } */
 
-/* .a-right {
-    display: flex;
+.a-right {
+    /* display: flex; */
     position: absolute;
     right: 0;
-} */
+}
+
+.b-answer-textarea{
+    border-radius: 5px;
+}
 
 /* .a-detail-right * {
     margin-right: 6px;
@@ -340,7 +344,7 @@ body{
 
 .a-detail-answer, .a-detail-answer-add {
     min-height: 200px;
-    border: 1px solid;
+    /* border: 1px solid; */
     border-radius: 5px;
     margin: 20px 0;
     position: relative;
