@@ -41,7 +41,7 @@
 }
 
 .b-session-time{
-    width: 60%;
+    width: 50%;
 
     display: flex;
     justify-content: center;
@@ -53,11 +53,13 @@
 }
 
 .b-menu-option{
-    width: 20%;
+    width: 30%;
 
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+
+    margin-right: 15px;
 }
 
 .b-header-list{
@@ -72,7 +74,7 @@
 }
 
 .b-header-list-item{
-    margin-left: 50px;
+    margin: 20px;
 
     display: flex;
     justify-content: flex-end;
@@ -83,12 +85,22 @@
     scale: 1.1;
 }
 
+.b-header-admin{
+    text-decoration: none;
+    color: black;
+}
+
 .b-header-my-page{
     text-decoration: none;
     color: black;
 }
 
 .b-header-faq{
+    text-decoration: none;
+    color: black;
+}
+
+.b-header-logout{
     text-decoration: none;
     color: black;
 }
