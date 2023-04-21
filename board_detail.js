@@ -1,5 +1,5 @@
 // 상세 게시물
-import { boardListEdit, getCurrentUser, getUserNick } from "./board.js";
+// import { boardListEdit, getCurrentUser, getUserNick } from "./board.js";
 
 window.onload = function() {
     // 출력할 게시물의 글번호
@@ -26,7 +26,7 @@ function render(no) {
     document.querySelector('.a-detail-title').innerHTML = `${board.title}`;
     document.querySelector('.a-detail-user').innerHTML = `${getUserNick(board.user)}`;
     document.querySelector('.a-detail-date').innerHTML = `${board.date}`;
-    document.querySelector('.a-detail-content').innerHTML = `${board.content}`;
+    document.querySelector('.a-detail-content').innerHTML = `${board.content}`.replace(/(?:\r\n|\r|\n)/g, '<br>');
 
     let adminAnswerAdd = document.querySelector('.a-detail-answer-add');
     let adminAnswer = document.querySelector('.a-detail-answer');
@@ -66,7 +66,7 @@ function render(no) {
         adminAnswerAdd.style.display="none";
         adminAnswer.style.display="block";
         // 자식 h3에 기존 답변 출력
-        adminAnswer.children[0].innerHTML = `${board.answer}`;
+        adminAnswer.children[0].innerHTML = `${board.answer}`.replace(/(?:\r\n|\r|\n)/g, '<br>');
     }
 
     // 현재 사용자가 작성자와 동일하다면(이메일값으로 비교)
