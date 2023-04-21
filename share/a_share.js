@@ -217,7 +217,7 @@ function loginUser(id, pw) {
       alert("로그인에 성공하셨습니다.")
       expireDate = new Date();
       // 쿠키 생성
-      
+
       userLogin();
 
      location.href = '../wallet/wallet.html';
@@ -456,3 +456,18 @@ if(getCurrentUser() !== "admin"){
   headerAdmin.style.display = "none";
 }
 
+
+// 지갑내역 객체 생성자 함수
+function History(user, type, content, price) {
+  this.user = user;
+  this.type = type;
+  this.content = content;
+  this.price = price;
+}
+
+// 지갑 내역 저장하는 함수
+function setLocalHistory(user, type, content, price) {
+  let historyList = JSON.parse(window.localStorage.getItem("history"));
+  historyList.push(new History(user, type, content, price));
+  window.localStorage.setItem("history", JSON.stringify(historyList));
+}
