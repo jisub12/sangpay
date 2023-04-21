@@ -432,8 +432,12 @@ document.querySelector(".h-nowUser").innerHTML = getCurrentUser();
 function userGetreward() {
     let reward=Math.floor(score/10);
     //보상
-    let gameUser=localStorage.getItem(getCurrentUser());
+    let gameUser=getCurrentUser();
     console.log("지금 게임유저",gameUser);
+    let gameUser1=JSON.parse(localStorage.getItem("user_"+gameUser));
+    console.log("지금 게임유저2",gameUser1);
+    gameUser1.token[9].token_num=gameUser1.token[9].token_num+reward;
+    localStorage.setItem("user_"+gameUser,JSON.stringify(gameUser1));
 
 }
 let h_gamestart = document.querySelector(".h-gamestart");
