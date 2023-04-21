@@ -383,3 +383,7 @@ function getUserNick(userId) {
     return nick;
   }
 
+
+// header에 옵션 띄우기
+let currentUser = getCurrentUser();
+console.log(currentUser);
