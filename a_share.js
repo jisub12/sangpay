@@ -232,7 +232,7 @@ function loginUser(id, pw) {
 let remainingTime
 let coookie1;
 function userLogin() {
-  expireDate.setTime(expireDate.getTime() + 10 * 1000);
+  expireDate.setTime(expireDate.getTime() + 60 * 1000);
   remainingTime = getRemainingTime(expireDate.toUTCString()); // 쿠키 만료까지 남은 시간 계산
   console.log(remainingTime);
   set1 = setInterval(printTime, 1000);
