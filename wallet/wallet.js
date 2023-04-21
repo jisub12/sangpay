@@ -252,7 +252,7 @@ sendCloseButton.onclick = function (){
 
 // 팝업 스왑 부분 //
 
-// 페이to토큰인지 토큰to페이인지 구분하는 변수 선언
+// 페이to토큰인지 토큰to페이인지 구분하는 변수 선언(페이to토큰 - true, 토큰to페이 - false )
 let ptt = true;
 
 // 페이 to 토큰 버튼 클릭 이벤트
@@ -395,7 +395,6 @@ function displayTokens() {
 function displayTokens2() {
   const tokenList = document.getElementById("tokentopay-token-list");
 
-  // 김아현---
   tokenList.innerHTML = "";
 
   document.querySelector('#swap2-sangpay-amount').innerHTML = JSON.parse(window.localStorage.getItem("user_" + getCurrentUser())).coin.coin_num;
@@ -541,6 +540,7 @@ function executefunc() {
 
       // ptt true --> pay 값 빼고 token값 더하기 (페이투토큰)
       if (payinfo.ptt) {
+
         user.coin.coin_num -= payinfo.pay;
         user.coin.coin_num = Number(user.coin.coin_num.toFixed(4));
         user.token.filter(function (item) {
@@ -560,7 +560,11 @@ function executefunc() {
         });
       }
 
+      // 수정된 코인, 토큰 값 로컬스토리지에 저장
       window.localStorage.setItem("user_" + getCurrentUser(), JSON.stringify(user));
+
+      // 지갑내역 로컬스토리지 저장(교환한 정보)
+      setLocalHistory(getCurrentUser(), "교환", {}, payinfo);
 
       // 새로고침
       location.reload();
@@ -690,6 +694,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // 임의로 로컬스토리지에 토큰 추가
     setTokenLocal();
+
+    // 결제내역 로컬스토리지 없으면 로컬스토리지에 빈 값 저장
+    setLocalHistoryArr();
+
   } else {
     // 회원 승인 안됐다면
     alert('회원가입 승인 기다리세요');
@@ -820,9 +828,15 @@ function editUserSangpay(amountToSend, updatedSangpay) {
 
       localStorage.setItem("user_" + getCurrentUser(), JSON.stringify(currentUser));
 
+      // 보내기 지갑내역 로컬스토리지에 저장
+      setLocalHistory(currentUser.user_id, "보내기", {user:user.user_id}, {type : "sangpay", amount : amountToSend});
+
       // 받는 회원의 sangpay 값 변경
       user.coin.coin_num += amountToSend;
       localStorage.setItem("user_" + user.user_id, JSON.stringify(user));
+
+      // 받기 지갑내역 로컬스토리지에 저장
+      setLocalHistory(user.user_id, "받기", {user:currentUser.user_id}, {type : "sangpay", amount : amountToSend});
 
       alert(user.user_id + "님께 " + amountToSend + "만큼 보냈습니다.");
 
@@ -861,4 +875,24 @@ function displayCoin() {
 // 화면에 사용자 보유중인 sangpay 값 출력하는 함수 // (페이 to 토큰 팝업창 안에)
 function displayCoinInpaytoToken() {
   document.querySelector('#paytotoken-amount').innerHTML = JSON.parse(window.localStorage.getItem(`user_` + getCurrentUser())).coin.coin_num;
+}
+
+// 결제내역 로컬스토리지 없으면 로컬스토리지에 빈 값 저장
+function setLocalHistoryArr() {
+  let history = JSON.parse(window.localStorage.getItem("history"));
+  if (!history) {
+      window.localStorage.setItem("history", JSON.stringify([]));
+  }
+}
+
+// 현재 사용자의 지갑내역 구하기
+function getCurrentUserHistory() {
+  let historyList = JSON.parse(window.localStorage.getItem("history"));
+  let user = getCurrentUser();
+  historyList.forEach(function(item) {
+    if (item.user == user) {
+      console.log(item);
+
+    }
+  });
 }
