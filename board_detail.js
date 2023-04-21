@@ -1,4 +1,5 @@
 // 상세 게시물
+
 // import { boardListEdit, getCurrentUser, getUserNick } from "./board.js";
 
 window.onload = function() {

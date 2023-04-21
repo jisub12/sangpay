@@ -297,6 +297,7 @@ function pageBtnRender(listLength, pagenum) { // 페이지 이전/다음 버튼 
 // }
 
 // -------------원래주석
+
 // 쿠키에서 현재 사용자 아이디 가져오는 함수
 
 // function getCurrentUser() {
@@ -386,4 +387,3 @@ function getUserNick(userId) {
     }
     return nick;
   }
-

@@ -162,11 +162,13 @@ function loginUser(id, pw) {
       console.log(id);
       console.log(pw);
 
+
       expireDate = new Date();
 
       // 관리자 쿠키 생성
       // let expireDate = new Date();
       // expireDate.setTime(expireDate.getTime() + 100000 * 10000);
+
       nowuser=admin;
       userLogin();
       console.log("관리자 입력들어옴");
@@ -215,7 +217,7 @@ function loginUser(id, pw) {
       alert("로그인에 성공하셨습니다.")
       expireDate = new Date();
       // 쿠키 생성
-
+      
       userLogin();
 
      location.href = './wallet.html';
@@ -235,7 +237,7 @@ function loginUser(id, pw) {
 let remainingTime
 let coookie1;
 function userLogin() {
-  expireDate.setTime(expireDate.getTime() + 10 * 1000);
+  expireDate.setTime(expireDate.getTime() + 60 * 1000);
   remainingTime = getRemainingTime(expireDate.toUTCString()); // 쿠키 만료까지 남은 시간 계산
   console.log(remainingTime);
   set1 = setInterval(printTime, 1000);
@@ -244,7 +246,9 @@ function userLogin() {
   if(nowuser==admin)
   {
     console.log(admin);
+
     coookie1=document.cookie = `user_id=${nowuser.id}; expires=` + expireDate.toUTCString() + "; path=/";
+
   }else coookie1=document.cookie = `user_id=${nowuser.user_id}; expires=` + expireDate.toUTCString() + "; path=/";
   function printTime() {
     remainingTime = getRemainingTime(expireDate.toUTCString()); // 쿠키 만료까지 남은 시간 계산
@@ -329,6 +333,7 @@ function checkpwchInput(passwordInput, pwcfInput, pwcfValidation) {
     return true;
   }
 }
+
 
 
 // 수정수정  -------------------------------
@@ -437,5 +442,17 @@ function boardListEdit({ board, value }) {
     this.user = user;
     this.date = date;
     this.answer = answer;
+}
+
+
+// header에 admin 옵션 띄우기
+let headerItemList = document.querySelector(".b-header-list");
+let headerMypage = document.querySelector(".b-header-list-item2");
+let headerAdmin = document.querySelector(".b-header-admin");
+if(getCurrentUser() == "admin"){
+  headerMypage.style.display = "none";
+}
+if(getCurrentUser() !== "admin"){
+  headerAdmin.style.display = "none";
 }
 
