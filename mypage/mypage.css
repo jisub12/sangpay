@@ -1,7 +1,14 @@
+@font-face {
+    font-family: "dynapuff";
+    src: url(../DynaPuff/DynaPuff-VariableFont_wdth\,wght.ttf);
+}
+
 .whole-mypage{
     width: 100%;
     height: 900px;
     background-color: #033104;
+
+    font-family: "dynapuff";
 }
 
 /* .header{
@@ -98,7 +105,7 @@
 
 .b-my-page-box{
     width: 60%;
-    height: 650px;
+    height: 750px;
     
     border-radius: 15px;
     /* box-shadow: 5px 5px 5px; */
@@ -288,4 +295,90 @@
 
     display: flex;
     justify-content: center;
+}
+
+.b-game-select-box{
+    width: 100%;
+    height: 50%;
+}
+
+.b-game-box-title{
+    width: 100%;
+}
+
+.b-game-box-title-text{
+    width: 50%;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    text-align: center;
+}
+
+.b-game-select{
+    width: 100%;
+    height: 45%;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.b-human-save-game{
+    width: 200px;
+    height: 220px;
+    
+    margin: 30px;
+    margin-top: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.b-human-save-game-icon{
+    width: 100%;
+    height: 85%;
+    border-radius: 10px;
+
+    background-image: url(../space_game/images/background.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.b-human-save-game-icon:hover{
+    cursor: pointer;
+}
+.b-human-save-game-title:hover{
+    cursor: pointer;
+}
+
+.b-number-select-game{
+    width: 200px;
+    height: 220px;
+    
+    margin: 30px;
+    margin-top: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.b-number-select-game-icon{
+    width: 100%;
+    height: 85%;
+    border-radius: 10px;
+
+    background-image: url(../number_game/images/number_game_image.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.b-number-select-game-icon:hover{
+    cursor: pointer;
+}
+.b-number-select-game-title:hover{
+    cursor: pointer;
 }
