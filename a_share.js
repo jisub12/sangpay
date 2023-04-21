@@ -73,12 +73,12 @@ function getCurrentUser() {
 
   console.log(userId);
 
-  let userStorage = window.localStorage.getItem(`user_${userId}`);
-  if (userStorage) {
-    console.log(JSON.parse(userStorage).token);
-  }
+  // let userStorage = window.localStorage.getItem(`user_${userId}`);
+  // if (userStorage) {
+  //   console.log(JSON.parse(userStorage).token);
+  // }
 
-  console.log(JSON.parse(window.localStorage.getItem(`user_${userId}`)));
+  // console.log(JSON.parse(window.localStorage.getItem(`user_${userId}`)));
 
   return userId;
 }
@@ -116,6 +116,8 @@ function newUserBtn(
     pwcf = false;
 
     return userString;
+  } else {
+    alert("제대로 입력했는지 확인하세요.");
   }
 }
 
@@ -144,8 +146,37 @@ let set1; //setInterval 함수
 //버튼 누르면 시간추가 쿠키값에 반영
 
 
+// admin 아이디, 비밀번호 로컬스토리지에 저장
+window.localStorage.setItem("admin", JSON.stringify({'id': 'admin', 'pw':'admin'}));
+let admin = JSON.parse(window.localStorage.getItem('admin'));
+console.log(admin.id);
+
 function loginUser(id, pw) {
   let user;
+
+
+  // id가 admin이라면
+  if (id == admin.id) {
+    if (pw == admin.pw) {
+      // 관리자 로그인 성공
+      console.log(id);
+      console.log(pw);
+
+      expireDate = new Date();
+
+      // 관리자 쿠키 생성
+      // let expireDate = new Date();
+      // expireDate.setTime(expireDate.getTime() + 100000 * 10000);
+      nowuser=admin;
+      userLogin();
+      console.log("관리자 입력들어옴");
+      location.href = 'adminpage.html';
+
+      return true;
+    } else {
+      alert('비밀번호 확인');
+    }
+  }
 
   for (let i = 0; i < localStorage.length; i++) {
     let key = localStorage.key(i);
@@ -184,9 +215,10 @@ function loginUser(id, pw) {
       alert("로그인에 성공하셨습니다.")
       expireDate = new Date();
       // 쿠키 생성
+
       userLogin();
 
-      location.href = './wallet.html';
+     location.href = './wallet.html';
 
     } else if (user.user_pw == pw && !user.user_allow) {
       alert("관리자의 승인을 기다리세요");
@@ -201,17 +233,25 @@ function loginUser(id, pw) {
 }
 
 let remainingTime
+let coookie1;
 function userLogin() {
   expireDate.setTime(expireDate.getTime() + 10 * 1000);
   remainingTime = getRemainingTime(expireDate.toUTCString()); // 쿠키 만료까지 남은 시간 계산
   console.log(remainingTime);
   set1 = setInterval(printTime, 1000);
   // `userid=${nowuser.user_id}; expires=${kstTime.toUTCString()}; path=/
-  document.cookie = `user_id=${nowuser.user_id}; expires=` + expireDate.toUTCString() + "; path=/";
+  localStorage.setItem('expireDate', expireDate.getTime());
+  if(nowuser==admin)
+  {
+    console.log(admin);
+    coookie1=document.cookie = `user_id=${nowuser.id}; expires=` + expireDate.toUTCString() + "; path=/";
+  }else coookie1=document.cookie = `user_id=${nowuser.user_id}; expires=` + expireDate.toUTCString() + "; path=/";
   function printTime() {
     remainingTime = getRemainingTime(expireDate.toUTCString()); // 쿠키 만료까지 남은 시간 계산
     console.log(remainingTime);
     remainedTime.innerHTML = remainingTime;
+    // coookie1=document.cookie = `user_id=${nowuser.user_id}; expires=` + expireDate.toUTCString() + "; path=/";
+    // console.log(coookie1);
 
     const minutes = remainingTime.match(/\d+분/);
     const seconds = remainingTime.match(/\d+초/);
@@ -230,7 +270,9 @@ function extensionTime() {
   let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
   console.log(expireDate.getTime());
   console.log(cookieValue);
-  let time = expireDate.setTime(expireDate.getTime() + 10 * 10000); //10 초뒤
+  let time = expireDate.setTime(expireDate.getTime() + 10 * 10000); //100 초뒤
+  // 로컬스토리지에 이함수 실행마다. 더해진값 저장
+  localStorage.setItem('expireDate', time);
   console.log(time);
   console.log("작동함");
   // 업데이트된 쿠키를 생성하여 저장
@@ -257,6 +299,7 @@ function checkNicknameInput(nickname, nicknameValidation) {
 // 비밀번호 입력할때마다 실행될 함수
 function checkPasswordInput(passwordInput, passwordValidation, pwpass) {
   passwordValue = passwordInput.value;
+  passwordValidation.style.color = "red";
   if (passwordValue.length < 8 || passwordValue.length > 20) {
     passwordValidation.innerHTML = "비밀번호는 8자 이상 20자 이하여야 합니다.";
     return false;
@@ -277,6 +320,7 @@ function checkPasswordInput(passwordInput, passwordValidation, pwpass) {
 
 // 비밀번호 확인 input에 입력할때마다 실행될 함수
 function checkpwchInput(passwordInput, pwcfInput, pwcfValidation) {
+  pwcfValidation.style.color = "red";
   if (passwordInput.value != pwcfInput.value) {
     pwcfValidation.innerHTML = "비밀번호가 동일하지 않습니다.";
     return false;
@@ -285,3 +329,113 @@ function checkpwchInput(passwordInput, pwcfInput, pwcfValidation) {
     return true;
   }
 }
+
+
+// 수정수정  -------------------------------
+
+function getUserNick(userId) {
+    let nick="";
+    if (userId != "admin") {
+        nick = JSON.parse(window.localStorage.getItem("user_"+userId)).user_nickName;
+    } else {
+        nick = userId;
+    }
+    return nick;
+  }
+
+
+
+
+  // --------------------
+  let set2;
+let inputTime=document.querySelector('.h-session');
+let expire2=localStorage.getItem('expireDate');
+function getRemainingTime1() {
+  // let expire = new Date(cookieExpire);
+  expire2=localStorage.getItem('expireDate');
+  let now = new Date();
+  const expireDateFromLocalStorage = localStorage.getItem('expireDate'); // 로컬스토리지에서 expireDate 값 읽어오기
+  // if (expireDateFromLocalStorage) {
+  //   expire = new Date(expireDateFromLocalStorage); // 로컬스토리지에서 읽어온 값으로 expire 변수 재할당
+  // }
+  console.log("getRemainingTime1 함수 실행되는것을 확인")
+  now = now.getTime();
+
+  console.log(expire2);
+  let nowTime = new Date(now);
+  let diff = expire2 - nowTime;
+  console.log(diff);
+  let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+  if (diff < 2) {
+    clearInterval(set2);
+    console.log("끝");
+    return "시간만료"
+  }
+  console.log(`남은 시간 : ${minutes}분 ${seconds}초`);
+  inputTime.innerHTML= `남은 시간 : ${minutes}분 ${seconds}초`;
+  return `남은 시간 : ${minutes}분 ${seconds}초`;
+}
+getRemainingTime1();
+set2=setInterval(getRemainingTime1, 1000);
+document.addEventListener("DOMContentLoaded",function(){
+    expireDate.setTime(window.localStorage.getItem('expireDate'))
+  })
+
+
+
+function extensionTime2() {
+  console.log("extensionTime 시작")
+  let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+  console.log(expireDate.getTime());
+  console.log(cookieValue);
+  let time = expireDate.setTime(expireDate.getTime() + 10 * 10000); //100 초뒤
+  // 로컬스토리지에 이함수 실행마다. 더해진값 저장
+  localStorage.setItem('expireDate', time);
+  console.log(time);
+  console.log("작동함");
+  // 업데이트된 쿠키를 생성하여 저장
+  document.cookie = `user_id=${cookieValue}; expires=${expireDate.toUTCString()}; path=/`;
+  console.log(document.cookie);
+  console.log("extensionTime 작동함")
+}
+
+// 게시물 수정,삭제(+답변등록, 답변수정) 함수
+function boardListEdit({ board, value }) {
+  // function boardListEdit(board, value) {
+
+  console.log("게시물수정삭제함수")
+  console.log(board);
+  console.log(value);
+
+  let boardList = JSON.parse(localStorage.getItem('board'));
+  let idx = boardList.findIndex(function (item) { return item.no == board.no });
+
+  switch (value) {
+      case "수정":
+          boardList.splice(idx, 1, board);
+          console.log(boardList);
+          break;
+
+      case "삭제":
+          boardList.splice(idx, 1);
+          console.log(boardList);
+          break;
+  }
+
+  localStorage.setItem("board", JSON.stringify(boardList));
+}
+
+// 게시물 객체 생성자 함수
+// function Board(no, title, content, user, date, answer) {
+  function Board(no, title, content, user, date, answer) {
+    this.no = no;
+    this.title = title;
+    this.content = content;
+    this.user = user;
+    this.date = date;
+    this.answer = answer;
+}
+

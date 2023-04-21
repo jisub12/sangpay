@@ -1,3 +1,59 @@
+// let set2;
+// let inputTime=document.querySelector('.h-session');
+// let expire2=localStorage.getItem('expireDate');
+// function getRemainingTime1() {
+//   // let expire = new Date(cookieExpire);
+//   expire2=localStorage.getItem('expireDate');
+//   let now = new Date();
+//   const expireDateFromLocalStorage = localStorage.getItem('expireDate'); // 로컬스토리지에서 expireDate 값 읽어오기
+//   // if (expireDateFromLocalStorage) {
+//   //   expire = new Date(expireDateFromLocalStorage); // 로컬스토리지에서 읽어온 값으로 expire 변수 재할당
+//   // }
+//   console.log("getRemainingTime1 함수 실행되는것을 확인")
+//   now = now.getTime();
+
+//   console.log(expire2);
+//   let nowTime = new Date(now);
+//   let diff = expire2 - nowTime;
+//   console.log(diff);
+//   let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+//   let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+//   let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+//   let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+//   if (diff < 2) {
+//     clearInterval(set2);
+//     console.log("끝");
+//     return "시간만료"
+//   }
+//   console.log(`남은 시간 : ${minutes}분 ${seconds}초`);
+//   inputTime.innerHTML= `남은 시간 : ${minutes}분 ${seconds}초`;
+//   return `남은 시간 : ${minutes}분 ${seconds}초`;
+// }
+// getRemainingTime1();
+// set2=setInterval(getRemainingTime1, 1000);
+
+
+// let WalletexpireDate;
+// document.addEventListener("DOMContentLoaded",function(){
+//   expireDate.setTime(window.localStorage.getItem('expireDate'))
+// })
+
+function extensionTime1() {
+  console.log("extensionTime 시작")
+  let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+  console.log(expireDate.getTime());
+  console.log(cookieValue);
+  //expireDate.getTime()
+  let time = expireDate.setTime(expireDate.getTime() + 10 * 10000); //100 초뒤
+  // 로컬스토리지에 이함수 실행마다. 더해진값 저장
+  localStorage.setItem('expireDate', time);
+  console.log(time);
+  console.log("작동함");
+  // 업데이트된 쿠키를 생성하여 저장
+  document.cookie = `user_id=${cookieValue}; expires=${expireDate.toUTCString()}; path=/`;
+  console.log(document.cookie);
+  console.log("extensionTime 작동함")
+}
 
 // getRemainingTime();
 // userLogin();
@@ -417,7 +473,7 @@ function tokenToPay(token_name) {
   // 페이to토큰 --> 현재 사용자가 가진 페이보다 큰 값 입력하면
   if (ptt && amount.value > userPay) {
     alert("현재 sangpay : " + userPay + "더 작은 값 입력");
-    amount.value = 0;
+    amount.value = userPay;
     return false;
   }
 
@@ -429,7 +485,7 @@ function tokenToPay(token_name) {
   // 토큰to페이 --> 현재 사용자가 가진 토큰보다 큰 값 입력하면
   if (!ptt && amount.value > userToken.token_num) {
     alert("현재 토큰 : " + userToken.token_num + "더 작은 값 입력");
-    amount.value = 0;
+    amount.value = userToken.token_num;
     return false;
   }
 
@@ -437,11 +493,10 @@ function tokenToPay(token_name) {
   if (ptt) {
     // 페이 to 토큰
     swapRate[0].innerHTML = `토큰가치 : ${token.token_value}`;
-    swapFee[0].innerHTML = `토큰 당 수수료 : ${token.charge}`;
+    swapFee[0].innerHTML = `페이 당 수수료 : ${token.charge}`;
 
     // 계산
     let tokenAmount = Number((amount.value * 10/ token.token_value - amount.value * token.charge * 0.01).toFixed(4));
-    alert(tokenAmount);
     finalExchange[0].innerHTML = `페이 : ${amount.value}, ${token.token_name} : ${tokenAmount}`;
     return { ptt: ptt, pay: amount.value, token: [token_name, tokenAmount] };
   } else {
@@ -450,11 +505,9 @@ function tokenToPay(token_name) {
     swapRate[1].innerHTML = `토큰가치 : ${token.token_value}`;
 
     // 토큰 to 페이 계산식 수정
-    // let payAmount = Number((10 * amount.value / (token.token_value) - amount.value * token.charge * 0.01).toFixed(4));
     let payAmount = Number((token.token_value * amount.value / 10 - amount.value * token.charge * 0.01).toFixed(4));
-    // alert(payAmount);
     finalExchange[1].innerHTML = `${token.token_name} : ${amount.value}, 페이 : ${payAmount}`;
-    // finalExchange[1].innerHTML=`페이 : ${amount.value}, ${token.token_name} : ${amount.value *1.1574 - amount.value*0.25*0.01}`;
+
     return { ptt: ptt, pay: payAmount, token: [token_name, amount.value] };
   }
 
@@ -483,26 +536,28 @@ function executefunc() {
     if(executeBool) {
       // 페이투토큰 사용자 값 처리
       let user = JSON.parse(window.localStorage.getItem("user_" + getCurrentUser()));
-      console.log(user);
+
       // ptt true --> pay 값 빼고 token값 더하기 (페이투토큰)
       if (payinfo.ptt) {
         user.coin.coin_num -= payinfo.pay;
+        user.coin.coin_num = Number(user.coin.coin_num.toFixed(4));
         user.token.filter(function (item) {
           if (item.token_name == payinfo.token[0]) {
             item.token_num += payinfo.token[1];
+            item.token_num = Number(item.token_num.toFixed(4));
           }
         });
-
       } else { // ptt false --> pay 값 더하고 token값 빼기(토큰투페이)
         user.coin.coin_num += payinfo.pay;
+        user.coin.coin_num = Number(user.coin.coin_num.toFixed(4));
         user.token.filter(function (item) {
           if (item.token_name == payinfo.token[0]) {
             item.token_num -= payinfo.token[1];
+            item.token_num = Number(item.token_num.toFixed(4));
           }
         });
       }
 
-      console.log(payinfo);
       window.localStorage.setItem("user_" + getCurrentUser(), JSON.stringify(user));
 
       // 새로고침
@@ -553,7 +608,7 @@ function displayTokens3() {
 }
 
 // 교환 -> 페이/토큰 입력했을때 실시간으로 반영되게
-document.querySelector("#swap1-sangpay-amount").addEventListener('change', function() {
+document.querySelector("#swap1-sangpay-amount").addEventListener('input', function() {
   // 현재 선택된 토큰이름 구하는 코드
 
   let token;
@@ -567,7 +622,7 @@ document.querySelector("#swap1-sangpay-amount").addEventListener('change', funct
   if (token) {
     console.log(token.firstElementChild.textContent);
     // 선택된 토큰 이름 전달
-    tokenToPay(token.firstElementChild.textContent);
+    payinfo = tokenToPay(token.firstElementChild.textContent);
   }
 
 });
@@ -585,18 +640,14 @@ document.querySelector("#swap2-token-amount").addEventListener('input', function
   if (token) {
     console.log(token.firstElementChild.textContent);
     // 선택된 토큰 이름 전달
-    tokenToPay(token.firstElementChild.textContent);
+    payinfo = tokenToPay(token.firstElementChild.textContent);
   }
-
-
 });
 
 
 
 
 // ul안에 li 부분 클릭 이벤트
-
-
 function addClickListeners() {
   let tokenListItems = document.querySelectorAll(".token-list li");
 
@@ -615,8 +666,6 @@ function addClickListeners() {
         // 현재 클릭된 토큰의 이름 전달
         payinfo = tokenToPay(item.firstElementChild.textContent);
 
-
-
       }
     });
   });
@@ -625,26 +674,29 @@ function addClickListeners() {
 // 페이지 로드 시 토큰 목록을 표시합니다.
 
 window.addEventListener("DOMContentLoaded", () => {
-  displayTokens("main-token-list");
-  displayTokens2("tokentopay-token-list");
-  displayTokens3("paytotoken-token-list");
-  displayCoin();
-  displayCoinInpaytoToken(); // 801~ 804 부분 (페이to토큰 팝업 안에 코인수량표기)
+  let user = JSON.parse(window.localStorage.getItem("user_" + getCurrentUser()));
+  // 승인된 회원이라면
+  if (user.user_allow) {
+    displayTokens("main-token-list");
+    displayTokens2("tokentopay-token-list");
+    displayTokens3("paytotoken-token-list");
+    displayCoin();
+    displayCoinInpaytoToken(); // 801~ 804 부분 (페이to토큰 팝업 안에 코인수량표기)
 
-  // li 클릭 부분 이벤트 함수 추가
-  addClickListeners();
+    // li 클릭 부분 이벤트 함수 추가
+    addClickListeners();
 
-  // 임의로 로컬스토리지에 토큰 추가
-  setTokenLocal();
+    // 임의로 로컬스토리지에 토큰 추가
+    setTokenLocal();
+  } else {
+    // 회원 승인 안됐다면
+    alert('회원가입 승인 기다리세요');
+    // 로그인페이지로 이동
+    location.href = './loginpage.html';
+  }
+
 });
 
-
-
-// 로컬스토리지 아이디 연결 (sangpay)
-
-// function getCurrentUser() {
-//     return "gusdnr205@naver.com"; // 현재 사용자를 반환하는 코드를 적절하게 수정해주세요.
-//   }
 
 function getSangpayForUser(user) {
   const storedSangpay = parseFloat(localStorage.getItem(user));
@@ -726,7 +778,7 @@ document.querySelector(".h-send-button").addEventListener("click", () => {
       console.log(storedSangpay);
       console.log(updatedSangpay);
       document.querySelectorAll(".coin-amount").forEach(function (e) {
-        e.textContent = updatedSangpay;
+        e.textContent = loadWalletFromLocalStorage(currentUser);
       });
       document.querySelector("#send-amount").value = "";
       document.querySelector(".popup1").style.display = "none";
@@ -776,6 +828,8 @@ function editUserSangpay(amountToSend, updatedSangpay) {
 
     console.log("받는회원", user);
 
+  } else {
+    alert("지갑 주소 확인");
   }
 
 }
@@ -802,7 +856,7 @@ function getUserList() {
 function displayCoin() {
   document.querySelector('#sangpay-amount').innerHTML = JSON.parse(window.localStorage.getItem(`user_` + getCurrentUser())).coin.coin_num;
 }
-// 화면에 사용자 보유중인 sangpay 값 출력하는 함수 // (페이 to 토큰 팝업창 안에) 
+// 화면에 사용자 보유중인 sangpay 값 출력하는 함수 // (페이 to 토큰 팝업창 안에)
 function displayCoinInpaytoToken() {
   document.querySelector('#paytotoken-amount').innerHTML = JSON.parse(window.localStorage.getItem(`user_` + getCurrentUser())).coin.coin_num;
 }

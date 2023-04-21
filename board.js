@@ -10,7 +10,6 @@ let currentPage = 1;
 
 // 처음 실행되면 작동할 함수
 window.onload = function () {
-    console.log("dfdfd");
 
     // 페이지네이션 함수 실행
     paginate(JSON.parse(window.localStorage.getItem("board")));
@@ -137,6 +136,9 @@ function render(start, end, pagenum) {
     }
 
     let boardListDiv = document.querySelector('.a-board-list');
+    if (!boardListDiv) {
+        return false;
+    }
     boardListDiv.innerHTML = "";
 
     let ul = document.createElement('ul');
@@ -179,9 +181,9 @@ function render(start, end, pagenum) {
 
     if (boardList.length != 0) {
         // 가장 최근 게시물이 먼저 출력되게
-        boardList.reverse();    
+        boardList.reverse();
 
-    
+
 
 
     for (let i = start; i <= end; i++) {
@@ -200,11 +202,13 @@ function render(start, end, pagenum) {
         user.setAttribute("class", "a-w2 a-list");
         date.setAttribute("class", "a-w3 a-list");
 
+        let nick = getUserNick(board.user);
+
         // no.textContent = `${board.no}`;
         no.textContent = `${i + 1}`;
         title.textContent = `${board.title}`;
-        user.textContent = `${board.user}`;
-        date.textContent = `${board.date}`;
+        user.textContent = `${nick}`;
+        date.textContent = `${board.date}`.slice(0,10);
 
         no.style.borderRight = "1px dashed";
 
@@ -232,79 +236,154 @@ function pageBtnRender(listLength, pagenum) { // 페이지 이전/다음 버튼 
     let nextBtn = document.querySelector("#nextBtn");
     let prevBtn = document.querySelector("#prevBtn");
 
+    nextBtn.style.visibility = "visible";
+    prevBtn.style.visibility = "visible";
+
     // 현재 첫번째 페이지라면 이전 버튼 출력 X
     if (pagenum == 1) {
-        prevBtn.style.opacity = "0";
-        nextBtn.style.opacity = "1";
+        prevBtn.style.visibility = "hidden";
+        // nextBtn.style.visibility = "visible";
     }
     // 현재 마지막 페이지라면 다음 버튼 출력 X
     if (pagenum == totalPage) {
-        nextBtn.style.opacity = "0";
-        prevBtn.style.opacity = "1";
+        nextBtn.style.visibility = "hidden";
+        // prevBtn.style.visibility = "visible";
     }
 
     if (pagenum != 1 && pagenum != totalPage) {
-        prevBtn.style.opacity = "1";
-        nextBtn.style.opacity = "1";
+        // nextBtn.style.visibility = "visible";
+        // prevBtn.style.visibility = "visible";
     }
 
     // 현재 페이지로 체크되게
     document.querySelector(`.numbtn-${pagenum}`).checked = "checked";
 }
 
-// 게시물 객체 생성자 함수
+// // 게시물 객체 생성자 함수
+// // function Board(no, title, content, user, date, answer) {
 // function Board(no, title, content, user, date, answer) {
-export function Board(no, title, content, user, date, answer) {
-    this.no = no;
-    this.title = title;
-    this.content = content;
-    this.user = user;
-    this.date = date;
-    this.answer = answer;
-}
+//     this.no = no;
+//     this.title = title;
+//     this.content = content;
+//     this.user = user;
+//     this.date = date;
+//     this.answer = answer;
+// }
 
-// 게시물 수정,삭제(+답변등록, 답변수정) 함수
-export function boardListEdit({ board, value }) {
-    // function boardListEdit(board, value) {
-    console.log("게시물수정삭제함수")
-    console.log(board);
-    console.log(value);
+// // 게시물 수정,삭제(+답변등록, 답변수정) 함수
+// function boardListEdit({ board, value }) {
+//     // function boardListEdit(board, value) {
 
-    let boardList = JSON.parse(localStorage.getItem('board'));
-    let idx = boardList.findIndex(function (item) { return item.no == board.no });
+//     console.log("게시물수정삭제함수")
+//     console.log(board);
+//     console.log(value);
 
-    switch (value) {
-        case "수정":
-            boardList.splice(idx, 1, board);
-            console.log(boardList);
-            break;
+//     let boardList = JSON.parse(localStorage.getItem('board'));
+//     let idx = boardList.findIndex(function (item) { return item.no == board.no });
 
-        case "삭제":
-            boardList.splice(idx, 1);
-            console.log(boardList);
-            break;
-    }
+//     switch (value) {
+//         case "수정":
+//             boardList.splice(idx, 1, board);
+//             console.log(boardList);
+//             break;
 
-    localStorage.setItem("board", JSON.stringify(boardList));
-}
+//         case "삭제":
+//             boardList.splice(idx, 1);
+//             console.log(boardList);
+//             break;
+//     }
 
+//     localStorage.setItem("board", JSON.stringify(boardList));
+// }
 
+// -------------원래주석
 // 쿠키에서 현재 사용자 아이디 가져오는 함수
-export function getCurrentUser() {
 
-    let userId = "";
+// function getCurrentUser() {
 
-    // 임의로 쿠키 생성
-    let expireDate = new Date();
-    expireDate.setTime(expireDate.getTime() + 100000 * 1000);
-    // document.cookie = `user_id=${"admin"}; expires=` + expireDate.toUTCString() + "; path=/";
-    // document.cookie = `user_id=${"gusdnr205@naver.com"}; expires=` + expireDate.toUTCString() + "; path=/";
+//     let userId = "";
 
-    console.log(document.cookie);
-    let start = document.cookie.indexOf(`user_id=`);
+//     // 임의로 쿠키 생성
+//     let expireDate = new Date();
+//     expireDate.setTime(expireDate.getTime() + 100000 * 1000);
+//     // document.cookie = `user_id=${"admin"}; expires=` + expireDate.toUTCString() + "; path=/";
+//     // document.cookie = `user_id=${"gusdnr205@naver.com"}; expires=` + expireDate.toUTCString() + "; path=/";
 
-    if (start != -1) {
-        userId = document.cookie.split('=')[1];
+//     console.log(document.cookie);
+//     let start = document.cookie.indexOf(`user_id=`);
+
+//     if (start != -1) {
+//         userId = document.cookie.split('=')[1];
+//     }
+//     return userId;
+// }
+
+//----------------------------
+
+
+// let set2;
+// let inputTime=document.querySelector('.h-session');
+// let expire2=localStorage.getItem('expireDate');
+// function getRemainingTime1() {
+//   // let expire = new Date(cookieExpire);
+//   expire2=localStorage.getItem('expireDate');
+//   let now = new Date();
+//   const expireDateFromLocalStorage = localStorage.getItem('expireDate'); // 로컬스토리지에서 expireDate 값 읽어오기
+//   // if (expireDateFromLocalStorage) {
+//   //   expire = new Date(expireDateFromLocalStorage); // 로컬스토리지에서 읽어온 값으로 expire 변수 재할당
+//   // }
+//   console.log("getRemainingTime1 함수 실행되는것을 확인")
+//   now = now.getTime();
+
+//   console.log(expire2);
+//   let nowTime = new Date(now);
+//   let diff = expire2 - nowTime;
+//   console.log(diff);
+//   let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+//   let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+//   let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+//   let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+//   if (diff < 2) {
+//     clearInterval(set2);
+//     console.log("끝");
+//     return "시간만료"
+//   }
+//   console.log(`남은 시간 : ${minutes}분 ${seconds}초`);
+//   inputTime.innerHTML= `남은 시간 : ${minutes}분 ${seconds}초`;
+//   return `남은 시간 : ${minutes}분 ${seconds}초`;
+// }
+// getRemainingTime1();
+// set2=setInterval(getRemainingTime1, 1000);
+// document.addEventListener("DOMContentLoaded",function(){
+//     expireDate.setTime(window.localStorage.getItem('expireDate'))
+//   })
+
+
+
+// function extensionTime2() {
+//   console.log("extensionTime 시작")
+//   let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+//   console.log(expireDate.getTime());
+//   console.log(cookieValue);
+//   let time = expireDate.setTime(expireDate.getTime() + 10 * 10000); //100 초뒤
+//   // 로컬스토리지에 이함수 실행마다. 더해진값 저장
+//   localStorage.setItem('expireDate', time);
+//   console.log(time);
+//   console.log("작동함");
+//   // 업데이트된 쿠키를 생성하여 저장
+//   document.cookie = `user_id=${cookieValue}; expires=${expireDate.toUTCString()}; path=/`;
+//   console.log(document.cookie);
+//   console.log("extensionTime 작동함")
+// }
+
+// 회원 아이디로 닉네임 찾는 함수
+function getUserNick(userId) {
+    let nick="";
+    if (userId != "admin") {
+        nick = JSON.parse(window.localStorage.getItem("user_"+userId)).user_nickName;
+    } else {
+        nick = userId;
     }
-    return userId;
-}
+    return nick;
+  }
+

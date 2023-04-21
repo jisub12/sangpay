@@ -19,8 +19,8 @@
             </a>
         </div>
         <div class="b-session-time">
-            <div class="b-session">남은 시간 : 00분 00초</div>
-            <button class="b-time-extend-btn">시간 연장</button>
+            <div class="h-session">남은 시간 : 0분 0초</div>
+            <button class="b-time-extend-btn" onclick="extensionTime2()">시간 연장</button>
         </div>
         <div class="b-menu-option">
             <ul class="b-header-list">
@@ -66,8 +66,8 @@
             </div>
 
             <div class="a-detail-answer-add">
-                <textarea></textarea>
-                <div class="a-btn a-right">등록</div>
+                <textarea class="b-answer-textarea"></textarea>
+                <div class="a-btn a-right b-detail-answer-add">등록</div>
             </div>
             <div class="a-detail-answer">
                 <h3>답변</h3>
@@ -75,6 +75,8 @@
         </div>
     </div>
 </body>
-<script type="module" src="./board_detail.js"></script>
+<script src="./a_share.js"></script>
+<script src="./board_detail.js"></script>
+<!-- <script src="./board.js"></script> -->
 
 </html>
