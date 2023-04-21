@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
     <style>
         body {
             text-align: center;
@@ -14,6 +16,7 @@
             height: 100vh;
             margin: 0;
         }
+
         h1 {
             position: absolute;
             top: 0;
@@ -23,8 +26,26 @@
         }
     </style>
 </head>
+
 <body>
     <h1>지구인들을 구조하라!</h1>
+    <div class="h-popup_box">
+        <h2>게임규칙</h2>
+        <div class="h-nowUser">현재사용자:</div>
+        <div class="h-reward">보상:</div>
+        <div>
+            <p>코인이 1 차감됩니다.</p>
+        </div>
+        <div>
+            <p>구한 사람 10명당 overwatch 토큰 1이 주어집니다.</p>
+        </div>
+        <div style="align-items: center;">
+            <div class="h-gamestart" onclick=>게임시작</button>
+        </div>
+    </div>
 </body>
+<script src="../share/a_share.js"></script>
 <script src="./index.js"></script>
+
+
 </html>
