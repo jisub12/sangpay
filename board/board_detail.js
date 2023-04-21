@@ -56,7 +56,7 @@ function render(no) {
                 boardListEdit({board:board, value:"수정"});
 
                 // 수정완료되었다면 작동할 부분
-                alert("수정완료");
+                alert("등록완료");
             } catch (error) {
                 console.log(error);
             }

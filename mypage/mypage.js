@@ -19,7 +19,7 @@ window.onload = function () {
         // 회원 승인 안됐다면
         alert('회원가입 승인 기다리세요');
         // 로그인페이지로 이동
-        location.href = './loginpage.html';
+        location.href = '../login/loginpage.html';
     }
 
 }

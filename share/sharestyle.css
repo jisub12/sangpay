@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: "dynapuff";
-    src: url(./DynaPuff/DynaPuff-VariableFont_wdth\,wght.ttf);
+    src: url(../DynaPuff/DynaPuff-VariableFont_wdth\,wght.ttf);
 }
 
 .header{
@@ -34,7 +34,7 @@
     width: 150px;
     height: 50px;
 
-    background-image: url(./120911292/120911292_padded_logo.png);
+    background-image: url(../img/120911292_padded_logo.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

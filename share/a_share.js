@@ -172,7 +172,7 @@ function loginUser(id, pw) {
       nowuser=admin;
       userLogin();
       console.log("관리자 입력들어옴");
-      location.href = 'adminpage.html';
+      location.href = '../admin/adminpage.html';
 
       return true;
     } else {
@@ -220,7 +220,7 @@ function loginUser(id, pw) {
       
       userLogin();
 
-     location.href = './wallet.html';
+     location.href = '../wallet/wallet.html';
 
     } else if (user.user_pw == pw && !user.user_allow) {
       alert("관리자의 승인을 기다리세요");

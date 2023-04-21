@@ -532,7 +532,7 @@ if (getCurrentUser() == "admin") {
 } else {
     console.log("안녕",getCurrentUser());
     alert("관리자 로그인 하세요");
-    location.href = "./loginpage.html";
+    location.href = "../login/loginpage.html";
 
 }
 

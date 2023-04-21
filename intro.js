@@ -22,7 +22,7 @@ fakeWallet2.onclick = function(){
     walletIntro.style.animation = "walletIntroFadeOut 1s ease forwards";
     fakeWallet2.style.animation = "walletZoomIn 1s ease forwards";
     setTimeout(() => {
-        location.href = "loginpage.html";
+        location.href = "./login/loginpage.html";
     }, 1000);
 }
 
