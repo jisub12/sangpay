@@ -4,7 +4,7 @@
 // 등록/수정에 따라 버튼에 등록/수정 작성
 // 등록이면 빈 화면 출력, 수정이면 이미 작성되어있는 내용 출력
 
-import { Board, getCurrentUser, boardListEdit } from "./board.js";
+// import { Board, getCurrentUser, boardListEdit } from "./board.js";
 
 // 처음 실행될때 작동할 함수
 window.onload = function () {
