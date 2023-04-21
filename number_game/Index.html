@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>숫자 맞추기 게임</title>
+</head>
+<body>
+    <h1>숫자 맞추기 게임</h1>
+    <p>1에서 10 사이의 숫자를 맞춰보세요!</p>
+    <input type="number" id="guessInput" min="1" max="10">
+    <button id="submitGuess">제출하기</button>
+    <p id="message"></p>
+<script>
+    let secretNumber = Math.floor(Math.random() * 10) + 1
+    let attempts = 0;
+
+    const guessInput = document.getElementById("guessInput");
+    const submitGuess = document.getElementById("submitGuess");
+    const message = document.getElementById("message");
+
+    submitGuess.addEventListener("click", function(){
+        const guess = parseInt(guessInput.value);
+        if(isNaN(guess) || guess < 1 || guess > 10){
+            message.textContent = "1에서 10사이의 숫자 입력"
+            return;
+        }
+        attempts++;
+        if(guess === secretNumber){
+            message.textContent = `축하해 ${attempts}번 만에 맞췄어!`;
+            resetGame();
+        } else if (guess > secretNumber){
+            message.textContent = "다운!";
+        } else {
+            message.textContent = "업!";
+        }
+        
+       
+    });
+    function resetGame(){
+        secretNumber = Math.floor(Math.random() * 10 ) + 1;
+        attempts = 0;
+        guessInput.value = "";
+        
+    }
+</script>
+</body>
+</html>
