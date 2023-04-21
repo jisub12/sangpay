@@ -328,3 +328,15 @@ function checkpwchInput(passwordInput, pwcfInput, pwcfValidation) {
     return true;
   }
 }
+
+
+// header에 admin 옵션 띄우기
+let headerItemList = document.querySelector(".b-header-list");
+let headerMypage = document.querySelector(".b-header-list-item2");
+let headerAdmin = document.querySelector(".b-header-admin");
+if(getCurrentUser() == "admin"){
+  headerMypage.style.display = "none";
+}
+if(getCurrentUser() !== "admin"){
+  headerAdmin.style.display = "none";
+}

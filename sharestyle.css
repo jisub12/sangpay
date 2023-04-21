@@ -73,7 +73,28 @@
     margin: 0;
 }
 
-.b-header-list-item{
+.b-header-list-item1{
+    margin: 20px;
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+.b-header-list-item2{
+    margin: 20px;
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+.b-header-list-item3{
+    margin: 20px;
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+.b-header-list-item4{
     margin: 20px;
 
     display: flex;
