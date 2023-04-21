@@ -162,6 +162,8 @@ function loginUser(id, pw) {
       console.log(id);
       console.log(pw);
 
+      expireDate = new Date();
+
       // 관리자 쿠키 생성
       // let expireDate = new Date();
       // expireDate.setTime(expireDate.getTime() + 100000 * 10000);
