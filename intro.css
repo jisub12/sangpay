@@ -72,7 +72,7 @@
     left: 100%;
     transform: translate(0,-50%);
 
-    background-image: url(./wallet_icon.png);
+    background-image: url(./img/wallet_icon.png);
     background-repeat: no-repeat;
     background-size: contain;
 
@@ -91,7 +91,7 @@
     left: 90.55%;
     transform: translate(0,-50%);
 
-    background-image: url(./wallet_icon_fake.png);
+    background-image: url(./img/wallet_icon_fake.png);
     background-repeat: no-repeat;
     background-size: contain;
 
@@ -112,7 +112,7 @@
     left: 48.1%;
     transform: translate(0,-50%);
 
-    background-image: url(./wallet_icon_fake.png);
+    background-image: url(./img/wallet_icon_fake.png);
     background-repeat: no-repeat;
     background-size: contain;
 
@@ -139,7 +139,7 @@
     left: 0;
     transform: translate(0,-50%);
 
-    background-image: url(./121383751_padded_logo.png);
+    background-image: url(./img/121383751_padded_logo.png);
     background-repeat: no-repeat;
     background-size: 100%;
 
