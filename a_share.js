@@ -241,6 +241,7 @@ function userLogin() {
   if(nowuser==admin)
   {
     console.log(admin);
+    console.log(nowuser);
     coookie1=document.cookie = `user_id=${nowuser.id}; expires=` + expireDate.toUTCString() + "; path=/";
 
   }else coookie1=document.cookie = `user_id=${nowuser.user_id}; expires=` + expireDate.toUTCString() + "; path=/";
