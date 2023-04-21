@@ -1,51 +1,53 @@
-let set2;
-let inputTime=document.querySelector('.h-session');
-let expire2=localStorage.getItem('expireDate');
-function getRemainingTime1() {
-  // let expire = new Date(cookieExpire);
-  expire2=localStorage.getItem('expireDate');
-  let now = new Date();
-  const expireDateFromLocalStorage = localStorage.getItem('expireDate'); // 로컬스토리지에서 expireDate 값 읽어오기
-  // if (expireDateFromLocalStorage) {
-  //   expire = new Date(expireDateFromLocalStorage); // 로컬스토리지에서 읽어온 값으로 expire 변수 재할당
-  // }
-  console.log("getRemainingTime1 함수 실행되는것을 확인")
-  now = now.getTime();
+// let set2;
+// let inputTime=document.querySelector('.h-session');
+// let expire2=localStorage.getItem('expireDate');
+// function getRemainingTime1() {
+//   // let expire = new Date(cookieExpire);
+//   expire2=localStorage.getItem('expireDate');
+//   let now = new Date();
+//   const expireDateFromLocalStorage = localStorage.getItem('expireDate'); // 로컬스토리지에서 expireDate 값 읽어오기
+//   // if (expireDateFromLocalStorage) {
+//   //   expire = new Date(expireDateFromLocalStorage); // 로컬스토리지에서 읽어온 값으로 expire 변수 재할당
+//   // }
+//   console.log("getRemainingTime1 함수 실행되는것을 확인")
+//   now = now.getTime();
 
-  console.log(expire2);
-  let nowTime = new Date(now);
-  let diff = expire2 - nowTime;
-  console.log(diff);
-  let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  let seconds = Math.floor((diff % (1000 * 60)) / 1000);
-  if (diff < 2) {
-    clearInterval(set2);
-    console.log("끝");
-    return "시간만료"
-  }
-  console.log(`남은 시간 : ${minutes}분 ${seconds}초`);
-  inputTime.innerHTML= `남은 시간 : ${minutes}분 ${seconds}초`;
-  return `남은 시간 : ${minutes}분 ${seconds}초`;
-}
-getRemainingTime1();
-set2=setInterval(getRemainingTime1, 1000);
+//   console.log(expire2);
+//   let nowTime = new Date(now);
+//   let diff = expire2 - nowTime;
+//   console.log(diff);
+//   let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+//   let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+//   let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+//   let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+//   if (diff < 2) {
+//     clearInterval(set2);
+//     console.log("끝");
+//     return "시간만료"
+//   }
+//   console.log(`남은 시간 : ${minutes}분 ${seconds}초`);
+//   inputTime.innerHTML= `남은 시간 : ${minutes}분 ${seconds}초`;
+//   return `남은 시간 : ${minutes}분 ${seconds}초`;
+// }
+// getRemainingTime1();
+// set2=setInterval(getRemainingTime1, 1000);
 
 
-let WalletexpireDate;
-document.addEventListener("DOMContentLoaded",function(){
-  expireDate.setTime(window.localStorage.getItem('expireDate'))
-})
+
+// let WalletexpireDate;
+// document.addEventListener("DOMContentLoaded",function(){
+//   expireDate.setTime(window.localStorage.getItem('expireDate'))
+// })
 
 function extensionTime1() {
   console.log("extensionTime 시작")
   let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
   console.log(expireDate.getTime());
   console.log(cookieValue);
-  //expireDate.getTime() 
+  //expireDate.getTime()
+
   let time = expireDate.setTime(expireDate.getTime() + 10 * 10000); //100 초뒤
-  // 로컬스토리지에 이함수 실행마다. 더해진값 저장 
+  // 로컬스토리지에 이함수 실행마다. 더해진값 저장
   localStorage.setItem('expireDate', time);
   console.log(time);
   console.log("작동함");
@@ -493,7 +495,7 @@ function tokenToPay(token_name) {
   if (ptt) {
     // 페이 to 토큰
     swapRate[0].innerHTML = `토큰가치 : ${token.token_value}`;
-    swapFee[0].innerHTML = `토큰 당 수수료 : ${token.charge}`;
+    swapFee[0].innerHTML = `페이 당 수수료 : ${token.charge}`;
 
     // 계산
     let tokenAmount = Number((amount.value * 10/ token.token_value - amount.value * token.charge * 0.01).toFixed(4));
