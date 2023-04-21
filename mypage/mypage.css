@@ -176,6 +176,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    margin-right: 10%;
 }
 
 .b-wallet-address{
@@ -195,13 +197,17 @@
 }
 
 .b-text-actual-wallet-address{
-    width: 50%;
+    width: 65%;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
     text-overflow: ellipsis;
+}
+
+.b-copy-button-box{
+    margin-right: 5%;
 }
 
 .b-changing-values{
