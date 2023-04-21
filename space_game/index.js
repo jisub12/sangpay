@@ -438,6 +438,7 @@ function userGetreward() {
     console.log("지금 게임유저2",gameUser1);
     gameUser1.token[9].token_num=gameUser1.token[9].token_num+reward;
     localStorage.setItem("user_"+gameUser,JSON.stringify(gameUser1));
+    setLocalHistory(gameUser,"game",{gamename:"지구인들을 구조하라!"},{type:gameUser1.token[9].token_name,amount:reward});
 
 }
 let h_gamestart = document.querySelector(".h-gamestart");
