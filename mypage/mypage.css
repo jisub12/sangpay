@@ -134,7 +134,7 @@
     border: 1px solid;
     border-radius: 50%;
 
-    background-image: url(./blank-profile-picture.webp);
+    background-image: url(../img/blank-profile-picture.webp);
     background-repeat: no-repeat;
     background-size: contain;
 }
