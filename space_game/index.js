@@ -23,6 +23,7 @@ let score = 0;
 let playerSpeed = 3; // 플레이어 기본 스피드 값
 let enemySpeed = 2; // 적 내려오는 스피드 값
 let enemySpawnSpeed = 1000; // 적 생성 속도
+let isPaused = false; // 일시정지 기능
 
 // 우주선 좌표
 let spaceshipX = canvas.width/2-30; // 왼쪽 제일 위가 0 , 넓이 = 가로 넓이 2로 나누고 우주선 크기에 절반
@@ -224,8 +225,10 @@ function createEnemy(){
         }
         
         else {
-            let e = new Enemy();
-            e.init();
+            if(!isPaused){
+                let e = new Enemy();
+                e.init();
+            }
         }
     },enemySpawnSpeed);
 }
@@ -286,7 +289,7 @@ function update(){
     if( 37 in keysDown) {
         spaceshipX -= playerSpeed; // 우주선의 속도 왼쪽
     }
-    
+
     // 우주선의 좌표값이 무한대로 업데이트가 되는 게 아닌! 경기장 안에서만 있게 하려면?
     if(spaceshipX <= 0){
         spaceshipX = 0;
@@ -387,43 +390,54 @@ function render(){
         }
     } 
 }
+// 일시정지 기능 추가
+
+// 일시정지 함수
+function togglePause() {
+    isPaused = !isPaused;
+}
+
+// pause 그리기
+
+function renderPause(){
+    // 반투명 검은색 레이어
+    ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // 일시정지 메세지
+    ctx.fillStyle = "white";
+    ctx.font = "50px Verdana";
+    ctx.fillText("일시정지", canvas.width / 2 - 80 , canvas.height / 2);
+    // ctx.fillText("ESC나 p키를 입력하여 게임을 재개하세요.", canvas.width / 2 - 180, canvas.height / 2 + 40);
+    
+};
+
+// 일시정지 키 입력 (esc나 p 누르면 일시정지)
+window.addEventListener('keydown', function(event){
+    if(event.key === "p" || event.key === "P" || event.key === "ㅔ" || event.key === "ㅖ"
+       || event.keyCode === 27) {
+        togglePause();
+        // alert("일시정지 되었습니다. esc나 p키를 다시 입력하시면 게임이 재개됩니다.")
+    } 
+});
 
 function main() {
-        if(!gameOver){
-
+    if(!gameOver){
+        if(!isPaused) {
             update(); // 좌표 값을 업데이트 하고 
-            render(); // 그려주고
-            // console.log("animation calls main function");
+        } 
+        render(); // 그려주고
+
+        if(isPaused) {
+            renderPause();
+        }
+         
             requestAnimationFrame(main);
-        }else{
+        } else{
             ctx.drawImage(gameOverImage,10,100,380,380);
         }
-}
+    }
 
 loadImage();
 setupKeyboardListener();
 createEnemy();
 main();
-
-// 방향키를 누르면
-// 우주선의 xy 좌표가 바뀌고 // 우주선이 오른쪽으로 간다 = x 좌표의 값이 증가 // 우주선이 왼쪽으로 간다 = x 좌표의 값이 감소
-// 다시 render 그려준다.
-//  ---------------------------------------------
-// 총알 만들기
-// 1. 스페이스 바를 누르면 총알이 발사 된다.
-// 2. 총알이 발사 = 총알의 y 값이 -- , 총알의 x 값은? 스페이스를 누른 순간의 우주선의 x 좌표
-// 3. 발사 된 총알들은 총알 배열에 저장을 한다.
-// 4. 모든 총알들은 x,y 좌표값이 있어야 한다.
-// 5. 총알 배열을 가지고 render()로 그려준다.
-//  ----------------------------------------------
-// 적군 만들기
-//  적군 - x, y , init , update 함수 필요.
-// 1. 적군은 위치가 랜덤하다.
-// 2. 적군은 밑으로 내려온다. = y 좌표가 증가한다.
-// 3. 1초마다 하나씩 적군이 나온다.
-// 4. 적군의 우주선이 바닥에 닿으면 게임 오버.
-// 5. 적군과 총알이 만나면 적군이 사라진다. + 점수 1점 획득
-
-// 적군이 죽는다.
-// 총알이 적군에게 닿는다. (총알.y <= 적군.y) and (총알.x >= 적군.x and 총알.x <= 적군.x + 40) => 닿았다
-// 닿으면 총알이 죽게됌. 적군의 우주선이 없어짐. 점수 획득
