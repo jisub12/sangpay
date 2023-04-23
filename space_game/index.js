@@ -404,16 +404,18 @@ function render() {
 }
 
 function main() {
+  
   if (!gameOver) {
     update(); // 좌표 값을 업데이트 하고
     render(); // 그려주고
     // console.log("animation calls main function");
     requestAnimationFrame(main);
   } else {
-    ctx.drawImage(gameOverImage, 10, 100, 380, 380);
    
-        
-        h_popupbox.style.display = "block";
+    reward=0;
+    function renderScorePopup()
+    {
+      h_popupbox.style.display = "block";
         let newdiv=document.createElement('div');
         h_popupbox.appendChild(newdiv);
         newdiv.innerHTML="점수" +score;
@@ -423,19 +425,33 @@ function main() {
         newdiv2.onclick=function(){
             location.href='../mypage/mypage.html';
         }
+
+    }
         userGetreward()
+        ctx.drawImage(gameOverImage, 0, 0, 400, 700);
+        setTimeout(() => {
+          renderScorePopup();
+        }, 2000);
+        setTimeout(() => {
+          if(confirm("게임을 더하시겠습니까?"))
+          location.href='../space_game/index.html';
+          else location.href='../mypage/mypage.html';
+        }, 5000);
 
 
   }
 }
-document.querySelector(".h-nowUser").innerHTML = getCurrentUser();
+document.querySelector(".h-nowUser").innerHTML = "현재 사용자:"+getCurrentUser();
+let reward=Math.floor(score/10);
+let gameUser=getCurrentUser();
+console.log("지금 게임유저",gameUser);
+let gameUser1=JSON.parse(localStorage.getItem("user_"+gameUser));
 function userGetreward() {
-    let reward=Math.floor(score/10);
     //보상
-    let gameUser=getCurrentUser();
-    console.log("지금 게임유저",gameUser);
-    let gameUser1=JSON.parse(localStorage.getItem("user_"+gameUser));
     console.log("지금 게임유저2",gameUser1);
+    //게임시작시 차감
+    gameUser1.coin.coin_num=gameUser1.coin.coin_num-1
+    //점수에 따른 보상얻는 부분
     gameUser1.token[9].token_num=gameUser1.token[9].token_num+reward;
     localStorage.setItem("user_"+gameUser,JSON.stringify(gameUser1));
     setLocalHistory(gameUser,"game",{gamename:"지구인들을 구조하라!"},{type:gameUser1.token[9].token_name,amount:reward});
