@@ -111,7 +111,7 @@ main {
 .swap-buttons {
     display: flex;
     gap: 10px;
-    
+
 }
 
 .send-btn,  .receive-btn, .exchange-btn {
@@ -136,7 +136,7 @@ main {
     display: inline-block;
     font-size: 14px;
     cursor: pointer;
-} 
+}
 
 /* .estimated {
     font-size: 12px;
@@ -146,7 +146,7 @@ main {
 
 /* 팝업 공통 스타일 */
 
-.popup3 , .popup1 , .popup-exchange{
+.popup3 , .popup1 , .popup-exchange, .popup-history{
     position: fixed;
     top: 0;
     left: 0;
@@ -308,7 +308,7 @@ main {
 }
 
 #main-token-list li {
-    
+
     display: flex;
     justify-content: space-between;
     width: 100%;

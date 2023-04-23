@@ -885,14 +885,40 @@ function setLocalHistoryArr() {
   }
 }
 
+// 내역 보기 버튼 클릭 --> 팝업창 열기
+document.querySelector('.history-btn').addEventListener('click', function() {
+  document.querySelector('.popup-history').style.display='flex';
+
+  getCurrentUserHistory();
+});
+
+// 팝업 닫기버튼
+document.querySelector('.history-cancel').addEventListener('click', function() {
+  document.querySelector('.popup-history').style.display='none';
+
+})
+
 // 현재 사용자의 지갑내역 구하기
 function getCurrentUserHistory() {
   let historyList = JSON.parse(window.localStorage.getItem("history"));
   let user = getCurrentUser();
+
+  let historyDiv=document.querySelector('.popup-history');
+  historyDiv.innerHTML = "";
+
   historyList.forEach(function(item) {
     if (item.user == user) {
-      console.log(item);
+      console.log(item.type);
 
+      let ul = document.createElement('ul');
+      let type = document.createElement('li');
+      let content = document.createElement('li');
+
+      type.innerHTML = item.type;
+      content.innerHTML = item.content;
+
+      ul.append(type, content);
+      historyDiv.append(ul);
     }
   });
 }

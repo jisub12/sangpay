@@ -46,7 +46,7 @@
         <div class="wallet">
             <h2 class="wallet-title">Wallet</h2>
             <div class="historydiv">
-                <button onclick="getCurrentUserHistory()">내역 보기</button>
+                <button class="history-btn">내역 보기</button>
             </div>
             <hr class="divider" />
             <div class="coin-info">
@@ -210,6 +210,38 @@
                     <div class="button-container">
                         <button class="swap-execute2" onclick="closePopup('swap-popup2')">교환하기</button>
                         <div class="swap-cancel2" onclick="closePopup()">취소하기</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- 내역 보기 버튼 팝업창 -->
+
+        <div class="popup-history">
+            <div id="">
+                <div class="popup-content">
+                    <h2>교환</h2>
+                    <p class="swap-instruction">교환 수량을 입력하세요</p>
+                    <!-- <div class="swap-input-wrapper"> -->
+                        <!-- <span class="coin" id="swap1-sangpay-name">상장페이</span>
+                        <span class="coin-amount" id="paytotoken-amount">보유수량</span> -->
+                        <!-- <span class="coin-amount" id="swap1-sangpay-amount-span"></span> -->
+
+                        <!-- id = "swap1-sangpay-amount" 부분 number랑 연결 된건지 확인 해야됌.  -->
+                        <!-- <input type="number" id="swap1-sangpay-amount" class="swap-input-field" placeholder="수량"
+                            min="0"> -->
+                    <!-- </div> -->
+                    <!-- <ul class="token-list" id="paytotoken-token-list"> -->
+                        <!-- 자바스크립트에서 li 요소 추가했음 -->
+                    <!-- </ul> -->
+                    <div class="swap-details">
+
+
+                    </div>
+                    <div class="button-container">
+                        <div class="history-cancel">닫기</div>
                     </div>
                 </div>
             </div>
