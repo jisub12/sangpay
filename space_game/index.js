@@ -23,7 +23,7 @@ let score = 0;
 let playerSpeed = 3; // 플레이어 기본 스피드 값
 let enemySpeed = 2; // 적 내려오는 스피드 값
 let enemySpawnSpeed = 1000; // 적 생성 속도
-let isPaused = false; // 일시정지 기능
+let isPaused = true; // 일시정지 기능
 
 // 우주선 좌표
 let spaceshipX = canvas.width/2-30; // 왼쪽 제일 위가 0 , 넓이 = 가로 넓이 2로 나누고 우주선 크기에 절반
@@ -403,13 +403,30 @@ function renderPause(){
     // 반투명 검은색 레이어
     ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+
     // 일시정지 메세지
-    ctx.fillStyle = "white";
-    ctx.font = "50px Verdana";
-    ctx.fillText("일시정지", canvas.width / 2 - 80 , canvas.height / 2);
-    // ctx.fillText("ESC나 p키를 입력하여 게임을 재개하세요.", canvas.width / 2 - 180, canvas.height / 2 + 40);
-    
-};
+    ctx.fillStyle = "yellow";
+    ctx.font = "50px Arial";
+    ctx.fillText("게임설명", canvas.width / 2 - 80 , canvas.height / 2 - 200);
+    ctx.font = "20px Arial"
+    ctx.fillText("당신은 외계인에게 납치된 지구인들을", canvas.width / 2 - 160, canvas.height / 2 - 160);
+    ctx.font = "20px Arial"
+    ctx.fillText("구조하라는 특별한 임무를 받았다.", canvas.width / 2 - 160, canvas.height / 2 - 130);
+    ctx.font = "20px Arial"
+    ctx.fillText("납치된 지구인들을 구조하라.", canvas.width / 2 - 160, canvas.height / 2 - 100);
+    ctx.font = "20px Arial"
+    ctx.fillText("구조된 지구인의 수만큼 Score를 얻게되며,", canvas.width / 2 - 160, canvas.height / 2 - 70);
+    ctx.font = "20px Arial"
+    ctx.fillText("적립된 Score는 Token으로 교환할 수 있다.", canvas.width / 2 - 160, canvas.height / 2 - 40);
+    ctx.font = "20px Arial"
+    ctx.fillText("방향키로 내려오는 지구인에게 접근하면", canvas.width / 2 - 160, canvas.height / 2 + 40);    
+    ctx.font = "20px Arial"
+    ctx.fillText("구조 성공!", canvas.width / 2 - 160, canvas.height / 2 + 70);    
+    ctx.font = "20px Arial"
+    ctx.fillText("ESC 또는 p 키로 게임을 시작하거나", canvas.width / 2 - 160, canvas.height / 2 + 100);    
+    ctx.font = "20px Arial"
+    ctx.fillText("일시정지 할 수 있다.", canvas.width / 2 - 160, canvas.height / 2 + 130);    
+}; 
 
 // 일시정지 키 입력 (esc나 p 누르면 일시정지)
 window.addEventListener('keydown', function(event){
