@@ -411,8 +411,6 @@ function main() {
     // console.log("animation calls main function");
     requestAnimationFrame(main);
   } else {
-   
-    reward=0;
     function renderScorePopup()
     {
       h_popupbox.style.display = "block";
@@ -422,12 +420,15 @@ function main() {
         let newdiv2=document.createElement('div');
         h_popupbox.appendChild(newdiv2)
         newdiv2.innerHTML="mypage로"
+        re.innerHTML="현재보상:  "+reward;
         newdiv2.onclick=function(){
             location.href='../mypage/mypage.html';
         }
-
+        h_gamestart.innerHTML="";
     }
+      console.log(score);
         userGetreward()
+        // reward=0;
         ctx.drawImage(gameOverImage, 0, 0, 400, 700);
         setTimeout(() => {
           renderScorePopup();
@@ -436,23 +437,29 @@ function main() {
           if(confirm("게임을 더하시겠습니까?"))
           location.href='../space_game/index.html';
           else location.href='../mypage/mypage.html';
-        }, 5000);
+        }, 3000);
 
 
   }
 }
 document.querySelector(".h-nowUser").innerHTML = "현재 사용자:"+getCurrentUser();
-let reward=Math.floor(score/10);
+let re=document.querySelector('.h-reward');
+let reward=0;
 let gameUser=getCurrentUser();
 console.log("지금 게임유저",gameUser);
 let gameUser1=JSON.parse(localStorage.getItem("user_"+gameUser));
+
+
 function userGetreward() {
     //보상
+    reward=Math.floor(score/10);
     console.log("지금 게임유저2",gameUser1);
     //게임시작시 차감
     gameUser1.coin.coin_num=gameUser1.coin.coin_num-1
     //점수에 따른 보상얻는 부분
-    gameUser1.token[9].token_num=gameUser1.token[9].token_num+reward;
+    gameUser1.token[9].token_num=gameUser1.token[9].token_num+reward; 
+    console.log(reward);
+    console.log(gameUser1.token[9].token_num=gameUser1.token[9].token_num+reward);
     localStorage.setItem("user_"+gameUser,JSON.stringify(gameUser1));
     setLocalHistory(gameUser,"game",{gamename:"지구인들을 구조하라!"},{type:gameUser1.token[9].token_name,amount:reward});
 
@@ -464,15 +471,15 @@ h_gamestart.addEventListener("click", function () {
   if (confirm("게임을 시작하시겠습니까?")) {
     alert("확인");
     setTimeout(() => {
+      loadImage();
+      setupKeyboardListener();
+      createEnemy();      
       main();
     }, 1000);
   } else {
     alert("취소");
   }
 });
-loadImage();
-setupKeyboardListener();
-createEnemy();
 
 // 방향키를 누르면
 // 우주선의 xy 좌표가 바뀌고 // 우주선이 오른쪽으로 간다 = x 좌표의 값이 증가 // 우주선이 왼쪽으로 간다 = x 좌표의 값이 감소
