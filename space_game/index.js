@@ -6,6 +6,7 @@ canvas = document.createElement("canvas");
 ctx = canvas.getContext("2d");
 canvas.width = 400;
 canvas.height = 700;
+canvas.style.marginTop = "35px";
 document.body.appendChild(canvas);
 
 // 이미지 가져오기
@@ -483,19 +484,52 @@ function main() {
       h_popupbox.style.display = "block";
         let newdiv=document.createElement('div');
         h_popupbox.appendChild(newdiv);
-        newdiv.innerHTML="점수" +score;
+        newdiv.innerHTML="점수 : " +score;
+        newdiv.style.marginTop = "20px";
+        let newdiv3 = document.createElement("div");
+        h_popupbox.appendChild(newdiv3);
+        newdiv3.innerHTML = "보상 : 상장페이 " + reward + "개";
+        newdiv3.style.marginTop = "20px";
         let newdiv2=document.createElement('div');
         h_popupbox.appendChild(newdiv2)
-        newdiv2.innerHTML="mypage로"
-        re.innerHTML="현재보상:  "+reward;
+        newdiv2.innerHTML="mypage"
+        newdiv2.className = "b-new-div-hover";
+        newdiv2.style.margin = "auto";
+        newdiv2.style.marginTop = "20px";
+        newdiv2.style.width = "100px";
+        newdiv2.style.height = "30px";
+        newdiv2.style.border = "1px solid";
+        newdiv2.style.borderRadius = "50px";
+        newdiv2.style.display = "flex";
+        newdiv2.style.justifyContent = "center";
+        newdiv2.style.alignItems = "center";
+        newdiv2.style.cursor = "pointer";
+        // re.innerHTML="현재보상 : "+reward;
         newdiv2.onclick=function(){
             location.href='../mypage/mypage.html';
         }
+        let playin = document.querySelector(".b-playin-money");
+        let rewardMoney = document.querySelector(".b-gameplay-reward-money");
+        let gamestartBtn = document.querySelector(".b-gamestart-btn-box");
+        playin.style.display = "none";
+        rewardMoney.style.display = "none";
+        gamestartBtn.style.display = "none";
 
         // 다시하기 버튼
         let rediv=document.createElement('div');
         h_popupbox.appendChild(rediv)
         rediv.innerHTML="다시하기"
+        rediv.className = "b-new-div-hover";
+        rediv.style.cursor = "pointer";
+        rediv.style.margin = "auto";
+        rediv.style.marginTop = "20px";
+        rediv.style.width = "100px";
+        rediv.style.height = "30px";
+        rediv.style.border = "1px solid";
+        rediv.style.borderRadius = "50px";
+        rediv.style.display = "flex";
+        rediv.style.justifyContent = "center";
+        rediv.style.alignItems = "center";
         rediv.onclick=function() {
           location.href='../space_game/index.html';
         }
@@ -518,7 +552,7 @@ function main() {
 
   }
 }
-document.querySelector(".h-nowUser").innerHTML = "현재 사용자:"+getCurrentUser();
+document.querySelector(".h-nowUser").innerHTML = "현재 사용자 : "+getCurrentUser();
 let re=document.querySelector('.h-reward');
 let reward=0;
 let gameUser=getCurrentUser();
@@ -547,12 +581,12 @@ h_gamestart.addEventListener("click", function () {
   h_popupbox.style.display = "none";
   if (confirm("게임을 시작하시겠습니까?")) {
     // alert("확인");
-    setTimeout(() => {
+    // setTimeout(() => {
       loadImage();
       setupKeyboardListener();
       createEnemy();
       main();
-    }, 1000);
+    // }, 1000);
   } else {
     alert("취소");
   }
