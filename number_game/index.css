@@ -1,5 +1,11 @@
+@font-face {
+    font-family: "dynapuff";
+    src: url(../DynaPuff/DynaPuff-VariableFont_wdth\,wght.ttf);
+}
+
 .h-popup_box{
     border: 1px solid black;
+    border-radius: 10px;
     position: absolute;
     width: 500px;
     height: 700px;
@@ -16,6 +22,25 @@
 }
 .h-gamestart{
     cursor: pointer;
+
+    width: 100px;
+    height: 20px;
+    border: 1px solid;
+    border-radius: 50px;
+}
+.h-gamestart:hover{
+    background-color: lightgray;
+}
+
+.b-gamestart-btn-box{
+    width: 300px;
+    height: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: auto;
 }
 
 .main{
@@ -27,4 +52,8 @@
     transform: translateX(-50%);
     background-color: white;
 
+}
+
+.b-new-div-hover:hover{
+    background-color: lightgray;
 }

@@ -55,14 +55,14 @@ function resetGame(){
     secretNumber = Math.floor(Math.random() * 10 ) + 1;
     attempts = 0;
     guessInput.value = "";
-    score=10;
+    score=11;
 
 }
 
-document.querySelector(".h-nowUser").innerHTML ="현재 사용자:  "+getCurrentUser();
+document.querySelector(".h-nowUser").innerHTML ="현재 사용자 : "+getCurrentUser();
 h_gamestart.addEventListener("click", function () {
     if (confirm("게임을 시작하시겠습니까?")) {
-        alert("확인");
+        // alert("확인");
         setTimeout(() => {
         }, 1000);
       } else {
@@ -77,12 +77,36 @@ h_gamestart.addEventListener("click", function () {
 function renderScorePopup()
 {
   h_popupbox.style.display = "block";
+  let numberGamePopupTitle = document.querySelector(".b-number-game-popup-title");
+  numberGamePopupTitle.innerHTML = "게임결과";
+  let numberGamePlayin = document.querySelector(".b-number-game-playin-money");
+  let numberGameRule = document.querySelector(".b-number-game-rule");
+  let numberGameStartBtnBox = document.querySelector(".b-gamestart-btn-box");
+  numberGamePlayin.style.display = "none";
+  numberGameRule.style.display = "none";
+  numberGameStartBtnBox.style.display = "none";
     let newdiv=document.createElement('div');
     h_popupbox.appendChild(newdiv);
-    newdiv.innerHTML="점수" +score;
+    newdiv.innerHTML="도전 횟수 : " + attempts + "회";
+    newdiv.style.marginTop = "20px";
+    let newdiv3 = document.createElement("div");
+    h_popupbox.appendChild(newdiv3);
+    newdiv3.innerHTML = "보상 : 상장페이 " + score + "개";
+    newdiv3.style.marginTop = "20px";
     let newdiv2=document.createElement('div');
     h_popupbox.appendChild(newdiv2)
-    newdiv2.innerHTML="mypage로"
+    newdiv2.innerHTML="mypage"
+    newdiv2.className = "b-new-div-hover";
+    newdiv2.style.margin = "auto";
+    newdiv2.style.marginTop = "20px";
+    newdiv2.style.width = "100px";
+    newdiv2.style.height = "30px";
+    newdiv2.style.border = "1px solid";
+    newdiv2.style.borderRadius = "50px";
+    newdiv2.style.display = "flex";
+    newdiv2.style.justifyContent = "center";
+    newdiv2.style.alignItems = "center";
+    newdiv2.style.cursor = "pointer";
     newdiv2.onclick=function(){
         location.href='../mypage/mypage.html';
     }
@@ -91,6 +115,17 @@ function renderScorePopup()
     let rediv=document.createElement('div');
     h_popupbox.appendChild(rediv)
     rediv.innerHTML="다시하기"
+    rediv.className = "b-new-div-hover";
+    rediv.style.cursor = "pointer";
+    rediv.style.margin = "auto";
+    rediv.style.marginTop = "20px";
+    rediv.style.width = "100px";
+    rediv.style.height = "30px";
+    rediv.style.border = "1px solid";
+    rediv.style.borderRadius = "50px";
+    rediv.style.display = "flex";
+    rediv.style.justifyContent = "center";
+    rediv.style.alignItems = "center";
     rediv.onclick=function() {
         location.href='../number_game/index.html';
     }
