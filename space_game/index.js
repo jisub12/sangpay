@@ -537,7 +537,6 @@ function userGetreward() {
     //점수에 따른 보상얻는 부분
     gameUser1.token[9].token_num=gameUser1.token[9].token_num+reward;
     console.log(reward);
-    console.log(gameUser1.token[9].token_num=gameUser1.token[9].token_num+reward);
     localStorage.setItem("user_"+gameUser,JSON.stringify(gameUser1));
     setLocalHistory(gameUser,"game",{gamename:"지구인들을 구조하라!"},{type:gameUser1.token[9].token_name,amount:reward});
 
