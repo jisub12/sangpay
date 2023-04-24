@@ -242,7 +242,7 @@ main {
 /* 거래내역 닫기 버튼 */
 .history-cancel {
     position: absolute;
-    right: 0;
+    right: 5%;
 }
 
 
@@ -275,7 +275,7 @@ main {
 }
 /* 팝업 닫기 버튼들 */
 .h-close-button , .h-send-button, .swap-execute, .swap-execute2, .exchange-close-button , .send-close-button
-, .swap-cancel , .swap-cancel2, .history-cancel{
+, .swap-cancel , .swap-cancel2{
     background-color: #4CAF50;
     border: none;
     color: white;
@@ -285,6 +285,11 @@ main {
     display: inline-block;
     font-size: 14px;
     margin: 0 5px;
+    cursor: pointer;
+}
+
+.history-cancel{
+    background-color: white;
     cursor: pointer;
 }
 
