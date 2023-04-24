@@ -68,11 +68,27 @@ main {
 
     position: relative;
 }
+
 .historydiv{
+    width: 20%;
+    height: 20%;
+
     position: absolute;
     right: 0;
-    top: 50%;
-    transform: translate(0,-50%);
+    bottom: 0;
+}
+.history-btn{
+    width: 70px;
+    height: 20px;
+
+    position: absolute;
+    top: 55%;
+    left: 0;
+
+    background-color: transparent;
+    border: none;
+    color: gray;
+    cursor: pointer;
 }
 
 .divider {
@@ -91,6 +107,7 @@ main {
     gap: 20px;
     justify-content: space-between;
 
+    position: relative;
 }
 
 .coin-info,.token-info {
@@ -242,7 +259,7 @@ main {
 /* 거래내역 닫기 버튼 */
 .history-cancel {
     position: absolute;
-    right: 0;
+    right: 5%;
 }
 
 
@@ -275,7 +292,7 @@ main {
 }
 /* 팝업 닫기 버튼들 */
 .h-close-button , .h-send-button, .swap-execute, .swap-execute2, .exchange-close-button , .send-close-button
-, .swap-cancel , .swap-cancel2, .history-cancel{
+, .swap-cancel , .swap-cancel2{
     background-color: #4CAF50;
     border: none;
     color: white;
@@ -285,6 +302,11 @@ main {
     display: inline-block;
     font-size: 14px;
     margin: 0 5px;
+    cursor: pointer;
+}
+
+.history-cancel{
+    background-color: white;
     cursor: pointer;
 }
 
