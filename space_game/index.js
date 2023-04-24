@@ -445,14 +445,14 @@ function renderPause(){
     ctx.font = "20px Arial"
     ctx.fillText("적립된 Score는 Token으로 교환할 수 있다.", canvas.width / 2 - 160, canvas.height / 2 - 40);
     ctx.font = "20px Arial"
-    ctx.fillText("방향키로 내려오는 지구인에게 접근하면", canvas.width / 2 - 160, canvas.height / 2 + 40);    
+    ctx.fillText("방향키로 내려오는 지구인에게 접근하면", canvas.width / 2 - 160, canvas.height / 2 + 40);
     ctx.font = "20px Arial"
-    ctx.fillText("구조 성공!", canvas.width / 2 - 160, canvas.height / 2 + 70);    
+    ctx.fillText("구조 성공!", canvas.width / 2 - 160, canvas.height / 2 + 70);
     ctx.font = "20px Arial"
-    ctx.fillText("ESC 또는 p 키로 게임을 시작하거나", canvas.width / 2 - 160, canvas.height / 2 + 100);    
+    ctx.fillText("ESC 또는 p 키로 게임을 시작하거나", canvas.width / 2 - 160, canvas.height / 2 + 100);
     ctx.font = "20px Arial"
-    ctx.fillText("일시정지 할 수 있다.", canvas.width / 2 - 160, canvas.height / 2 + 130);    
-}; 
+    ctx.fillText("일시정지 할 수 있다.", canvas.width / 2 - 160, canvas.height / 2 + 130);
+};
 
 // 일시정지 키 입력 (esc나 p 누르면 일시정지)
 window.addEventListener('keydown', function(event){
@@ -638,28 +638,28 @@ h_gamestart.addEventListener("click", function () {
 // createEnemy();
 // main();
 
-    } 
-});
+//     }
+// });
 
-function main() {
-    if(!gameOver){
-        if(!isPaused) {
-            update(); // 좌표 값을 업데이트 하고 
-        } 
-        render(); // 그려주고
+// function main() {
+//     if(!gameOver){
+//         if(!isPaused) {
+//             update(); // 좌표 값을 업데이트 하고
+//         }
+//         render(); // 그려주고
 
-        if(isPaused) {
-            renderPause();
-        }
-         
-            requestAnimationFrame(main);
-        } else{
-            ctx.drawImage(gameOverImage,10,100,380,380);
-        }
-    }
+//         if(isPaused) {
+//             renderPause();
+//         }
 
-loadImage();
-setupKeyboardListener();
-createEnemy();
-main();
+//             requestAnimationFrame(main);
+//         } else{
+//             ctx.drawImage(gameOverImage,10,100,380,380);
+//         }
+//     }
+
+// loadImage();
+// setupKeyboardListener();
+// createEnemy();
+// main();
 
