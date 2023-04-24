@@ -11,6 +11,12 @@ let currentPage = 1;
 // 처음 실행되면 작동할 함수
 window.onload = function () {
 
+    // 로그인 안했다면
+    if (!getCurrentUser()) {
+        alert("로그인 하세요");
+        location.href = '../login/loginpage.html';
+    }
+
     // 페이지네이션 함수 실행
     paginate(JSON.parse(window.localStorage.getItem("board")));
 
@@ -297,6 +303,7 @@ function pageBtnRender(listLength, pagenum) { // 페이지 이전/다음 버튼 
 // }
 
 // -------------원래주석
+
 // 쿠키에서 현재 사용자 아이디 가져오는 함수
 
 // function getCurrentUser() {
@@ -386,4 +393,3 @@ function getUserNick(userId) {
     }
     return nick;
   }
-

@@ -19,7 +19,7 @@ window.onload = function () {
         // 회원 승인 안됐다면
         alert('회원가입 승인 기다리세요');
         // 로그인페이지로 이동
-        location.href = './loginpage.html';
+        location.href = '../login/loginpage.html';
     }
 
 }
@@ -187,4 +187,25 @@ function extensionTime1() {
   document.cookie = `user_id=${cookieValue}; expires=${expireDate.toUTCString()}; path=/`;
   console.log(document.cookie);
   console.log("extensionTime 작동함")
+}
+
+
+let spaceGameIcon = document.querySelector(".b-human-save-game-icon");
+let spaceGameTitle = document.querySelector(".b-human-save-game-title");
+
+let numberGameIcon = document.querySelector(".b-number-select-game-icon");
+let numberGameTitle = document.querySelector(".b-number-select-game-title");
+
+spaceGameIcon.onclick = function(){
+    location.href = "../space_game/index.html";
+}
+spaceGameTitle.onclick = function(){
+    location.href = "../space_game/index.html";
+}
+
+numberGameIcon.onclick = function(){
+    location.href = "../number_game/index.html";
+}
+numberGameTitle.onclick = function(){
+    location.href = "../number_game/index.html";
 }

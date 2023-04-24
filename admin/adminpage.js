@@ -532,7 +532,8 @@ if (getCurrentUser() == "admin") {
 } else {
     console.log("안녕",getCurrentUser());
     alert("관리자 로그인 하세요");
-    location.href = "./loginpage.html";
+    location.href = "../login/loginpage.html";
+
 }
 
 let member = document.querySelector(".b-member-board");
@@ -774,7 +775,6 @@ function renderMemberList() {
     })
 }
 renderMemberList();
-
 
 // let set2;
 // let inputTime=document.querySelector('.h-session');

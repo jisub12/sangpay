@@ -162,15 +162,17 @@ function loginUser(id, pw) {
       console.log(id);
       console.log(pw);
 
+
       expireDate = new Date();
 
       // 관리자 쿠키 생성
       // let expireDate = new Date();
       // expireDate.setTime(expireDate.getTime() + 100000 * 10000);
+
       nowuser=admin;
       userLogin();
       console.log("관리자 입력들어옴");
-      location.href = 'adminpage.html';
+      location.href = '../admin/adminpage.html';
 
       return true;
     } else {
@@ -218,7 +220,7 @@ function loginUser(id, pw) {
 
       userLogin();
 
-     location.href = './wallet.html';
+     location.href = '../wallet/wallet.html';
 
     } else if (user.user_pw == pw && !user.user_allow) {
       alert("관리자의 승인을 기다리세요");
@@ -235,7 +237,7 @@ function loginUser(id, pw) {
 let remainingTime
 let coookie1;
 function userLogin() {
-  expireDate.setTime(expireDate.getTime() + 10 * 1000);
+  expireDate.setTime(expireDate.getTime() + 60 * 1000);
   remainingTime = getRemainingTime(expireDate.toUTCString()); // 쿠키 만료까지 남은 시간 계산
   console.log(remainingTime);
   set1 = setInterval(printTime, 1000);
@@ -244,7 +246,9 @@ function userLogin() {
   if(nowuser==admin)
   {
     console.log(admin);
+
     coookie1=document.cookie = `user_id=${nowuser.id}; expires=` + expireDate.toUTCString() + "; path=/";
+
   }else coookie1=document.cookie = `user_id=${nowuser.user_id}; expires=` + expireDate.toUTCString() + "; path=/";
   function printTime() {
     remainingTime = getRemainingTime(expireDate.toUTCString()); // 쿠키 만료까지 남은 시간 계산
@@ -329,6 +333,7 @@ function checkpwchInput(passwordInput, pwcfInput, pwcfValidation) {
     return true;
   }
 }
+
 
 
 // 수정수정  -------------------------------
@@ -439,3 +444,47 @@ function boardListEdit({ board, value }) {
     this.answer = answer;
 }
 
+
+// header에 admin 옵션 띄우기
+let headerItemList = document.querySelector(".b-header-list");
+let headerMypage = document.querySelector(".b-header-list-item2");
+let headerAdmin = document.querySelector(".b-header-admin");
+if(getCurrentUser() == "admin"){
+  headerMypage.style.display = "none";
+}
+if(getCurrentUser() !== "admin"){
+  headerAdmin.style.display = "none";
+}
+
+
+// 지갑내역 객체 생성자 함수
+function History(user, type, content, price) {
+  this.user = user;
+  this.type = type;
+  this.content = content;
+  this.price = price;
+}
+
+// 지갑 내역 저장하는 함수
+function setLocalHistory(user, type, content, price) {
+  let historyList = JSON.parse(window.localStorage.getItem("history"));
+  historyList.push(new History(user, type, content, price));
+  window.localStorage.setItem("history", JSON.stringify(historyList));
+}
+
+
+function delCookies() {
+  let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+  // expireDate.setTime(expireDate.getTime() - 10 * 10000);
+  // document.cookie에 값을 대입하는 형태로 -> 쿠키 삭제(or 생성/수정)
+  // 직접 삭제가 아니라 수정이라고 봐야함. 만료일을 정해놓은 쿠키를 과거의 날짜로 수정해서 쿠키를 수정하는 것 -> 수정이 즉 삭제의 의미
+  // 쿠키 삭제는? 이미 한참 지나간 시간을 입력해버림으로써 쿠키를 삭제시킨다.
+  console.log(cookieValue);
+  document.cookie = `user_id=${cookieValue}; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/`;  // 쿠키삭제
+  alert("로그아웃");
+}
+
+let headerLogout=document.querySelector(".b-header-logout");
+headerLogout.addEventListener("click",function(){
+  delCookies();
+})

@@ -88,6 +88,7 @@ checkNick.addEventListener("click", function () {
     if (key.startsWith("user_")) {
       let cuurent_user = JSON.parse(localStorage.getItem(key));
       console.log(cuurent_user.user_nickName);
+
       // if (nicknameValue != cuurent_user.user_nickName) {
       //   // nickpass = true;
       //   if (nicknameValue.length != 0) {

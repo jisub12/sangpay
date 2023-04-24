@@ -1,7 +1,15 @@
 // 상세 게시물
+
 // import { boardListEdit, getCurrentUser, getUserNick } from "./board.js";
 
 window.onload = function() {
+
+    // 로그인 안했다면 로그인페이지로 이동
+    if (!getCurrentUser()) {
+        alert("로그인하세요");
+        location.href = '../login/loginpage.html';
+    }
+
     // 출력할 게시물의 글번호
     let no = location.href.split('?')[1];
 
@@ -55,7 +63,7 @@ function render(no) {
                 boardListEdit({board:board, value:"수정"});
 
                 // 수정완료되었다면 작동할 부분
-                alert("수정완료");
+                alert("등록완료");
             } catch (error) {
                 console.log(error);
             }

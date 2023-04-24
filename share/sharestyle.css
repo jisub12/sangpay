@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: "dynapuff";
-    src: url(./DynaPuff/DynaPuff-VariableFont_wdth\,wght.ttf);
+    src: url(../DynaPuff/DynaPuff-VariableFont_wdth\,wght.ttf);
 }
 
 .header{
@@ -23,7 +23,7 @@
 }
 
 .b-sangpay-logo{
-    width: 20%;
+    width: 30%;
 
     display: flex;
     justify-content: center;
@@ -34,14 +34,14 @@
     width: 150px;
     height: 50px;
 
-    background-image: url(./120911292/120911292_padded_logo.png);
+    background-image: url(../img/120911292_padded_logo.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 }
 
 .b-session-time{
-    width: 60%;
+    width: 40%;
 
     display: flex;
     justify-content: center;
@@ -53,11 +53,13 @@
 }
 
 .b-menu-option{
-    width: 20%;
+    width: 30%;
 
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+
+    margin-right: 15px;
 }
 
 .b-header-list{
@@ -71,8 +73,29 @@
     margin: 0;
 }
 
-.b-header-list-item{
-    margin-left: 50px;
+.b-header-list-item1{
+    margin: 20px;
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+.b-header-list-item2{
+    margin: 20px;
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+.b-header-list-item3{
+    margin: 20px;
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+.b-header-list-item4{
+    margin: 20px;
 
     display: flex;
     justify-content: flex-end;
@@ -83,12 +106,22 @@
     scale: 1.1;
 }
 
+.b-header-admin{
+    text-decoration: none;
+    color: black;
+}
+
 .b-header-my-page{
     text-decoration: none;
     color: black;
 }
 
 .b-header-faq{
+    text-decoration: none;
+    color: black;
+}
+
+.b-header-logout{
     text-decoration: none;
     color: black;
 }
