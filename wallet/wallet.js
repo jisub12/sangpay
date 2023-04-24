@@ -399,8 +399,8 @@ const tokens = [
   byungjootoken,
   hyunuktoken,
   jisubtoken,
-  loltoken,
-  bgtoken,
+  spacetoken,
+  numbertoken,
   overwatchtoken,
 ];
 

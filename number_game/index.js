@@ -91,7 +91,7 @@ function renderScorePopup()
     newdiv.style.marginTop = "20px";
     let newdiv3 = document.createElement("div");
     h_popupbox.appendChild(newdiv3);
-    newdiv3.innerHTML = "보상 : overwatchtoken " + score + "개";
+    newdiv3.innerHTML = "보상 : numbertoken " + score + "개";
     newdiv3.style.marginTop = "20px";
     let newdiv2=document.createElement('div');
     h_popupbox.appendChild(newdiv2)
@@ -144,8 +144,8 @@ function userGetreward() {
     setLocalHistory(gameUser,"game",{gamename:"숫자 맞추기게임"},{type:"sangpay",amount:1});
 
     //점수에 따른 보상얻는 부분
-    gameUser1.token[9].token_num=gameUser1.token[9].token_num+score;
+    gameUser1.token[8].token_num=gameUser1.token[8].token_num+score;
     localStorage.setItem("user_"+gameUser,JSON.stringify(gameUser1));
     //내역에저장
-    setLocalHistory(gameUser,"game",{gamename:"숫자 맞추기게임"},{type:gameUser1.token[9].token_name,amount:score});
+    setLocalHistory(gameUser,"game",{gamename:"숫자 맞추기게임"},{type:gameUser1.token[8].token_name,amount:score});
 }

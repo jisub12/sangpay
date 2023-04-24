@@ -2,7 +2,7 @@
 const remainedTime = document.querySelector('.b-session');
 
 let nowuser = ""; //로그인한 현재 유저
-// 김아현 ---테스트용으로 작성해봄
+
 let bittoken = new token("bittoken", 10, 1, 0.5);  //
 let ethtoken = new token("ethtoken", 10, 1, 0.5);
 let dogetoken = new token("dogetoken", 10, 1, 0.5);
@@ -10,8 +10,8 @@ let ahyeontoken = new token("ahyeontoken", 10, 10, 0.5);
 let byungjootoken = new token("byungjootoken", 10, 5, 0.5);
 let hyunuktoken = new token("hyunuktoken", 20, 5, 0.5);
 let jisubtoken = new token("jisubtoken", 10, 5, 0.5);
-let loltoken = new token("loltoken", 10, 2, 0.5);
-let bgtoken = new token("bgtoken", 10, 2, 0.5);
+let spacetoken = new token("spacetoken", 10, 2, 0.5);
+let numbertoken = new token("numbertoken", 10, 2, 0.5);
 let overwatchtoken = new token("overwatchtoken", 10, 0.1, 0.5);
 
 function user(user_id, user_pw, user_nickName, user_allow = false, coin, token) {
@@ -29,8 +29,8 @@ function user(user_id, user_pw, user_nickName, user_allow = false, coin, token) 
   this.token[4] = byungjootoken;
   this.token[5] = hyunuktoken;
   this.token[6] = jisubtoken;
-  this.token[7] = loltoken;
-  this.token[8] = bgtoken;
+  this.token[7] = spacetoken;
+  this.token[8] = numbertoken;
   this.token[9] = overwatchtoken;
 }
 

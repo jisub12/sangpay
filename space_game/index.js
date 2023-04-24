@@ -491,7 +491,7 @@ function main() {
         newdiv.style.marginTop = "20px";
         let newdiv3 = document.createElement("div");
         h_popupbox.appendChild(newdiv3);
-        newdiv3.innerHTML = "보상 : 상장페이 " + reward + "개";
+        newdiv3.innerHTML = "보상 : spacetoken " + reward + "개";
         newdiv3.style.marginTop = "20px";
         let newdiv2=document.createElement('div');
         h_popupbox.appendChild(newdiv2)
@@ -572,10 +572,10 @@ function userGetreward() {
     setLocalHistory(gameUser,"game",{gamename:"지구인들을 구조하라!"},{type:"sangpay",amount:1});
 
     //점수에 따른 보상얻는 부분
-    gameUser1.token[9].token_num=gameUser1.token[9].token_num+reward;
+    gameUser1.token[7].token_num=gameUser1.token[7].token_num+reward;
     console.log(reward);
     localStorage.setItem("user_"+gameUser,JSON.stringify(gameUser1));
-    setLocalHistory(gameUser,"game",{gamename:"지구인들을 구조하라!"},{type:gameUser1.token[9].token_name,amount:reward});
+    setLocalHistory(gameUser,"game",{gamename:"지구인들을 구조하라!"},{type:gameUser1.token[7].token_name,amount:reward});
 
 }
 let h_gamestart = document.querySelector(".h-gamestart");
