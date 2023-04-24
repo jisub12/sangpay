@@ -210,17 +210,6 @@ function getCookies() {
 // }
 
 
-function delCookies() {
-  // document.cookie에 값을 대입하는 형태로 -> 쿠키 삭제(or 생성/수정)
-  // 직접 삭제가 아니라 수정이라고 봐야함. 만료일을 정해놓은 쿠키를 과거의 날짜로 수정해서 쿠키를 수정하는 것 -> 수정이 즉 삭제의 의미
-  // 쿠키 삭제는? 이미 한참 지나간 시간을 입력해버림으로써 쿠키를 삭제시킨다.
-  document.cookie = "username=honggildong;"; // 쿠키생성
-  document.cookie = "username=leesoonsin;"; // 쿠키수정
-  document.cookie =
-    "username=leesoonsin; expires=Sat, 01 Jan 1972 00:00:00 GMT"; // 쿠키삭제
-  document.cookie = "userid=leesoonsin; expires=Sat,  01 Jan 1972 00:00:00 GMT"; // 쿠키삭제
-  alert("쿠키를 삭제하였습니다.");
-}
 
 
 
