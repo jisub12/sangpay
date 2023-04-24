@@ -482,6 +482,8 @@ function main() {
     function renderScorePopup()
     {
       h_popupbox.style.display = "block";
+      let spacegamePopupTitle = document.querySelector(".b-space-game-popup-title");
+      spacegamePopupTitle.innerHTML = "게임결과";
         let newdiv=document.createElement('div');
         h_popupbox.appendChild(newdiv);
         newdiv.innerHTML="점수 : " +score;
