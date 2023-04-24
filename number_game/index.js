@@ -91,7 +91,7 @@ function renderScorePopup()
     newdiv.style.marginTop = "20px";
     let newdiv3 = document.createElement("div");
     h_popupbox.appendChild(newdiv3);
-    newdiv3.innerHTML = "보상 : 상장페이 " + score + "개";
+    newdiv3.innerHTML = "보상 : overwatchtoken " + score + "개";
     newdiv3.style.marginTop = "20px";
     let newdiv2=document.createElement('div');
     h_popupbox.appendChild(newdiv2)
