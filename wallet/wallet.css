@@ -223,6 +223,13 @@ main {
     margin: 20px auto;
 }
 
+/* 거래내역 닫기 버튼 */
+.history-cancel {
+    position: absolute;
+    right: 0;
+}
+
+
 /* -------------------------------------- */
 
 /* 받기 버튼 팝업  */

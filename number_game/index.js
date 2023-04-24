@@ -14,7 +14,7 @@ submitGuess.addEventListener("click", function(){
         return;
     }
     attempts++;
- 
+
     //게임 끝나는 조건
     if(attempts>10)
     {
@@ -22,8 +22,8 @@ submitGuess.addEventListener("click", function(){
         renderScorePopup();
         resetGame();
         alert("넌 나가라");
-     
-        
+
+
     }else Judge();
 
 
@@ -34,21 +34,21 @@ submitGuess.addEventListener("click", function(){
             userGetreward();
             renderScorePopup();
             resetGame();
-            setTimeout(() => {
-                if(confirm("게임을 더하시겠습니까?"))
-                location.href='../number_game/index.html';
-                else location.href='../mypage/mypage.html';
-              }, 3000);
+            // setTimeout(() => {
+            //     if(confirm("게임을 더하시겠습니까?"))
+            //     location.href='../number_game/index.html';
+            //     else location.href='../mypage/mypage.html';
+            //   }, 3000);
         } else if (guess > secretNumber){
             message.textContent = "다운!";
-          
+
         } else {
             message.textContent = "업!";
             }
     }
 
-    
-   
+
+
 });
 // 정답초기화
 function resetGame(){
@@ -56,7 +56,7 @@ function resetGame(){
     attempts = 0;
     guessInput.value = "";
     score=10;
-    
+
 }
 
 document.querySelector(".h-nowUser").innerHTML ="현재 사용자:  "+getCurrentUser();
@@ -69,7 +69,7 @@ h_gamestart.addEventListener("click", function () {
         alert("취소");
       }
     h_popupbox.style.display = "none";
-    
+
 
 }
 )
@@ -87,6 +87,15 @@ function renderScorePopup()
         location.href='../mypage/mypage.html';
     }
 
+    // 다시하기 버튼
+    let rediv=document.createElement('div');
+    h_popupbox.appendChild(rediv)
+    rediv.innerHTML="다시하기"
+    rediv.onclick=function() {
+        location.href='../number_game/index.html';
+    }
+
+
 }
 
 let gameUser=getCurrentUser();
@@ -96,7 +105,9 @@ function userGetreward() {
     //보상
     console.log("지금 게임유저2",gameUser1);
     //게임시작시 차감
-    gameUser1.coin.coin_num=gameUser1.coin.coin_num-1
+    gameUser1.coin.coin_num=gameUser1.coin.coin_num-1;
+    setLocalHistory(gameUser,"game",{gamename:"숫자 맞추기게임"},{type:"sangpay",amount:1});
+
     //점수에 따른 보상얻는 부분
     gameUser1.token[9].token_num=gameUser1.token[9].token_num+score;
     localStorage.setItem("user_"+gameUser,JSON.stringify(gameUser1));

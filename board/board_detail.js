@@ -3,6 +3,13 @@
 // import { boardListEdit, getCurrentUser, getUserNick } from "./board.js";
 
 window.onload = function() {
+
+    // 로그인 안했다면 로그인페이지로 이동
+    if (!getCurrentUser()) {
+        alert("로그인하세요");
+        location.href = '../login/loginpage.html';
+    }
+
     // 출력할 게시물의 글번호
     let no = location.href.split('?')[1];
 

@@ -475,12 +475,12 @@ function setLocalHistory(user, type, content, price) {
 
 function delCookies() {
   let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-  expireDate.setTime(expireDate.getTime() - 10 * 10000);
+  // expireDate.setTime(expireDate.getTime() - 10 * 10000);
   // document.cookie에 값을 대입하는 형태로 -> 쿠키 삭제(or 생성/수정)
   // 직접 삭제가 아니라 수정이라고 봐야함. 만료일을 정해놓은 쿠키를 과거의 날짜로 수정해서 쿠키를 수정하는 것 -> 수정이 즉 삭제의 의미
   // 쿠키 삭제는? 이미 한참 지나간 시간을 입력해버림으로써 쿠키를 삭제시킨다.
   console.log(cookieValue);
-  document.cookie = `user_id=${cookieValue}; expires=${expireDate.toUTCString()}; path=/`;  // 쿠키삭제
+  document.cookie = `user_id=${cookieValue}; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/`;  // 쿠키삭제
   alert("로그아웃");
 }
 

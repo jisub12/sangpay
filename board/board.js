@@ -11,6 +11,12 @@ let currentPage = 1;
 // 처음 실행되면 작동할 함수
 window.onload = function () {
 
+    // 로그인 안했다면
+    if (!getCurrentUser()) {
+        alert("로그인 하세요");
+        location.href = '../login/loginpage.html';
+    }
+
     // 페이지네이션 함수 실행
     paginate(JSON.parse(window.localStorage.getItem("board")));
 
