@@ -602,9 +602,6 @@ h_gamestart.addEventListener("click", function () {
 // createEnemy();
 // main();
 
-    } 
-});
-
 function main() {
     if(!gameOver){
         if(!isPaused) {
