@@ -44,11 +44,9 @@
 
     <main>
         <div class="wallet">
-            <div class="b-title-area">
-                <h2 class="wallet-title">Wallet</h2>
-                <div class="historydiv">
-                    <button class="history-btn" onclick="getCurrentUserHistory()">내역 보기</button>
-                </div>
+            <h2 class="wallet-title">Wallet</h2>
+            <div class="historydiv">
+                <button class="history-btn">내역 보기</button>
             </div>
             <hr class="divider" />
             <div class="coin-info">
@@ -212,6 +210,26 @@
                     <div class="button-container">
                         <button class="swap-execute2" onclick="closePopup('swap-popup2')">교환하기</button>
                         <div class="swap-cancel2" onclick="closePopup()">취소하기</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- 내역 보기 버튼 팝업창 -->
+
+        <div class="popup-history">
+            <div>
+                <div class="popup-content">
+                    <div class="button-container">
+                        <!-- 닫기버튼 -->
+                        <div class="history-cancel">X</div>
+                    </div>
+                    <h2>거래내역</h2>
+                    <!-- <p class="swap-instruction">교환 수량을 입력하세요</p> -->
+                    <div class="history-content">
+
                     </div>
                 </div>
             </div>

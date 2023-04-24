@@ -28,6 +28,7 @@ let score = 0;
 let playerSpeed = 3; // 플레이어 기본 스피드 값
 let enemySpeed = 2; // 적 내려오는 스피드 값
 let enemySpawnSpeed = 1000; // 적 생성 속도
+let isPaused = true; // 일시정지 기능
 
 // 우주선 좌표
 let spaceshipX = canvas.width / 2 - 30; // 왼쪽 제일 위가 0 , 넓이 = 가로 넓이 2로 나누고 우주선 크기에 절반
@@ -216,21 +217,25 @@ function createBullet() {
 }
 
 // 잔몹 생성
-function createEnemy() {
-  // const interval =
-  setInterval(function () {
-    if (score >= 10 && score !== 0 && !boss1Created) {
-      createEnemyBoss1();
-      // clearInterval(interval);
-    } else if (score >= 100 && !boss2Created) {
-      createEnemyBoss2();
-    } else if (score >= 200 && !boss3Created) {
-      createEnemyBoss3();
-    } else {
-      let e = new Enemy();
-      e.init();
-    }
-  }, enemySpawnSpeed);
+function createEnemy(){
+    // const interval =
+    setInterval(function(){
+        if(score >=10 && score !== 0 && !boss1Created){
+            createEnemyBoss1();
+            // clearInterval(interval);
+        } else if(score >= 100 && !boss2Created){
+            createEnemyBoss2();
+        } else if(score >= 200 && !boss3Created){
+            createEnemyBoss3();
+        }
+
+        else {
+            if(!isPaused){
+                let e = new Enemy();
+                e.init();
+            }
+        }
+    },enemySpawnSpeed);
 }
 // 보스1 생성
 function createEnemyBoss1() {
@@ -286,13 +291,21 @@ function checkSpaceshipCollision(enemy) {
   );
 }
 
-function update() {
-  if (39 in keysDown) {
-    spaceshipX += playerSpeed; // 우주선의 속도 오른쪽
-  }
-  if (37 in keysDown) {
-    spaceshipX -= playerSpeed; // 우주선의 속도 왼쪽
-  }
+function update(){
+    if( 39 in keysDown) {
+        spaceshipX += playerSpeed; // 우주선의 속도 오른쪽
+    }
+    if( 37 in keysDown) {
+        spaceshipX -= playerSpeed; // 우주선의 속도 왼쪽
+    }
+
+    // 우주선의 좌표값이 무한대로 업데이트가 되는 게 아닌! 경기장 안에서만 있게 하려면?
+    if(spaceshipX <= 0){
+        spaceshipX = 0;
+    }
+    if(spaceshipX >= canvas.width - 60){
+        spaceshipX = canvas.width - 60;
+    }
 
   // 우주선의 좌표값이 무한대로 업데이트가 되는 게 아닌! 경기장 안에서만 있게 하려면?
   if (spaceshipX <= 0) {
@@ -402,42 +415,130 @@ function render() {
     }
   }
 }
+// 일시정지 기능 추가
+
+// 일시정지 함수
+function togglePause() {
+    isPaused = !isPaused;
+}
+
+// pause 그리기
+
+function renderPause(){
+    // 반투명 검은색 레이어
+    ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // 일시정지 메세지
+    ctx.fillStyle = "yellow";
+    ctx.font = "50px Arial";
+    ctx.fillText("게임설명", canvas.width / 2 - 80 , canvas.height / 2 - 200);
+    ctx.font = "20px Arial"
+    ctx.fillText("당신은 외계인에게 납치된 지구인들을", canvas.width / 2 - 160, canvas.height / 2 - 160);
+    ctx.font = "20px Arial"
+    ctx.fillText("구조하라는 특별한 임무를 받았다.", canvas.width / 2 - 160, canvas.height / 2 - 130);
+    ctx.font = "20px Arial"
+    ctx.fillText("납치된 지구인들을 구조하라.", canvas.width / 2 - 160, canvas.height / 2 - 100);
+    ctx.font = "20px Arial"
+    ctx.fillText("구조된 지구인의 수만큼 Score를 얻게되며,", canvas.width / 2 - 160, canvas.height / 2 - 70);
+    ctx.font = "20px Arial"
+    ctx.fillText("적립된 Score는 Token으로 교환할 수 있다.", canvas.width / 2 - 160, canvas.height / 2 - 40);
+    ctx.font = "20px Arial"
+    ctx.fillText("방향키로 내려오는 지구인에게 접근하면", canvas.width / 2 - 160, canvas.height / 2 + 40);
+    ctx.font = "20px Arial"
+    ctx.fillText("구조 성공!", canvas.width / 2 - 160, canvas.height / 2 + 70);
+    ctx.font = "20px Arial"
+    ctx.fillText("ESC 또는 p 키로 게임을 시작하거나", canvas.width / 2 - 160, canvas.height / 2 + 100);
+    ctx.font = "20px Arial"
+    ctx.fillText("일시정지 할 수 있다.", canvas.width / 2 - 160, canvas.height / 2 + 130);
+};
+
+// 일시정지 키 입력 (esc나 p 누르면 일시정지)
+window.addEventListener('keydown', function(event){
+    if(event.key === "p" || event.key === "P" || event.key === "ㅔ" || event.key === "ㅖ"
+       || event.keyCode === 27) {
+        togglePause();
+        // alert("일시정지 되었습니다. esc나 p키를 다시 입력하시면 게임이 재개됩니다.")
+    }
+});
 
 function main() {
+
   if (!gameOver) {
-    update(); // 좌표 값을 업데이트 하고
+
+    if (!isPaused) {
+      update(); // 좌표 값을 업데이트 하고
+      // console.log("animation calls main function");
+    }
     render(); // 그려주고
-    // console.log("animation calls main function");
+
+    if (isPaused) {
+      renderPause();
+    }
     requestAnimationFrame(main);
+
   } else {
-    ctx.drawImage(gameOverImage, 10, 100, 380, 380);
-   
-        
-        h_popupbox.style.display = "block";
+    function renderScorePopup()
+    {
+      h_popupbox.style.display = "block";
         let newdiv=document.createElement('div');
         h_popupbox.appendChild(newdiv);
         newdiv.innerHTML="점수" +score;
         let newdiv2=document.createElement('div');
         h_popupbox.appendChild(newdiv2)
         newdiv2.innerHTML="mypage로"
+        re.innerHTML="현재보상:  "+reward;
         newdiv2.onclick=function(){
             location.href='../mypage/mypage.html';
         }
+
+        // 다시하기 버튼
+        let rediv=document.createElement('div');
+        h_popupbox.appendChild(rediv)
+        rediv.innerHTML="다시하기"
+        rediv.onclick=function() {
+          location.href='../space_game/index.html';
+        }
+
+        h_gamestart.innerHTML="";
+    }
+      console.log(score);
         userGetreward()
+        // reward=0;
+        ctx.drawImage(gameOverImage, 0, 0, 400, 700);
+        setTimeout(() => {
+          renderScorePopup();
+        }, 2000);
+        // setTimeout(() => {
+        //   if(confirm("게임을 더하시겠습니까?"))
+        //   location.href='../space_game/index.html';
+        //   else location.href='../mypage/mypage.html';
+        // }, 3000);
 
 
   }
 }
-document.querySelector(".h-nowUser").innerHTML = getCurrentUser();
+document.querySelector(".h-nowUser").innerHTML = "현재 사용자:"+getCurrentUser();
+let re=document.querySelector('.h-reward');
+let reward=0;
+let gameUser=getCurrentUser();
+console.log("지금 게임유저",gameUser);
+let gameUser1=JSON.parse(localStorage.getItem("user_"+gameUser));
+
+
 function userGetreward() {
-    let reward=Math.floor(score/10);
     //보상
-    let gameUser=getCurrentUser();
-    console.log("지금 게임유저",gameUser);
-    let gameUser1=JSON.parse(localStorage.getItem("user_"+gameUser));
+    reward=Math.floor(score/10);
     console.log("지금 게임유저2",gameUser1);
+    //게임시작시 차감
+    gameUser1.coin.coin_num=gameUser1.coin.coin_num-1;
+    setLocalHistory(gameUser,"game",{gamename:"지구인들을 구조하라!"},{type:"sangpay",amount:1});
+
+    //점수에 따른 보상얻는 부분
     gameUser1.token[9].token_num=gameUser1.token[9].token_num+reward;
+    console.log(reward);
     localStorage.setItem("user_"+gameUser,JSON.stringify(gameUser1));
+    setLocalHistory(gameUser,"game",{gamename:"지구인들을 구조하라!"},{type:gameUser1.token[9].token_name,amount:reward});
 
 }
 let h_gamestart = document.querySelector(".h-gamestart");
@@ -445,17 +546,17 @@ let h_popupbox = document.querySelector(".h-popup_box");
 h_gamestart.addEventListener("click", function () {
   h_popupbox.style.display = "none";
   if (confirm("게임을 시작하시겠습니까?")) {
-    alert("확인");
+    // alert("확인");
     setTimeout(() => {
+      loadImage();
+      setupKeyboardListener();
+      createEnemy();
       main();
     }, 1000);
   } else {
     alert("취소");
   }
 });
-loadImage();
-setupKeyboardListener();
-createEnemy();
 
 // 방향키를 누르면
 // 우주선의 xy 좌표가 바뀌고 // 우주선이 오른쪽으로 간다 = x 좌표의 값이 증가 // 우주선이 왼쪽으로 간다 = x 좌표의 값이 감소
@@ -479,3 +580,23 @@ createEnemy();
 // 적군이 죽는다.
 // 총알이 적군에게 닿는다. (총알.y <= 적군.y) and (총알.x >= 적군.x and 총알.x <= 적군.x + 40) => 닿았다
 // 닿으면 총알이 죽게됌. 적군의 우주선이 없어짐. 점수 획득
+    // if(!gameOver){
+    //     if(!isPaused) {
+    //         update(); // 좌표 값을 업데이트 하고
+    //     }
+    //     render(); // 그려주고
+
+    //     if(isPaused) {
+    //         renderPause();
+    //     }
+
+    //         requestAnimationFrame(main);
+    //     } else{
+    //         ctx.drawImage(gameOverImage,10,100,380,380);
+    //     }
+    // }
+
+// loadImage();
+// setupKeyboardListener();
+// createEnemy();
+// main();

@@ -127,7 +127,7 @@ main {
 .swap-buttons {
     display: flex;
     gap: 10px;
-    
+
 }
 
 .send-btn,  .receive-btn, .exchange-btn {
@@ -152,7 +152,7 @@ main {
     display: inline-block;
     font-size: 14px;
     cursor: pointer;
-} 
+}
 
 /* .estimated {
     font-size: 12px;
@@ -162,7 +162,7 @@ main {
 
 /* 팝업 공통 스타일 */
 
-.popup3 , .popup1 , .popup-exchange{
+.popup3 , .popup1 , .popup-exchange, .popup-history{
     position: fixed;
     top: 0;
     left: 0;
@@ -176,6 +176,77 @@ main {
 /* 보내기 버튼 팝업 */
 
 
+/* ---------------거래내역 보기-------------- */
+
+/* 거래내역 팝업 */
+.popup-history .popup-content {
+    min-width : 400px;
+    min-height: 400px;
+    max-height: 600px;
+    overflow-y: scroll;
+    position: relative;
+}
+
+/* 거래내역 type (보내기/받기/교환/게임) */
+.history-type {
+    font-size: large;
+    font-weight: bold;
+}
+
+/* 거래내역 content */
+.history-content {
+    min-width: 300px;
+}
+
+/* 거래내역 price div */
+.history-pricediv {
+    /* 내부요소 우측정렬 */
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 10px;
+}
+
+/* 거래내역 페이/토큰이름, 금액 */
+.history-pricename, .history-priceamount {
+    margin: 0;
+}
+
+/* 거래내역 price name */
+.history-pricename {
+    font-size: large;
+    margin-right: 10px;
+}
+
+/* 거래내역 price amount */
+.history-priceamount {
+    font-size: large;
+    font-weight: bold;
+}
+
+/* 거래내역 입금 */
+.history-plus {
+    color : blue;
+}
+
+/* 거래내역 출금 */
+.history-minus {
+    color:red;
+}
+
+/* 거래내역 팝업창 내부 구분선 */
+.history-content .divider {
+    margin: 20px auto;
+}
+
+/* 거래내역 닫기 버튼 */
+.history-cancel {
+    position: absolute;
+    right: 0;
+}
+
+
+/* -------------------------------------- */
 
 /* 받기 버튼 팝업  */
 .popup-content {
@@ -204,7 +275,7 @@ main {
 }
 /* 팝업 닫기 버튼들 */
 .h-close-button , .h-send-button, .swap-execute, .swap-execute2, .exchange-close-button , .send-close-button
-, .swap-cancel , .swap-cancel2{
+, .swap-cancel , .swap-cancel2, .history-cancel{
     background-color: #4CAF50;
     border: none;
     color: white;
@@ -324,7 +395,7 @@ main {
 }
 
 #main-token-list li {
-    
+
     display: flex;
     justify-content: space-between;
     width: 100%;

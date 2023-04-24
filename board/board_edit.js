@@ -51,9 +51,9 @@ window.onload = function () {
             addBtnEvent(false);
         }
 
-    } else { //아니면 목록으로 이동
+    } else { //아니면 로그인페이지로 이동
         alert("로그인하세요");
-        location.href = `board.html`;
+        location.href = '../login/loginpage.html';
 
     }
 

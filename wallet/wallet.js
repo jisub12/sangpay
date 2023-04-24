@@ -187,6 +187,46 @@ function extensionTime1() {
 // }
 
 
+// 페이지 로드 시 토큰 목록을 표시합니다.
+
+window.addEventListener("DOMContentLoaded", () => {
+  let user = JSON.parse(window.localStorage.getItem("user_" + getCurrentUser()));
+
+  if (!user) {
+    // 로그인 안했다면
+    alert('로그인 하세요');
+    // 로그인페이지로 이동
+    location.href = '../login/loginpage.html';
+  }
+
+  // 승인된 회원이라면
+  if (user.user_allow) {
+    displayTokens("main-token-list");
+    displayTokens2("tokentopay-token-list");
+    displayTokens3("paytotoken-token-list");
+    displayCoin();
+    displayCoinInpaytoToken(); // 801~ 804 부분 (페이to토큰 팝업 안에 코인수량표기)
+
+    // li 클릭 부분 이벤트 함수 추가
+    addClickListeners();
+
+    // 임의로 로컬스토리지에 토큰 추가
+    setTokenLocal();
+
+    // 결제내역 로컬스토리지 없으면 로컬스토리지에 빈 값 저장
+    setLocalHistoryArr();
+
+  } else {
+    // 회원 승인 안됐다면
+    alert('회원가입 승인 기다리세요');
+    // 로그인페이지로 이동
+    location.href = '../login/loginpage.html';
+  }
+
+});
+
+
+
 // user 객체 생성 (Hash값 가져오기 위해 만듦)
 // let newUser = new user("gusdnr205@naver.com", "password", "nickname", false, defaultCoin, tokenArr);
 
@@ -331,18 +371,18 @@ exchangeCloseBtn.onclick = function () {
 function updateSangpayInfo() {
   //메인 지갑 부분 연결
   document.getElementById("sangpay-name").innerText = defaultCoin.coin_name;
-  document.getElementById("sangpay-amount").innerText = defaultCoin.coin_num.toFixed(4);
-  document.getElementById("sangpay-value").innerText = defaultCoin.coin_value; // 적용 되는지 확인 필요;
+  // document.getElementById("sangpay-amount").innerText = defaultCoin.coin_num.toFixed(4);
+  // document.getElementById("sangpay-value").innerText = defaultCoin.coin_value; // 적용 되는지 확인 필요;
   // 보내기 버튼 부분 연결
   document.getElementById("send-sangpay-name").innerText = defaultCoin.coin_name;
   document.querySelector('#send-sangpay-amount').innerHTML = JSON.parse(window.localStorage.getItem(`user_` + getCurrentUser())).coin.coin_num;
   // document.getElementById("send-sangpay-amount").innerText = defaultCoin.coin_num.toFixed(4);
   // 페이 to 토큰 부분 연결
   document.getElementById("swap1-sangpay-name").innerText = defaultCoin.coin_name;
-  document.getElementById("swap1-sangpay-amount").innerText = defaultCoin.coin_num.toFixed(4);
+  // document.getElementById("swap1-sangpay-amount").innerText = defaultCoin.coin_num.toFixed(4);
   // 토큰 to 페이 부분 연결
   document.getElementById("swap2-sangpay-name").innerText = defaultCoin.coin_name;
-  document.getElementById("swap2-sangpay-amount").innerText = defaultCoin.coin_num.toFixed(4);
+  // document.getElementById("swap2-sangpay-amount").innerText = defaultCoin.coin_num.toFixed(4);
 }
 
 // 페이지 로드 시 상장페이 정보 업데이트
@@ -677,36 +717,6 @@ function addClickListeners() {
   });
 }
 
-// 페이지 로드 시 토큰 목록을 표시합니다.
-
-window.addEventListener("DOMContentLoaded", () => {
-  let user = JSON.parse(window.localStorage.getItem("user_" + getCurrentUser()));
-  // 승인된 회원이라면
-  if (user.user_allow) {
-    displayTokens("main-token-list");
-    displayTokens2("tokentopay-token-list");
-    displayTokens3("paytotoken-token-list");
-    displayCoin();
-    displayCoinInpaytoToken(); // 801~ 804 부분 (페이to토큰 팝업 안에 코인수량표기)
-
-    // li 클릭 부분 이벤트 함수 추가
-    addClickListeners();
-
-    // 임의로 로컬스토리지에 토큰 추가
-    setTokenLocal();
-
-    // 결제내역 로컬스토리지 없으면 로컬스토리지에 빈 값 저장
-    setLocalHistoryArr();
-
-  } else {
-    // 회원 승인 안됐다면
-    alert('회원가입 승인 기다리세요');
-    // 로그인페이지로 이동
-    location.href = '../login/loginpage.html';
-  }
-
-});
-
 
 function getSangpayForUser(user) {
   const storedSangpay = parseFloat(localStorage.getItem(user));
@@ -885,14 +895,121 @@ function setLocalHistoryArr() {
   }
 }
 
-// 현재 사용자의 지갑내역 구하기
-function getCurrentUserHistory() {
+// 내역 보기 버튼 클릭 --> 팝업창 열기
+document.querySelector('.history-btn').addEventListener('click', function() {
+  document.querySelector('.popup-history').style.display='flex';
+
+  renderUserHistory();
+});
+
+// 팝업 닫기버튼
+document.querySelector('.history-cancel').addEventListener('click', function() {
+  document.querySelector('.popup-history').style.display='none';
+
+})
+
+// 현재 사용자의 지갑내역 출력
+function renderUserHistory() {
   let historyList = JSON.parse(window.localStorage.getItem("history"));
   let user = getCurrentUser();
+
+  let historyDiv=document.querySelector('.history-content');
+  historyDiv.innerHTML = "";
+
+  if (historyList.length == 0) {
+    historyDiv.innerHTML = "내역없음";
+  }
+
+  // 최신내역부터 출력되게
+  historyList.reverse();
+
   historyList.forEach(function(item) {
     if (item.user == user) {
-      console.log(item);
+      let div = document.createElement('div');
+      let type = document.createElement('div');
+      let content = document.createElement('div');
+      let price = document.createElement('div');
+      let priceDiv = document.createElement('div');
+      let priceDiv2 = document.createElement('div');
+      let priceName = document.createElement('p');
+      let priceAmount = document.createElement('p');
+      let divider = document.createElement('hr');
 
+      div.classList.add('history-div');
+      type.classList.add('history-type');
+      content.classList.add('history-content');
+      priceDiv.classList.add('history-pricediv');
+      priceName.classList.add('history-pricename');
+      priceAmount.classList.add('history-priceamount');
+      divider.classList.add('divider');
+
+      type.innerHTML = item.type;
+
+      switch (item.type) {
+        case "보내기":
+          content.innerHTML = item.content.user + "님에게 보냄";
+          priceName.innerHTML = item.price.type;
+          priceAmount.innerHTML = "-" + item.price.amount.toFixed(4);
+          priceAmount.classList.add('history-minus');
+          break;
+
+          case "받기":
+            content.innerHTML = item.content.user + "님에게 받음";
+            priceName.innerHTML = item.price.type;
+            priceAmount.innerHTML = "+" + item.price.amount.toFixed(4);
+            priceAmount.classList.add('history-plus');
+          break;
+
+        case "교환":
+          let priceName2 = document.createElement('p');
+          let priceAmount2 = document.createElement('p');
+          priceDiv2.classList.add('history-pricediv');
+          priceName2.classList.add('history-pricename');
+          priceAmount2.classList.add('history-priceamount');
+
+          if (item.price.ptt) { // 페이to토큰
+            content.innerHTML = "페이 to 토큰";
+
+            priceName.innerHTML = "sangpay";
+            priceAmount.innerHTML = "-" + parseFloat(item.price.pay).toFixed(4);
+            priceAmount.classList.add('history-minus');
+
+            priceName2.innerHTML = item.price.token[0];
+            priceAmount2.innerHTML = "+" + parseFloat(item.price.token[1]).toFixed(4);
+            priceAmount2.classList.add('history-plus');
+          } else { // 토큰to페이
+            content.innerHTML = "토큰 to 페이";
+            priceName.innerHTML = item.price.token[0];
+            priceAmount.innerHTML = "-" + parseFloat(item.price.token[1]).toFixed(4);
+            priceAmount.classList.add('history-minus');
+
+            priceName2.innerHTML = "sangpay";
+            priceAmount2.innerHTML = "+" + parseFloat(item.price.pay).toFixed(4);
+            priceAmount2.classList.add('history-plus');
+          }
+
+          priceDiv2.append(priceName2, priceAmount2)
+          break;
+
+        case "game":
+          type.innerHTML = "게임";
+          content.innerHTML = item.content.gamename;
+          priceName.innerHTML = item.price.type;
+
+          if (item.price.type == "sangpay") {
+            priceAmount.innerHTML = "-" + item.price.amount.toFixed(4);
+            priceAmount.classList.add('history-minus');
+          } else {
+            priceAmount.innerHTML = "+" + item.price.amount.toFixed(4);
+            priceAmount.classList.add('history-plus');
+          }
+          break;
+      }
+
+      priceDiv.append(priceName, priceAmount);
+      price.append(priceDiv, priceDiv2);
+      div.append(type, content, price, divider);
+      historyDiv.append(div);
     }
   });
 }
