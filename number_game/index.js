@@ -6,6 +6,7 @@ const submitGuess = document.getElementById("submitGuess");
 const message = document.getElementById("message");
 let h_gamestart = document.querySelector(".h-gamestart");
 let h_popupbox = document.querySelector(".h-popup_box");
+const attemptMessage = document.getElementById("attemptMessage"); // 제출 숫자, 도전 횟수 적을 변수 생성, 지섭
 
 submitGuess.addEventListener("click", function(){
     const guess = parseInt(guessInput.value);
@@ -14,6 +15,9 @@ submitGuess.addEventListener("click", function(){
         return;
     }
     attempts++;
+
+    // 제출 숫자, 도전 횟수 , 지섭
+    attemptMessage.textContent = `시도 : ${attempts} 번, 추측한 숫자 ${guess}`;
 
     //게임 끝나는 조건
     if(attempts>10)
