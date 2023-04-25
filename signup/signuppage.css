@@ -3,7 +3,7 @@
     src: url(../DynaPuff/DynaPuff-VariableFont_wdth\,wght.ttf);
 }
 
-.whole-mypage{
+.whole-mypage {
     width: 100%;
     height: 900px;
     background-color: #033104;
@@ -11,75 +11,7 @@
     font-family: "dynapuff";
 }
 
-/* .header{
-    width: 100%;
-    height: 60px;
-    border-bottom: 1px solid;
-    background-color: white;
-    margin: 0;
-    padding: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    display: inline-flex;
-    flex-wrap: nowrap;
-    z-index: 2;
-}
-
-.b-sangpay-logo{
-    width: 20%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.b-logo{
-    width: 150px;
-    height: 30px;
-    border: 1px solid;
-}
-
-.b-session-time{
-    width: 60%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.b-session{
-    margin-right: 10px;
-}
-
-.b-menu-option{
-    width: 20%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.b-header-list{
-    list-style: none;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 0;
-    margin: 0;
-}
-
-.b-header-list-item{
-    margin-left: 50px;
-
-    display: flex;
-    justify-content: flex-end;
-} */
-
-.b-signup-page-title{
+.b-signup-page-title {
     width: 500px;
     height: 100px;
 
@@ -98,19 +30,18 @@
     font-weight: 400;
 }
 
-.b-my-page-box{
+.b-my-page-box {
     width: 60%;
     height: 500px;
-    
+
     border-radius: 15px;
-    /* box-shadow: 5px 5px 5px; */
     background-color: whitesmoke;
 
     margin: auto;
     position: relative;
 }
 
-.b-fixed-values{
+.b-fixed-values {
     width: 100%;
     height: 30%;
     border-bottom: 1px solid;
@@ -120,7 +51,7 @@
     flex-wrap: wrap;
 }
 
-.b-profile-image-box{
+.b-profile-image-box {
     width: 40%;
     height: 100%;
     border-right: 1px solid;
@@ -131,7 +62,7 @@
     align-items: center;
 }
 
-.b-profile-image{
+.b-profile-image {
     width: 150px;
     height: 150px;
     border: 1px solid;
@@ -142,12 +73,12 @@
     background-size: contain;
 }
 
-.b-profile-info{
+.b-profile-info {
     width: 60%;
     height: 100%;
 }
 
-.b-id-box{
+.b-id-box {
     width: 100%;
     height: 50%;
     border-bottom: 1px solid;
@@ -158,7 +89,7 @@
     align-items: center;
 }
 
-.b-text-id{
+.b-text-id {
     width: 20%;
 
     display: flex;
@@ -166,7 +97,7 @@
     align-items: center;
 }
 
-.b-text-actual-id{
+.b-text-actual-id {
     width: 80%;
 
     display: flex;
@@ -174,7 +105,7 @@
     align-items: center;
 }
 
-.b-wallet-address{
+.b-wallet-address {
     width: 100%;
     height: 50%;
     box-sizing: border-box;
@@ -184,13 +115,13 @@
     align-items: center;
 }
 
-.b-text-wallet-address{
+.b-text-wallet-address {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.b-text-actual-wallet-address{
+.b-text-actual-wallet-address {
     width: 50%;
 
     display: flex;
@@ -200,12 +131,12 @@
     text-overflow: ellipsis;
 }
 
-.b-changing-values{
+.b-changing-values {
     width: 100%;
     height: 70%;
 }
 
-.b-nickname-change-box{
+.b-nickname-change-box {
     width: 100%;
     height: 20%;
     border-bottom: 1px solid;
@@ -215,7 +146,7 @@
     align-items: center;
 }
 
-.b-password-change-box{
+.b-password-change-box {
     width: 100%;
     height: 20%;
     border-bottom: 1px solid;
@@ -227,25 +158,25 @@
     align-content: center;
 }
 
-.b-text-nickname{
+.b-text-nickname {
     width: 40%;
 
     display: flex;
     justify-content: center;
 }
 
-.b-new-nickname-input-box{
+.b-new-nickname-input-box {
     width: 30%;
 }
 
-.b-nickname-change-btn{
+.b-nickname-change-btn {
     width: 30%;
 
     display: flex;
     justify-content: center;
 }
 
-.b-new-password-box{
+.b-new-password-box {
     width: 100%;
 
     display: flex;
@@ -254,39 +185,39 @@
     margin-bottom: 10px;
 }
 
-.b-text-password{
+.b-text-password {
     width: 40%;
 
     display: flex;
     justify-content: center;
 }
 
-.b-new-password-input-box{
+.b-new-password-input-box {
     width: 60%;
 
     display: flex;
     justify-content: flex-start;
 }
 
-.b-new-password-confirm-box{
+.b-new-password-confirm-box {
     width: 100%;
 
     display: flex;
     align-items: center;
 }
 
-.b-text-password-confirm{
+.b-text-password-confirm {
     width: 40%;
 
     display: flex;
     justify-content: center;
 }
 
-.b-new-password-confirm-input-box{
+.b-new-password-confirm-input-box {
     width: 30%;
 }
 
-.b-password-change-btn{
+.b-password-change-btn {
     width: 30%;
 
     display: flex;
@@ -296,7 +227,7 @@
 
 /* -----------------------------------------------------------------------------------------현욱 */
 
-.j-login-flex-box{
+.j-login-flex-box {
     margin: auto;
     padding: 0;
 
@@ -306,100 +237,113 @@
     height: 560px;
     box-sizing: border-box;
 }
-.j-logo{
+
+.j-logo {
     width: 100%;
     display: inline-block;
 
-    align-items: center; text-align: center;
+    align-items: center;
+    text-align: center;
 }
-.j-logo a{
-   font-size: 40px;
-   color: black;
+
+.j-logo a {
+    font-size: 40px;
+    color: black;
     outline-width: 0;
     text-decoration: none;
 }
-.j-id-loginText{
+
+.j-id-loginText {
     text-align: center;
     width: 100%;
     height: 32px;
 }
-.j-underBar{
+
+.j-underBar {
     border-bottom: 2px solid aqua;
     width: 100%;
     height: 2px;
 }
+
 .j-id {
     background-color: rgba(128, 128, 128, 0.1);
     height: 44px;
     border: 1px solid rgba(128, 128, 128, 0.1);
     display: flex;
     align-items: center;
-  }
-  
-
-  
-.j-pw{
-    background-color: rgba(128, 128, 128,0.1);
-    height: 44px;
-    border: 1px solid  rgba(128, 128, 128,0.1);
 }
-.j-blank{
+
+
+
+.j-pw {
+    background-color: rgba(128, 128, 128, 0.1);
+    height: 44px;
+    border: 1px solid rgba(128, 128, 128, 0.1);
+}
+
+.j-blank {
     width: 100%;
     height: 25px;
 
 }
-.j-blank2{
+
+.j-blank2 {
     width: 100%;
     height: 7px;
 }
-.j-loginbtnbox{
+
+.j-loginbtnbox {
     text-align: center;
 }
-.j-loginbtn{
+
+.j-loginbtn {
     cursor: pointer;
-    border: none; 
+    border: none;
     background-color: transparent;
 }
-.j-flex-findbox{
+
+.j-flex-findbox {
 
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.j-findId{
+.j-findId {
     cursor: pointer;
     width: auto;
     height: 19px;
 }
-.j-findpw{
+
+.j-findpw {
     cursor: pointer;
     width: auto;
     height: 19px;
 }
-.j-signup{
+
+.j-signup {
     text-align: center;
     cursor: pointer;
-    
+
 
 }
-.j-input1{
+
+.j-input1 {
     width: 100%;
     height: 44px;
-    border: none; 
+    border: none;
     background-color: transparent;
 }
 
 .validation {
-	margin-left: 10px;
-	color: red;
-	font-size: 12px;
+    margin-left: 10px;
+    color: red;
+    font-size: 12px;
 }
 
-.submitNewUserBtnBox{
+.submitNewUserBtnBox {
     width: 100%;
     height: 40px;
-    /* border: 1px solid black; */
     border-radius: 10px;
     cursor: pointer;
     background-color: rgba(85, 63, 233, 0.8);
@@ -413,13 +357,13 @@
     align-items: center;
 }
 
-.h-welcomepopup{
+.h-welcomepopup {
     font-family: "dynapuff";
     font-size: 40px;
     font-weight: 400;
     width: 100%;
     height: 100%;
-    border:  1px solid black;
+    border: 1px solid black;
     border-radius: 15px;
     position: absolute;
     top: 0;
@@ -428,38 +372,36 @@
     background-color: white;
     display: none;
 }
-.h-welcomepopup.popupactive{
+
+.h-welcomepopup.popupactive {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-/* @font-face {
-    font-family: "dynapuff";
-    src: url(./DynaPuff/DynaPuff-VariableFont_wdth\,wght.ttf);
-} */
 
-.h-adminallow.isactive
-{
-  
+.h-adminallow.isactive {
+
     display: block;
     opacity: 1;
     transition: 1s ease-in-out;
 }
 
 
-.h-Tologinpage.isactive2{
-    display: flex;   
+.h-Tologinpage.isactive2 {
+    display: flex;
 }
-.h-Tologinpage:hover{
+
+.h-Tologinpage:hover {
     background-color: lightgray;
     cursor: pointer;
 }
 
-.h-adminallow{
-  display: none;
-  opacity: 0;
+.h-adminallow {
+    display: none;
+    opacity: 0;
 }
-.h-Tologinpage{
+
+.h-Tologinpage {
     display: none;
     text-decoration: none;
     color: black;
@@ -473,29 +415,16 @@
 }
 
 @keyframes fadeIn {
-    from{
+    from {
         opacity: 0;
     }
-    to{
+
+    to {
         opacity: 1;
     }
 }
 
-.checkoverlap{
-    border: 1px solid;
-    border-radius: 5px;
-    margin-left: 5px;
-    padding: 5px;
-
-    font-size: 15px;
-    
-    background-color: lightgray;
-}
-.checkoverlap:hover{
-    cursor: pointer;
-}
-
-.check-nickname-overlap{
+.checkoverlap {
     border: 1px solid;
     border-radius: 5px;
     margin-left: 5px;
@@ -505,24 +434,40 @@
 
     background-color: lightgray;
 }
-.check-nickname-overlap{
+
+.checkoverlap:hover {
     cursor: pointer;
 }
 
-#password{
+.check-nickname-overlap {
+    border: 1px solid;
+    border-radius: 5px;
+    margin-left: 5px;
+    padding: 5px;
+
+    font-size: 15px;
+
+    background-color: lightgray;
+}
+
+.check-nickname-overlap {
+    cursor: pointer;
+}
+
+#password {
     height: 25px;
 }
 
-#pwcf{
+#pwcf {
     height: 25px;
 }
 
-.b-popup-content{
+.b-popup-content {
     width: 100%;
     height: 400px;
 }
 
-.b-popup-text-top{
+.b-popup-text-top {
     width: 100%;
     height: 50px;
 
@@ -530,7 +475,8 @@
     justify-content: center;
     align-items: center;
 }
-.b-popup-text-mid{
+
+.b-popup-text-mid {
     width: 100%;
     height: 50px;
 
@@ -541,7 +487,8 @@
     justify-content: center;
     align-items: center;
 }
-.b-popup-text-bot{
+
+.b-popup-text-bot {
     width: 100%;
     height: 30px;
 

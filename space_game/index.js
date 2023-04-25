@@ -10,7 +10,6 @@ canvas.style.marginTop = "35px";
 document.body.appendChild(canvas);
 
 // 이미지 가져오기
-
 let backgroundImage,
   spaceshipImage,
   bulletImage,
@@ -61,7 +60,6 @@ function Bullet() {
         // 닿으면 총알이 죽게됌. 적군의 우주선이 없어짐. 점수 획득
         score++;
         this.alive = false; // 죽은 총알
-        console.log(this.alive);
         enemyList.splice(i, 1);
       }
     }
@@ -90,7 +88,6 @@ function Enemy() {
     // 게임 종료
     if (this.y >= canvas.height - 48) {
       gameOver = true;
-      console.log("gameover");
     }
   };
 }
@@ -201,42 +198,32 @@ function setupKeyboardListener() {
   });
   document.addEventListener("keyup", function (event) {
     delete keysDown[event.keyCode];
-    // console.log("버튼 클릭 후", keysDown);
-
-    //  스페이스 키 뺴놨음.
-    // if(event.keyCode == 32){
-    //     createBullet() // 총알 생성 함수
-    // }
   });
 }
 // 총알 생성
 function createBullet() {
-  // console.log("총알 생성");
   let b = new Bullet(); // 총알 하나 생성
   b.init();
-  // console.log("새로운 총알 리스트", bulletList);
 }
 
 // 잔몹 생성
-function createEnemy(){
-    // const interval =
-    setInterval(function(){
-        if(score >=10 && score !== 0 && !boss1Created){
-            createEnemyBoss1();
-            // clearInterval(interval);
-        } else if(score >= 100 && !boss2Created){
-            createEnemyBoss2();
-        } else if(score >= 200 && !boss3Created){
-            createEnemyBoss3();
-        }
+function createEnemy() {
+  setInterval(function () {
+    if (score >= 10 && score !== 0 && !boss1Created) {
+      createEnemyBoss1();
+    } else if (score >= 100 && !boss2Created) {
+      createEnemyBoss2();
+    } else if (score >= 200 && !boss3Created) {
+      createEnemyBoss3();
+    }
 
-        else {
-            if(!isPaused){
-                let e = new Enemy();
-                e.init();
-            }
-        }
-    },enemySpawnSpeed);
+    else {
+      if (!isPaused) {
+        let e = new Enemy();
+        e.init();
+      }
+    }
+  }, enemySpawnSpeed);
 }
 // 보스1 생성
 function createEnemyBoss1() {
@@ -292,21 +279,21 @@ function checkSpaceshipCollision(enemy) {
   );
 }
 
-function update(){
-    if( 39 in keysDown) {
-        spaceshipX += playerSpeed; // 우주선의 속도 오른쪽
-    }
-    if( 37 in keysDown) {
-        spaceshipX -= playerSpeed; // 우주선의 속도 왼쪽
-    }
+function update() {
+  if (39 in keysDown) {
+    spaceshipX += playerSpeed; // 우주선의 속도 오른쪽
+  }
+  if (37 in keysDown) {
+    spaceshipX -= playerSpeed; // 우주선의 속도 왼쪽
+  }
 
-    // 우주선의 좌표값이 무한대로 업데이트가 되는 게 아닌! 경기장 안에서만 있게 하려면?
-    if(spaceshipX <= 0){
-        spaceshipX = 0;
-    }
-    if(spaceshipX >= canvas.width - 60){
-        spaceshipX = canvas.width - 60;
-    }
+  // 우주선의 좌표값이 무한대로 업데이트가 되는 게 아닌! 경기장 안에서만 있게 하려면?
+  if (spaceshipX <= 0) {
+    spaceshipX = 0;
+  }
+  if (spaceshipX >= canvas.width - 60) {
+    spaceshipX = canvas.width - 60;
+  }
 
   // 우주선의 좌표값이 무한대로 업데이트가 되는 게 아닌! 경기장 안에서만 있게 하려면?
   if (spaceshipX <= 0) {
@@ -391,7 +378,6 @@ function update(){
 }
 
 // 이미지 캔버스에 그려주기
-
 function render() {
   ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
   ctx.drawImage(spaceshipImage, spaceshipX, spaceshipY);
@@ -416,75 +402,51 @@ function render() {
     }
   }
 }
-// 일시정지 기능 추가
 
+// 일시정지 기능 추가
 // 일시정지 함수
 function togglePause() {
-    isPaused = !isPaused;
+  isPaused = !isPaused;
 }
 
 // pause 그리기
+function renderPause() {
+  // 반투명 검은색 레이어
+  ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-function renderPause(){
-    // 반투명 검은색 레이어
-    ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // 일시정지 메세지
-    ctx.fillStyle = "yellow";
-    ctx.font = "50px Arial";
-    ctx.textAlign = "center";
-    ctx.fillText("게임설명", canvas.width/2, canvas.height / 2 - 200);
-    ctx.font = "20px Arial"
-    ctx.fillText("당신은 외계인에게 납치된 지구인들을", canvas.width / 2, canvas.height / 2 - 160);
-    ctx.font = "20px Arial"
-    ctx.fillText("구조하라는 특별한 임무를 받았다.", canvas.width / 2, canvas.height / 2 - 130);
-    ctx.font = "20px Arial"
-    ctx.fillText("납치된 지구인들을 구조하라.", canvas.width / 2, canvas.height / 2 - 100);
-    ctx.font = "20px Arial"
-    ctx.fillText("구조된 지구인의 수만큼 Score를 얻게되며,", canvas.width / 2, canvas.height / 2 - 70);
-    ctx.font = "20px Arial"
-    ctx.fillText("적립된 Score는 Token으로 교환할 수 있다.", canvas.width / 2, canvas.height / 2 - 40);
-    ctx.font = "20px Arial"
-    ctx.fillText("방향키로 내려오는 지구인에게 접근하면", canvas.width / 2, canvas.height / 2 + 40);
-    ctx.font = "20px Arial"
-    ctx.fillText("구조 성공!", canvas.width / 2, canvas.height / 2 + 70);
-    ctx.font = "20px Arial"
-    ctx.fillText("ESC 또는 p 키로 게임을 시작하거나", canvas.width / 2, canvas.height / 2 + 100);
-    ctx.font = "20px Arial"
-    ctx.fillText("일시정지 할 수 있다.", canvas.width / 2, canvas.height / 2 + 130);
-
-    // ctx.fillStyle = "yellow";
-    // ctx.font = "50px Arial";
-    // ctx.fillText("게임설명", canvas.width / 2 - 80 , canvas.height / 2 - 200);
-    // ctx.font = "20px Arial"
-    // ctx.fillText("당신은 외계인에게 납치된 지구인들을", canvas.width / 2 - 160, canvas.height / 2 - 160);
-    // ctx.font = "20px Arial"
-    // ctx.fillText("구조하라는 특별한 임무를 받았다.", canvas.width / 2 - 160, canvas.height / 2 - 130);
-    // ctx.font = "20px Arial"
-    // ctx.fillText("납치된 지구인들을 구조하라.", canvas.width / 2 - 160, canvas.height / 2 - 100);
-    // ctx.font = "20px Arial"
-    // ctx.fillText("구조된 지구인의 수만큼 Score를 얻게되며,", canvas.width / 2 - 160, canvas.height / 2 - 70);
-    // ctx.font = "20px Arial"
-    // ctx.fillText("적립된 Score는 Token으로 교환할 수 있다.", canvas.width / 2 - 160, canvas.height / 2 - 40);
-    // ctx.font = "20px Arial"
-    // ctx.fillText("방향키로 내려오는 지구인에게 접근하면", canvas.width / 2 - 160, canvas.height / 2 + 40);
-    // ctx.font = "20px Arial"
-    // ctx.fillText("구조 성공!", canvas.width / 2 - 160, canvas.height / 2 + 70);
-    // ctx.font = "20px Arial"
-    // ctx.fillText("ESC 또는 p 키로 게임을 시작하거나", canvas.width / 2 - 160, canvas.height / 2 + 100);
-    // ctx.font = "20px Arial"
-    // ctx.fillText("일시정지 할 수 있다.", canvas.width / 2 - 160, canvas.height / 2 + 130);
+  // 일시정지 메세지
+  ctx.fillStyle = "yellow";
+  ctx.font = "50px Arial";
+  ctx.textAlign = "center";
+  ctx.fillText("게임설명", canvas.width / 2, canvas.height / 2 - 200);
+  ctx.font = "20px Arial"
+  ctx.fillText("당신은 외계인에게 납치된 지구인들을", canvas.width / 2, canvas.height / 2 - 160);
+  ctx.font = "20px Arial"
+  ctx.fillText("구조하라는 특별한 임무를 받았다.", canvas.width / 2, canvas.height / 2 - 130);
+  ctx.font = "20px Arial"
+  ctx.fillText("납치된 지구인들을 구조하라.", canvas.width / 2, canvas.height / 2 - 100);
+  ctx.font = "20px Arial"
+  ctx.fillText("구조된 지구인의 수만큼 Score를 얻게되며,", canvas.width / 2, canvas.height / 2 - 70);
+  ctx.font = "20px Arial"
+  ctx.fillText("적립된 Score는 Token으로 교환할 수 있다.", canvas.width / 2, canvas.height / 2 - 40);
+  ctx.font = "20px Arial"
+  ctx.fillText("방향키로 내려오는 지구인에게 접근하면", canvas.width / 2, canvas.height / 2 + 40);
+  ctx.font = "20px Arial"
+  ctx.fillText("구조 성공!", canvas.width / 2, canvas.height / 2 + 70);
+  ctx.font = "20px Arial"
+  ctx.fillText("ESC 또는 p 키로 게임을 시작하거나", canvas.width / 2, canvas.height / 2 + 100);
+  ctx.font = "20px Arial"
+  ctx.fillText("일시정지 할 수 있다.", canvas.width / 2, canvas.height / 2 + 130);
 };
 
 // 일시정지 키 입력 (esc나 p 누르면 일시정지)
-window.addEventListener('keydown', function(event){
-    if(event.key === "p" || event.key === "P" || event.key === "ㅔ" || event.key === "ㅖ"
-       || event.keyCode === 27) {
-        togglePause();
-        // alert("일시정지 되었습니다. esc나 p키를 다시 입력하시면 게임이 재개됩니다.")
+window.addEventListener('keydown', function (event) {
+  if (event.key === "p" || event.key === "P" || event.key === "ㅔ" || event.key === "ㅖ"
+    || event.keyCode === 27) {
+    togglePause();
 
-    }
+  }
 });
 
 function main() {
@@ -493,7 +455,6 @@ function main() {
 
     if (!isPaused) {
       update(); // 좌표 값을 업데이트 하고
-      // console.log("animation calls main function");
     }
     render(); // 그려주고
 
@@ -503,104 +464,91 @@ function main() {
     requestAnimationFrame(main);
 
   } else {
-    function renderScorePopup()
-    {
+    function renderScorePopup() {
       h_popupbox.style.display = "block";
       let spacegamePopupTitle = document.querySelector(".b-space-game-popup-title");
       spacegamePopupTitle.innerHTML = "게임결과";
-        let newdiv=document.createElement('div');
-        h_popupbox.appendChild(newdiv);
-        newdiv.innerHTML="점수 : " +score;
-        newdiv.style.marginTop = "20px";
-        let newdiv3 = document.createElement("div");
-        h_popupbox.appendChild(newdiv3);
-        newdiv3.innerHTML = "보상 : spacetoken " + reward + "개";
-        newdiv3.style.marginTop = "20px";
-        let newdiv2=document.createElement('div');
-        h_popupbox.appendChild(newdiv2)
-        newdiv2.innerHTML="mypage"
-        newdiv2.className = "b-new-div-hover";
-        newdiv2.style.margin = "auto";
-        newdiv2.style.marginTop = "20px";
-        newdiv2.style.width = "100px";
-        newdiv2.style.height = "30px";
-        newdiv2.style.border = "1px solid";
-        newdiv2.style.borderRadius = "50px";
-        newdiv2.style.display = "flex";
-        newdiv2.style.justifyContent = "center";
-        newdiv2.style.alignItems = "center";
-        newdiv2.style.cursor = "pointer";
-        // re.innerHTML="현재보상 : "+reward;
-        newdiv2.onclick=function(){
-            location.href='../mypage/mypage.html';
-        }
-        let playin = document.querySelector(".b-playin-money");
-        let rewardMoney = document.querySelector(".b-gameplay-reward-money");
-        let gamestartBtn = document.querySelector(".b-gamestart-btn-box");
-        playin.style.display = "none";
-        rewardMoney.style.display = "none";
-        gamestartBtn.style.display = "none";
+      let newdiv = document.createElement('div');
+      h_popupbox.appendChild(newdiv);
+      newdiv.innerHTML = "점수 : " + score;
+      newdiv.style.marginTop = "20px";
+      let newdiv3 = document.createElement("div");
+      h_popupbox.appendChild(newdiv3);
+      newdiv3.innerHTML = "보상 : spacetoken " + reward + "개";
+      newdiv3.style.marginTop = "20px";
+      let newdiv2 = document.createElement('div');
+      h_popupbox.appendChild(newdiv2)
+      newdiv2.innerHTML = "mypage"
+      newdiv2.className = "b-new-div-hover";
+      newdiv2.style.margin = "auto";
+      newdiv2.style.marginTop = "20px";
+      newdiv2.style.width = "100px";
+      newdiv2.style.height = "30px";
+      newdiv2.style.border = "1px solid";
+      newdiv2.style.borderRadius = "50px";
+      newdiv2.style.display = "flex";
+      newdiv2.style.justifyContent = "center";
+      newdiv2.style.alignItems = "center";
+      newdiv2.style.cursor = "pointer";
+      newdiv2.onclick = function () {
+        location.href = '../mypage/mypage.html';
+      }
+      let playin = document.querySelector(".b-playin-money");
+      let rewardMoney = document.querySelector(".b-gameplay-reward-money");
+      let gamestartBtn = document.querySelector(".b-gamestart-btn-box");
+      playin.style.display = "none";
+      rewardMoney.style.display = "none";
+      gamestartBtn.style.display = "none";
 
-        // 다시하기 버튼
-        let rediv=document.createElement('div');
-        h_popupbox.appendChild(rediv)
-        rediv.innerHTML="다시하기"
-        rediv.className = "b-new-div-hover";
-        rediv.style.cursor = "pointer";
-        rediv.style.margin = "auto";
-        rediv.style.marginTop = "20px";
-        rediv.style.width = "100px";
-        rediv.style.height = "30px";
-        rediv.style.border = "1px solid";
-        rediv.style.borderRadius = "50px";
-        rediv.style.display = "flex";
-        rediv.style.justifyContent = "center";
-        rediv.style.alignItems = "center";
-        rediv.onclick=function() {
-          location.href='../space_game/index.html';
-        }
+      // 다시하기 버튼
+      let rediv = document.createElement('div');
+      h_popupbox.appendChild(rediv)
+      rediv.innerHTML = "다시하기"
+      rediv.className = "b-new-div-hover";
+      rediv.style.cursor = "pointer";
+      rediv.style.margin = "auto";
+      rediv.style.marginTop = "20px";
+      rediv.style.width = "100px";
+      rediv.style.height = "30px";
+      rediv.style.border = "1px solid";
+      rediv.style.borderRadius = "50px";
+      rediv.style.display = "flex";
+      rediv.style.justifyContent = "center";
+      rediv.style.alignItems = "center";
+      rediv.onclick = function () {
+        location.href = '../space_game/index.html';
+      }
 
-        h_gamestart.innerHTML="";
+      h_gamestart.innerHTML = "";
     }
-      console.log(score);
-        userGetreward()
-        // reward=0;
-        ctx.drawImage(gameOverImage, 0, 0, 400, 700);
-        setTimeout(() => {
-          renderScorePopup();
-        }, 2000);
-        // setTimeout(() => {
-        //   if(confirm("게임을 더하시겠습니까?"))
-        //   location.href='../space_game/index.html';
-        //   else location.href='../mypage/mypage.html';
-        // }, 3000);
-
+    userGetreward();
+    ctx.drawImage(gameOverImage, 0, 0, 400, 700);
+    setTimeout(() => {
+      renderScorePopup();
+    }, 2000);
 
   }
 }
-document.querySelector(".h-nowUser").innerHTML = "현재 사용자 : "+getCurrentUser();
-let re=document.querySelector('.h-reward');
-let reward=0;
-let gameUser=getCurrentUser();
-console.log("지금 게임유저",gameUser);
-let gameUser1=JSON.parse(localStorage.getItem("user_"+gameUser));
+document.querySelector(".h-nowUser").innerHTML = "현재 사용자 : " + getCurrentUser();
+let re = document.querySelector('.h-reward');
+let reward = 0;
+let gameUser = getCurrentUser();
+let gameUser1 = JSON.parse(localStorage.getItem("user_" + gameUser));
 
 
 function userGetreward() {
-    //보상
-    reward=Math.floor(score/10);
-    console.log("지금 게임유저2",gameUser1);
-    //게임시작시 차감
-    // 소수점 4자리로 나타나게 계산
-    gameUser1.coin.coin_num=Number((gameUser1.coin.coin_num-1).toFixed(4));
-    setLocalHistory(gameUser,"game",{gamename:"지구인들을 구조하라!"},{type:"sangpay",amount:1});
+  //보상
+  reward = Math.floor(score / 10);
+  //게임시작시 차감
+  // 소수점 4자리로 나타나게 계산
+  gameUser1.coin.coin_num = Number((gameUser1.coin.coin_num - 1).toFixed(4));
+  setLocalHistory(gameUser, "game", { gamename: "지구인들을 구조하라!" }, { type: "sangpay", amount: 1 });
 
-    //점수에 따른 보상얻는 부분
-    // 소수점 4자리로 나타나게 계산
-    gameUser1.token[7].token_num= Number((gameUser1.token[7].token_num+reward).toFixed(4));
-    console.log(reward);
-    localStorage.setItem("user_"+gameUser,JSON.stringify(gameUser1));
-    setLocalHistory(gameUser,"game",{gamename:"지구인들을 구조하라!"},{type:gameUser1.token[7].token_name,amount:reward});
+  //점수에 따른 보상얻는 부분
+  // 소수점 4자리로 나타나게 계산
+  gameUser1.token[7].token_num = Number((gameUser1.token[7].token_num + reward).toFixed(4));
+  localStorage.setItem("user_" + gameUser, JSON.stringify(gameUser1));
+  setLocalHistory(gameUser, "game", { gamename: "지구인들을 구조하라!" }, { type: gameUser1.token[7].token_name, amount: reward });
 
 }
 let h_gamestart = document.querySelector(".h-gamestart");
@@ -608,13 +556,10 @@ let h_popupbox = document.querySelector(".h-popup_box");
 h_gamestart.addEventListener("click", function () {
   h_popupbox.style.display = "none";
   if (confirm("게임을 시작하시겠습니까?")) {
-    // alert("확인");
-    // setTimeout(() => {
-      loadImage();
-      setupKeyboardListener();
-      createEnemy();
-      main();
-    // }, 1000);
+    loadImage();
+    setupKeyboardListener();
+    createEnemy();
+    main();
   } else {
     alert("취소");
   }
@@ -642,49 +587,3 @@ h_gamestart.addEventListener("click", function () {
 // 적군이 죽는다.
 // 총알이 적군에게 닿는다. (총알.y <= 적군.y) and (총알.x >= 적군.x and 총알.x <= 적군.x + 40) => 닿았다
 // 닿으면 총알이 죽게됌. 적군의 우주선이 없어짐. 점수 획득
-    // if(!gameOver){
-    //     if(!isPaused) {
-    //         update(); // 좌표 값을 업데이트 하고
-    //     }
-    //     render(); // 그려주고
-
-    //     if(isPaused) {
-    //         renderPause();
-    //     }
-
-    //         requestAnimationFrame(main);
-    //     } else{
-    //         ctx.drawImage(gameOverImage,10,100,380,380);
-    //     }
-    // }
-
-// loadImage();
-// setupKeyboardListener();
-// createEnemy();
-// main();
-
-//     }
-// });
-
-// function main() {
-//     if(!gameOver){
-//         if(!isPaused) {
-//             update(); // 좌표 값을 업데이트 하고
-//         }
-//         render(); // 그려주고
-
-//         if(isPaused) {
-//             renderPause();
-//         }
-
-//             requestAnimationFrame(main);
-//         } else{
-//             ctx.drawImage(gameOverImage,10,100,380,380);
-//         }
-//     }
-
-// loadImage();
-// setupKeyboardListener();
-// createEnemy();
-// main();
-

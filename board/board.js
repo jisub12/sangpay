@@ -1,11 +1,7 @@
-// import { paginate, addBtnEvent, pageBtnRender, count, currentPage } from "./a_share.js";
-
 // 게시물 목록
 
-// --------------------
 // 한 페이지에 보여줄 게시물 개수
 let count = 5;
-
 let currentPage = 1;
 
 // 처음 실행되면 작동할 함수
@@ -30,12 +26,6 @@ window.onload = function () {
 // 페이지네이션 함수(출력할 리스트를 매개변수로 받음)
 function paginate(list) {
     if (!list) {
-        window.localStorage.setItem('board', 0);
-    }
-
-    console.log("페이지네이션");
-
-    if (!list) {
         window.localStorage.setItem('board', JSON.stringify([]));
         list = JSON.parse(window.localStorage.getItem('board'));
     }
@@ -47,7 +37,6 @@ function paginate(list) {
 
     // 총 페이지 개수 구하는
     let totalPage = Math.ceil(listLength / count);
-    console.log(totalPage);
 
     // 페이지 개수만큼 페이지 번호 버튼 생성
     for (let i = 1; i <= totalPage; i++) {
@@ -138,7 +127,7 @@ function render(start, end, pagenum) {
 
     let boardList = JSON.parse(window.localStorage.getItem("board"));
     if (end >= boardList.length) {
-        end = boardList.length-1;
+        end = boardList.length - 1;
     }
 
     let boardListDiv = document.querySelector('.a-board-list');
@@ -189,49 +178,45 @@ function render(start, end, pagenum) {
         // 가장 최근 게시물이 먼저 출력되게
         boardList.reverse();
 
+        for (let i = start; i <= end; i++) {
+            // board 클릭하면 상세페이지로 이동하는 부분 추가해야함
+            let board = boardList[i];
 
+            let ul = document.createElement('ul');
+            let no = document.createElement('li');
+            let title = document.createElement('li');
+            let user = document.createElement('li');
+            let date = document.createElement('li');
 
+            ul.setAttribute("class", "a-board-tablelist");
+            no.setAttribute("class", "a-w1 a-list");
+            title.setAttribute("class", "a-w4 a-list");
+            user.setAttribute("class", "a-w2 a-list");
+            date.setAttribute("class", "a-w3 a-list");
 
-    for (let i = start; i <= end; i++) {
-        // board 클릭하면 상세페이지로 이동하는 부분 추가해야함
-        let board = boardList[i];
+            let nick = getUserNick(board.user);
 
-        let ul = document.createElement('ul');
-        let no = document.createElement('li');
-        let title = document.createElement('li');
-        let user = document.createElement('li');
-        let date = document.createElement('li');
+            no.textContent = `${i + 1}`;
+            title.textContent = `${board.title}`;
+            user.textContent = `${nick}`;
+            date.textContent = `${board.date}`.slice(0, 10);
 
-        ul.setAttribute("class", "a-board-tablelist");
-        no.setAttribute("class", "a-w1 a-list");
-        title.setAttribute("class", "a-w4 a-list");
-        user.setAttribute("class", "a-w2 a-list");
-        date.setAttribute("class", "a-w3 a-list");
+            no.style.borderRight = "1px dashed";
 
-        let nick = getUserNick(board.user);
+            title.style.borderRight = "1px dashed";
 
-        // no.textContent = `${board.no}`;
-        no.textContent = `${i + 1}`;
-        title.textContent = `${board.title}`;
-        user.textContent = `${nick}`;
-        date.textContent = `${board.date}`.slice(0,10);
+            user.style.borderRight = "1px dashed";
 
-        no.style.borderRight = "1px dashed";
+            title.addEventListener("click", function () {
+                location.href = `board_detail.html?${board.no}`;
+            });
 
-        title.style.borderRight = "1px dashed";
+            ul.append(no, title, user, date);
+            boardListDiv.append(ul);
+        }
 
-        user.style.borderRight = "1px dashed";
-
-        title.addEventListener("click", function () {
-            location.href = `board_detail.html?${board.no}`;
-        });
-
-        ul.append(no, title, user, date);
-        boardListDiv.append(ul);
-    }
-
-    // 이전/다음 버튼 설정
-    pageBtnRender(boardList.length, pagenum);
+        // 이전/다음 버튼 설정
+        pageBtnRender(boardList.length, pagenum);
 
     }
 }
@@ -248,148 +233,23 @@ function pageBtnRender(listLength, pagenum) { // 페이지 이전/다음 버튼 
     // 현재 첫번째 페이지라면 이전 버튼 출력 X
     if (pagenum == 1) {
         prevBtn.style.visibility = "hidden";
-        // nextBtn.style.visibility = "visible";
     }
     // 현재 마지막 페이지라면 다음 버튼 출력 X
     if (pagenum == totalPage) {
         nextBtn.style.visibility = "hidden";
-        // prevBtn.style.visibility = "visible";
-    }
-
-    if (pagenum != 1 && pagenum != totalPage) {
-        // nextBtn.style.visibility = "visible";
-        // prevBtn.style.visibility = "visible";
     }
 
     // 현재 페이지로 체크되게
     document.querySelector(`.numbtn-${pagenum}`).checked = "checked";
 }
 
-// // 게시물 객체 생성자 함수
-// // function Board(no, title, content, user, date, answer) {
-// function Board(no, title, content, user, date, answer) {
-//     this.no = no;
-//     this.title = title;
-//     this.content = content;
-//     this.user = user;
-//     this.date = date;
-//     this.answer = answer;
-// }
-
-// // 게시물 수정,삭제(+답변등록, 답변수정) 함수
-// function boardListEdit({ board, value }) {
-//     // function boardListEdit(board, value) {
-
-//     console.log("게시물수정삭제함수")
-//     console.log(board);
-//     console.log(value);
-
-//     let boardList = JSON.parse(localStorage.getItem('board'));
-//     let idx = boardList.findIndex(function (item) { return item.no == board.no });
-
-//     switch (value) {
-//         case "수정":
-//             boardList.splice(idx, 1, board);
-//             console.log(boardList);
-//             break;
-
-//         case "삭제":
-//             boardList.splice(idx, 1);
-//             console.log(boardList);
-//             break;
-//     }
-
-//     localStorage.setItem("board", JSON.stringify(boardList));
-// }
-
-// -------------원래주석
-
-// 쿠키에서 현재 사용자 아이디 가져오는 함수
-
-// function getCurrentUser() {
-
-//     let userId = "";
-
-//     // 임의로 쿠키 생성
-//     let expireDate = new Date();
-//     expireDate.setTime(expireDate.getTime() + 100000 * 1000);
-//     // document.cookie = `user_id=${"admin"}; expires=` + expireDate.toUTCString() + "; path=/";
-//     // document.cookie = `user_id=${"gusdnr205@naver.com"}; expires=` + expireDate.toUTCString() + "; path=/";
-
-//     console.log(document.cookie);
-//     let start = document.cookie.indexOf(`user_id=`);
-
-//     if (start != -1) {
-//         userId = document.cookie.split('=')[1];
-//     }
-//     return userId;
-// }
-
-//----------------------------
-
-
-// let set2;
-// let inputTime=document.querySelector('.h-session');
-// let expire2=localStorage.getItem('expireDate');
-// function getRemainingTime1() {
-//   // let expire = new Date(cookieExpire);
-//   expire2=localStorage.getItem('expireDate');
-//   let now = new Date();
-//   const expireDateFromLocalStorage = localStorage.getItem('expireDate'); // 로컬스토리지에서 expireDate 값 읽어오기
-//   // if (expireDateFromLocalStorage) {
-//   //   expire = new Date(expireDateFromLocalStorage); // 로컬스토리지에서 읽어온 값으로 expire 변수 재할당
-//   // }
-//   console.log("getRemainingTime1 함수 실행되는것을 확인")
-//   now = now.getTime();
-
-//   console.log(expire2);
-//   let nowTime = new Date(now);
-//   let diff = expire2 - nowTime;
-//   console.log(diff);
-//   let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-//   let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-//   let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-//   let seconds = Math.floor((diff % (1000 * 60)) / 1000);
-//   if (diff < 2) {
-//     clearInterval(set2);
-//     console.log("끝");
-//     return "시간만료"
-//   }
-//   console.log(`남은 시간 : ${minutes}분 ${seconds}초`);
-//   inputTime.innerHTML= `남은 시간 : ${minutes}분 ${seconds}초`;
-//   return `남은 시간 : ${minutes}분 ${seconds}초`;
-// }
-// getRemainingTime1();
-// set2=setInterval(getRemainingTime1, 1000);
-// document.addEventListener("DOMContentLoaded",function(){
-//     expireDate.setTime(window.localStorage.getItem('expireDate'))
-//   })
-
-
-
-// function extensionTime2() {
-//   console.log("extensionTime 시작")
-//   let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-//   console.log(expireDate.getTime());
-//   console.log(cookieValue);
-//   let time = expireDate.setTime(expireDate.getTime() + 10 * 10000); //100 초뒤
-//   // 로컬스토리지에 이함수 실행마다. 더해진값 저장
-//   localStorage.setItem('expireDate', time);
-//   console.log(time);
-//   console.log("작동함");
-//   // 업데이트된 쿠키를 생성하여 저장
-//   document.cookie = `user_id=${cookieValue}; expires=${expireDate.toUTCString()}; path=/`;
-//   console.log(document.cookie);
-//   console.log("extensionTime 작동함")
-// }
-
 // 회원 아이디로 닉네임 찾는 함수
 function getUserNick(userId) {
-    let nick="";
+    let nick = "";
     if (userId != "admin") {
-        nick = JSON.parse(window.localStorage.getItem("user_"+userId)).user_nickName;
+        nick = JSON.parse(window.localStorage.getItem("user_" + userId)).user_nickName;
     } else {
         nick = userId;
     }
     return nick;
-  }
+}

@@ -53,36 +53,18 @@ function token(token_name, token_num, token_value, charge) {
 
 
 const defaultCoin = new coin("sangpay", 1000, 10);
-// user 객체 생성 (Hash값 가져오기 위해 만듦)
 
+// 현재 로그인한 사용자 아이디 반환
 function getCurrentUser() {
-
   let userId = "";
-
-  // 임의로 쿠키 생성
-  let expireDate2 = new Date();
-  expireDate2.setTime(expireDate2.getTime() + 100000000 * 1000);
-  // document.cookie = `user_id=${"12321344asd@naver.com"}; expires=` + expireDate2.toUTCString() + "; path=/";
-
-  console.log(document.cookie);
   let start = document.cookie.indexOf(`user_id=`);
 
   if (start != -1) {
     userId = document.cookie.split('=')[1];
   }
 
-  console.log(userId);
-
-  // let userStorage = window.localStorage.getItem(`user_${userId}`);
-  // if (userStorage) {
-  //   console.log(JSON.parse(userStorage).token);
-  // }
-
-  // console.log(JSON.parse(window.localStorage.getItem(`user_${userId}`)));
-
   return userId;
 }
-
 
 function newUserBtn(
   user_id = idValue,
@@ -93,7 +75,6 @@ function newUserBtn(
   token
 ) {
 
-  console.log(`idpss ${idpass}, nick ${nickpass}, pwpass ${pwpass} pwcf ${pwcf}`);
   if (idpass == true && nickpass == true && pwpass == true && pwcf == true) {
     let thing = new user(
       user_id,
@@ -106,7 +87,6 @@ function newUserBtn(
     let userString = JSON.stringify(thing);
     let key = "user_" + user_id; // 고유한 저장소 키 생성
     localStorage.setItem(key, userString);
-    console.log("새로운 유저가 생성되었습니다");
     let popup = document.querySelector('.h-welcomepopup');
     popup.classList.add("popupactive")
 
@@ -120,7 +100,6 @@ function newUserBtn(
     alert("제대로 입력했는지 확인하세요.");
   }
 }
-
 
 
 let expireDate = new Date(); // 쿠키 만료 날짜
@@ -137,7 +116,6 @@ function getRemainingTime(cookieExpire) {
   if (diff < 2) {
     // 지울 Interval 함수 매개변수로 전달하면된다.
     clearInterval(set1);
-    console.log("끝");
     return "시간만료"
   }
   return `남은 시간 : ${minutes}분 ${seconds}초`;
@@ -147,31 +125,20 @@ let set1; //setInterval 함수
 
 
 // admin 아이디, 비밀번호 로컬스토리지에 저장
-window.localStorage.setItem("admin", JSON.stringify({'id': 'admin', 'pw':'admin'}));
+window.localStorage.setItem("admin", JSON.stringify({ 'id': 'admin', 'pw': 'admin' }));
 let admin = JSON.parse(window.localStorage.getItem('admin'));
-console.log(admin.id);
 
 function loginUser(id, pw) {
   let user;
-
 
   // id가 admin이라면
   if (id == admin.id) {
     if (pw == admin.pw) {
       // 관리자 로그인 성공
-      console.log(id);
-      console.log(pw);
-
-
       expireDate = new Date();
 
-      // 관리자 쿠키 생성
-      // let expireDate = new Date();
-      // expireDate.setTime(expireDate.getTime() + 100000 * 10000);
-
-      nowuser=admin;
+      nowuser = admin;
       userLogin();
-      console.log("관리자 입력들어옴");
       location.href = '../admin/adminpage.html';
 
       return true;
@@ -184,43 +151,23 @@ function loginUser(id, pw) {
     let key = localStorage.key(i);
     if (key.startsWith("user_")) {
       let cuurent_user = JSON.parse(localStorage.getItem(key));
-      console.log(cuurent_user.user_id);
-      console.log(cuurent_user.user_pw);
-      // console.log(cuurent_user.token[0].token_name); // local 스토리지에 들어있는 current user의 token 에 접근하는법 [0] 번째는 비트 토큰 그 이름에 접근하는법은 .~~`
-      if (
-        // pw == cuurent_user.user_pw &&
-        id == cuurent_user.user_id
-        // && cuurent_user.user_allow == true
-      ) {
+      if (id == cuurent_user.user_id) {
         user = cuurent_user;
         break;
-        // console.log("로그인성공");
-        // nowuser = cuurent_user;
-        // alert("로그인에 성공하셨습니다.")
-        // expireDate=new Date();
-
-        // location.href = './wallet.html';
-
-        // // 쿠키 생성
-        // userLogin();
-        // console.log(nowuser)
       }
     }
   }
 
-  //
   if (user) {
     // 아이디 비밀번호 동일하고 승인된 회원이라면
     if (user.user_pw == pw && user.user_allow) { // 로그인 성공
-      console.log("로그인성공");
       nowuser = user;
       alert("로그인에 성공하셨습니다.")
       expireDate = new Date();
       // 쿠키 생성
 
       userLogin();
-
-     location.href = '../wallet/wallet.html';
+      location.href = '../wallet/wallet.html';
 
     } else if (user.user_pw == pw && !user.user_allow) {
       alert("관리자의 승인을 기다리세요");
@@ -239,23 +186,15 @@ let coookie1;
 function userLogin() {
   expireDate.setTime(expireDate.getTime() + 60 * 1000);
   remainingTime = getRemainingTime(expireDate.toUTCString()); // 쿠키 만료까지 남은 시간 계산
-  console.log(remainingTime);
   set1 = setInterval(printTime, 1000);
-  // `userid=${nowuser.user_id}; expires=${kstTime.toUTCString()}; path=/
   localStorage.setItem('expireDate', expireDate.getTime());
-  if(nowuser==admin)
-  {
-    console.log(admin);
+  if (nowuser == admin) {
+    coookie1 = document.cookie = `user_id=${nowuser.id}; expires=` + expireDate.toUTCString() + "; path=/";
 
-    coookie1=document.cookie = `user_id=${nowuser.id}; expires=` + expireDate.toUTCString() + "; path=/";
-
-  }else coookie1=document.cookie = `user_id=${nowuser.user_id}; expires=` + expireDate.toUTCString() + "; path=/";
+  } else coookie1 = document.cookie = `user_id=${nowuser.user_id}; expires=` + expireDate.toUTCString() + "; path=/";
   function printTime() {
     remainingTime = getRemainingTime(expireDate.toUTCString()); // 쿠키 만료까지 남은 시간 계산
-    console.log(remainingTime);
     remainedTime.innerHTML = remainingTime;
-    // coookie1=document.cookie = `user_id=${nowuser.user_id}; expires=` + expireDate.toUTCString() + "; path=/";
-    // console.log(coookie1);
 
     const minutes = remainingTime.match(/\d+분/);
     const seconds = remainingTime.match(/\d+초/);
@@ -268,28 +207,19 @@ function userLogin() {
 }
 
 
-
-
 function extensionTime() {
   let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-  console.log(expireDate.getTime());
-  console.log(cookieValue);
   let time = expireDate.setTime(expireDate.getTime() + 10 * 10000); //100 초뒤
   // 로컬스토리지에 이함수 실행마다. 더해진값 저장
   localStorage.setItem('expireDate', time);
-  console.log(time);
-  console.log("작동함");
   // 업데이트된 쿠키를 생성하여 저장
   document.cookie = `user_id=${cookieValue}; expires=${expireDate.toUTCString()}; path=/`;
-  console.log(document.cookie);
 }
-
 
 
 // 닉네임 입력할때마다 실행될 함수
 function checkNicknameInput(nickname, nicknameValidation) {
   nicknameValue = nickname.value;
-  console.log(nickname.value);
   if (nicknameValue.length < 2 || nicknameValue.length > 10) {
     nicknameValidation.innerHTML = "닉네임은 2자이상 10자 이하여야합니다.";
     nicknameValidation.style.color = "red";
@@ -335,116 +265,85 @@ function checkpwchInput(passwordInput, pwcfInput, pwcfValidation) {
 }
 
 
-
-// 수정수정  -------------------------------
-
 function getUserNick(userId) {
-    let nick="";
-    if (userId != "admin") {
-        nick = JSON.parse(window.localStorage.getItem("user_"+userId)).user_nickName;
-    } else {
-        nick = userId;
-    }
-    return nick;
+  let nick = "";
+  if (userId != "admin") {
+    nick = JSON.parse(window.localStorage.getItem("user_" + userId)).user_nickName;
+  } else {
+    nick = userId;
   }
+  return nick;
+}
 
 
-
-
-  // --------------------
-  let set2;
-let inputTime=document.querySelector('.h-session');
-let expire2=localStorage.getItem('expireDate');
+let set2;
+let inputTime = document.querySelector('.h-session');
+let expire2 = localStorage.getItem('expireDate');
 function getRemainingTime1() {
   // let expire = new Date(cookieExpire);
-  expire2=localStorage.getItem('expireDate');
+  expire2 = localStorage.getItem('expireDate');
   let now = new Date();
   const expireDateFromLocalStorage = localStorage.getItem('expireDate'); // 로컬스토리지에서 expireDate 값 읽어오기
-  // if (expireDateFromLocalStorage) {
-  //   expire = new Date(expireDateFromLocalStorage); // 로컬스토리지에서 읽어온 값으로 expire 변수 재할당
-  // }
-  console.log("getRemainingTime1 함수 실행되는것을 확인")
   now = now.getTime();
 
-  console.log(expire2);
   let nowTime = new Date(now);
   let diff = expire2 - nowTime;
-  console.log(diff);
   let days = Math.floor(diff / (1000 * 60 * 60 * 24));
   let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
   let seconds = Math.floor((diff % (1000 * 60)) / 1000);
   if (diff < 2) {
     clearInterval(set2);
-    console.log("끝");
     return "시간만료"
   }
-  console.log(`남은 시간 : ${minutes}분 ${seconds}초`);
-  inputTime.innerHTML= `남은 시간 : ${minutes}분 ${seconds}초`;
+  inputTime.innerHTML = `남은 시간 : ${minutes}분 ${seconds}초`;
   return `남은 시간 : ${minutes}분 ${seconds}초`;
 }
 if (inputTime != null) {
-  console.log(inputTime);
   getRemainingTime1();
-  set2=setInterval(getRemainingTime1, 1000);
-  document.addEventListener("DOMContentLoaded",function(){
-      expireDate.setTime(window.localStorage.getItem('expireDate'))
-    });
+  set2 = setInterval(getRemainingTime1, 1000);
+  document.addEventListener("DOMContentLoaded", function () {
+    expireDate.setTime(window.localStorage.getItem('expireDate'))
+  });
 }
 
 
-
 function extensionTime2() {
-  console.log("extensionTime 시작")
   let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-  console.log(expireDate.getTime());
-  console.log(cookieValue);
   let time = expireDate.setTime(expireDate.getTime() + 10 * 10000); //100 초뒤
   // 로컬스토리지에 이함수 실행마다. 더해진값 저장
   localStorage.setItem('expireDate', time);
-  console.log(time);
-  console.log("작동함");
   // 업데이트된 쿠키를 생성하여 저장
   document.cookie = `user_id=${cookieValue}; expires=${expireDate.toUTCString()}; path=/`;
-  console.log(document.cookie);
-  console.log("extensionTime 작동함")
 }
 
 // 게시물 수정,삭제(+답변등록, 답변수정) 함수
 function boardListEdit({ board, value }) {
-  // function boardListEdit(board, value) {
-
-  console.log("게시물수정삭제함수")
-  console.log(board);
-  console.log(value);
 
   let boardList = JSON.parse(localStorage.getItem('board'));
   let idx = boardList.findIndex(function (item) { return item.no == board.no });
 
   switch (value) {
-      case "수정":
-          boardList.splice(idx, 1, board);
-          console.log(boardList);
-          break;
+    case "수정":
+      boardList.splice(idx, 1, board);
+      break;
 
-      case "삭제":
-          boardList.splice(idx, 1);
-          console.log(boardList);
-          break;
+    case "삭제":
+      boardList.splice(idx, 1);
+      break;
   }
 
   localStorage.setItem("board", JSON.stringify(boardList));
 }
 
 // 게시물 객체 생성자 함수
-// function Board(no, title, content, user, date, answer) {
-  function Board(no, title, content, user, date, answer) {
-    this.no = no;
-    this.title = title;
-    this.content = content;
-    this.user = user;
-    this.date = date;
-    this.answer = answer;
+function Board(no, title, content, user, date, answer) {
+  this.no = no;
+  this.title = title;
+  this.content = content;
+  this.user = user;
+  this.date = date;
+  this.answer = answer;
 }
 
 
@@ -452,10 +351,10 @@ function boardListEdit({ board, value }) {
 let headerItemList = document.querySelector(".b-header-list");
 let headerMypage = document.querySelector(".b-header-list-item2");
 let headerAdmin = document.querySelector(".b-header-admin");
-if(getCurrentUser() == "admin"){
+if (getCurrentUser() == "admin") {
   headerMypage.style.display = "none";
 }
-if(headerAdmin != null && getCurrentUser() !== "admin"){
+if (headerAdmin != null && getCurrentUser() !== "admin") {
   headerAdmin.style.display = "none";
 }
 
@@ -478,18 +377,17 @@ function setLocalHistory(user, type, content, price) {
 
 function delCookies() {
   let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-  // expireDate.setTime(expireDate.getTime() - 10 * 10000);
+
   // document.cookie에 값을 대입하는 형태로 -> 쿠키 삭제(or 생성/수정)
   // 직접 삭제가 아니라 수정이라고 봐야함. 만료일을 정해놓은 쿠키를 과거의 날짜로 수정해서 쿠키를 수정하는 것 -> 수정이 즉 삭제의 의미
   // 쿠키 삭제는? 이미 한참 지나간 시간을 입력해버림으로써 쿠키를 삭제시킨다.
-  console.log(cookieValue);
   document.cookie = `user_id=${cookieValue}; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/`;  // 쿠키삭제
   alert("로그아웃");
 }
 
-let headerLogout=document.querySelector(".b-header-logout");
-if (headerLogout!=null) {
-  headerLogout.addEventListener("click",function(){
+let headerLogout = document.querySelector(".b-header-logout");
+if (headerLogout != null) {
+  headerLogout.addEventListener("click", function () {
     delCookies();
   })
 }

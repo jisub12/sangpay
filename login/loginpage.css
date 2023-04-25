@@ -3,29 +3,29 @@
     src: url(../DynaPuff/DynaPuff-VariableFont_wdth\,wght.ttf);
 }
 
-body{
+body {
     margin: 0;
 }
 
-.whole-mypage{
+.whole-mypage {
     width: 100%;
     height: 100vh;
     background-color: #033104;
 
     font-family: "dynapuff";
-    /* opacity: 0; */
 }
 
-@keyframes mainLoginPageFadeIn{
-    from{
+@keyframes mainLoginPageFadeIn {
+    from {
         opacity: 0;
     }
-    to{
+
+    to {
         opacity: 1;
     }
 }
 
-.b-login-page-title{
+.b-login-page-title {
     width: 500px;
     height: 100px;
 
@@ -44,22 +44,21 @@ body{
     font-weight: 400;
 }
 
-.b-my-page-box{
+.b-my-page-box {
     width: 60%;
     height: 470px;
-    
+
     border-radius: 15px;
-    /* box-shadow: 5px 5px 5px; */
     background-color: whitesmoke;
 
     margin: auto;
 }
 
-.b-login-box{
+.b-login-box {
     margin-top: 30px;
 }
 
-.b-fixed-values{
+.b-fixed-values {
     width: 100%;
     height: 30%;
     border-bottom: 1px solid;
@@ -69,7 +68,7 @@ body{
     flex-wrap: wrap;
 }
 
-.b-profile-image-box{
+.b-profile-image-box {
     width: 40%;
     height: 100%;
     border-right: 1px solid;
@@ -80,7 +79,7 @@ body{
     align-items: center;
 }
 
-.b-profile-image{
+.b-profile-image {
     width: 150px;
     height: 150px;
     border: 1px solid;
@@ -91,12 +90,12 @@ body{
     background-size: contain;
 }
 
-.b-profile-info{
+.b-profile-info {
     width: 60%;
     height: 100%;
 }
 
-.b-id-box{
+.b-id-box {
     width: 100%;
     height: 50%;
     border-bottom: 1px solid;
@@ -107,7 +106,7 @@ body{
     align-items: center;
 }
 
-.b-text-id{
+.b-text-id {
     width: 20%;
 
     display: flex;
@@ -115,7 +114,7 @@ body{
     align-items: center;
 }
 
-.b-text-actual-id{
+.b-text-actual-id {
     width: 80%;
 
     display: flex;
@@ -123,7 +122,7 @@ body{
     align-items: center;
 }
 
-.b-wallet-address{
+.b-wallet-address {
     width: 100%;
     height: 50%;
     box-sizing: border-box;
@@ -133,13 +132,13 @@ body{
     align-items: center;
 }
 
-.b-text-wallet-address{
+.b-text-wallet-address {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.b-text-actual-wallet-address{
+.b-text-actual-wallet-address {
     width: 50%;
 
     display: flex;
@@ -149,12 +148,12 @@ body{
     text-overflow: ellipsis;
 }
 
-.b-changing-values{
+.b-changing-values {
     width: 100%;
     height: 70%;
 }
 
-.b-nickname-change-box{
+.b-nickname-change-box {
     width: 100%;
     height: 20%;
     border-bottom: 1px solid;
@@ -164,7 +163,7 @@ body{
     align-items: center;
 }
 
-.b-password-change-box{
+.b-password-change-box {
     width: 100%;
     height: 20%;
     border-bottom: 1px solid;
@@ -176,25 +175,25 @@ body{
     align-content: center;
 }
 
-.b-text-nickname{
+.b-text-nickname {
     width: 40%;
 
     display: flex;
     justify-content: center;
 }
 
-.b-new-nickname-input-box{
+.b-new-nickname-input-box {
     width: 30%;
 }
 
-.b-nickname-change-btn{
+.b-nickname-change-btn {
     width: 30%;
 
     display: flex;
     justify-content: center;
 }
 
-.b-new-password-box{
+.b-new-password-box {
     width: 100%;
 
     display: flex;
@@ -203,39 +202,39 @@ body{
     margin-bottom: 10px;
 }
 
-.b-text-password{
+.b-text-password {
     width: 40%;
 
     display: flex;
     justify-content: center;
 }
 
-.b-new-password-input-box{
+.b-new-password-input-box {
     width: 60%;
 
     display: flex;
     justify-content: flex-start;
 }
 
-.b-new-password-confirm-box{
+.b-new-password-confirm-box {
     width: 100%;
 
     display: flex;
     align-items: center;
 }
 
-.b-text-password-confirm{
+.b-text-password-confirm {
     width: 40%;
 
     display: flex;
     justify-content: center;
 }
 
-.b-new-password-confirm-input-box{
+.b-new-password-confirm-input-box {
     width: 30%;
 }
 
-.b-password-change-btn{
+.b-password-change-btn {
     width: 30%;
 
     display: flex;
@@ -245,7 +244,7 @@ body{
 
 /* -----------------------------------------------------------------------------------------현욱 */
 
-.j-login-flex-box{
+.j-login-flex-box {
     margin: auto;
     padding: 0;
 
@@ -255,89 +254,102 @@ body{
     height: 560px;
     box-sizing: border-box;
 }
-.j-logo{
+
+.j-logo {
     width: 100%;
     display: inline-block;
 
-    align-items: center; text-align: center;
+    align-items: center;
+    text-align: center;
 }
-.j-logo a{
-   font-size: 40px;
-   color: black;
+
+.j-logo a {
+    font-size: 40px;
+    color: black;
     outline-width: 0;
     text-decoration: none;
 }
-.j-id-loginText{
+
+.j-id-loginText {
     text-align: center;
     width: 100%;
     height: 32px;
 }
-.j-underBar{
+
+.j-underBar {
     border-bottom: 2px solid aqua;
     width: 100%;
     height: 2px;
 }
+
 .j-id {
     background-color: rgba(128, 128, 128, 0.1);
     height: 44px;
     border: 1px solid rgba(128, 128, 128, 0.1);
     display: flex;
     align-items: center;
-  }
-  
-
-  
-.j-pw{
-    background-color: rgba(128, 128, 128,0.1);
-    height: 44px;
-    border: 1px solid  rgba(128, 128, 128,0.1);
 }
-.j-blank{
+
+
+
+.j-pw {
+    background-color: rgba(128, 128, 128, 0.1);
+    height: 44px;
+    border: 1px solid rgba(128, 128, 128, 0.1);
+}
+
+.j-blank {
     width: 100%;
     height: 25px;
 
 }
-.j-blank2{
+
+.j-blank2 {
     width: 100%;
     height: 7px;
 }
-.j-loginbtnbox{
+
+.j-loginbtnbox {
     height: 50px;
 
     border-radius: 5px;
-    
+
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     background-color: #033104;
 }
-.j-loginbtn{
+
+.j-loginbtn {
     font-size: 20px;
     color: white;
     cursor: pointer;
-    border: none; 
+    border: none;
     background-color: transparent;
 }
-.j-flex-findbox{
+
+.j-flex-findbox {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    
+
     padding-left: 2.5%;
 }
 
-.j-findId{
+.j-findId {
     cursor: pointer;
     width: auto;
     height: 19px;
 }
-.j-findpw{
+
+.j-findpw {
     cursor: pointer;
     width: auto;
     height: 19px;
 }
-.j-signup{
+
+.j-signup {
     width: 150px;
     height: 30px;
     margin: auto;
@@ -347,23 +359,20 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    /* border: 1px solid; */
-    border-radius: 50px;
 
-    /* background-color: #066508; */
+    border-radius: 50px;
 
     font-size: 15px;
 }
-.j-signup:hover{
+
+.j-signup:hover {
     cursor: pointer;
     background-color: lightgray;
 }
 
-.b-signup-options{
+.b-signup-options {
     width: 100%;
     height: 60px;
-    /* border: 1px solid; */
 
     margin: auto;
     margin-top: 5px;
@@ -373,47 +382,50 @@ body{
     justify-content: center;
     align-items: center;
 }
-.b-signup-options div{
+
+.b-signup-options div {
     margin-left: 10px;
     margin-right: 10px;
 }
-.b-signup-option-image-google{
+
+.b-signup-option-image-google {
     width: 50px;
     height: 50px;
-    /* border: 1px solid; */
     border-radius: 50%;
     background-image: url(../img/google_logo.png);
     background-repeat: no-repeat;
     background-size: 60%;
     background-position: center;
 }
-.b-signup-option-image-facebook{
+
+.b-signup-option-image-facebook {
     width: 50px;
     height: 50px;
-    /* border: 1px solid; */
     border-radius: 50%;
     background-image: url(../img/facebook_logo.png);
     background-repeat: no-repeat;
     background-size: 70%;
     background-position: center;
 }
-.b-signup-option-image-naver{
+
+.b-signup-option-image-naver {
     width: 50px;
     height: 50px;
-    /* border: 1px solid; */
     border-radius: 50%;
     background-image: url(../img/naver_logo.png);
     background-repeat: no-repeat;
     background-size: 75%;
     background-position: center;
 }
-.j-input1{
+
+.j-input1 {
     width: 100%;
     height: 44px;
-    border: none; 
+    border: none;
     background-color: transparent;
 }
-.b-login-to-signup{
+
+.b-login-to-signup {
     width: 150px;
     height: 30px;
 
