@@ -523,6 +523,9 @@ document.querySelector(".h-send-button").addEventListener("click", () => {
 
     if (amountToSend > storedSangpay) {
       alert("잔액이 부족합니다.");
+      document.querySelector("#send-address").value = "";
+      document.querySelector("#send-amount").value = 0;
+
     } else if (!Number.isInteger(amountToSend)) {
       alert("정수로만 입력 가능");
       document.querySelector("#send-amount").value = 0;
@@ -559,6 +562,7 @@ function editUserSangpay(amountToSend, updatedSangpay) {
     // 받는 회원, 현재 사용자가 같으면 안되게
     if (user.user_id == getCurrentUser()) {
       alert("받는 회원, 현재 사용자가 같음");
+      document.querySelector("#send-address").value = "";
     } else {
       // 받는 회원, 현재 사용자가 다름--> 보내기 기능 정상 작동
 
@@ -584,6 +588,8 @@ function editUserSangpay(amountToSend, updatedSangpay) {
 
   } else {
     alert("지갑 주소 확인");
+    document.querySelector("#send-address").value = "";
+
   }
 
 }

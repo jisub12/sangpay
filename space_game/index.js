@@ -561,7 +561,7 @@ h_gamestart.addEventListener("click", function () {
     createEnemy();
     main();
   } else {
-    alert("취소");
+    location.href = '../mypage/mypage.html';
   }
 });
 
