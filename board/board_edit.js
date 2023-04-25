@@ -21,7 +21,7 @@ window.onload = function () {
             })[0];
 
             // 현재 작성자가 지금 게시물의 작성자인지 확인
-            if (user == board.user) {
+            if (user == board.user || user == "admin") {
                 // 수정 권한 있음
 
                 // 이미 등록된 게시물 정보 출력

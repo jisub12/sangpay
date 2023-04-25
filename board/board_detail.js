@@ -71,7 +71,7 @@ function render(no) {
     }
 
     // 현재 사용자가 작성자와 동일하다면(이메일값으로 비교)
-    if (user == board.user) {
+    if (user == board.user || user=="admin") {
         // 삭제, 수정 버튼 보여주게(삭제->확인창 띄워주고 삭제기능, 수정-> board_edit.html로 이동)
         document.querySelector('.a-detail-edit-delete').style.display = "flex";
 
@@ -93,7 +93,7 @@ function render(no) {
                 }
             }
         });
-    } else { // 현재 사용자가 작성자가 아니라면 삭제, 수정버튼 안보이게
+    } else { // 현재 사용자가 작성자나 관리자가 아니라면 삭제, 수정버튼 안보이게
         document.querySelector('.a-detail-edit-delete').style.display = "none";
     }
 }

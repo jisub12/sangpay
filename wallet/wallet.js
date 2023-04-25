@@ -16,10 +16,12 @@ window.addEventListener("DOMContentLoaded", () => {
   let user = JSON.parse(window.localStorage.getItem("user_" + getCurrentUser()));
 
   if (!user) {
-    // 로그인 안했다면
-    alert('로그인 하세요');
-    // 로그인페이지로 이동
-    location.href = '../login/loginpage.html';
+    if (getCurrentUser() != "admin") {
+      // 로그인 안했다면
+      alert('로그인 하세요');
+      // 로그인페이지로 이동
+      location.href = '../login/loginpage.html';
+    }
   }
 
   // 승인된 회원이라면
