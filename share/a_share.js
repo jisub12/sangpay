@@ -383,11 +383,14 @@ function getRemainingTime1() {
   inputTime.innerHTML= `남은 시간 : ${minutes}분 ${seconds}초`;
   return `남은 시간 : ${minutes}분 ${seconds}초`;
 }
-getRemainingTime1();
-set2=setInterval(getRemainingTime1, 1000);
-document.addEventListener("DOMContentLoaded",function(){
-    expireDate.setTime(window.localStorage.getItem('expireDate'))
-  })
+if (inputTime != null) {
+  console.log(inputTime);
+  getRemainingTime1();
+  set2=setInterval(getRemainingTime1, 1000);
+  document.addEventListener("DOMContentLoaded",function(){
+      expireDate.setTime(window.localStorage.getItem('expireDate'))
+    });
+}
 
 
 
@@ -452,7 +455,7 @@ let headerAdmin = document.querySelector(".b-header-admin");
 if(getCurrentUser() == "admin"){
   headerMypage.style.display = "none";
 }
-if(getCurrentUser() !== "admin"){
+if(headerAdmin != null && getCurrentUser() !== "admin"){
   headerAdmin.style.display = "none";
 }
 
@@ -485,6 +488,8 @@ function delCookies() {
 }
 
 let headerLogout=document.querySelector(".b-header-logout");
-headerLogout.addEventListener("click",function(){
-  delCookies();
-})
+if (headerLogout!=null) {
+  headerLogout.addEventListener("click",function(){
+    delCookies();
+  })
+}
