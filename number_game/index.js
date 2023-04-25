@@ -1,11 +1,12 @@
 let secretNumber = Math.floor(Math.random() * 10) + 1
 let attempts = 0;
-let score=10;
+let score=11;
 const guessInput = document.getElementById("guessInput");
 const submitGuess = document.getElementById("submitGuess");
 const message = document.getElementById("message");
 let h_gamestart = document.querySelector(".h-gamestart");
 let h_popupbox = document.querySelector(".h-popup_box");
+const attemptMessage = document.getElementById("attemptMessage"); // 제출 숫자, 도전 횟수 적을 변수 생성, 지섭
 
 submitGuess.addEventListener("click", function(){
     const guess = parseInt(guessInput.value);
@@ -14,6 +15,9 @@ submitGuess.addEventListener("click", function(){
         return;
     }
     attempts++;
+
+    // 제출 숫자, 도전 횟수 , 지섭
+    attemptMessage.textContent = `시도 : ${attempts} 번, 추측한 숫자 ${guess}`;
 
     //게임 끝나는 조건
     if(attempts>10)
@@ -140,11 +144,13 @@ function userGetreward() {
     //보상
     console.log("지금 게임유저2",gameUser1);
     //게임시작시 차감
-    gameUser1.coin.coin_num=gameUser1.coin.coin_num-1;
+    // 소수점 4자리로 나타나게 계산
+    gameUser1.coin.coin_num=Number((gameUser1.coin.coin_num-1).toFixed(4));
     setLocalHistory(gameUser,"game",{gamename:"숫자 맞추기게임"},{type:"sangpay",amount:1});
 
     //점수에 따른 보상얻는 부분
-    gameUser1.token[8].token_num=gameUser1.token[8].token_num+score;
+    // 소수점 4자리로 나타나게 계산
+    gameUser1.token[8].token_num=Number((gameUser1.token[8].token_num+score).toFixed(4));
     localStorage.setItem("user_"+gameUser,JSON.stringify(gameUser1));
     //내역에저장
     setLocalHistory(gameUser,"game",{gamename:"숫자 맞추기게임"},{type:gameUser1.token[8].token_name,amount:score});
