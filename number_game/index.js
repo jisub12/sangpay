@@ -23,6 +23,7 @@ submitGuess.addEventListener("click", function(){
     if(attempts>10)
     {
         score=0;
+        userGetreward(); //도전 비용 깎이게
         renderScorePopup();
         resetGame();
         alert("넌 나가라");
