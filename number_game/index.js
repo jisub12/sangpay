@@ -67,12 +67,12 @@ document.querySelector(".h-nowUser").innerHTML ="현재 사용자 : "+getCurrent
 h_gamestart.addEventListener("click", function () {
     if (confirm("게임을 시작하시겠습니까?")) {
         // alert("확인");
-        setTimeout(() => {
-        }, 1000);
+        // setTimeout(() => {
+        // }, 1000);
+        h_popupbox.style.display = "none";
       } else {
         alert("취소");
       }
-    h_popupbox.style.display = "none";
 
 
 }
