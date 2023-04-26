@@ -2,97 +2,75 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="./loginpage.css">
-    <link rel="stylesheet" href="../share/sharestyle.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="./loginpage.css">
+  <link rel="stylesheet" href="../share/sharestyle.css">
 </head>
 <style>
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 20px;
-    }
-    .form-group label {
-      font-size: 16px;
-      margin-bottom: 5px;
-    }
-    .form-group input {
-      font-size: 16px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-  </style>
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+
+  .form-group input {
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+</style>
+
 <body>
   <div class="whole-mypage">
     <div class="header">
-        <div class="b-sangpay-logo">
-          <a href="">
-            <div class="b-logo"></div>
-          </a>
-        </div>
-        <!-- <div class="b-session-time">
-            <div class="b-session">남은 시간 : 0분 0초</div>
-            <button class="b-time-extend-btn" onclick="extensionTime()">시간 연장</button>
-        </div>
-        <div class="b-menu-option">
-            <ul class="b-header-list">
-                <li class="b-header-list-item">
-                  <a class="b-header-my-page" href="./mypage.html">MY PAGE</a>
-                </li>
-                <li class="b-header-list-item">
-                  <a class="b-header-faq" href="">FAQ</a>
-                </li>
-            </ul>
-        </div> -->
+      <div class="b-sangpay-logo">
+        <a href="">
+          <div class="b-logo"></div>
+        </a>
+      </div>
     </div>
     <div class="b-login-page-title">log in</div>
     <div class="b-my-page-box">
-        <div class="j-login-flex-box">
-            <!-- <div class="j-logo"><a href="">상장페이</a></div>
-            <div class="j-underBar"></div>
-            <div class="j-blank"></div>
-            <div class="j-id-loginText">아이디 로그인</div>
-            <div class="j-underBar"></div>
-            <div class="j-blank"></div> -->
-            <form class="b-login-box">
-                <div class="form-group">
-                  <label for="username">이메일 또는 아이디</label>
-                  <input type="text" id="username" name="username" value="이메일 또는 아이디" onfocus="if (this.value == '이메일 또는 아이디') {this.value = '';}">
-                </div>
-                <div class="form-group">
-                  <label for="password">비밀번호</label>
-                  <input type="password" id="password" name="password" value="비밀번호" onfocus="if(this.value=='비밀번호') {this.value='';}">
-                </div>
+      <div class="j-login-flex-box">
+        <form class="b-login-box">
+          <div class="form-group">
+            <label for="username">이메일 또는 아이디</label>
+            <input type="text" id="username" name="username" value="이메일 또는 아이디"
+              onfocus="if (this.value == '이메일 또는 아이디') {this.value = '';}">
+          </div>
+          <div class="form-group">
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" name="password" value="비밀번호"
+              onfocus="if(this.value=='비밀번호') {this.value='';}">
+          </div>
 
-              </form>
-            <div class="j-blank"></div>
-            <!-- <div class="j-underBar"></div> -->
-            <div class="j-loginbtnbox"><button class="j-loginbtn" type="submit">로그인</button></div>
-            <!-- <div class="j-underBar"></div> -->
-            <div class="j-blank"></div>
-            <!-- <div class="j-underBar"></div> -->
-            <div class="j-flex-findbox">
-                <div class="j-findId">아이디 찾기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                ||
-                <div class="j-findpw">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;비밀번호 찾기</div>
-            </div>
-            <!-- <div class="j-underBar"></div> -->
-            <!-- <div class="j-blank"></div> -->
-            <!-- <div class="j-underBar"></div> -->
-            <div class="b-signup-options">
-              <div class="b-signup-option-image-google"></div>
-              <div class="b-signup-option-image-facebook"></div>
-              <div class="b-signup-option-image-naver"></div>
-            </div>
-            <div class="j-signup">
-              <a class="b-login-to-signup" href="../signup/signuppage.html">회원가입</a>
-            </div>
-            <!-- <div class="j-underBar"></div> -->
+        </form>
+        <div class="j-blank"></div>
+        <div class="j-loginbtnbox"><button class="j-loginbtn" type="submit">로그인</button></div>
+        <div class="j-blank"></div>
+        <div class="j-flex-findbox">
+          <div class="j-findId">아이디 찾기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+          ||
+          <div class="j-findpw">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;비밀번호 찾기</div>
         </div>
+        <div class="b-signup-options">
+          <div class="b-signup-option-image-google"></div>
+          <div class="b-signup-option-image-facebook"></div>
+          <div class="b-signup-option-image-naver"></div>
+        </div>
+        <div class="j-signup">
+          <a class="b-login-to-signup" href="../signup/signuppage.html">회원가입</a>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -101,59 +79,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js">
 
 </script>
-<script>
-
-    // 암호화할 문자열을 지정합니다.
-    const message = "Hello, world!";
-
-    // MD5 알고리즘을 사용하여 문자열을 암호화합니다.
-    const encrypted = CryptoJS.MD5(message).toString();
-
-    //코인 생성    토큰이름,내가보유한개수,그토큰 1개의 가치,최소거래량 ,수수료
-    // let bitcoin=new token("bitcoin",0,2,1,0.1);
-
-    // // 결과를 출력합니다.
-    // function user(user_id,user_pw,user_nickName,user_allow=false,coin,token){
-    //     this.user_id=user_id;
-    //     this.user_pw=user_pw;
-    //     this.user_nickName=user_nickName;
-    //     this.user_allow=user_allow;
-    //     this.user_Hash= CryptoJS.MD5(this.user_id).toString();
-    //     this.coin=coin;
-    //     this.token=new Array(10);
-    //     this.token[0]=bitcoin
-    //     this.token[1]=
-    //     this.token[2]
-    //     this.token[3]
-    //     this.token[4]
-    //     this.token[5]
-    //     this.token[6]
-    //     this.token[7]
-    //     this.token[8]
-    //     this.token[9]
-    // }
-
-    // function coin(coin_name,coin_num,coin_value){
-    //     this.coin_name=coin_name;
-    //     this.coin_num=coin_num;
-    //     this.coin_value=coin_value
-    // }
-    // function token(token_name,token_num,token_value,minTradingQuan,charge){
-    //     this.token_name=token_name;
-    //     this.token_num=token_num
-    //     this.token_value=token_value;
-    //     this.minTradingQuan=minTradingQuan;
-    //     this.charge=charge;
-    // }
-    // const defaultCoin=new coin("sangapy",100,10);
-
-
-
-
-
-
-  </script>
-  <script src="../share/a_share.js"></script>
-  <script src="./index.js"></script>
+<script src="../share/a_share.js"></script>
+<script src="./index.js"></script>
 
 </html>

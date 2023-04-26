@@ -13,61 +13,32 @@ let checkNick = document.querySelector('.check-nickname-overlap');
 
 let welcomeNewuser = document.querySelector(".submitNewUserBtnBox");
 
-// let welcomeNewuser = document.querySelector(".submitNewUserBtnBox");
-
 let idpass = false;
 let nickpass = false;
 let pwpass = false;
 let pwcf = false;
 
 checkId.addEventListener("click", function () {
-  // for (let i = 0; i < localStorage.length; i++) {
-  //     let key = localStorage.key(i);
-  //     console.log(key);
-  //     if (key.startsWith("user_")) {
-  //       let cuurent_user = JSON.parse(localStorage.getItem(key));
-  //       console.log(cuurent_user.user_id);
-  //       if(idValue!=cuurent_user.user_id){
-  //         idpass=true;
-  //         if(idValue.length!=0){
-
-  //         }
-  //       }
-  //       if(idValue==cuurent_user.user_id)
-  //       {
-  //         idValidation.innerHTML="중복된 아이디가 존재합니다."
-  //         idInput.value="";
-  //         idpass=false;
-  //       }
-  //       // console.log(cuurent_user.token[0].token_name); // local 스토리지에 들어있는 current user의 token 에 접근하는법 [0] 번째는 비트 토큰 그 이름에 접근하는법은 .~~`
-  //     }
-  //   }
 
   let userList = [];
   for (let i = 0; i < localStorage.length; i++) {
     let key = localStorage.key(i);
-    console.log(key);
     if (key.startsWith("user_")) {
       userList.push(JSON.parse(localStorage.getItem(key)));
     }
   }
-  console.log(userList);
 
   let user;
-  console.log(user);
-  console.log(idValue);
   user = userList.filter(function (item) {
     return item.user_id == idValue;
   });
 
   if (user.length != 0) {
     // 중복된 아이디
-    console.log("중복");
     idValidation.innerHTML = "중복된 아이디가 존재합니다.";
     idInput.value = "";
   } else if (idRegex(idValue)) {
     // 중복안됨 사용 가능
-    console.log("중복ㄴ");
     idValidation.innerHTML = "사용 가능한 아이디입니다.";
     idValidation.style.color = "blue";
     idpass = true;
@@ -75,7 +46,6 @@ checkId.addEventListener("click", function () {
     idValidation.innerHTML = "이메일 형식이 아닙니다.";
     idValidation.style.color = "red";
   }
-  console.log("dfdsfdfsdfdsfd", user);
 });
 checkNick.addEventListener("click", function () {
 
@@ -84,28 +54,15 @@ checkNick.addEventListener("click", function () {
 
   for (let i = 0; i < localStorage.length; i++) {
     let key = localStorage.key(i);
-    console.log(key);
     if (key.startsWith("user_")) {
       let cuurent_user = JSON.parse(localStorage.getItem(key));
-      console.log(cuurent_user.user_nickName);
 
-      // if (nicknameValue != cuurent_user.user_nickName) {
-      //   // nickpass = true;
-      //   if (nicknameValue.length != 0) {
-
-      //     nicknameValidation.innerHTML = "사용 가능한 닉네임입니다.";
-      //     nicknameValidation.style.color = "blue";
-      //   }
-
-      // }
       if (nicknameValue == cuurent_user.user_nickName) {
         nicknameValidation.innerHTML = "중복된 닉네임이 존재합니다.";
         nickname.value = "";
         user = cuurent_user;
-        // nickpass = false;
         break;
       }
-      // console.log(cuurent_user.token[0].token_name); // local 스토리지에 들어있는 current user의 token 에 접근하는법 [0] 번째는 비트 토큰 그 이름에 접근하는법은 .~~`
     }
 
   }
@@ -126,7 +83,6 @@ function idRegex(idValue) {
 var idValue;
 idInput.addEventListener("input", function () {
   idValue = idInput.value;
-  console.log(idValue);
   if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(idValue)) {
     idValidation.innerHTML = "이메일 형식이 아닙니다.";
     idValidation.style.color = "red";
@@ -143,74 +99,20 @@ passwordInput.addEventListener("input", function () {
 });
 
 // 비밀번호 확인 input에 이벤트리스너 추가
-pwcfInput.addEventListener("input", function() {
+pwcfInput.addEventListener("input", function () {
   pwcf = checkpwchInput(passwordInput, pwcfInput, pwcfValidation);
 });
-
 
 let nicknameValue;
 nickname.addEventListener("input", function () {
   nickpass = false;
   checkNicknameInput(nickname, nicknameValidation);
 });
-// nickname.addEventListener("input", function () {
-//   nicknameValue = nickname.value;
-//   console.log(nickname.value);
-//   if (nicknameValue.length < 2 || nicknameValue.length > 10) {
-//     nicknameValidation.innerHTML = "닉네임은 2자이상 10자 이하여야합니다.";
-//     nicknameValidation.style.color = "red";
-//   } else {
-//     nicknameValidation.innerHTML = "";
-//   }
-// });
 
-// // 닉네임 입력할때마다 변경될 함수
-// function nicknameInput(nickname, nicknameValidation) {
-//   nicknameValue = nickname.value;
-//   console.log(nickname.value);
-//   if (nicknameValue.length < 2 || nicknameValue.length > 10) {
-//     nicknameValidation.innerHTML = "닉네임은 2자이상 10자 이하여야합니다.";
-//     nicknameValidation.style.color = "red";
-//   } else {
-//     nicknameValidation.innerHTML = "";
-//   }
-// }
-
-// function newUserBtn(
-//   user_id = idValue,
-//   user_pw = passwordValue,
-//   user_nickName = nicknameValue,
-//   user_allow,
-//   coin,
-//   token
-// ) {
-//   if (idpass == true || nickpass == true || pwpass == true) {
-//     let thing = new user(
-//       user_id,
-//       user_pw,
-//       user_nickName,
-//       user_allow,
-//       coin,
-//       token
-//     );
-//     let userString = JSON.stringify(thing);
-//     let key = "user_" + user_id; // 고유한 저장소 키 생성
-//     localStorage.setItem(key, userString);
-//     console.log("새로운 유저가 생성되었습니다");
-//     let popup = document.querySelector('.h-welcomepopup');
-//     popup.classList.add("popupactive")
-
-//     return userString;
-//   }
-//   idpass = false;
-//   nickpass = false;
-//   pwpass = false;
-// }
 
 window.addEventListener('DOMContentLoaded', () => {
   // sign up 버튼 클릭 시 실행될 함수
   function signUp() {
-    console.log('Sign up button clicked!');
     document.querySelector('#startButton').click();
     // 여기에 sign up 버튼을 눌렀을 때 해야 할 동작들을 추가합니다.
     setTimeout(() => {
@@ -231,9 +133,7 @@ window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       document.querySelector('#stopButton').click();
     }, 6000);
-
   }
-
 });
 
 
@@ -295,7 +195,6 @@ function confettiParticle(color) {
 $(document).ready(function () {
   SetGlobals();
   InitializeButton();
-  //InitializeConfetti();
 
   $(window).resize(function () {
     W = window.innerWidth;
@@ -455,29 +354,13 @@ window.requestAnimFrame = (function () {
     };
 })();
 
-// $(document).ready(function () {
-//   //티스토리 공감버튼 이벤트
-//   function reAction() {
-//     $("#startButton").trigger("click");
-//     setTimeout(function () {
-//       $("#stopButton").trigger("click");
-//     }, 6000);
-//   }
-
-//     reAction();
-//     gusdnr25();
-//   ;
-// });
-
 
 
 let tologinpage = document.querySelector('.h-Tologinpage');
 let h_adminallodw = document.querySelector('.h-adminallow');
 
 setTimeout(() => {
-  // h_adminallodw.style.display='block';
   h_adminallodw.style.animation = 'fadeIn 1s ease-in-out';
-  // h_adminallodw.style.opacity = 1;
   h_adminallodw.classList.add('isactive')
 }, 2000);
 
@@ -489,4 +372,3 @@ setTimeout(() => {
   tologinpage.style.animation = 'fadeIn 1s ease-in-out';
   tologinpage.style.opacity = 1;
 }, 3000);
-

@@ -3,7 +3,7 @@
     src: url(../DynaPuff/DynaPuff-VariableFont_wdth\,wght.ttf);
 }
 
-.whole-adminpage{
+.whole-adminpage {
     width: 100%;
     height: 100vh;
     background-color: #033104;
@@ -11,84 +11,7 @@
     font-family: "dynapuff";
 }
 
-/* .header{
-    width: 100%;
-    height: 60px;
-    border-bottom: 1px solid;
-    background-color: white;
-    margin: 0;
-    padding: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    display: inline-flex;
-    flex-wrap: nowrap;
-}
-
-.b-sangpay-logo{
-    width: 20%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.b-logo{
-    width: 150px;
-    height: 30px;
-    border: 1px solid;
-}
-
-.b-session-time{
-    width: 60%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.b-session{
-    margin-right: 10px;
-}
-
-.b-menu-option{
-    width: 20%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.b-header-list{
-    list-style: none;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 0;
-    margin: 0;
-}
-
-.b-header-list-item{
-    margin-left: 50px;
-
-    display: flex;
-    justify-content: flex-end;
-}
-
-.b-header-list-item:hover{
-    cursor: pointer;
-    scale: 1.1;
-}
-
-.b-header-my-page{
-    text-decoration: none;
-    color: black;
-} */
-
-.b-page-title{
+.b-page-title {
     width: 500px;
     height: 100px;
 
@@ -107,12 +30,11 @@
     font-weight: 400;
 }
 
-.b-admin-window{
+.b-admin-window {
     width: 60%;
     height: 500px;
 
     border-radius: 15px;
-    /* box-shadow: 5px 5px 5px; */
     background-color: white;
 
     margin: auto;
@@ -120,7 +42,7 @@
     overflow-y: scroll;
 }
 
-.b-tab-menu{
+.b-tab-menu {
     align-items: center;
     margin: 0;
     text-align: center;
@@ -131,11 +53,11 @@
     box-sizing: border-box;
 }
 
-.b-tab-menu > input{
+.b-tab-menu>input {
     display: none;
 }
 
-.b-tab-menu > input + label{
+.b-tab-menu>input+label {
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -150,43 +72,9 @@
     cursor: pointer;
 }
 
-/* .b-tab-menu .b-member,
-.b-tab-menu .b-member-label{
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 50%;
-    height: 40px;
-
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-
-    font-size: 15px;
-    cursor: pointer;
-}
-
-.b-tab-menu .b-not-yet-member,
-.b-tab-menu .b-not-yet-member-label{
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 50%;
-    height: 40px;
-
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-
-    font-size: 15px;
-    cursor: pointer;
-} */
-
-input[class="b-member"]:checked + label,
-input[class="b-not-yet-member"]:checked + label{
+input[class="b-member"]:checked+label,
+input[class="b-not-yet-member"]:checked+label {
     border-top: 1px solid #033104;
-    /* border-left: 1px solid #033104;
-    border-right: 1px solid #033104; */
     border-bottom: 1px solid #033104;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
@@ -194,16 +82,16 @@ input[class="b-not-yet-member"]:checked + label{
     background-color: white;
 }
 
-.box{
+.box {
     width: 100%;
     height: 100%;
     margin: 0 auto;
-    
+
     background-color: white;
     display: none;
 }
 
-input[class="b-member"]:checked ~ .item1{
+input[class="b-member"]:checked~.item1 {
     width: 100%;
     height: 100%;
     display: flex;
@@ -212,7 +100,7 @@ input[class="b-member"]:checked ~ .item1{
     margin: auto;
 }
 
-input[class="b-not-yet-member"]:checked ~ .item2{
+input[class="b-not-yet-member"]:checked~.item2 {
     width: 100%;
     height: 100%;
     display: flex;
@@ -221,7 +109,7 @@ input[class="b-not-yet-member"]:checked ~ .item2{
     margin: auto;
 }
 
-.board-content{
+.board-content {
     margin-top: 10px;
 
     background-color: white;
@@ -231,7 +119,7 @@ input[class="b-not-yet-member"]:checked ~ .item2{
     align-items: center;
 }
 
-.board-content div{
+.board-content div {
     width: 300px;
     height: 30px;
 
@@ -240,28 +128,22 @@ input[class="b-not-yet-member"]:checked ~ .item2{
     align-items: center;
 }
 
-.item1{
-    width: 100%;
-    height: 100%;
-
-    /* background-color: white; */
-}
-
-.item2{
-    width: 100%;
-    height: 100%;
-
-    /* background-color: white; */
-}
-
-.b-member-board{
+.item1 {
     width: 100%;
     height: 100%;
 }
 
-.b-confirm-waiting-member-board{
+.item2 {
+    width: 100%;
+    height: 100%;
+}
+
+.b-member-board {
+    width: 100%;
+    height: 100%;
+}
+
+.b-confirm-waiting-member-board {
     width: 100%;
     height: auto;
-
-    /* background-color: lightgray; */
 }

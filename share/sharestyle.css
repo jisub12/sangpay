@@ -5,7 +5,7 @@
     src: url(../DynaPuff/DynaPuff-VariableFont_wdth\,wght.ttf);
 }
 
-.header{
+.header {
     width: 100%;
     height: 50px;
     border-bottom: 1px solid;
@@ -22,7 +22,7 @@
     font-family: "dynapuff";
 }
 
-.b-sangpay-logo{
+.b-sangpay-logo {
     width: 30%;
 
     display: flex;
@@ -30,7 +30,7 @@
     align-items: center;
 }
 
-.b-logo{
+.b-logo {
     width: 150px;
     height: 50px;
 
@@ -40,7 +40,7 @@
     background-position: center;
 }
 
-.b-session-time{
+.b-session-time {
     width: 40%;
 
     display: flex;
@@ -48,14 +48,15 @@
     align-items: center;
 }
 
-.b-session{
-    margin-right: 10px;
-}
-.h-session{
+.b-session {
     margin-right: 10px;
 }
 
-.b-menu-option{
+.h-session {
+    margin-right: 10px;
+}
+
+.b-menu-option {
     width: 30%;
 
     display: flex;
@@ -65,7 +66,7 @@
     margin-right: 15px;
 }
 
-.b-header-list{
+.b-header-list {
     list-style: none;
 
     display: flex;
@@ -76,67 +77,55 @@
     margin: 0;
 }
 
-.b-header-list-item1{
+.b-header-list-item1 {
     margin: 20px;
 
     display: flex;
     justify-content: flex-end;
 }
 
-.b-header-list-item2{
+.b-header-list-item2 {
     margin: 20px;
 
     display: flex;
     justify-content: flex-end;
 }
 
-.b-header-list-item3{
+.b-header-list-item3 {
     margin: 20px;
 
     display: flex;
     justify-content: flex-end;
 }
 
-.b-header-list-item4{
+.b-header-list-item4 {
     margin: 20px;
 
     display: flex;
     justify-content: flex-end;
 }
 
-.b-header-list-item:hover{
+.b-header-list-item:hover {
     cursor: pointer;
     scale: 1.1;
 }
 
-.b-header-admin{
+.b-header-admin {
     text-decoration: none;
     color: black;
 }
 
-.b-header-my-page{
+.b-header-my-page {
     text-decoration: none;
     color: black;
 }
 
-.b-header-faq{
+.b-header-faq {
     text-decoration: none;
     color: black;
 }
 
-.b-header-logout{
+.b-header-logout {
     text-decoration: none;
     color: black;
 }
-
-/* .b-my-page-box{
-    width: 60%;
-    height: 800px;
-    
-    border-radius: 15px;
-    box-shadow: 5px 5px 5px;
-    background-color: whitesmoke;
-
-    margin: auto;
-    margin-top: 80px;
-} */

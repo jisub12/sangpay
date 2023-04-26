@@ -3,11 +3,11 @@
     src: url(./DynaPuff/DynaPuff-VariableFont_wdth\,wght.ttf);
 }
 
-.intro-page{
+.intro-page {
     margin: 0;
 }
 
-.b-wallet-intro{
+.b-wallet-intro {
     width: 100%;
     height: 100vh;
     overflow: hidden;
@@ -20,13 +20,9 @@
     scale: 1;
 
     font-family: "dynapuff";
-
-    /* opacity: 0;
-    background-color: rgba(3, 49, 4,0.8);
-    transition: 10s; */
 }
 
-.b-wallet-intro::before{
+.b-wallet-intro::before {
     content: "";
 
     width: 100%;
@@ -39,13 +35,12 @@
     left: -100%;
 
     animation: lineMoving 1s linear forwards, lineMoving2 1s linear forwards, lineToCenter 1s linear forwards;
-    /* lineDisappearing 1s linear forwards */
     animation-delay: 0s, 5s, 8s, 8s;
 
     z-index: 0;
 }
 
-.b-wallet-intro::after{
+.b-wallet-intro::after {
     content: "";
 
     width: 100%;
@@ -63,14 +58,14 @@
     z-index: 1;
 }
 
-.b-wallet-icon{
+.b-wallet-icon {
     width: 350px;
     height: 350px;
 
     position: absolute;
     top: 41.8%;
     left: 100%;
-    transform: translate(0,-50%);
+    transform: translate(0, -50%);
 
     background-image: url(./img/wallet_icon.png);
     background-repeat: no-repeat;
@@ -82,14 +77,15 @@
     z-index: 10;
     scale: 1;
 }
-.b-wallet-icon-fake1{
+
+.b-wallet-icon-fake1 {
     width: 350px;
     height: 350px;
 
     position: absolute;
     top: 41.8%;
     left: 90.55%;
-    transform: translate(0,-50%);
+    transform: translate(0, -50%);
 
     background-image: url(./img/wallet_icon_fake.png);
     background-repeat: no-repeat;
@@ -103,14 +99,15 @@
 
     display: none;
 }
-.b-wallet-icon-fake2{
+
+.b-wallet-icon-fake2 {
     width: 350px;
     height: 350px;
 
     position: absolute;
     top: 41.8%;
     left: 48.1%;
-    transform: translate(0,-50%);
+    transform: translate(0, -50%);
 
     background-image: url(./img/wallet_icon_fake.png);
     background-repeat: no-repeat;
@@ -121,13 +118,14 @@
 
     display: none;
 }
-.b-wallet-icon-fake2:hover{
+
+.b-wallet-icon-fake2:hover {
     cursor: pointer;
 
     animation: walletWiggle 1s ease-in infinite;
 }
 
-.b-moving-box{
+.b-moving-box {
     width: 60px;
     height: 60px;
 
@@ -137,7 +135,7 @@
     position: absolute;
     top: 50%;
     left: 0;
-    transform: translate(0,-50%);
+    transform: translate(0, -50%);
 
     background-image: url(./img/121383751_padded_logo.png);
     background-repeat: no-repeat;
@@ -150,7 +148,7 @@
     animation-delay: 0s, 5s, 8s;
 }
 
-.b-breaking-line1{
+.b-breaking-line1 {
     height: 100%;
     border: 1px solid black;
 
@@ -166,7 +164,7 @@
     z-index: -1;
 }
 
-.b-breaking-line2{
+.b-breaking-line2 {
     height: 100%;
     border: 1px solid black;
 
@@ -182,7 +180,7 @@
     z-index: -1;
 }
 
-.b-breaking-line3{
+.b-breaking-line3 {
     height: 100%;
     border: 1px solid black;
 
@@ -198,7 +196,7 @@
     z-index: -1;
 }
 
-.b-breaking-line4{
+.b-breaking-line4 {
     height: 100%;
     border: 1px solid black;
 
@@ -214,7 +212,7 @@
     z-index: -1;
 }
 
-.b-breaking-line5{
+.b-breaking-line5 {
     height: 100%;
     border: 1px solid black;
 
@@ -230,7 +228,7 @@
     z-index: -1;
 }
 
-.b-breaking-line6{
+.b-breaking-line6 {
     height: 100%;
     border: 1px solid black;
 
@@ -246,7 +244,7 @@
     z-index: -1;
 }
 
-.b-breaking-line7{
+.b-breaking-line7 {
     height: 100%;
     border: 1px solid black;
 
@@ -262,7 +260,7 @@
     z-index: -1;
 }
 
-.b-breaking-line8{
+.b-breaking-line8 {
     height: 100%;
     border: 1px solid black;
 
@@ -278,7 +276,7 @@
     z-index: -1;
 }
 
-.b-breaking-line9{
+.b-breaking-line9 {
     height: 100%;
     border: 1px solid black;
 
@@ -294,7 +292,7 @@
     z-index: -1;
 }
 
-.b-breaking-line10{
+.b-breaking-line10 {
     height: 100%;
     border: 1px solid black;
 
@@ -310,7 +308,7 @@
     z-index: -1;
 }
 
-.b-breaking-line11{
+.b-breaking-line11 {
     height: 100%;
     border: 1px solid black;
 
@@ -326,7 +324,7 @@
     z-index: -1;
 }
 
-.b-breaking-line12{
+.b-breaking-line12 {
     height: 100%;
     border: 1px solid black;
 
@@ -342,7 +340,7 @@
     z-index: -1;
 }
 
-.b-open-your-wallet1{
+.b-open-your-wallet1 {
     width: 200px;
     height: 50px;
 
@@ -362,7 +360,8 @@
     animation: textFadeIn 1s ease forwards;
     animation-delay: 9.5s;
 }
-.b-open-your-wallet2{
+
+.b-open-your-wallet2 {
     width: 200px;
     height: 50px;
 
@@ -382,7 +381,8 @@
     animation: textFadeIn 1s ease forwards;
     animation-delay: 9.5s;
 }
-.b-open-your-wallet3{
+
+.b-open-your-wallet3 {
     width: 200px;
     height: 50px;
 
@@ -404,7 +404,7 @@
 }
 
 .b-open-your-wallet2::before,
-.b-open-your-wallet2::after{
+.b-open-your-wallet2::after {
     content: "";
 
     width: 15px;
@@ -415,7 +415,7 @@
     position: absolute;
     top: 50%;
     left: 130%;
-    transform: translate(0,-50%) rotate(45deg);
+    transform: translate(0, -50%) rotate(45deg);
 
     z-index: 2;
     opacity: 0;
@@ -423,163 +423,181 @@
     animation: textFadeIn 2s ease forwards;
     animation-delay: 9.5s;
 }
-.b-open-your-wallet2::after{
+
+.b-open-your-wallet2::after {
     transform: rotate(-45deg);
     top: 63%;
 }
 
-@keyframes boxMoving{
-    from{
+@keyframes boxMoving {
+    from {
         left: 0;
     }
-    to{
+
+    to {
         left: 50%;
     }
 }
 
-@keyframes boxMoving2{
-    from{
+@keyframes boxMoving2 {
+    from {
         left: 50%;
     }
-    to{
+
+    to {
         left: 92.5%;
     }
 }
 
-@keyframes lineMoving{
-    from{
+@keyframes lineMoving {
+    from {
         left: -100%;
     }
-    to{
+
+    to {
         left: -50%;
     }
 }
 
-@keyframes lineMoving2{
-    from{
+@keyframes lineMoving2 {
+    from {
         left: -50%;
     }
-    to{
+
+    to {
         left: -7.5%;
     }
 }
 
-@keyframes lineDisappearing{
-    from{
+@keyframes lineDisappearing {
+    from {
         width: -100%;
     }
-    to{
+
+    to {
         width: 0;
     }
 }
 
-@keyframes boxToCenter{
-    from{
+@keyframes boxToCenter {
+    from {
         left: 92.5%;
     }
-    to{
+
+    to {
         left: 50%;
     }
 }
 
-@keyframes lineToCenter{
-    from{
+@keyframes lineToCenter {
+    from {
         left: -6.74%;
     }
-    to{
+
+    to {
         left: -50%;
     }
 }
 
-@keyframes breakingLineMoving1{
-    from{
+@keyframes breakingLineMoving1 {
+    from {
         left: 100%;
     }
-    to{
+
+    to {
         left: -100%;
     }
 }
 
-@keyframes breakingLineMoving2{
-    from{
+@keyframes breakingLineMoving2 {
+    from {
         left: 150%;
     }
-    to{
+
+    to {
         left: -100%;
     }
 }
 
-@keyframes breakingLineMoving3{
-    from{
+@keyframes breakingLineMoving3 {
+    from {
         left: 250%;
     }
-    to{
+
+    to {
         left: -100%;
     }
 }
 
-@keyframes lineBreaking1{
-    from{
+@keyframes lineBreaking1 {
+    from {
         transform: rotate(0deg);
     }
-    to{
+
+    to {
         transform: rotate(30deg);
     }
 }
 
-@keyframes lineBreaking2{
-    from{
+@keyframes lineBreaking2 {
+    from {
         transform: rotate(0deg);
     }
-    to{
+
+    to {
         transform: rotate(-30deg);
     }
 }
 
-@keyframes walletAppearing{
-    from{
+@keyframes walletAppearing {
+    from {
         left: 100%;
     }
-    to{
+
+    to {
         left: 90.55%;
     }
 }
 
-@keyframes walletMoving{
-    from{
+@keyframes walletMoving {
+    from {
         left: 90.55%;
     }
-    to{
+
+    to {
         left: 48.1%;
     }
 }
 
-@keyframes walletIntroFadeOut{
-    from{
+@keyframes walletIntroFadeOut {
+    from {
         opacity: 1;
     }
-    to{
+
+    to {
         opacity: 0;
     }
 }
 
-@keyframes textFadeIn{
-    from{
+@keyframes textFadeIn {
+    from {
         opacity: 0;
     }
-    to{
+
+    to {
         opacity: 1;
     }
 }
 
-@keyframes walletZoomIn{
-    from{
+@keyframes walletZoomIn {
+    from {
         scale: 1;
         opacity: 1;
         top: 50%;
         left: 48.1%;
     }
-    to{
+
+    to {
         scale: 10;
         opacity: 0;
         top: 0;
@@ -587,20 +605,24 @@
     }
 }
 
-@keyframes walletWiggle{
-    0%{
-        transform: translate(0,-50%) rotate(0deg);
+@keyframes walletWiggle {
+    0% {
+        transform: translate(0, -50%) rotate(0deg);
     }
-    25%{
-        transform: translate(0,-50%) rotate(10deg);
+
+    25% {
+        transform: translate(0, -50%) rotate(10deg);
     }
-    50%{
-        transform: translate(0,-50%) rotate(0deg);
+
+    50% {
+        transform: translate(0, -50%) rotate(0deg);
     }
-    75%{
-        transform: translate(0,-50%) rotate(-10deg);
+
+    75% {
+        transform: translate(0, -50%) rotate(-10deg);
     }
-    100%{
-        transform: translate(0,-50%) rotate(0deg);
+
+    100% {
+        transform: translate(0, -50%) rotate(0deg);
     }
 }

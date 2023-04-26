@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="../share/sharestyle.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
 </head>
 <style>
     .form-group {
@@ -30,8 +29,14 @@
         border: 1px solid #ccc;
         border-radius: 5px;
     }
-    canvas{z-index:10;pointer-events: none;position: fixed;top: 0;transform: scale(1.1);}
 
+    canvas {
+        z-index: 10;
+        pointer-events: none;
+        position: fixed;
+        top: 0;
+        transform: scale(1.1);
+    }
 </style>
 
 <body class="whole-mypage">
@@ -41,27 +46,11 @@
                 <div class="b-logo"></div>
             </a>
         </div>
-        <!-- <div class="b-session-time">
-            <div class="b-session">남은 시간 : 00분 00초</div>
-            <button class="b-time-extend-btn">시간 연장</button>
-        </div>
-        <div class="b-menu-option">
-            <ul class="b-header-list">
-                <li class="b-header-list-item">
-                    <a class="b-header-my-page" href="./mypage.html">MY PAGE</a>
-                </li>
-                <li class="b-header-list-item">
-                    <a class="b-header-faq" href="./board.html">FAQ</a>
-                </li>
-            </ul>
-        </div> -->
     </div>
     <div class="b-signup-page-title">create an account</div>
     <div class="b-my-page-box">
         <div class="j-login-flex-box">
             <form>
-                <!-- <div class="j-logo"><a style="font-weight: 400;" href="">회원가입</a></div> -->
-                <!-- <div class="j-underBar"></div> -->
                 <div class="j-blank"></div>
                 <p>아이디</p>
                 <div class="j-signupflexbox" style="display: flex; flex-wrap: wrap;">
@@ -93,26 +82,23 @@
         <div class="h-welcomepopup">
             <div class="buttonContainer">
                 <button style="display: none;" class="canvasBtn" id="stopButton">끄기</button>
-                <button style="display: none;" class="canvasBtn" id="startButton">켜기</button>	
+                <button style="display: none;" class="canvasBtn" id="startButton">켜기</button>
             </div>
             <div class="b-popup-content">
                 <div class="b-popup-text-top">
                     <p>
                         성공적으로 회원가입을 신청하였습니다.
-                    </p> 
+                    </p>
                 </div>
                 <div class="b-popup-text-mid">
                     <p class="h-adminallow"> 관리자의 승인을 기다려주세요. </p>
                 </div>
                 <div class="b-popup-text-bot">
-                    <a class="h-Tologinpage" href="../login/loginpage.html" >로그인페이지로</a>
+                    <a class="h-Tologinpage" href="../login/loginpage.html">로그인페이지로</a>
                 </div>
             </div>
             <canvas id="canvas"></canvas>
         </div>
-
-
-
     </div>
     </div>
 
@@ -120,55 +106,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js">
 
-</script>
-<script>
-
-    // // 암호화할 문자열을 지정합니다.
-    // const message = "Hello, world!";
-
-    // // MD5 알고리즘을 사용하여 문자열을 암호화합니다.
-    // const encrypted = CryptoJS.MD5(message).toString();
-
-    // //코인 생성    토큰이름,내가보유한개수,그토큰 1개의 가치,최소거래량 ,수수료
-    // let bitcoin = new token("bitcoin", 0, 2, 1, 0.1);
-
-    // // 결과를 출력합니다.
-    // function user(user_id, user_pw, user_nickName, user_allow = false, coin, token) {
-    //     this.user_id = user_id;
-    //     this.user_pw = user_pw;
-    //     this.user_nickName = user_nickName;
-    //     this.user_allow = user_allow;
-    //     this.user_Hash = CryptoJS.MD5(this.user_id).toString();
-    //     this.coin = coin;
-    //     this.token = new Array(10);
-    //     this.token[0] = bitcoin
-    //     this.token[1] =
-    //     this.token[2]
-    //     this.token[3]
-    //     this.token[4]
-    //     this.token[5]
-    //     this.token[6]
-    //     this.token[7]
-    //     this.token[8]
-    //     this.token[9]
-    // }
-
-    // function coin(coin_name, coin_num, coin_value) {
-    //     this.coin_name = coin_name;
-    //     this.coin_num = coin_num;
-    //     this.coin_value = coin_value
-    // }
-    // function token(token_name, token_num, token_value, minTradingQuan, charge) {
-    //     this.token_name = token_name;
-    //     this.token_num = token_num
-    //     this.token_value = token_value;
-    //     this.minTradingQuan = minTradingQuan;
-    //     this.charge = charge;
-    // }
-    // const defaultCoin = new coin("sangapy", 100, 10);
-
-
-    console.log("dd");
 </script>
 <script src="../share/a_share.js"></script>
 <script src="./signuppage.js"></script>

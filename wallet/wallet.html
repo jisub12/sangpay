@@ -94,7 +94,6 @@
                     <h2>보내기</h2>
                     <Input type="text" id="send-address" class="input-field" placeholder="지갑 주소를 입력해 주세요">
                     <div class="coin-info">
-                        <!--  이부분 나중에 자바스크립트랑 연결해서 보유개수대로 표시하게 해야함  -->
                         <span class="coin" id="send-sangpay-name">상페코인</span>
                         <span class="coin-amount" id="send-sangpay-amount">총 보유 개수</span>
                     </div>
@@ -131,9 +130,7 @@
                     <div class="swap-input-wrapper">
                         <span class="coin" id="swap1-sangpay-name">상장페이</span>
                         <span class="coin-amount" id="paytotoken-amount">보유수량</span>
-                        <!-- <span class="coin-amount" id="swap1-sangpay-amount-span"></span> -->
 
-                        <!-- id = "swap1-sangpay-amount" 부분 number랑 연결 된건지 확인 해야됌.  -->
                         <input type="number" id="swap1-sangpay-amount" class="swap-input-field" placeholder="수량"
                             min="0">
                     </div>
@@ -141,7 +138,6 @@
                         <!-- 자바스크립트에서 li 요소 추가했음 -->
                     </ul>
                     <div class="swap-details">
-                        <!-- 나중에 연결해서 기능 구현 되게 해야함 -->
                         <p class="swap-expected">정보</p>
                         <p>페이가치 : 10</p>
                         <p class="swap-rate">토큰가치 : 0.00</p>
@@ -169,15 +165,11 @@
                     <h2>교환</h2>
                     <p class="swap-instruction">교환할 토큰을 선택하세요</p>
 
-                    <!-- ---- -->
-                    <!-- ---- -->
-
                     <ul class="token-list" id="tokentopay-token-list">
                         <!-- 자바스크립트에서 li 요소 추가했음 -->
                     </ul>
                     <p>수량</p>
                     <div class="swap-input-wrapper">
-                        <!-- <span class="coin-amount" id="swap2-token-amount"></span> -->
                         <span></span>
                         <!-- 토큰 수량 입력할 영역 -->
                         <input type="number" id="swap2-token-amount" class="swap-input-field"
@@ -193,7 +185,6 @@
                         <span class="coin-amount" id="swap2-sangpay-amount">총 보유 개수</span>
                     </div>
                     <div class="swap-details">
-                        <!-- 연결해서 기능 구현 되게 해야함 -->
                         <p class="swap-expected">정보</p>
 
                         <p>페이가치 : 10</p>
@@ -215,8 +206,6 @@
             </div>
         </div>
 
-
-
         <!-- 내역 보기 버튼 팝업창 -->
 
         <div class="popup-history">
@@ -227,7 +216,6 @@
                         <div class="history-cancel">X</div>
                     </div>
                     <h2>거래내역</h2>
-                    <!-- <p class="swap-instruction">교환 수량을 입력하세요</p> -->
                     <div class="history-content">
 
                     </div>
@@ -235,14 +223,9 @@
             </div>
         </div>
 
-
-
-
     </main>
 </body>
 <script src="../share/a_share.js"></script>
 <script src="./wallet.js"></script>
-<!-- <script type="module" src="./board.js"></script> -->
-<!-- <script src="./board.js"></script> -->
 
 </html>

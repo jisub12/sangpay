@@ -3,11 +3,11 @@
     src: url(../DynaPuff/DynaPuff-VariableFont_wdth\,wght.ttf);
 }
 
-.b-space-game-page{
+.b-space-game-page {
     font-family: "dynapuff";
 }
 
-.h-popup_box{
+.h-popup_box {
     border: 1px solid black;
     border-radius: 10px;
     position: absolute;
@@ -19,13 +19,16 @@
 
     margin-top: 35px;
 }
-.h-popup_box .is-active{
+
+.h-popup_box .is-active {
     display: none;
 }
-.h-selectGame{
+
+.h-selectGame {
     display: flex;
 }
-.h-gamestart{
+
+.h-gamestart {
     cursor: pointer;
 
     width: 100px;
@@ -33,11 +36,12 @@
     border: 1px solid;
     border-radius: 50px;
 }
-.h-gamestart:hover{
+
+.h-gamestart:hover {
     background-color: lightgray;
 }
 
-.b-gamestart-btn-box{
+.b-gamestart-btn-box {
     width: 300px;
     height: 30px;
 
@@ -48,6 +52,6 @@
     margin: auto;
 }
 
-.b-new-div-hover:hover{
+.b-new-div-hover:hover {
     background-color: lightgray;
 }
