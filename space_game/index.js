@@ -410,6 +410,7 @@ function togglePause() {
 }
 
 // pause 그리기
+
 function renderPause() {
   // 반투명 검은색 레이어
   ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
@@ -587,3 +588,25 @@ h_gamestart.addEventListener("click", function () {
 // 적군이 죽는다.
 // 총알이 적군에게 닿는다. (총알.y <= 적군.y) and (총알.x >= 적군.x and 총알.x <= 적군.x + 40) => 닿았다
 // 닿으면 총알이 죽게됌. 적군의 우주선이 없어짐. 점수 획득
+
+function main() {
+    if(!gameOver){
+        if(!isPaused) {
+            update(); // 좌표 값을 업데이트 하고 
+        } 
+        render(); // 그려주고
+
+        if(isPaused) {
+            renderPause();
+        }
+         
+            requestAnimationFrame(main);
+        } else{
+            ctx.drawImage(gameOverImage,10,100,380,380);
+        }
+    }
+
+loadImage();
+setupKeyboardListener();
+createEnemy();
+main();
